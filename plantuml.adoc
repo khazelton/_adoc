@@ -1,0 +1,60 @@
+=== plantuml.adoc
+SEE c4model.adoc mps.adoc antora.adoc diagram.adoc +
+https://github.internet2.edu/internet2/iam-knowledgebase/blob/main/plantuml-c4-structurizr.adoc <- notes on c4plantuml +
+
+- - -
+_2024-08-23 09:13 enrollment / self-service_
+
+zoom chat with Slavek on enrollment and self-maintained profile info
+
+An I2 Proxy a la AARC would solve tricky problems by being the place to do biz logic around authNZ and attributes, leaving IdP/OPs/SPs/RPs with only their basic native functions.
+
+https://wiki.geant.org/display/AARC/AARC+Architecture[] +
+
+challenge 1: user goes to protected resource, preseented with "Login or Register", if they choose Register path, that triggers enrollment flow. If that involves email verification, the IdP session could end before they are able to be redirected to the original URL.
+
+] How does I2 deal with this situation?
+
+Proxy can solve this.
+
+https://github.internet2.edu/ti/systems-architecture/blob/main/iam/images/iam-use-case.png
+https://github.internet2.edu/ti/systems-architecture/blob/main/iam/images/iam-conscript.png[] +
+https://github.internet2.edu/ti/systems-architecture/blob/main/iam/images/iam-enroll-event.png[] +
+https://github.internet2.edu/ti/systems-architecture/blob/main/iam/images/iam-jit-enroll.png[] +
+https://github.internet2.edu/ti/systems-architecture/blob/main/iam/images/iam-signup-cirrus.png[] +
+https://github.internet2.edu/ti/systems-architecture/blob/main/iam/images/iam-signup.png[] +
+
+
+- - -
+_2021-04-05 09:27 references and links_
+
+https://medium.com/better-programming/graphic-design-for-software-engineers-and-architects-c616bb6c3366[] <- !! +
+https://betterprogramming.pub/chatgpt-and-software-architecture-308b6e0cc25a <- 1 +
+https://betterprogramming.pub/how-to-create-diagrams-with-chatgpt-19099de795ce <- 2 +
+https://betterprogramming.pub/deployment-diagrams-chatgpt-and-eraser-io-diagramgpt-f3d0a153f180 <- 3 +
+https://d2lang.com/tour/intro/ <- The D2 text-to-diagram tool +
+https://text-to-diagram.com/ <- txt2diagram comparison tool +
+https://tomassetti.me/writing-an-editor-for-plantuml/ <- MPS grammar for plantuml editor +
+http://www.plantuml.com/plantuml/uml/ <- online plantuml server +
+https://github.com/inthepocket/plantuml-styles <- !! plantuml styles and examples +
+https://forum.plantuml.net/5852/data-flow-diagrams <- data flow diagrams using dot (layer under plantuml) +
+https://plantuml.com/ <- home page, Plantuml +
+https://plantuml.com/link <- how to include hyperlinks in PlantUML diagrams +
+https://crashedmind.github.io/PlantUMLHitchhikersGuide/ <- Hitchhiker's guide to Plantuml +
+http://plantuml.com/guide <- Plantuml Guide in PDF +
+
+- - -
+_2021-03-04 13:32 getting started_
+
+Do TAP ref arch 1st; Then drill down on AuthN System (Shib, Cirrus); then on to the Provisioning System
+
+Do Cirrus ID svcs.
+
+https://marketplace.visualstudio.com/items?itemName=systemticks.c4-dsl-extension <- VS Code c4 DSL extension +
+
+- - -
+_2021-03-04 13:31 references and links_
+
+https://github.com/structurizr <- +
+https://marketplace.visualstudio.com/items?itemName=systemticks.c4-dsl-extension <- +
+https://github.internet2.edu/internet2/iam-knowledgebase/blob/main/plantStructC4.adoc <- notes on c4plantuml +

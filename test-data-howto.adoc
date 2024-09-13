@@ -1,0 +1,1706 @@
+=== test-data-how-to.adoc
+- - -
+_2023-08-16 18:10:25 success importing a small sample of the csv SIS file_
+
+*- CSV connector How-to: Bring a new resource into a Worbench instance -*
+*- example modified from The Book, Chapter 8, HR section) -*
+
+- Start with the small csv resource definition from Chapter 8 of the Book
+
+- hr.csv contents:
+```
+"empno","firstname","lastname"
+"001","Alice","Anderson"
+"002","Bob","Brown"
+```
+
+- Place the new comma-delimited hr.csv file in the proper place on the Workbench host
+```
+{Workbench Directory}/midpoint_server/container_files/mp-home/csv/hr.csv
+```
+- Replace {Workbench Directory} in the template with the path of the Workbench folder 
+
+- Add the new .csv data file to the volume bind section of the midpoint_server segment of the docker-compose.yml file
+
+```
+  ...
+  midpoint_server:
+  ...
+   volumes:
+    - midpoint_home:/opt/midpoint/var
+    ...
+    - type: bind
+      source: ./midpoint_server/container_files/mp-home/csv/hr.csv
+      target: /opt/midpoint/csv/hr.csv
+   ...
+```
+
+*- The following template from Chapter 8 of THAE BOOK can be used to create your own simple inbound csv resource definition -*
+
+---
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- https://docs.evolveum.com/book/practical-identity-management-with-midpoint.html#08-obhject-templates 
+  ~
+  ~ Copyright (c) 2010-2019 Evolveum
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resource oid="03c3ceea-78e2-11e6-954d-dfdfa9ace0cf"
+            xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3"
+            xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3"
+            xmlns:q="http://prism.evolveum.com/xml/ns/public/query-3"
+            xmlns:icfs="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3"
+            xmlns:ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3"
+            xmlns:ext="http://midpoint.evolveum.com/xml/ns/story/orgsync/ext"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:icfc="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/connector-schema-3">
+
+    <name>HR System, Book ch 8</name>
+
+    <description>
+        HR resource using CSV connector. This is the HR feed (source) resource.
+        This is a sample used in the "Practical Identity Management with MidPoint"
+        book, chapter 8.
+    </description>
+
+    <connectorRef type="ConnectorType">
+        <filter>
+            <q:equal>
+                <q:path>c:connectorType</q:path>
+                <q:value>com.evolveum.polygon.connector.csv.CsvConnector</q:value>
+            </q:equal>
+        </filter>
+    </connectorRef>
+```
+* In the connectorConfiguration section 
+** filepath should match the path defined in the docker-compose.yml for the target location of the bind element
+** {filename.csv} should be your .csv file name
+** uniqueAttribute should identify the field in the csv file that carries the unique identifier for each row
+
+```
+    <connectorConfiguration>
+        <!-- Configuration specific for the CSV connector -->
+        <icfc:configurationProperties
+                xmlns:icfccsvfile="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/bundle/com.evolveum.polygon.connector-csv/com.evolveum.polygon.connector.csv.CsvConnector">
+            <icfccsvfile:filePath>/opt/midpoint/csv/{filename.csv}</icfccsvfile:filePath>
+            <icfccsvfile:encoding>utf-8</icfccsvfile:encoding>
+            <icfccsvfile:fieldDelimiter>,</icfccsvfile:fieldDelimiter>
+            <icfccsvfile:multivalueDelimiter>;</icfccsvfile:multivalueDelimiter>
+            <icfccsvfile:uniqueAttribute>empno</icfccsvfile:uniqueAttribute>
+        </icfc:configurationProperties>
+    </connectorConfiguration>
+```
+- NOTE: The <schema> section that goes here will be added automatically
+ when the first connection to the resource takes place
+
+- The schema handling section should use the attribute names that match the "element" definitions in the auto-loaded schema section of the resource definition
+
+- Near the top of the schema handling section, the element for the unique attribute should look like this
+
+```
+    <schemaHandling>
+
+      <objectType>
+        <displayName>Default Account</displayName>
+        <default>true</default>
+        <objectClass>ri:AccountObjectClass</objectClass>
+        <attribute>
+            <ref>ri:empno</ref>
+            <displayName>Name (book hr empno)</displayName>
+            <limitations>
+                <minOccurs>0</minOccurs>
+                <access>
+                    <read>true</read>
+                    <add>true</add>
+                    <modify>true</modify>
+                </access>
+            </limitations>
+            <inbound>
+                <target>
+                    <path>$focus/employeeNumber</path>
+                </target>
+            </inbound>
+        </attribute>
+```
+- Now the rest of the attribute mappings
+
+```
+        <attribute>
+            <ref>ri:firstname</ref>
+            <displayName>First name</displayName>
+            <inbound>
+                <target>
+                    <path>$focus/givenName</path>
+                </target>
+            </inbound>
+        </attribute>
+        <attribute>
+            <ref>ri:lastname</ref>
+            <displayName>Last name</displayName>
+            <inbound>
+                <target>
+                    <path>$focus/familyName</path>
+                </target>
+            </inbound>
+        </attribute>
+        <activation>
+            <administrativeStatus>
+                <inbound/>
+            </administrativeStatus>
+        </activation>
+
+        <credentials>
+            <password>
+                <inbound>
+                    <strength>weak</strength>
+                    <expression>
+                        <generate/>
+                    </expression>
+                </inbound>
+            </password>
+        </credentials>
+      </objectType>
+
+    </schemaHandling>
+
+    <projection>
+        <assignmentPolicyEnforcement>none</assignmentPolicyEnforcement>
+    </projection>
+
+
+    <synchronization>
+        <objectSynchronization>
+            <enabled>true</enabled>
+```
+- The correlation element should look like this:
+
+```
+            <correlation>
+                <q:equal>
+                    <q:path>employeeNumber</q:path>
+                    <expression>
+                        <path>$projection/attributes/empno</path>
+                    </expression>
+                </q:equal>
+            </correlation>
+            <reaction>
+                <situation>linked</situation>
+                <synchronize>true</synchronize>
+            </reaction>
+            <reaction>
+                <situation>deleted</situation>
+                <synchronize>true</synchronize>
+                <action>
+                    <handlerUri>http://midpoint.evolveum.com/xml/ns/public/model/action-3#deleteFocus</handlerUri>
+                </action>
+            </reaction>
+            <reaction>
+                <situation>unlinked</situation>
+                <synchronize>true</synchronize>
+                <action>
+                    <handlerUri>http://midpoint.evolveum.com/xml/ns/public/model/action-3#link</handlerUri>
+                </action>
+            </reaction>
+            <reaction>
+                <situation>unmatched</situation>
+                <synchronize>true</synchronize>
+                <action>
+                    <handlerUri>http://midpoint.evolveum.com/xml/ns/public/model/action-3#addFocus</handlerUri>
+                </action>
+            </reaction>
+        </objectSynchronization>
+    </synchronization>
+</resource>
+```
+- - -
+_2023-08-17 08:44:37 Import 50,000 users from  source-sis-full.csv_
+
+*- process for importing large csv files into midPoint -*
+
+Bringing in the full test SIS population (50k) to midPoint Workbench
+
+Save the edited docker-compose.yml with data file binds: +
+/csp-tap/InCommonTAP-Examples-0816/Workbench/docker-compose.yml
+
+Save the contents of the ../csv directory
+
+``` 
+$ pwd
+/csp-tap/InCommonTAP-Examples/Workbench/midpoint_server/container_files/mp-home/csv
+
+ls -la
+-rw-r--r-- 1 csprootuser csprootuser 6826528 Aug  5 22:54 source-hrms.csv
+-rw-r--r-- 1 csprootuser csprootuser 8386727 Aug  5 22:54 source-sis.csv
+```
+
+*- Wipe all existing Workbench images and files and rebuild from repo -*
+
+```
+docker stop $(docker ps -a -q); docker rm $(docker ps -a -q); docker rmi $(docker images -q) --force; docker volume rm $(docker volume ls -q)
+```
+
+Replace downloaded ../csv with saved version
+
+Replace repo version of docker-compose.yml with saved version
+
+build and bring up the fresh Workbench
+```
+docker-compose up --build -d
+```
+
+Create a new (midpoint) project in midPoint Studio and edit the default configuration to point to the new Workbench host
+
+*- import source-sis-full.csv -*
+
+*Schema mapping and extension attributes*
+
+CSV             MIDPOINT USER
+___             _____________
+sorid           org
+given           givenName
+surname         familyName
+email           emailAddress
+ph              telephoneNumber    
+cntry-code      cntryCode    
+unid            uid
+occup           title 
+dept            orgUnit
+refid           rid
+
+59614 (closed) Last object processed: 641-64-5552 +
+8/17/23, 3:22:57 PM - +
+8/17/23, 5:05:57 PM (01:42:59.164)
+
+Import task incorporates synchronization process
+---
+
+- - -
+_2023-08-13 17:39:41 getting schema handling and synchronnization_
+
+With resource def containing only connector configuration, Schema and Capabilies are filled in when midpoint studio is used to upload and test the resourcecore of attribute schema after upload:
+
+core of resulting attribute schema pattern:
+
+```
+                                <xsd:appinfo>
+                                    <a:displayName>email</a:displayName>
+                                    <a:displayOrder>190</a:displayOrder>
+                                    <ra:nativeAttributeName>email</ra:nativeAttributeName>
+                                    <ra:frameworkAttributeName>email</ra:frameworkAttributeName>
+                                </xsd:appinfo>
+'''
+
+only the unique identifier has a frameworkattributename, __NAME__, that differs from the nativeAttributeName
+
+```
+                                <xsd:appinfo>
+                                    <a:displayName>uid</a:displayName>
+                                    <a:displayOrder>100</a:displayOrder>
+                                    <ra:nativeAttributeName>uid</ra:nativeAttributeName>
+                                    <ra:frameworkAttributeName>__NAME__</ra:frameworkAttributeName>
+                                </xsd:appinfo>
+```
+
+Give all users the ldap-basic role which will provision all users into LDAP
+
+Have Grouper treat LDAP as its subject source and create HRMS and SIS Grouper groups with loader jobs
+
+- - -
+_2023-08-09 14:12:00 Start w new workbench: mP 4.7.1 and Grouper 4.5.2_
+
+csv files already in ~/
+
+cd /csp-tap; git clone https://github.internet2.edu/internet2/InCommonTAP-Examples.git
+
+*- access in browser and in midPoint Studio -*
+
+- large N csv files copied into proper location: mp-home/csv Double check match of csv resource config and location of actual csv files in the container
+
+- - -
+_2023-08-06 08:50:19 complete large n resource definitions_
+
+==== model on the original small hr csv resource in the Workbench
+
+
+mPUsr 
+org,   
+givenName,  
+familyName, 
+emailAddress, 
+telephoneNumber,  
+cntryCode,  
+uid,  
+title,  
+orgUnit, 
+rid 
+
+https://docs.evolveum.com/midpoint/reference/schema/custom-schema-extension/[] +
+
+- - -
+_2023-08-05 11:26:42 complete import of large csv hrms and sis files into mP and provision to LDAP_
+
+*- host -*
+
+```
+[csprootuser@ip-172-31-62-244 container_files]$ pwd
+/csp-tap/InCommonTAP-Examples/Workbench/midpoint_server/container_files
+
+[csprootuser@ip-172-31-62-244 container_files]$ ls -la mp-home/csv
+total 0
+drwxrwxr-x 2 csprootuser csprootuser   6 Aug  5 21:45 .
+drwxrwxr-x 8 csprootuser csprootuser 244 Aug  5 21:45 ..
+
+*- move host csv files into placce -*
+
+```
+[csprootuser@ip-172-31-62-244 container_files]$ pwd
+/csp-tap/InCommonTAP-Examples/Workbench/midpoint_server/container_files/mp-home/csv
+
+ls -la
+-rw-r--r-- 1 csprootuser csprootuser 6826528 Aug  5 22:54 source-hrms.csv
+-rw-r--r-- 1 csprootuser csprootuser 8386727 Aug  5 22:54 source-sis.csv
+```
+
+
+```
+
+*- container -*
+
+```
+root@77cd6546e2bd midpoint]# ls -la /opt/midpoint/var
+total 36
+drwxr-xr-x 14 root root 4096 Aug  5 20:56 .
+drwxr-xr-x  1 root root   17 Jul 26 20:14 ..
+-rw-rw-r--  1 root root 2571 Aug  5 20:24 config.xml
+-rw-r-----  1 root root 2746 Aug  5 20:56 cs-portal.csv
+drwxr-x---  2 root root    6 Aug  5 20:29 export
+-rw-r-----  1 root root 1461 Aug  5 20:56 faculty-portal.csv
+drwxrwxr-x  2 root root  245 Aug  5 20:28 icf-connectors
+```
+
+*- create ../var/csv to hold the test hrms and sis files -*
+
+*- correct the volume section of the midpoint configuration host docker-compose.yml -*
+
+```
+
+$ ls -la ~/csp-tap/InCommonTAP-Examples/Workbench
+
+-rw-r--r--  1 csprootuser csprootuser  6826528 Aug  3 22:51 source-hrms.csv
+-rw-r--r--  1 csprootuser csprootuser  8386727 Aug  3 22:26 source-sis.csv
+
+   - type: bind
+       source: ./midpoint_server/container_files/mp-home/csv/source-hrms.csv
+       target: /opt/midpoint/var/csv/source-hrms.csv
+   - type: bind
+       source: ./midpoint_server/container_files/mp-home/csv/source-sis.csv
+       target: /opt/midpoint/var/csv/source-sis.csv
+
+```
+
+*- move host csv files into placce -*
+
+```
+[csprootuser@ip-172-31-62-244 container_files]$ pwd
+/csp-tap/InCommonTAP-Examples/Workbench/midpoint_server/container_files/mp-home/csv
+
+ls -la
+-rw-r--r-- 1 csprootuser csprootuser 6826528 Aug  5 22:54 source-hrms.csv
+-rw-r--r-- 1 csprootuser csprootuser 8386727 Aug  5 22:54 source-sis.csv
+```
+
+- - -
+_2023-08-02 09:55:55 midPoint tree in Workbench_
+
+```
+├── midpoint_server
+
+              ├── container_files
+
+                            ├── csv
+                                          ├── source-hr.csv
+                                          ├── source-hrms.csv
+                                          └── source-sis.csv
+
+                            ├── httpd
+                                          ├── 00-shib.conf
+                                          ├── host-cert.pem
+                                          ├── host-key.pem
+                                          ├── midpoint-shib.conf
+                                          └── vhosts.conf
+                            ├── mp-home
+        <-<-<-<-<-<-<-<-<-<-<
+        ├── mp-home
+
+          ├── config.xml
+          ├── cs-portal.csv
+          ├── faculty-portal.csv
+          ├── faculty-portal.csv
+          ├── faculty-portal.csv
+          ├── icf-connectors
+            ├── connector-grouper-1.0-SNAPSHOT.jar
+            ├── connector-rest-wordpress-.23-SNAPSHOT.jar
+            ├── connector-sympa-1.0.2-connector.jar
+            └── net.tirasa.connid.bundles.db.scriptedsql-2.2.6-SNAPSHOT.jar
+
+          └──lib
+             ├── mariadb-java-client-3.0.6.jar
+             └── mysql-connector-java-8.0.30.jar
+
+          ├── mailing-lists.csv
+
+          ├── post-initial-objects
+              ├── archetypes
+              ├── bulkActions
+              ├── functionLibraries
+              ├── objectTemplates
+              ├── ordering.txt
+              ├── orgs
+              ├── resources
+              ├── roles
+              ├── securityPolicy
+              ├── systemConfigurations
+              ├── tasks
+              ├── users
+              └── valuePolicies
+
+          ├── res
+              └── sis-persons
+
+          ├── schema
+              └── internet2.xsd
+          ├── source-external.csv
+          └── staff-portal.csv
+
+->->->->->->->->->->->->->->
+
+                            ├── shibboleth
+
+                                          ├── attribute-map.xml
+                                          ├── idp-metadata.xml
+                                          ├── shibboleth2.xml
+                                          ├── shibd.logger
+                                          ├── sp-encrypt-cert.pem
+                                          ├── sp-encrypt-key.pem
+                                          ├── sp-signing-cert.pem
+                                          └── sp-signing-key.pem
+
+                            └── system
+                                └── setservername.sh
+
+              └── Dockerfile
+```
+
+- - -
+_2023-02-19 12:25:54 set up linode for Workbench on Ubuntu 22.04_
+
+*- add user kh, create group wheel add kh to wheel and sudo -*
+
+*- install Java (17) -*
+
+*- install docker and docker-compose -*
+
+*- add user kh, mkdir ~/home/kh, mkdir opt, cd opt -*
+
+*- git clone https://github.internet2.edu/internet2/InCommonTAP-Examples/tree/main/Workbench -*
+
+*- cd ~/opt/InCommonTAP-Examples, docker-compose up -d --build -*
+
+- - -
+_2023-05-25 17:13:53 test csv resource with mP 4.7 on xps_
+
+cat /csp-tap/InCommonTAP-Examples/Workbench/midpoint_server/container_files/mp-home/source-external.csv
+
+uid,firstname,lastname,department,mail,validFrom,validTo
+E300001,John,Smith,External,xjsmith@example.com,1/1/2018,12/31/9999
+E300002,Alice,Anderson,External,xaanderson@example.com,3/15/2016,12/31/9999
+E300003,Ellen,Johnson,External,xejohnson@example.com,10/1/2019,12/31/2019
+E300004,Ron,Vasquez,External,xrvasquez@example.com,1/1/2019,10/31/2019
+
+/opt/midpoint/csv/source-external.csv <- path in csv connector config
+
+/Workbench/midpoint_server/container_files/csv/source-hr.csv
+
+- - -
+_2023-02-19 10:01:52 https://techviewleo.com/enable-epel-remi-repos-rocky-linux/_
+
+- - -
+_2023-02-17 20:45:20 install workbench on aktis.org_
+
+```
+https://geekscircuit.com/install-docker-docker-compose-on-rocky-linux/
+
+cd ~/opt
+git clone https://github.internet2.edu/internet2/InCommonTAP-Examples.git
+cd InCommonTAP-Examples/Workbench
+```
+
+- - -
+_2023-02-15 15:49:03 make comanage_data guest db accessible from workbench_
+
+vim ../Workbench/docker-compose.yml
+
+- - -
+_2023-02-15 15:29:48 work w PaulC provided khazelton.workbench.incommon.org_
+
+ssh khazelton@khazelton.workbench.incommon.org +
+csprootuser T3s...3!
+
+inc workbench directory structure
+
+```
+pwd
+cd /csp-tap/InCommonTAP-Examples/Workbench
+
+ls -la
+total 104
+drwxr-xr-x 25 csprootuser root  4096 Feb  9 02:18 .
+drwxr-xr-x  9 csprootuser root   129 Feb  8 18:51 ..
+-rw-r--r--  1 csprootuser root   663 Feb  8 18:51 add-ref-groups.gsh
+-rwxr-xr-x  1 csprootuser root    95 Feb  8 18:51 add-ref-groups.sh
+-rwxr-xr-x  1 csprootuser root   323 Feb  8 18:51 after-installation.sh
+drwxr-xr-x  2 csprootuser root    22 Feb  8 18:51 cloudformation
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 comanage
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 comanage_cron
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 comanage_data
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 comanage_midpoint_data
+drwxr-xr-x  6 csprootuser root    70 Feb  8 18:51 configs-and-secrets
+-rw-r--r--  1 csprootuser root  2025 Feb  8 18:51 create-ref-loaders.gsh
+-rwxr-xr-x  1 csprootuser root   100 Feb  8 18:51 create-ref-loaders.sh
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 directory
+-rw-r--r--  1 csprootuser root 18646 Feb  8 18:51 docker-compose.yml
+-rw-r--r--  1 csprootuser root    57 Feb  8 18:51 .env
+-rwxr-xr-x  1 csprootuser root    92 Feb  8 18:51 get-import-sis-persons-status.sh
+drwxr-xr-x  2 csprootuser root    24 Feb  8 18:51 grouper_daemon
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 grouper_data
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 grouper_ui
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 grouper_ws
+drwxr-xr-x  4 csprootuser root    69 Feb  8 18:51 idp
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 idp_ui
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 idp_ui_api
+drwxr-xr-x  3 csprootuser root    19 Feb  8 18:51 midpoint-objects-manual
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 midpoint_server
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 mq
+-rwxr-xr-x  1 csprootuser root    61 Feb  8 18:51 purge-queue.sh
+-rw-r--r--  1 csprootuser root   843 Feb  8 18:51 README.md
+-rwxr-xr-x  1 csprootuser root   161 Feb  8 18:51 recompute.sh
+drwxr-xr-x  2 csprootuser root   211 Feb  8 19:09 scripts
+-rwxr-xr-x  1 csprootuser root    49 Feb  8 18:51 show-queue-size.sh
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 sources
+-rwxr-xr-x  1 csprootuser root   932 Feb  8 18:51 ssh-tunnel-redir-fix.sh
+-rwxr-xr-x  1 csprootuser root   414 Feb  8 18:51 test-resources.sh
+drwxr-xr-x  3 csprootuser root    40 Feb  8 18:51 tests
+-rw-r--r--  1 csprootuser root   437 Feb  8 18:51 update-bgasper-in-grouper.gsh
+-rwxr-xr-x  1 csprootuser root   107 Feb  8 18:51 update-bgasper-in-grouper.sh
+-rwxr-xr-x  1 csprootuser root   117 Feb  8 18:51 upload-async-update-task.sh
+-rwxr-xr-x  1 csprootuser root   115 Feb  8 18:51 upload-import-sis-persons.sh
+-rwxr-xr-x  1 csprootuser root   618 Feb  8 18:51 upload-objects.sh
+-rwxr-xr-x  1 csprootuser root   116 Feb  8 18:51 upload-recompute-users.sh
+-rwxr-xr-x  1 csprootuser root   126 Feb  8 18:51 upload-reconcile-grouper-groups.sh
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 webproxy
+drwxr-xr-x  2 csprootuser root    24 Feb  8 18:51 wordpress_data
+drwxr-xr-x  4 csprootuser root    69 Feb  8 18:51 wordpress_server
+
+- - -
+_2023-02-08 19:03:12 bring up cloned workbench from khazelton.workbench.incommon.org on wasabi_
+
+csprootuser T3s...3!
+
+inc workbench directory structure
+
+```
+pwd
+/csp-tap/InCommonTAP-Examples/Workbench
+
+[csprootuser@ip-172-31-34-254 Workbench]$ ls -la /
+total 16
+dr-xr-xr-x  20 root        root  300 Feb  8 18:51 .
+dr-xr-xr-x  20 root        root  300 Feb  8 18:51 ..
+-rw-r--r--   1 root        root    0 Feb  8 18:47 .autorelabel
+lrwxrwxrwx   1 root        root    7 Sep 21  2020 bin -> usr/bin
+dr-xr-xr-x   4 root        root 4096 Feb  8 18:49 boot
+drwxr-xr-x   3 csprootuser root   34 Feb  8 18:52 csp-tap
+drwxr-xr-x  14 root        root 2860 Feb  8 18:47 dev
+drwxr-xr-x   3 root        root   17 Feb  8 18:49 dl.fedoraproject.org
+drwxr-xr-x  87 root        root 8192 Feb  8 18:51 etc
+drwxr-xr-x   4 root        root   41 Feb  8 18:48 home
+lrwxrwxrwx   1 root        root    7 Sep 21  2020 lib -> usr/lib
+lrwxrwxrwx   1 root        root    9 Sep 21  2020 lib64 -> usr/lib64
+drwxr-xr-x   2 root        root    6 Sep 21  2020 local
+drwxr-xr-x   2 root        root    6 Apr  9  2019 media
+drwxr-xr-x   2 root        root    6 Apr  9  2019 mnt
+drwxr-xr-x   5 root        root   45 Feb  8 18:51 opt
+dr-xr-xr-x 534 root        root    0 Feb  8 18:47 proc
+dr-xr-x---   4 root        root  117 Feb  8 18:51 root
+drwxr-xr-x  33 root        root 1140 Feb  9 00:11 run
+lrwxrwxrwx   1 root        root    8 Sep 21  2020 sbin -> usr/sbin
+drwxr-xr-x   2 root        root    6 Apr  9  2019 srv
+dr-xr-xr-x  13 root        root    0 Feb  9 00:03 sys
+drwxrwxrwt   8 root        root  212 Feb  9 01:06 tmp
+drwxr-xr-x  13 root        root  155 Sep 21  2020 usr
+drwxr-xr-x  20 root        root  280 Feb  8 18:50 var
+
+cd /csp-tap/InCommonTAP-Examples/Workbench
+
+csprootuser@ip-172-31-34-254 Workbench]$ ls -la
+
+total 104
+drwxr-xr-x 25 csprootuser root  4096 Feb  9 00:46 .
+drwxr-xr-x  9 csprootuser root   129 Feb  8 18:51 ..
+-rw-r--r--  1 csprootuser root   663 Feb  8 18:51 add-ref-groups.gsh
+-rwxr-xr-x  1 csprootuser root    95 Feb  8 18:51 add-ref-groups.sh
+-rwxr-xr-x  1 csprootuser root   323 Feb  8 18:51 after-installation.sh
+drwxr-xr-x  2 csprootuser root    22 Feb  8 18:51 cloudformation
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 comanage
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 comanage_cron
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 comanage_data
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 comanage_midpoint_data
+drwxr-xr-x  6 csprootuser root    70 Feb  8 18:51 configs-and-secrets
+-rw-r--r--  1 csprootuser root  2025 Feb  8 18:51 create-ref-loaders.gsh
+-rwxr-xr-x  1 csprootuser root   100 Feb  8 18:51 create-ref-loaders.sh
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 directory
+-rw-r--r--  1 csprootuser root 18646 Feb  8 18:51 docker-compose.yml
+-rw-r--r--  1 csprootuser root    57 Feb  8 18:51 .env
+-rwxr-xr-x  1 csprootuser root    92 Feb  8 18:51 get-import-sis-persons-status.sh
+drwxr-xr-x  2 csprootuser root    24 Feb  8 18:51 grouper_daemon
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 grouper_data
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 grouper_ui
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 grouper_ws
+drwxr-xr-x  4 csprootuser root    69 Feb  8 18:51 idp
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 idp_ui
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 idp_ui_api
+drwxr-xr-x  3 csprootuser root    19 Feb  8 18:51 midpoint-objects-manual
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 midpoint_server
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 mq
+-rwxr-xr-x  1 csprootuser root    61 Feb  8 18:51 purge-queue.sh
+-rw-r--r--  1 csprootuser root   843 Feb  8 18:51 README.md
+-rwxr-xr-x  1 csprootuser root   161 Feb  8 18:51 recompute.sh
+drwxr-xr-x  2 csprootuser root   211 Feb  8 19:09 scripts
+-rwxr-xr-x  1 csprootuser root    49 Feb  8 18:51 show-queue-size.sh
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 sources
+-rwxr-xr-x  1 csprootuser root   932 Feb  8 18:51 ssh-tunnel-redir-fix.sh
+-rwxr-xr-x  1 csprootuser root   414 Feb  8 18:51 test-resources.sh
+drwxr-xr-x  3 csprootuser root    40 Feb  8 18:51 tests
+-rw-r--r--  1 csprootuser root   437 Feb  8 18:51 update-bgasper-in-grouper.gsh
+-rwxr-xr-x  1 csprootuser root   107 Feb  8 18:51 update-bgasper-in-grouper.sh
+-rwxr-xr-x  1 csprootuser root   117 Feb  8 18:51 upload-async-update-task.sh
+-rwxr-xr-x  1 csprootuser root   115 Feb  8 18:51 upload-import-sis-persons.sh
+-rwxr-xr-x  1 csprootuser root   618 Feb  8 18:51 upload-objects.sh
+-rwxr-xr-x  1 csprootuser root   116 Feb  8 18:51 upload-recompute-users.sh
+-rwxr-xr-x  1 csprootuser root   126 Feb  8 18:51 upload-reconcile-grouper-groups.sh
+drwxr-xr-x  3 csprootuser root    47 Feb  8 18:51 webproxy
+drwxr-xr-x  2 csprootuser root    24 Feb  8 18:51 wordpress_data
+drwxr-xr-x  4 csprootuser root    69 Feb  8 18:51 wordpress_server
+
+[csprootuser@ip-172-31-34-254 Workbench]$ cat after-installation.sh
+
+#!/bin/bash
+
+B='\033[1;33m'
+N='\033[0m'
+
+echo -e "${B} * Uploading objects...${N}"
+$(dirname "$0")/upload-objects.sh
+
+echo -e "${B} * Testing resources...${N}"
+$(dirname "$0")/test-resources.sh
+
+echo -e "${B} * Recomputing Grouper admin group and user object...${N}"
+$(dirname "$0")/recompute.sh
+
+echo -e "${B} * Done${N}"
+[csprootuser@ip-172-31-34-254 Workbench]$
+```
+upload-objects script uploads all
+
+
+*- bring up cloned workbench from khazelton.workbench.incommon.org on wasabi =*
+
+tar -czvf csp-tap.tar.gz csp-tap
+- - -
+_2023-02-08 12:59:00 PaulC revives khazelton.workbench.incommon.org_
+
+- - -
+_2022-12-19 13:39:33 develop plans for perf. analysis_
+
+Work with 'official' workbench instance (Thanks, PaulC):
+https://khazelton.workbench.incommon.org +
+ssh csprootuser@khazelton.workbench.incommon.org +
+T3sting123! +
+/csp-tap/InCommonTAP-Examples/Workbench
+
+created csp-tap.tar.gz and scp'd to MBProMax:~/opt/non.adoc/ +
+
+copy to aktis.org on Linode 48Gb; docker compose up, 
+
+- - -
+_2022-12-14 08:56:13 performance analysis metrics_
+
+follow workbench local install steps: https://spaces.at.internet2.edu/x/NBh9Dg
+
+docker ps to show running containers
+
+*Import task* in midPoint admin screen open 'server tasks', 'import tasks', select 'SIS full import', 'Performance' for timing information
+
+then 'Internal performance'
+
+scroll page to 'Repository performance information', one row per type of repository operation
+
+scroll page to 'Methods performance information', one row per type of method call
+
+*Recomputation task*
+
+'server tasks', 'recomputation tasks', 'User recomputation', 'performance', 'internal performance' for timing information, see 'provisioning' and 'mapping' tables near bottom; Note User Template mapping role.'
+
+'Configuration', 'Object templates', 'User template', 'edit raw' (or drill down on elements)
+
+
+
+
+
+
+
+
+
+for operation and method details, see javadoc and schemadoc:
+
+https://evolveum.com/download/
+
+https://evolveum.com/download/4-6-baumgarten/, view or download
+
+- - -
+_2022-12-13 16:40:18 fresh install of TAP workbench on xps_
+
+```
+git clone https://github.internet2.edu/internet2/InCommonTAP-Examples.git
+cd Workbench
+docker-compose up --build -d
+```
+- - -
+_2022-10-05 19:15 workbench references and links_
+
+https://spaces.at.internet2.edu/display/TAPW
+ <- new users start here +
+https://github.internet2.edu/internet2/InCommonTAP-Examples/tree/main/Workbench +
+https://spaces.at.internet2.edu/display/MID/Grouper+integration+demo +
+
+- - -
+_2022-09-29 21:28 workbench build on aktis.org_
+
+
+https://spaces.at.internet2.edu/display/MID/Grouper+integration+demo
+
+- - -
+_2022-02-14 12:17 mP Studio to workbench on aktis.org_
+
+Studio connection config:
+name: Aktis +
+url: https://aktis.org/midpoint +
+ignore SSL errors: checked
+
+` mP v4.4 +
+` native postgres repo +
+
+- - -
+_2022-01-22 14:15 full workbench deployment on aktis.org_
+
+Theres a minor version upgrade on that city-fan.org rpm; Here’s the webproxy Dockerfile section that worked for me :*
+```
+#install updated curl (for --data-raw)
+RUN rpm -Uvh http://www.city-fan.org/ftp/contrib/yum-repo/rhel7/x86_64/city-fan.org-release-2-2.rhel7.noarch.rpm
+RUN yum-config-manager --enable city-fan.org
+RUN yum update curl -y
+```
+note release-2.2 instead of release-2.1 :*
+
+Also commented out the following in Workbench/comanage/Dockerfile; fixed build error and no detectable issues so far :*
+```
+#RUN yum -y update && yum -y install --setopt=tsflags=nodocs epel-release python-pip && pip install --upgrade pip
+```
+With the new Postgres-based midPoint repo, The workbench sql admin link no longer has access to mP data;
+DbSchema connection workaround: user midpoint pw WJzesbe3poNZ91qIbmR7
+
+
+- - -
+_2021-12-10 15:08 workbench w/o COmanage on xps_
+
+```
+kh@xps:~/opt/InCommonTAP-Examples-2021-06-18/Workbench$
+
+-rw-rw-r-- 1 kh kh  1293 Dec 10 14:38 comanage-doc-cmpse-snippet.yml <- saved excised bits
+-rw-rw-r-- 1 kh kh 14577 Dec 10 14:38 doc-cmpose-no-comanage.yml <- Workbench w/o COmanage
+
+docker-compose -f doc-cmpose-no-comanage.yml up --build -d
+```
+
+- - -
+_2021-10-24 11:55 workbench grouper db_
+
+```
+mysql -u root -h localhost
+
+Database changed
+MariaDB [grouper]> show tables;
++--------------------------------+
+| Tables_in_grouper              |
++--------------------------------+
+| grouper_QZ_BLOB_TRIGGERS       |
+| grouper_QZ_CALENDARS           |
+| grouper_QZ_CRON_TRIGGERS       |
+| grouper_QZ_FIRED_TRIGGERS      |
+| grouper_QZ_JOB_DETAILS         |
+| grouper_QZ_LOCKS               |
+| grouper_QZ_PAUSED_TRIGGER_GRPS |
+| grouper_QZ_SCHEDULER_STATE     |
+| grouper_QZ_SIMPLE_TRIGGERS     |
+| grouper_QZ_SIMPROP_TRIGGERS    |
+| grouper_QZ_TRIGGERS            |
+| grouper_attr_asn_asn_attrdef_v |
+| grouper_attr_asn_asn_efmship_v |
+| grouper_attr_asn_asn_group_v   |
+| grouper_attr_asn_asn_member_v  |
+| grouper_attr_asn_asn_mship_v   |
+| grouper_attr_asn_asn_stem_v    |
+| grouper_attr_asn_attrdef_v     |
+| grouper_attr_asn_efmship_v     |
+| grouper_attr_asn_group_v       |
+| grouper_attr_asn_member_v      |
+| grouper_attr_asn_mship_v       |
+| grouper_attr_asn_stem_v        |
+| grouper_attr_assign_action     |
+| grouper_attr_assign_action_set |
+| grouper_attr_assn_action_set_v |
+| grouper_attr_def_name_set_v    |
+| grouper_attr_def_priv_v        |
+| grouper_attribute_assign       |
+| grouper_attribute_assign_value |
+| grouper_attribute_def          |
+| grouper_attribute_def_name     |
+| grouper_attribute_def_name_set |
+| grouper_attribute_def_scope    |
+| grouper_audit_entry            |
+| grouper_audit_entry_v          |
+| grouper_audit_type             |
+| grouper_aval_asn_asn_attrdef_v |
+| grouper_aval_asn_asn_efmship_v |
+| grouper_aval_asn_asn_group_v   |
+| grouper_aval_asn_asn_member_v  |
+| grouper_aval_asn_asn_mship_v   |
+| grouper_aval_asn_asn_stem_v    |
+| grouper_aval_asn_attrdef_v     |
+| grouper_aval_asn_efmship_v     |
+| grouper_aval_asn_group_v       |
+| grouper_aval_asn_member_v      |
+| grouper_aval_asn_mship_v       |
+| grouper_aval_asn_stem_v        |
+| grouper_cache_instance         |
+| grouper_cache_overall          |
+| grouper_change_log_consumer    |
+| grouper_change_log_entry       |
+| grouper_change_log_entry_temp  |
+| grouper_change_log_entry_v     |
+| grouper_change_log_type        |
+| grouper_composites             |
+| grouper_composites_v           |
+| grouper_config                 |
+| grouper_ddl                    |
+| grouper_ddl_worker             |
+| grouper_ext_subj               |
+| grouper_ext_subj_attr          |
+| grouper_ext_subj_invite_v      |
+| grouper_ext_subj_v             |
+| grouper_fields                 |
+| grouper_file                   |
+| grouper_group_set              |
+| grouper_groups                 |
+| grouper_groups_v               |
+| grouper_loader_log             |
+| grouper_members                |
+| grouper_memberships            |
+| grouper_memberships_all_v      |
+| grouper_memberships_lw_v       |
+| grouper_memberships_v          |
+| grouper_message                |
+| grouper_mship_attrdef_lw_v     |
+| grouper_mship_stem_lw_v        |
+| grouper_password               |
+| grouper_password_recently_used |
+| grouper_perms_all_v            |
+| grouper_perms_assigned_role_v  |
+| grouper_perms_role_subject_v   |
+| grouper_perms_role_v           |
+| grouper_pit_attr_asn_value_v   |
+| grouper_pit_attr_assn_actn     |
+| grouper_pit_attr_assn_actn_set |
+| grouper_pit_attr_assn_value    |
+| grouper_pit_attr_def_name      |
+| grouper_pit_attr_def_name_set  |
+| grouper_pit_attribute_assign   |
+| grouper_pit_attribute_def      |
+| grouper_pit_config             |
+| grouper_pit_fields             |
+| grouper_pit_group_set          |
+| grouper_pit_groups             |
+| grouper_pit_members            |
+| grouper_pit_memberships        |
+| grouper_pit_memberships_all_v  |
+| grouper_pit_memberships_lw_v   |
+| grouper_pit_mship_attr_lw_v    |
+| grouper_pit_mship_group_lw_v   |
+| grouper_pit_mship_stem_lw_v    |
+| grouper_pit_perms_all_v        |
+| grouper_pit_perms_role_subj_v  |
+| grouper_pit_perms_role_v       |
+| grouper_pit_role_set           |
+| grouper_pit_stems              |
+| grouper_recent_mships_conf     |
+| grouper_recent_mships_conf_v   |
+| grouper_recent_mships_load_v   |
+| grouper_role_set               |
+| grouper_role_set_v             |
+| grouper_roles_v                |
+| grouper_rpt_composites_v       |
+| grouper_rpt_group_field_v      |
+| grouper_rpt_groups_v           |
+| grouper_rpt_members_v          |
+| grouper_rpt_roles_v            |
+| grouper_rpt_stems_v            |
+| grouper_rules_v                |
+| grouper_service_role_v         |
+| grouper_stem_set               |
+| grouper_stem_set_v             |
+| grouper_stems                  |
+| grouper_stems_v                |
+| grouper_sync                   |
+| grouper_sync_group             |
+| grouper_sync_job               |
+| grouper_sync_log               |
+| grouper_sync_member            |
+| grouper_sync_membership        |
+| grouper_table_index            |
+| grouper_time                   |
+| subject                        |
+| subjectattribute               |
++--------------------------------+
+137 rows in set (0.00 sec)
+
+MariaDB [grouper]> select * from subject limit 14;
+Empty set (0.01 sec)
+
+MariaDB [grouper]> select * from grouper_fields limit 14;
++----------------------------------+--------------------+----------------+--------------+-----------------+--------------------------+----------------------------------+
+| id                               | name               | read_privilege | type         | write_privilege | hibernate_version_number | context_id                       |
++----------------------------------+--------------------+----------------+--------------+-----------------+--------------------------+----------------------------------+
+| 00581a894b494eec9e93be4cdd891993 | admins             | admin          | access       | admin           |                        0 | 9d3d6b5bd99143afb05dfd99561696b8 |
+| 0b3161a3680c48c1b722a72f8b1c40bc | optouts            | update         | access       | update          |                        0 | b50240e5effa4361b71323e9d5c9a7bc |
+| 0de8af51ad544fa6a213732a8c542823 | attrViewers        | attrAdmin      | attributeDef | attrAdmin       |                        0 | 2e3af4d1b75e4c78be189244930a709d |
+| 0e40442e4ac243d794d04358325520bc | attrDefAttrReaders | attrAdmin      | attributeDef | attrAdmin       |                        0 | 381e2cd6786d4d8e90d0f7d77b32da67 |
+| 255fc7e133054b878b2d4c01bfd93165 | stemAdmins         | stemAdmin      | naming       | stemAdmin       |                        0 | 97a0cf8dcf0a43b3a94d50befcb1eb5c |
+| 305e62bf85884c37967eb98524fe57c2 | groupAttrReaders   | admin          | access       | admin           |                        0 | 34764af8cdb4418c839cab5517db852a |
+| 3376e64ec7554ed19b3ba0b87f1f6171 | updaters           | admin          | access       | admin           |                        0 | 7c217bb5a38d433380b588c1aff55199 |
+| 409d78778bd64cfabd29c95d722262cc | viewers            | admin          | access       | admin           |                        0 | 1cd07b69154349adb196d7d377ec9700 |
+| 5505ba72967646d2a40c0c911be77dd9 | members            | read           | list         | update          |                        0 | 15935366dcfe4055b4d9fdea6f2fd67b |
+| 6babafbabdda4ec6ba5386304c1879e0 | attrAdmins         | attrAdmin      | attributeDef | attrAdmin       |                        0 | 0fe8cd3b8e6d4c78b892b5e8dc3c6e65 |
+| 751c7601cf744b7480d4e3934e0ba11b | creators           | stemAdmin      | naming       | stemAdmin       |                        0 | b68c0fbd145d4e0796951be3e554982f |
+| 777e45bfe8b444d981b5847f5b747666 | stemAttrUpdaters   | stemAdmin      | naming       | stemAdmin       |                        0 | 83a836278c3a43d89da880722bab8321 |
+| 7b6fe32054c948c1bdb3c807e78ea7f0 | attrUpdaters       | attrAdmin      | attributeDef | attrAdmin       |                        0 | 743c6154207d406493efaa81e59ce450 |
+| 8c90a53d88db4b0682531fc757150c75 | attrOptouts        | attrUpdate     | attributeDef | attrUpdate      |                        0 | 22f55fe926be4fbaae91221ffee0a6b5 |
++----------------------------------+--------------------+----------------+--------------+-----------------+--------------------------+----------------------------------+
+14 rows in set (0.00 sec)
+
+MariaDB [grouper]> select * from grouper_stems limit 104;
++----------------------------------+----------------------------------+-----------------------------------------------------------------+-----------------------------------------------------------------+----------------------------------+---------------+----------------------------------+---------------+-------------------------------+-------------------------------+---------------------------------------------------------------------------------------------------------------------------------+------------------------+----------------+--------------------------+----------------------------------+----------+
+| id                               | parent_stem                      | name                                                            | display_name                                                    | creator_id                       | create_time   | modifier_id                      | modify_time   | display_extension             | extension                     | description                                                                                                                     | last_membership_change | alternate_name | hibernate_version_number | context_id                       | id_index |
++----------------------------------+----------------------------------+-----------------------------------------------------------------+-----------------------------------------------------------------+----------------------------------+---------------+----------------------------------+---------------+-------------------------------+-------------------------------+---------------------------------------------------------------------------------------------------------------------------------+------------------------+----------------+--------------------------+----------------------------------+----------+
+| 014a2040fc904c3f951c1ca39420fc01 | 1460b18ad220413a8b10958132304f0f | org                                                             | org                                                             | fdcb408c3a6947af8998427de915554b | 1634338885378 | NULL                             |             0 | org                           | org                           | NULL                                                                                                                            |                   NULL | NULL           |                        0 | 38979be0d56c4a71b6b6d4f248160bdd |    10035 |
+| 01a4b89a238d4b4a8b454d2097a23c98 | 9c32917c44704f3482c15b2a21dae483 | etc:attribute:userData                                          | etc:attribute:userData                                          | fdcb408c3a6947af8998427de915554b | 1634338866726 | fdcb408c3a6947af8998427de915554b | 1634338866740 | userData                      | userData                      | folder for built in Grouper user data attributes                                                                                |                   NULL | NULL           |                        1 | 6474b2b0ea324ed09e6386980aae1f70 |    10028 |
+| 0c771c8fc20c44ff9bea428de431c69a | 1460b18ad220413a8b10958132304f0f | basis                                                           | basis                                                           | fdcb408c3a6947af8998427de915554b | 1634338885076 | NULL                             |             0 | basis                         | basis                         | NULL                                                                                                                            |                   NULL | NULL           |                        0 | e42fd743bf454c9da6193f3a1afd623c |    10033 |
+| 1460b18ad220413a8b10958132304f0f | NULL                             | :                                                               | :                                                               | fdcb408c3a6947af8998427de915554b | 1634338856527 | NULL                             |             0 | :                             | :                             | NULL                                                                                                                            |                   NULL | NULL           |                        0 | NULL                             |    10000 |
+| 1c11cda521564c55a79edf33415f6672 | 9c32917c44704f3482c15b2a21dae483 | etc:attribute:attributeAutoCreate                               | etc:attribute:attributeAutoCreate                               | fdcb408c3a6947af8998427de915554b | 1634338859558 | fdcb408c3a6947af8998427de915554b | 1634338859578 | attributeAutoCreate           | attributeAutoCreate           | folder for attribute autocreate objects                                                                                         |                   NULL | NULL           |                        1 | 3b944866333c491ba94bc11dd400bc13 |    10009 |
+| 1edcbb78af7e4ed1a5b1603d8e66113f | f33f64d1396142b197743c7c63f0424b | etc:workflow                                                    | etc:workflow                                                    | fdcb408c3a6947af8998427de915554b | 1634338861348 | fdcb408c3a6947af8998427de915554b | 1634338861366 | workflow                      | workflow                      | folder for built in Grouper workflow attributes                                                                                 |                   NULL | NULL           |                        1 | 3d82f69836d545c198e47ab46e0cdd5f |    10017 |
+| 2af661d6825b4b489c22b073a51f3859 | 9c32917c44704f3482c15b2a21dae483 | etc:attribute:recentMemberships                                 | etc:attribute:recentMemberships                                 | fdcb408c3a6947af8998427de915554b | 1634338868207 | fdcb408c3a6947af8998427de915554b | 1634338868224 | recentMemberships             | recentMemberships             | folder for built in Grouper recent memberships objects                                                                          |                   NULL | NULL           |                        1 | 6ba456a95c9440ef8877c9b5bbf859fe |    10030 |
+| 2bc1bb91da274980aa5754040a5a76a2 | f33f64d1396142b197743c7c63f0424b | etc:deprovisioning                                              | etc:deprovisioning                                              | fdcb408c3a6947af8998427de915554b | 1634338857873 | fdcb408c3a6947af8998427de915554b | 1634338857898 | deprovisioning                | deprovisioning                | folder for built in Grouper deprovisioning objects                                                                              |                   NULL | NULL           |                        1 | 0f6604c953a246608bb1769849f78710 |    10003 |
+| 2c1543b8b0b04038ba944c7c78b9d49d | 52c8c0a28f8f46eea176d7f570da05ba | ref:dept                                                        | ref:dept                                                        | fdcb408c3a6947af8998427de915554b | 1634339551497 | NULL                             |             0 | dept                          | dept                          | NULL                                                                                                                            |                   NULL | NULL           |                        0 | 5cfc87334b544c869d95bfbf9324533d |    10052 |
+| 4512b03eb56541edab2301161070874d | f33f64d1396142b197743c7c63f0424b | etc:objectTypes                                                 | etc:objectTypes                                                 | fdcb408c3a6947af8998427de915554b | 1634338861066 | fdcb408c3a6947af8998427de915554b | 1634338861084 | objectTypes                   | objectTypes                   | folder for built in Grouper types objects                                                                                       |                   NULL | NULL           |                        1 | 7d87b11921a04b389a986a92757a34c6 |    10016 |
+| 49670d8066ce4494a60d9cd8006de8be | 9c32917c44704f3482c15b2a21dae483 | etc:attribute:entities                                          | etc:attribute:entities                                          | fdcb408c3a6947af8998427de915554b | 1634338867056 | fdcb408c3a6947af8998427de915554b | 1634338867074 | entities                      | entities                      | folder for built in Grouper entities attributes                                                                                 |                   NULL | NULL           |                        1 | 483ecd3a28664561b0473ee48ce85915 |    10029 |
+| 52c8c0a28f8f46eea176d7f570da05ba | 1460b18ad220413a8b10958132304f0f | ref                                                             | ref                                                             | fdcb408c3a6947af8998427de915554b | 1634338885705 | NULL                             |             0 | ref                           | ref                           | NULL                                                                                                                            |                   NULL | NULL           |                        0 | 5b460accd455492a85a93ce2c9cf1821 |    10037 |
+| 55b6131823804d19a40da15b6fc556f2 | f33f64d1396142b197743c7c63f0424b | etc:legacy                                                      | etc:legacy                                                      | fdcb408c3a6947af8998427de915554b | 1634338859484 | NULL                             |             0 | legacy                        | legacy                        | NULL                                                                                                                            |                   NULL | NULL           |                        0 | 5b4b76dfa46945dc8df85d660063b302 |    10006 |
+| 56212d6b7f574006bbc62b7ba18257fb | f33f64d1396142b197743c7c63f0424b | etc:grouperUi                                                   | etc:grouperUi                                                   | fdcb408c3a6947af8998427de915554b | 1634341563414 | NULL                             |             0 | grouperUi                     | grouperUi                     | NULL                                                                                                                            |                   NULL | NULL           |                        0 | 14ee0ec47510473f9cfc6402cc809921 |    10063 |
+| 5846ebcdd815468e8c0404a813b793d8 | dd73523792b7421fa0f349bb836ad1b1 | etc:attribute:messages:grouperMessageTopics                     | etc:attribute:messages:grouperMessageTopics                     | fdcb408c3a6947af8998427de915554b | 1634338860405 | fdcb408c3a6947af8998427de915554b | 1634338860425 | grouperMessageTopics          | grouperMessageTopics          | folder for message topics, add a permission here for a topic, imply queues by the topic                                         |                   NULL | NULL           |                        1 | 53adc0c00e334a0ab2b51065e81510be |    10012 |
+| 5e10f8faf1d7454690efc2d421c55ff9 | f33f64d1396142b197743c7c63f0424b | etc:usdu                                                        | etc:usdu                                                        | fdcb408c3a6947af8998427de915554b | 1634338859254 | fdcb408c3a6947af8998427de915554b | 1634338859273 | usdu                          | usdu                          | folder for built in Grouper usdu objects                                                                                        |                   NULL | NULL           |                        1 | e79643256df3486a8a060f5124745489 |    10005 |
+| 5f7ebf561aae43f493670d8318df319d | f33f64d1396142b197743c7c63f0424b | etc:provisioning                                                | etc:provisioning                                                | fdcb408c3a6947af8998427de915554b | 1634338858891 | fdcb408c3a6947af8998427de915554b | 1634338858909 | provisioning                  | provisioning                  | folder to store attribute defs and names for provisioning in ui                                                                 |                   NULL | NULL           |                        1 | 332d999ee7b241d4b90ee0d180338763 |    10004 |
+| 6676add5fbc545f483760fa62051a72d | 9c32917c44704f3482c15b2a21dae483 | etc:attribute:attrLoader                                        | etc:attribute:attrLoader                                        | fdcb408c3a6947af8998427de915554b | 1634338864732 | fdcb408c3a6947af8998427de915554b | 1634338864750 | attrLoader                    | attrLoader                    | folder for built in Grouper loader attributes                                                                                   |                   NULL | NULL           |                        1 | 78bb88f08fc24d29ad947840f72838e3 |    10022 |
+| 70179d3d43594d5eb4360c695c58ab8f | 7b57c6cc59004da3a32e3cc2d09873b7 | etc:attribute:instrumentationData:instrumentationDataInstances  | etc:attribute:instrumentationData:instrumentationDataInstances  | fdcb408c3a6947af8998427de915554b | 1634338866324 | fdcb408c3a6947af8998427de915554b | 1634338866338 | instrumentationDataInstances  | instrumentationDataInstances  | folder for Grouper instances                                                                                                    |                   NULL | NULL           |                        1 | fa82194312634d31be8a5f8aeaf26e64 |    10026 |
+| 7805f6ecdaa94b1c8edee6307ce01448 | 1460b18ad220413a8b10958132304f0f | bundle                                                          | bundle                                                          | fdcb408c3a6947af8998427de915554b | 1634338885246 | NULL                             |             0 | bundle                        | bundle                        | NULL                                                                                                                            |                   NULL | NULL           |                        0 | 7ec9f0cf8cd14945889ba78cd9f05c66 |    10034 |
+| 7b57c6cc59004da3a32e3cc2d09873b7 | 9c32917c44704f3482c15b2a21dae483 | etc:attribute:instrumentationData                               | etc:attribute:instrumentationData                               | fdcb408c3a6947af8998427de915554b | 1634338866294 | fdcb408c3a6947af8998427de915554b | 1634338866309 | instrumentationData           | instrumentationData           | folder for built in Grouper instrumentation data attributes                                                                     |                   NULL | NULL           |                        1 | 79ac1ee0b30c41078ec2e993237b4d6b |    10025 |
+| 7c3ead9716394dd5b1d665553d62b411 | f33f64d1396142b197743c7c63f0424b | etc:reportConfig                                                | etc:reportConfig                                                | fdcb408c3a6947af8998427de915554b | 1634338862536 | fdcb408c3a6947af8998427de915554b | 1634338862554 | reportConfig                  | reportConfig                  | folder for Grouper report config                                                                                                |                   NULL | NULL           |                        1 | 6b743da5e18e44a39b64450432afa3a3 |    10018 |
+| 7fb87d1ea78c4d7d8b05d755f96ebc5b | 837f5eb3402649fea5e6077c9fdfd1b0 | app:wordpress                                                   | app:wordpress                                                   | fdcb408c3a6947af8998427de915554b | 1634338887511 | NULL                             |             0 | wordpress                     | wordpress                     | NULL                                                                                                                            |                   NULL | NULL           |                        0 | 5cfef8378815412abb0131f2f81cfe9e |    10040 |
+| 81a1c073c1da471b8bf26ae7e4e005fb | 9c32917c44704f3482c15b2a21dae483 | etc:attribute:upgradeTasks                                      | etc:attribute:upgradeTasks                                      | fdcb408c3a6947af8998427de915554b | 1634338865856 | fdcb408c3a6947af8998427de915554b | 1634338865883 | upgradeTasks                  | upgradeTasks                  | folder for upgrade tasks objects                                                                                                |                   NULL | NULL           |                        1 | 51ddf240660344e284fc572e34f2e184 |    10024 |
+| 837f5eb3402649fea5e6077c9fdfd1b0 | 1460b18ad220413a8b10958132304f0f | app                                                             | app                                                             | fdcb408c3a6947af8998427de915554b | 1634338884634 | NULL                             |             0 | app                           | app                           | NULL                                                                                                                            |                   NULL | NULL           |                        0 | 6080bed7b10c4e60afac6df510f9df3a |    10032 |
+| 8ba2d52d5725439a89b4e7892e1188d0 | 9c32917c44704f3482c15b2a21dae483 | etc:attribute:attestation                                       | etc:attribute:attestation                                       | fdcb408c3a6947af8998427de915554b | 1634338860487 | fdcb408c3a6947af8998427de915554b | 1634338860503 | attestation                   | attestation                   | folder for built in Grouper attestation attributes                                                                              |                   NULL | NULL           |                        1 | 8f78bb229dc24ff9b131da393d0b5434 |    10014 |
+| 8c7c8ac9004246688cd181c0c142ca70 | 1460b18ad220413a8b10958132304f0f | test                                                            | test                                                            | fdcb408c3a6947af8998427de915554b | 1634338885549 | NULL                             |             0 | test                          | test                          | NULL                                                                                                                            |                   NULL | NULL           |                        0 | 45138af0d2cb49ee806e155a9948ccaf |    10036 |
+| 91d0b37f0cc240088a08a9844f13f5c1 | 9c32917c44704f3482c15b2a21dae483 | etc:attribute:customUi                                          | etc:attribute:customUi                                          | fdcb408c3a6947af8998427de915554b | 1634338860905 | fdcb408c3a6947af8998427de915554b | 1634338860921 | customUi                      | customUi                      | folder for Grouper custom UI attributes                                                                                         |                   NULL | NULL           |                        1 | 1e69f11417e14daf84b2bbf27c225122 |    10015 |
+| 97dbe2ebdd2b4252a9996bd89a98848a | 55b6131823804d19a40da15b6fc556f2 | etc:legacy:attribute                                            | etc:legacy:attribute                                            | fdcb408c3a6947af8998427de915554b | 1634338859504 | fdcb408c3a6947af8998427de915554b | 1634338859520 | attribute                     | attribute                     | Folder for legacy attributes.  Do not delete.                                                                                   |                   NULL | NULL           |                        1 | b40b236f3dc540b789298902ce29d3f4 |    10007 |
+| 9ac0d028bf5b4bd9b4284c7a065e7e63 | 52c8c0a28f8f46eea176d7f570da05ba | ref:affiliation                                                 | ref:affiliation                                                 | fdcb408c3a6947af8998427de915554b | 1634338886062 | NULL                             |             0 | affiliation                   | affiliation                   | NULL                                                                                                                            |                   NULL | NULL           |                        0 | b70577c94ad84c2895d68f82b7d902df |    10039 |
+| 9be16f90a959459eb3c1ab10c328f93b | dd73523792b7421fa0f349bb836ad1b1 | etc:attribute:messages:grouperMessageQueues                     | etc:attribute:messages:grouperMessageQueues                     | fdcb408c3a6947af8998427de915554b | 1634338860448 | fdcb408c3a6947af8998427de915554b | 1634338860469 | grouperMessageQueues          | grouperMessageQueues          | folder for message queues, add a permission here for a queue, implied queues by the topic                                       |                   NULL | NULL           |                        1 | e52d894774fc4a819d0deee86a0a9e40 |    10013 |
+| 9c32917c44704f3482c15b2a21dae483 | f33f64d1396142b197743c7c63f0424b | etc:attribute                                                   | etc:attribute                                                   | fdcb408c3a6947af8998427de915554b | 1634338859538 | NULL                             |             0 | attribute                     | attribute                     | NULL                                                                                                                            |                   NULL | NULL           |                        0 | 0be82f44d8e6482d8854ee10e6a3010b |    10008 |
+| a35549a8c04f46d68def2766810e682b | 52c8c0a28f8f46eea176d7f570da05ba | ref:course                                                      | ref:course                                                      | fdcb408c3a6947af8998427de915554b | 1634338885867 | NULL                             |             0 | course                        | course                        | NULL                                                                                                                            |                   NULL | NULL           |                        0 | e19df33ec9ab495eb931d1f32b0cd9e1 |    10038 |
+| ac4d6965296a4b45a1cb31b95ffa262d | 9c32917c44704f3482c15b2a21dae483 | etc:attribute:permissionLimits                                  | etc:attribute:permissionLimits                                  | fdcb408c3a6947af8998427de915554b | 1634338864339 | fdcb408c3a6947af8998427de915554b | 1634338864359 | permissionLimits              | permissionLimits              | folder for built in Grouper permission limits                                                                                   |                   NULL | NULL           |                        1 | e6b1ef21ffe248a3849a319b39a3b85f |    10021 |
+| accc53ee36234bc5a4b67876d382e595 | 7b57c6cc59004da3a32e3cc2d09873b7 | etc:attribute:instrumentationData:instrumentationDataCollectors | etc:attribute:instrumentationData:instrumentationDataCollectors | fdcb408c3a6947af8998427de915554b | 1634338866353 | fdcb408c3a6947af8998427de915554b | 1634338866370 | instrumentationDataCollectors | instrumentationDataCollectors | folder for Grouper collectors                                                                                                   |                   NULL | NULL           |                        1 | 3245755396314e12a4de7f80f3005b7a |    10027 |
+| b27a309d5e2b4a0291cc421ca4911f78 | 9c32917c44704f3482c15b2a21dae483 | etc:attribute:loaderLdap                                        | etc:attribute:loaderLdap                                        | fdcb408c3a6947af8998427de915554b | 1634338865090 | fdcb408c3a6947af8998427de915554b | 1634338865106 | loaderLdap                    | loaderLdap                    | folder for built in Grouper loader ldap attributes                                                                              |                   NULL | NULL           |                        1 | ef95069f96ad4f15b0761648d239351f |    10023 |
+| bd7a98efa41f4bf3b0814f4a1d6bfc75 | 9c32917c44704f3482c15b2a21dae483 | etc:attribute:rules                                             | etc:attribute:rules                                             | fdcb408c3a6947af8998427de915554b | 1634338863675 | fdcb408c3a6947af8998427de915554b | 1634338863700 | rules                         | rules                         | folder for built in Grouper rules attributes                                                                                    |                   NULL | NULL           |                        1 | bf6e74daf89f48c792779b2a901c34da |    10020 |
+| d687641d7a794177a2e2d092f773bcfe | 837f5eb3402649fea5e6077c9fdfd1b0 | app:mailinglist                                                 | app:mailinglist                                                 | fdcb408c3a6947af8998427de915554b | 1634338888263 | NULL                             |             0 | mailinglist                   | mailinglist                   | NULL                                                                                                                            |                   NULL | NULL           |                        0 | 89b9e2d7b5f2461eaadc1754a03e8ef7 |    10041 |
+| dd73523792b7421fa0f349bb836ad1b1 | 9c32917c44704f3482c15b2a21dae483 | etc:attribute:messages                                          | etc:attribute:messages                                          | fdcb408c3a6947af8998427de915554b | 1634338860167 | fdcb408c3a6947af8998427de915554b | 1634338860191 | messages                      | messages                      | folder for message queues and topics, topic to queue relationships and permissions                                              |                   NULL | NULL           |                        1 | 559972ebd6964d84a0bc0fedae698af4 |    10011 |
+| f2fee1cee0874093ab97a7217a2f16e8 | 9c32917c44704f3482c15b2a21dae483 | etc:attribute:attrExternalSubjectInvite                         | etc:attribute:attrExternalSubjectInvite                         | fdcb408c3a6947af8998427de915554b | 1634338859759 | fdcb408c3a6947af8998427de915554b | 1634338859776 | attrExternalSubjectInvite     | attrExternalSubjectInvite     | folder for built in external subject invite attributes, and holds the data via attributes for invites.  Dont delete this folder |                   NULL | NULL           |                        1 | 1e814611f53e42fe8f364a8e6f23e3e4 |    10010 |
+| f33f64d1396142b197743c7c63f0424b | 1460b18ad220413a8b10958132304f0f | etc                                                             | etc                                                             | fdcb408c3a6947af8998427de915554b | 1634338857266 | NULL                             |             0 | etc                           | etc                           | NULL                                                                                                                            |                   NULL | NULL           |                        0 | 32ab050195cd4d44a963ec78e36a1399 |    10002 |
+| fadfdc6f3df04824b861fcdd1c093edb | 9c32917c44704f3482c15b2a21dae483 | etc:attribute:loaderMetadata                                    | etc:attribute:loaderMetadata                                    | fdcb408c3a6947af8998427de915554b | 1634338863428 | fdcb408c3a6947af8998427de915554b | 1634338863449 | loaderMetadata                | loaderMetadata                | folder for built in Grouper Loader Metadata attributes                                                                          |                   NULL | NULL           |                        1 | 7dd430afcea44319b484546d203b4253 |    10019 |
++----------------------------------+----------------------------------+-----------------------------------------------------------------+-----------------------------------------------------------------+----------------------------------+---------------+----------------------------------+---------------+-------------------------------+-------------------------------+---------------------------------------------------------------------------------------------------------------------------------+------------------------+----------------+--------------------------+----------------------------------+----------+
+42 rows in set (0.00 sec)
+
+MariaDB [grouper]> describe grouper_stems;
++--------------------------+---------------+------+-----+---------+-------+
+| Field                    | Type          | Null | Key | Default | Extra |
++--------------------------+---------------+------+-----+---------+-------+
+| id                       | varchar(40)   | NO   | PRI | NULL    |       |
+| parent_stem              | varchar(40)   | YES  | MUL | NULL    |       |
+| name                     | varchar(255)  | NO   | UNI | NULL    |       |
+| display_name             | varchar(255)  | NO   | MUL | NULL    |       |
+| creator_id               | varchar(40)   | NO   | MUL | NULL    |       |
+| create_time              | bigint(20)    | NO   | MUL | NULL    |       |
+| modifier_id              | varchar(40)   | YES  | MUL | NULL    |       |
+| modify_time              | bigint(20)    | YES  | MUL | NULL    |       |
+| display_extension        | varchar(255)  | NO   | MUL | NULL    |       |
+| extension                | varchar(255)  | NO   | MUL | NULL    |       |
+| description              | varchar(1024) | YES  |     | NULL    |       |
+| last_membership_change   | bigint(20)    | YES  | MUL | NULL    |       |
+| alternate_name           | varchar(255)  | YES  | MUL | NULL    |       |
+| hibernate_version_number | bigint(20)    | YES  |     | NULL    |       |
+| context_id               | varchar(40)   | YES  | MUL | NULL    |       |
+| id_index                 | bigint(20)    | NO   | UNI | NULL    |       |
++--------------------------+---------------+------+-----+---------+-------+
+16 rows in set (0.00 sec)
+```
+
+
+- - -
+_2021-10-12 13:21 Workbench Wiki Site Map_
+
+https://spaces.at.internet2.edu/display/TAPW/InCommon+Trusted+Access+Platform+Workbench
+ <- Workbench Entrypoint link. *Start here* +
+https://spaces.at.internet2.edu/x/-IKeCg
+ <- Permanent link to Workbench Entrypoint +
+
+===== Links on that page:
+
+* "Curious to see what the workbench includes? Follow this link" https://spaces.at.internet2.edu/pages/viewpage.action?pageId=178160388"
+
+* "Launch your CSP Workbench Instance" https://spaces.at.internet2.edu/display/TAPW/Launch+Your+CSP+Workbench+Instance
+
+* "Choose from a graded selection of how-tos and case studies for the Workbench" https://spaces.at.internet2.edu/display/TAPW/Workbench+How-tos+and+Case+Studies
+
+** Starting simple
+
+*** The Workbench as a Realization of the TAP Reference Architecture
+
+** Basic Tasks
+
+*** "Connect a Student Information System to midPoint"
+
+*** "Configuring Near-Real Time Provisioning and DeProvisioning of Wordpress Administrators"
+
+** End-to-End Case Studies
+
+*** "See the Workbench Managing Access to Applications and Services" https://spaces.at.internet2.edu/display/MID/See+the+Workbench+Managing+Access+to+Applications+and+Services
+
+*** "Providing Identity and Access Management Services to Research Organizatiohn with COmanage" https://spaces.at.internet2.edu/display/TAPW/COmanage+Integration+and+Basic+Walkthrough
+
+.
+
+- - -
+_2021-09-29 11:00 More WB prep_
+
+Keith Hazelton  07:53
+
+Have a look at the current version of the Workbench wiki pages starting at
+https://spaces.at.internet2.edu/display/TAPW/InCommon+Trusted+Access+Platform+Workbench
+
+I’ve restructured the bottom half of the page in the hope that users will experience a smoother flow.
+
+To dig deeper, follow the three links near the bottom of that page, (edited)
+
+save links:
+https://spaces.at.internet2.edu/display/TAPW/COmanage+Integration+and+Basic+Walkthrough
+https://spaces.at.internet2.edu/display/TAPW/Workbench+Basic+Walkthrough
+
+
+The good mP admin walkthrough:
+Erin / Internet2 to Everyone (11:34)
+https://spaces.at.internet2.edu/display/MID/Getting+Started+with+the+InCommon+Trusted+Access+Platform+Workbench
+
+- - -
+
+CSP Work Bench CSPWB-53  Add a graded selection of how-to's and CSP case studies to the workbench
+Epic Link: WB How-tos and Tutorials
+In Progress
+
+- - -
+_2021-09-29 11:00 WB prep_
+
+https://spaces.at.internet2.edu/display/TAPW/InCommon+Trusted+Access+Platform+Workbench
+ <- Start here +
+
+On that page, there is a section called "Running Your Own Workbench Instance". The link "Workbench Repository" point to
+https://github.internet2.edu/internet2/InCommonTAP-Examples/tree/main/Workbench
+
+Under "Getting Started with the Workbench", there is a "Visit Canvas" link that goes to https://learning.internet2.edu/courses/72/pages/workbench. The "Resources" section there contains a link back to the initial page labeled 'start here' above. That could be confusing. I recommend ditching the "Resources" section and replacing with a link to a TBD page, "Getting familiar with the Workbench" with a selection of case study walk-throughs.
+
+Back on the start here page,
+https://spaces.at.internet2.edu/pages/viewpage.action?pageId=178160388
+ <- +
+Replace the "Getting +++<del>+++Started+++</del>+++ Familiar with the Various Uses of the Workbench" section, a link on that phrase that goes to the page with that title that has a graded selection of case study walk-throughs.
+
+"Getting Familiar with the Various Uses of the Workbench":
+
+- - -
+_2021-08-25 10:59 WB prep_
+
+Check getting started w Workbench wiki page ToC
+
+check CSP 2022 Calendar of Events gDoc
+
+30' overview of component, Slavek mP followed by related use case, Ethan UNC
+
+From MarkR on the 10th of August:
+
+"Folks - A quick update on the IAM Architecture Project. I am still working on narratives for two of the five use cases. My hope is to get the narratives finished and create the needed diagrams in the coming couple of weeks. Let me know there are comments or concerns."
+Let me know if you have additional questions or concerns."
+
+- - -
+_2021-08-18 13:15 WB prep_
+
+https://todos.internet2.edu/secure/RapidBoard.jspa?rapidView=157&selectedIssue=CSPWB-16
+
+https://spaces.at.internet2.edu/display/MID/Getting+Started+with+the+InCommon+Trusted+Access+Platform+Workbench
+
+- - -
+_2021-08-12 11:00 Future Evolution of Workbench_
+
+Let’s use this time to chat about the CSP workbench and changes for this program cycle:
+
+Review WB Wiki materials from last round.
+
+CSP Kickoff Sept. 16-17
+
+- Rolling it out earlier in the program
+- Documentation of features and cookbook (?)
++ Teaching users how to use it (after Grouper training) and explain where touchpoints are
+- What to share in Kick Off (demo?)
+- Timing for all of this loveliness
+
+Thanks, all!  Erin
+
+- - -
+_2021-07-22 12:46 Workbench rebuilt, restarted on aktis.org_
+
+service [apache2, postgresql] stop  <- free up ports 80, 443, and 5432 for Workbench use
+
+clean and build from scratch
+```
+docker stop $(docker ps -a -q); docker rm $(docker ps -a -q); docker rmi $(docker images -q) --force; docker volume rm $(docker volume ls -q)
+
+cd ~/opt
+rm -rf InCommonTAP-Examples-current
+git clone git@github.internet2.edu:internet2/InCommonTAP-Examples.git
+cp -r InCommonTAP-Examples InCommonTAP-Examples-current
+mv InCommonTAP-Examples InCommonTAP-Examples-2021-07-22
+cd InCommonTAP-Examples-current/Workbench
+docker-compose up -d --build
+
+kh@localhost:~/opt/InCommonTAP-Examples-current/Workbench$ docker ps
+CONTAINER ID   IMAGE-                     COMMAND                  CREATED          STATUS                    PORTS                                                                                        NAMES
+15950f873005   workbench_comanage-cron      "docker-comanage-cro…"   12 minutes ago   Up 12 minutes (healthy)   80/tcp, 443/tcp                                                                              workbench_comanage-cron_1
+932a78f87942   workbench_idp                "/usr/bin/startup.sh"    12 minutes ago   Up 12 minutes (healthy)   0.0.0.0:13443->443/tcp                                                                       workbench_idp_1
+5014dc8aa914   workbench_comanage           "docker-supervisord-…"   12 minutes ago   Up 12 minutes (healthy)   80/tcp, 8080/tcp, 0.0.0.0:11443->443/tcp                                                     workbench_comanage_1
+86087354949c   workbench_midpoint_server    "/usr/local/bin/star…"   12 minutes ago   Up 12 minutes (healthy)   80/tcp, 0.0.0.0:10443->443/tcp                                                               workbench_midpoint_server_1
+bec3babd203d   workbench_grouper_ws         "/usr/local/bin/entr…"   12 minutes ago   Up 12 minutes (healthy)   80/tcp, 0.0.0.0:9443->443/tcp                                                                workbench_grouper_ws_1
+e515f8b56d42   workbench_grouper_ui         "/usr/local/bin/entr…"   12 minutes ago   Up 12 minutes (healthy)   80/tcp, 0.0.0.0:8443->443/tcp                                                                workbench_grouper_ui_1
+714b318c2a41   workbench_grouper_daemon     "/usr/local/bin/entr…"   12 minutes ago   Up 12 minutes (healthy)   80/tcp, 443/tcp                                                                              workbench_grouper_daemon_1
+ddb5d3dbbbb0   workbench_wordpress_server   "bash -c 'if [ ! -s …"   12 minutes ago   Up 12 minutes (healthy)   0.0.0.0:80->80/tcp, 0.0.0.0:12443->443/tcp                                                   workbench_wordpress_server_1
+95a8369f86ac   workbench_idp_ui             "/usr/bin/supervisor…"   12 minutes ago   Up 12 minutes (healthy)   0.0.0.0:8080->8080/tcp, 8443/tcp                                                             workbench_idp_ui_1
+aef18a2368de   workbench_directory          "/bin/sh -c 'rm -rf …"   12 minutes ago   Up 12 minutes (healthy)   0.0.0.0:389->389/tcp, 443/tcp                                                                workbench_directory_1
+949e2d9dd6f4   tier/mariadb:mariadb10       "/opt/bin/start.sh"      12 minutes ago   Up 12 minutes (healthy)   0.0.0.0:33306->3306/tcp                                                                      workbench_midpoint_data_1
+a8810afeb95c   workbench_wordpress_data     "docker-entrypoint.s…"   12 minutes ago   Up 12 minutes (healthy)   0.0.0.0:32770->3306/tcp                                                                      workbench_wordpress_data_1
+22f3f5dba832   tier/mariadb:mariadb10.2     "/opt/bin/start.sh"      12 minutes ago   Up 12 minutes (healthy)   0.0.0.0:33366->3306/tcp                                                                      workbench_idp_ui_data_1
+8e99a7bf9092   workbench_comanage_data      "/opt/bin/start.sh"      12 minutes ago   Up 12 minutes (healthy)   0.0.0.0:23306->3306/tcp                                                                      workbench_comanage_data_1
+95f57c5926f7   workbench_grouper_data       "/usr/local/bin/entr…"   12 minutes ago   Up 12 minutes (healthy)   80/tcp, 443/tcp, 0.0.0.0:3306->3306/tcp                                                      workbench_grouper_data_1
+21e32571a6f9   workbench_mq                 "/usr/local/bin/demo…"   12 minutes ago   Up 12 minutes (healthy)   4369/tcp, 5671/tcp, 0.0.0.0:5672->5672/tcp, 15671/tcp, 25672/tcp, 0.0.0.0:15672->15672/tcp   workbench_mq_1
+8d90968c78ea   workbench_webproxy           "/usr/local/bin/star…"   12 minutes ago   Up 12 minutes (healthy)   80/tcp, 0.0.0.0:443->443/tcp                                                                 workbench_webproxy_1
+c5852f1236c9   workbench_sources            "/opt/bin/start.sh"      12 minutes ago   Up 12 minutes (healthy)   0.0.0.0:13306->3306/tcp                                                                      workbench_sources_1
+kh@localhost:~/opt/InCommonTAP-Examples-current/Workbench$
+```
+
+~30 minutes from code clone to running Workbench
+
+- - -
+_2021-04-28 17:13 Workbench rebuilt, restarted on aktis.org_
+
+https://aktis.org/
+ <- Workbench jump page +
+
+- - -
+_2021-03-07 11:32 install CSP workbench on aktis.org_
+
+Success except that the midPoint server failed to start.
+
+edited Wordpress metadata to include hostname in SAML entityId
+
+SCIM use outbound howto: Jessica:
+
+ChrisHy
+
+AWS is connected by SCIM @ Penn groups, userinfo: name, email, id; to Sailpoint or to SQL; groups & memberships
+
+inconsistent support for Server capabilities
+
+Chris Hy: Grouper provision to mP via SCIM would be nice (but breaks the mP pull model)
+  "                     "
+  "                     "
+  v                     v
+SCIM 'client'          SCIM 'server'
+
+```
+ssh into the AWS host and do a
+docker-compose down
+git pull
+docker-compose up --build -d
+and freshen your instance without losing data
+```
+- - -
+_2021-01-07 11:00 workB touchbase_
+
+Erin Murtha to Everyone (11:32)
+One sec
+Erin Murtha to Everyone (11:37)
+Sand bench names: https://docs.google.com/document/d/1lvqMdLlPR7n-hc25y2kSj0G_pPHWntU4To0jNNV9PsI/edit
+https://docs.google.com/document/d/1lvqMdLlPR7n-hc25y2kSj0G_pPHWntU4To0jNNV9PsI/edit <- Jump Page
+
+- - -
+_2020-12-10 11:20 meetup_
+
+Here’s the page Slavek put up on Nov. 24. It has details on the Shibbing of midPoint supporting a simple configuration switch between Shib and Evolveum’s own SAML SP solution:
+https://spaces.at.internet2.edu/display/MID/Shibboleth+demo
+ <- +
+
+https://docs.google.com/document/d/1FhPHPmaDo2-Co6vtWUJNjQ4hTlfRVPNNyOV3-RWQyH8/edit#heading=h.
+ <- kickoff agenda
+
+Mike Mays to Erin: Oveall timeline--how much hands on can we expect?
+
+- - -
+_2020-12-10 09:18 Configure mP 4.2 to use Shibboleth for SAML_
+ https://spaces.at.internet2.edu/display/MID/Shibboleth+demo
+
+- - -
+
+https://docs.evolveum.com/midpoint/studio/
+https://docs.google.com/document/d/1YldIXPkZLVkKpf_9xX1VqJMAUSBvSxeKZEx7FweTP-o/edit#heading=h.23shvvdgh9qg
+ <- wB documentation & testing +
+SEE wasabi.adoc for local install
+
+next] Use U Del plan as an initial test case for campus integration
+
+ export CSPHOSTNAME=localhost (xps, wasabi)
+
+https://github.internet2.edu/internet2/InCommonTAP-Examples
+
+- - -
+_2020-12-17 08:20:27 Prep for Workbench tutorials and how-tos_
+
+*Base URL*
+ https://localhost/  csp/wb
+
+*admin user: banderson pw*
+
+* midPoint
+* Grouper
+* COmanage
+
+*admin/54y6RxN7GfC7aes3*
+
+* WordPress
+
+*LDAP, SQL, AMQP visibility*
+
+* RabbitMQ: guest/pw
+* LDAP Admin: cn=admin,dc=internet2,dc=edu / pw
+* SQL Admin
+
+*Shibboleth*
+
+* Grouper SP status page
+* midPoint SP status page
+* COmanage SP status page
+
+* IdP status page
+* UI for IdP config
+
+.
+
+- - -
+
+Paul Caskey  08:35
+We don't yet have a mail relay
+
+Keith Hazelton  08:36
+ahh, my mistake, I saw BillK mention email and jumped to conclusions
+
+Paul Caskey  08:37
+We'll get there...   :slightly_smiling_face:
+
+Keith Hazelton  08:38
+I want to write up some instructions on using midPoint Studio for remote access to the container
+
+Paul Caskey  08:39
+Good idea!!
+
+Keith Hazelton  08:39
+Ppl would have to install that locally, but it's pretty straighforward
+They can use the Community edition of IntelliJ
+
+Paul Caskey  08:40
+That's what I use and it's works great for MP.
+
+Keith Hazelton  08:41
+It's so cool, all this stuff, it's like having IAM in a glass box--you can see how everything works
+:gift:
+
+Paul Caskey  08:42
+Yes and you can be risky because if you screw it up, then we just :shotgun:
+
+Bill Kaufman:monkey:  08:43
+Q: if you :shotgun: are LDAP and mysql etc. preserved?
+
+Keith Hazelton  08:46
+This is something commercial products would have real trouble replicating
+there's no profit to be made
+
+Bill Kaufman:monkey:  08:48
+Are you getting support from MikeG @pcaskey?
+
+Paul Caskey  09:14
+@khazelton On a local install, yes, they are typically preserved because, by default, docker-compose down doesn't delete volumes and that's where data is preserved.  On our AWS installs, typically we just kill the node and let AWS spin up a new node, which does wipe the data.  But, it's not hard to ssh into the AWS host and do a docker-compose down, then git pull, then docker-compose up --build -d and freshen your instance without losing data.
+
+@wkaufman A little.  Apparently there's not much Pac4J knowledge to be had there.  IMHO, we should be running the shibb SP with the IdP UI.  We didn't want a weird SP with midPoimt, not sure why we'd want it with the IdP UI...
+
+Bill Kaufman:monkey:  09:17
+Then we should update the requirements
+
+Paul Caskey  09:20
+I have 5 issues with the IdP UI:
+If I enable their additional MetadataProvider in the IdP's services.xml, then no other metadata is loaded.
+Can't upload metadata from a URL (in the workbench) due to the UI insisting on java-based cert trust
+Can't upload metadata from a file due to an error in the UI (reported to Mike G)
+Can't get the SAML integration to work
+We'll need to use the API to pre-load metadata into the UI for the workbench.  Would be nice to have some doc on what the various API calls are...
+
+Bill Kaufman:monkey:  09:22
+Ok, I would like to share this directly with Mike, Jj, Charise and SteveE to get input and refactor what we need to in the Work Segment.   There have been several hanging chads they have not addressed.   @chubing do you have anything to add?
+:no:
+1
+
+
+Keith Hazelton  09:30
+@pcaskey The jump page has links for the SP status pages for Grouper and midPoint; Could there be one for the COmanage status page, too, or is that an odd duck?
+
+Paul Caskey  09:34
+Yes, I'll add that right now
+
+Keith Hazelton  09:41
+What do you think of moving the Shib info down to the bottom of the jump page; That way we'd lead off with the main components. Just a thought
+I'd like to try configuring an LDAP connector that exposes the COmanage guest OU as another SoR resource.
+Shouldn't be too painful.
+
+Paul Caskey  09:47
+I already have such a resource, just haven't uploaded it yet since the LDAP stuff isn't there yet
+
+Keith Hazelton  09:47
+At least for now, it would be one-way: Guest OU to midPoint
+I see a guest ou with one user in it
+
+Paul Caskey  09:48
+basically a copy of what we have in IAM/ICP
+It's a dummy user from LDIF.  Still working on the provisioning, etc
+
+Keith Hazelton  09:48
+Far be it from me to take work away from you, @pcaskey
+:smiley:
+
+Paul Caskey  09:49
+LOL
+Happy to change jump page in any way...   Can you propose a list of links (and categories) from top down?
+BTW, the COmanage SP's status pg -> jump pg is merged now (edited)
+:beer:
+
+Keith Hazelton  09:50
+Sure. Wondering what to do about un/pw exposure; Is the basic auth enough to make us feel safe? Include on the jump page or create a separate cheat sheet? (edited)
+
+Paul Caskey  09:51
+It's a fine question...    :wink:
+
+Ethan Kromhout  09:51
+I'll want to add a link to the wp-admin page, assuming I ever get wordpress fully working behind the proxy.
+:heavy_check_mark:
+
+Paul Caskey  09:52
+and I guess we should also add a link to the WP Shibb SP's status pg like we did the others
+:heavy_check_mark:
+
+- - -
+
+*Jump page*
+
+Welcome to the InCommon TAP Workbench!
+
+This is your own personal instance of the InCommon Trusted Access Platform Workbench.
+
+For complete documentation, see this page.
+
+The system contains the following TAP components (click the links to access each component in its own tab):
+
+    Shibboleth IdP (4.0.1)
+    Shibboleth IdP UI (1.7.0)
+    Shibboleth SPs:
+        Grouper SP (3.1.0)
+        midPoint SP (3.1.0)
+    Grouper (2.5.37)
+    midPoint (4.2)
+    COmanage (3.3.1)
+
+The system also contains the following downstream/target applications:
+
+    WordPress
+
+In addition, the following applications are available:
+
+    Rabbit MQ
+    LDAP Admin
+    SQL Admin
+
+- - -
+_2020-11-21 14:19 open issues with InCommonTAP-Examples/Workbench (Integrated TAP Component Package} on wasabi)_
+
+export CSPHOSTNAME=wasabi
+
+Original version of ../Workbench/upload-import-sis-persons.sh had library.bash in midPoint_container directory and the hostname was hardcoded to 'localhost' in library.bash
+
+Corrected version with library.bash in current directory and sed-settable hostname:
+
+change "source ../../library.bash" to "source library.bash"
+
+
+```
+-rw-r--r-- 1 khazelton khazelton 23045 Nov 21 12:23 library.bash
+-rw-r--r-- 1 khazelton khazelton 22950 Nov 21 11:36 library.bash.orig
+-rw-r--r-- 1 khazelton khazelton 23045 Nov 21 12:31 library.bash.template
+
+../Workbench$ sed 's/__CSPHOSTNAME__/wasabi/g' library.bash.template > library.bash
+
+- - -
+
+cat upload-import-sis-persons.sh
+Shibboleth
+source library.bash
+midpoint-objects-manual/tasks/task-import-sis-persons.xml
+```
+
+./upload-import-sis-persons.sh fails with errors as it attempts to load each user
+
+```
+khazelton@wasabi:~/opt/InCommonTAP-Examples/Workbench$ ./upload-import-sis-persons.sh
+
+Uploading midpoint-objects-manual/tasks/task-import-sis-persons.xml (tasks, 22c2a3d0-0961-4255-9eec-c550a79aeaaa)
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>405 Method Not Allowed</title>
+</head><body>
+<h1>Method Not Allowed</h1>
+<p>The requested method PUT is not allowed for the URL /midpoint/ws/rest/tasks/22c2a3d0-0961-4255-9eec-c550a79aeaaa.</p>
+</body>
+</html>
+```
+The upload file function being called; Note that I changed the curl command from 'localhost' to 'wasabi'
+```
+
+function upload_from_file () {
+  local FILENAME=$1
+  local OPTIONS_TO_ADD=$2
+  local REGEX="midpoint-objects.*/(.*)/(.*)"
+  if [[ $FILENAME =~ $REGEX ]]
+  then
+    TYPE="${BASH_REMATCH[1]}"
+    OID=`cat $FILENAME | sed -n 's:.*oid=\"\([A-Za-z0-9\-]*\)\".*:\1:p' | sed -n '1 p'`
+    echo "Uploading $FILENAME ($TYPE, $OID)"
+    curl -k --user administrator:5ecr3t -H "Content-Type: application/xml" -X PUT "https://wasabi:8443/midpoint/ws/rest/$TYPE/$OID?options=overwrite$OPTIONS_TO_ADD" --data-binary @$FILENAME
+  else
+    echo "Skipping $FILENAME"
+  fi
+}
+```
+But with 4.2 version straight from internet2 repo running on xps, that script runs successfully and imports 100 students as users
+
+- - -
+_2020-11-20 13:58 WB meeting: PaulC showing WB_
+
+```
+CSPHOSTNAME=abc.workbench.incommon.org
+
+https://abc.workbench.incommon.org <- tests can be run here until further notice
+
+ssh csprootuser@abc.workbench.incommon.org
+T3sting123!
+
+cat /etc/os-release
+
+NAME="Amazon Linux"
+VERSION="2"
+ID="amzn"
+ID_LIKE="centos rhel fedora"
+VERSION_ID="2"
+PRETTY_NAME="Amazon Linux 2"
+ANSI_COLOR="0;33"
+CPE_NAME="cpe:2.3:o:amazon:amazon_linux:2"
+HOME_URL="https://amazonlinux.com/"
+
+cat /csp-tap/InCommonTAP-Examples/README.md
+
+# InCommonTAP-Examples
+Contains example uses of the InCommon Trusted Access Platform components working together
+
+Below are the names/ports that the components in the demos will use.  Not all demos use all components.
+
+## ITAP Training Environment Names/Ports ##
+
+**Web Proxy**
+* name:
+* port: 443
+
+**IdP**
+* name: idp.example.org
+* port: 13443
+
+**Grouper**
+* name: grouper.example.org
+* port: 8443
+
+**Grouper-WS**
+* name: grouper-ws.example.org
+* port: 9443
+
+**COmanage**
+* name: comanage.example.org
+* port: 12443
+
+**midPoint**
+* name: midpoint.example.org
+* port: 10443
+
+**Satosa**
+* name: proxy.example.org
+* port: 11443
+
+**LDAP**
+* name: ldap.example.org
+* port: 389, 636
+
+**DB**
+* name: db.example.org
+* port: 3306, 5432
+
+**Rabbit**
+* name: rabbit.example.org
+* port: 15672 (web), 5671, 5672
+
+**HRMS**
+* name: hr.example.org
+* port: 14443
+
+**SIS**
+* name: sis.example.org
+* port: 15443
+
+**Wordpress**
+* name: www<span></span>.example.org
+* port: 16443
+[csprootuser@ip-172-31-37-171 ~]$
+```
+
+Getting started with midPoint page on Spaces wiki as starting point for documentation
+
+- - -
+_2020-10-29 11:00 WB meeting_
+
+get mP 4.2 w native Shib into IncommonTAP-Examples CSPWB-27
+
+- - -
+_2020-10-23 17:25 mP 4.2 released_
+
+http://www.evolveum.com/downloads/midpoint/4.2/midpoint-4.2-dist.tar.gz
+- - -
+_2020-10-18 13:27 Success building and running grouper/demo with latest midPoint 4.2 snapshot_
+
+stop mariadb on Mac NbP
+```
+brew services stop mariadb
+Stopping `mariadb`... (might take a while)
+==> Successfully stopped `mariadb` (label: homebrew.mxcl.mariadb)
+```
+make sure demo/grouper ports are clear
+```
+lsof -nP -iTCP -sTCP:LISTEN
+COMMAND    PID      USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+mongod    1282 khazelton    9u  IPv4 0xf4239cf2343db489      0t0  TCP 127.0.0.1:27017 (LISTEN)
+Loop      1296 khazelton    4u  IPv4 0xf4239cf21f986f69      0t0  TCP 127.0.0.1:3641 (LISTEN)
+Loop      1296 khazelton    6u  IPv6 0xf4239cf234903c99      0t0  TCP [::1]:3641 (LISTEN)
+BlueJeans 1305 khazelton    3u  IPv4 0xf4239cf21f98b489      0t0  TCP 127.0.0.1:18171 (LISTEN)
+com.docke 1445 khazelton   13u  IPv4 0xf4239cf2343d8d09      0t0  TCP 127.0.0.1:49272 (LISTEN)
+```
+wipe clean all Docker images, containers, and volumes
+```
+docker stop $(docker ps -a -q); docker rm $(docker ps -a -q); docker rmi $(docker images -q) --force; docker volume rm $(docker volume ls -q)
+```
+clone the latest I2/mP demo package, position copies
+```
+git clone https://github.internet2.edu/Docker/midPoint_container.git
+
+cp -rf midPoint_container midPoint_container-current
+cd midPoint_container-current
+```
+build the images
+```
+./build.sh
+```
+change to demo folder and bring up the containers
+```
+docker-compose up --build
+
+docker ps
+
+CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS                    PORTS                                                                     NAMES
+eb8f27710675        grouper_midpoint_server   "/usr/local/bin/star…"   2 hours ago         Up 31 minutes (healthy)   80/tcp, 0.0.0.0:8443->443/tcp                                             grouper_midpoint_server_1
+911ee2e95760        grouper_grouper_daemon    "/usr/local/bin/entr…"   2 hours ago         Up 31 minutes (healthy)   80/tcp, 443/tcp                                                           grouper_grouper_daemon_1
+ae1c21eace64        grouper_grouper_ws        "/usr/local/bin/entr…"   2 hours ago         Up 31 minutes (healthy)   80/tcp, 0.0.0.0:9443->443/tcp                                             grouper_grouper_ws_1
+7e886049a70a        grouper_grouper_ui        "/usr/local/bin/entr…"   2 hours ago         Up 31 minutes (healthy)   80/tcp, 0.0.0.0:4443->443/tcp                                             grouper_grouper_ui_1
+7e462d06c7cb        grouper_idp               "/usr/bin/startup.sh"    2 hours 

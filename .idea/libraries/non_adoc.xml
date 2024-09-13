@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="non.adoc">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/non.adoc/adi-download.zip!/" />
+      <root url="jar://$PROJECT_DIR$/non.adoc/attribute-registry-v2-ontologies.ttl.zip!/" />
+      <root url="jar://$PROJECT_DIR$/non.adoc/awscliv2.zip!/" />
+      <root url="jar://$PROJECT_DIR$/non.adoc/attribute-registry-v2-ontologies.owx.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

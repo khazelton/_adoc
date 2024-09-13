@@ -1,0 +1,498 @@
+﻿=== /tierCampusSuccess.utf  https://spaces.internet2.edu/x/oQrABg   I2 Slack tier-adoption
+- - -
+h6. 2018-11-19 10:57 Collaboration Success Partners 2019
+
+https://www.internet2.edu/blogs/detail/16915  <= "Watch This Space: Collaboration Success Partners 2019"
+- - -
+https://internet2.zoom.us/j/8144413145 +
+https://docs.google.com/document/d/1Z36vMBDawfXCCVxn-KsBGcGmrS1vTTCz9jkgDEo-T0o/edit#heading=h.nwh627o4qeo  <== CSP Rolling Agenda
+
+https://internet2.slack.com/files/U629C30A0/F87TQ03DH/csp_rolling_agenda +
+https://internet2.app.box.com/notes/240196155008
+
+- - -
+
+_2018-09-25 14:00_
+
+August
+
+TechEx checkpoint
+
+_____________________
+h6. 2018-07-24 09:20  Support for CSP WG chairs
+
+- assist w agenda building
+- co-chairs?
+
+- BillK on Grouper: Problems that CSP folks might be having and advice on handling them
+- Me on MattB: Roadmap. meeting planning w Matt, JaneM: U Mich Paul Roberts; Andy Oreg.State U.
+  - run the Banner meeting today
+- Erin on Dean Lane
+- KeithW is fine
+
+
+CTAB: gov over Baseline Expectations, a wiki for consultations (Brett Bieber, Tom Barton)
+_____________________
+h6. 2018-07-17 14:04  CSP call
+
+Updates from campuses and WGs
+
+case studies due Sept 24.
+
+KWessel: BTAA Sec F2F @ U Chicago
+- help w provisioning product evals, plz
+- Randy M from Co State: Ruch evaluated midPoint (?)
+
+Or State U:
+- lots of mP progress, using REST mP APIs to drive role assignments from an external driver
+] Slack w Andy? @ OSU re schema/mP/LDAP
+
+3.8 broke the Google Connector: https://jira.evolveum.com/browse/MID-4683
+- SteveZ is working on a subscription for I2
+- CO S o Mines todo as well
+_____________________
+h6. 2018-05-10 08:00  Campus Success Program Face-to-Face  https://docs.google.com/document/d/1yxU-vc1Xp2e0J1uxWBwaWEpoPOHuGMwzHllqn8HMEpg/edit#
+
+Thursday, May 10th, 8:30 - 12:30  Slides: https://docs.google.com/presentation/d/1m6jkCCX47ArmutkkgAQWEMucaS77PlLp1p_eV1c51yo/edit#slide=id.g38d1a7e808_2_293
+
+Mission Hills Room, Marriott Marquis San Diego Marina (south tower 3rd level)
+	http://www.tms.org/meetings/annual-14/downloads/MAPS_AM14.pdf
+
+Remote Attendees: Zoom ID 8144413145
+
+] mP, COmg, Grpr venn:  Start discussion by id'ing core capability of each and then parceling out the remaining capabilities
+
+] IoLR:  Aim to present phase II plan at TNC, Trondheim, June 10
+   - define UnitedId IoLR v1
+   -
+----------
+TIER Data Structures and APIs Working Group
+
+Overview/mission of the Working Group
+How can the community benefit from our work?
+
+Key work completed
+Work underway
+Planned work
+
+Links to resources (blogs, wiki, artifacts, etc)
+How to get involved
+Contact information
+----------
+
+Goals:
+
+- Read out Working Groups’ progress and provide assistance on concerns, blockers, technical and/or administrative issues.
+- Show those attending the progress, energy, excitement, and the solutions that the cohort are using.
+- Inform the development team and the broader community attending of the work underway in the CSP, along with sharing information on deliverables by TechEx.
+
+
+Agenda:
+
+Welcome (15 minutes) - Ann W, Steve Z, Kevin M
+	Introduction & Opening Remarks
+	About the CSP
+	Goals & Desired Outcomes
+
+CIO-level Discussions (30 minutes) - facilitated by Mike E.
+	Support Services Model WG: Vendor engagement, Sustainable Development, and Support
+
+TIER Working Group Chair and SME Report Outs (40 minutes)
+	Review key work completed, underway, and planned
+	Other???
+
+CSP Working Group Lead Report Outs (40 minutes)
+
+	API’s, SCIM Schemas, & Bulk Transaction Requirements (KeithW
+		From 'bulk provisioning' topic WG has developed what amounts to a set of test cases for provisioning packages
+
+	Grouper Deployment Enhancement (LiamH)
+		GDG-plus
+		Future feature requests
+		Grouper (TIER?) training env. w John Gasper's dev help
+
+	DevOps Deployment Guide (Dean Lane)
+		Huge ToC
+		ID sections TBD by TechEx: DevOps components plus example env. at several schools
+
+
+	Identity Onboarding with Banner
+		9 of 10 CSP schools run Banner
+
+
+
+	Each group above to cover:
+		Key Deliverables for TechEx
+		Report out work completed, highlight work that is underway and planned to be completed by TechEx
+
+Audience Q&A
+
+Break (10 minutes)
+
+CSP WG Break Out (75 minutes)
+
+	- Discuss any
+		blockers
+		challenges
+
+	- Future hopes of the WGs from the CSP
+
+	- Workplan for May - October
+
+    - Banner to midPoint
+      - thin reg. is in common across mP & Grouper as well as across institutions
+      - TJ: thick reg. needs to be a very dynamic thing
+      Oregon State U is going production with Ethos; (current prod mode for many is pre-BEIS (dB table access, flat)
+      - MattB: Straightforward to program to Ethos, worked as advertized
+      - IgorF
+      	- ID reg needs to be an ever-growing collection of personal, possibly sensitive info (GDPR)
+      	- store hashed values to enable equality matches
+
+      Initial data load: full parallelism is in place in mP 3.8 (breaking changes in dB layer Unicon Proj, Evolveum labor): page/shard the repository
+
+      an event happens and subsequent query fills in the details (imagine a connector doing the full payload build)
+      - for api
+      - source systems get to speak their own identifier lingo, central reg does the master identifier
+      ] compile requirements for messaging solutions and
+      ] Notification message vs SoR full data representation
+      TJ: mP: Source & idReg can all be contained within mP
+          PS emits EBOs expressed as dB tables
+
+      ] tell Sam :p our needs and our timeline
+
+      ] Work w JackS on IMS LIS APIs (delivery by summer)
+
+
+
+
+Closing (30 minutes)
+	Shared vision and next steps
+
+] fine tuning of filtering isMember and entitlements per service in Shib:  {groups, entitlements} <--> {service links}; graph representation would be eminently suited
+
+TechEx is prime venue, all hands on deck event
+  - On-site retrospective
+  - 3rd quarter assessments done
+  - prepping documents and artifacts
+
+  - final deliverables & documents post-TechEx
+
+
+- KeithW: TIER adoption symposium series @ TechEx's of the future
+- Jack, MikeE, SteveZ, AnnW, KevinM; cough up a plan by summer's end
+- MattB: additional TIER training events components and deployment practices
+-
+
+----------
+Logistics for remote attendees:
+
+API’s, SCIM Schemas, & Bulk Transaction Requirements
+	Zoom ID: 8144413145
+Grouper Deployment Enhancement
+	Zoom ID: 7343238623
+DevOps Deployment Guide
+	Zoom ID: 5108580881
+Identity Onboarding with Banner
+	Zoom ID: 7340987654
+----------
+_____________________
+h6. 2018-04-10 10:23  CampusSuccess Meeting  https://docs.google.com/document/d/1PlDEYJNUrePKhzshNLBAGp__HRqkfC1Wko6WDZh1_Wc/edit#heading=h.nwh627o4qeo
+
+_____________________
+h6. 2018-01-24 14:00   CampusSuccess 2018
+
+WorldOfHyatt
+530634047N @g
+tel:1-800-544-9288
+
+Table Mpuntain Inn
+hotel@tablemountaininn.com
+800-762-9898
+303-277-9898
+#16755905  checkout Tues. 6th
+#17148021  checkout Wed. 7th
+
+- CampusSuccess 2018 OOP Expense reporting:
+
+'/c/Users/hazelton/opt/_notesPlus/travel/2018 OOP Template and Sample as of 01-01-2018.xls'
+
+Dear All,
+
+You will soon be getting an invite to a box folder where you can submit your receipts and expense report from the CSP F2F Meeting on Feb. 2, 2018.  I have also placed in the folder a sample and template expense report form for your use.  Once all your receipts are there and the form is filled out I will submit to Accounting for reimbursement.
+
+Thank you in advance for all your help.  See you soon.
+
+
+-- Elaine Alejo
+
+Executive Assistant
+Internet2
+6001 Shellmound St Suite 850
+Emeryville, Ca  94608
+ealejo@internet2.edu
+510-858-0881  office
+925-785-1996 cell
+
+Coming together is a beginning, staying together is progress, and working together is success -Henry Ford.
+
+_____________________
+h6. 2017-12-05 14:00   CampusSuccess Call
+
+Other Topics (3:30 - 3:35)
+- Introduction to the TIER Architects’ Notebook / TIER Provisioning Guidelines work - presented by Keith Hazleton
+
+----------
+Arch. Notebook
+
+guidebook that helps ppl put TIER to use in their env.;
+not component install/config, but
+fill gap on overall arch patterns showing how all of this fits together,
+
+strategies for using TIER components to build end-to-end solutions
+modeled on IBM Redbooks:
+  - http://www.redbooks.ibm.com/Redbooks.nsf/RedpieceAbstracts/sg248408.html?Open
+
+Here's the IAM casebook
+Here's how to solve with TIER;
+
+Notebook will have lots of references to other work:  Cookbooks, Recipes
+
+We need all our cool artifacts to be stitched into something aimed at adopters.
+
+E.g. Specific guidance on non-standard provisioning techniques for particular problematic products;
+
+How could CSP schools contribute?  Each of you will have developed 1+ recipes and cooked up 1+ solutions, so leverage that to develop a section to the Architecture Notebook as one of your deliverables.
+
+
+- Banner to Grouper and midPoint
+- WarrenC:
+- fitting the components together
+  - diagrams, etc. on Slack channel: From SoR to Registry to Grouper and rules & principles for architecting that
+
+Prerequisites: From scratch;
+  - baking
+  - bbq
+
+- operational side of Docker, etc.
+----------
+
+Banner as primary SoR, how will Lafayette College integrate that with the rest of their IAM infrastructure?  Bill Thompson
+
+Not a ton of hands on experience w Banner; lots going on on slack tier-mP, tier-API, mP users list; dockerized midPoint from
+
+CO Sch Mines: Banner -[spml, banner ent id svc BEIS, triggered acct claim] Trident, AD OpenLDAP Google, JDBC banner 3rd person Id;
+
+
+
+----------
+
+Midpoint and Banner Strategies and Discussion (3:35 - 4:25)
+- Presented by Keith Hazleton and Bill Thompson
+
+
+Note:  Continued TIER Components using Docker
+- Reminder to join Paul on Thursday (12:00 EST) for a continued discussion
+
+Plus/Delta (4:25 - 4:30)
+TBD
+
+_____________________
+h6. 2017-11-21 14:00   CampusSuccess Call
+
+Who knows Rancher for managing Docker containers? UW-Msn
+
+Lafayette
+- Before we request a VM, we need to know how much resources, specifically disk space, midPoint requires
+- OSU interested as well
+- UC Merced: mP up & running & Grouper
+
+UMich
+- How do we get to a subject data change events-driven approach?
+- NetID
+- loader performance issues w large N changes UIUC & Mich
+
+U Colorado
+
+80K records in COmanage, perf issue resolved;
+
+see U Chicago github for OIDC maven overlay
+
+https://spaces.internet2.edu/display/ShibInstallFest/TIER+Shibboleth+IdP+Training  Paul Caskey Docker-based training
+
+_____________________
+h6. 2017-11-07 14:20  CampusSuccess Call
+
+Liam Hoekenga
+Gail Lift
+U Mich   interested in messaging to Grouper; Tier-grouper slack channel
+
+Bert GA Tech: Have you looked at the real-time loader from Grouper? We should all try it
+
+
+AnnWest: blogs
+github: 1 for community contribution, 1 for TIER curated items
+
+- where do you manage info if both Grouper and midPoint can be used?
+- How can you maintain a single logical view of the state of accounts etc when changes can happen from multiple sources
+- Why does X have access to Y?  Why doesn't X have access to Z?   Where would we go for answers.
+
+_____________________
+h6. 2017-10-10 14:00 - 15:30  Kickoff call  https://internet2.app.box.com/notes/236280418253?s=y72gsokb17l7xzt0qzd3x4o0ggcv62jh
+
+https://bluejeans.com/323288009
+1.408.740.7256
+
+Meeting notes  https://internet2.app.box.com/notes/236280418253?s=y72gsokb17l7xzt0qzd3x4o0ggcv62jh
+
+Interests and Roles:  https://docs.google.com/spreadsheets/d/1QxkmX0aIQMlUQ8-oT7Y-zfDFX8lNN1VAQCqD0W_BhFM/edit#gid=633424468
+_____________________________________
+2017-10-03  10:30   Campus Success Participants
+
+UIUC      			KeithWessel, EricColeman, EsterCha
+U Mich    			GailLift, Liam Hoekenga
+Lafayette 			Bill Thompson
+Colorado State
+GA Tech
+UMBC
+CO Sch of Mines
+Oregon State
+Rice
+UC Merced
+UMBC
+
+Campuses
+
+_____________________________________
+Colorado School of Mines (mP)
+
++ Mike Erickson, Lead
+
+Currently: Aegis Trident, concerned abt viability, looking to TIER; midPoint as registry & integrate w provisioning.  New to containers; Grouper for finer grained authZ
+
+- Matthew Brookover iam sol arch
+- Clayton Durkee
+- Ed Zucker
+- Phil Promig
+- Yuri Csapo
+
+
+_____________________________________
+Colorado State University (mP later?)
+
+- Scott Baily, Lead
++ Randy Miotke, are interested in mP
+- Pat Burns
++ Dave Hoffman speaking
+
+started already: incorporate external identities into IAM linkedin facebook, former students (ramweb, famweb) through COmanage, Cirrus, mP a later phase
+
+- Katie Banghart
+- Jeff Ruch
+_____________________________________
+Georgia Tech
+
++ Dusty Edenfield, Lead
+
+focusing on Grouper have it working with Docker; Containers are a big deal
+
+- John Bryson
++ Bert Bee-Lindgren
+
+_____________________________________
+Lafayette College (mP)
+
++ Bill Thompson, Lead, dir of infra (mP)
+ Laf interested in all the TIER components; got all the dependencies
+Accounts workflow btwn Banner and LDAP; containerization; Project: 1) Shib IdP; 2) eval & install mP; interested in dockerized Grouper if possible; other gaps: self-service, MFA,..
+
+Excited.
+
++ Carl Waldbieser, Grpr, RabbitMQ system prog;
+
++ Janemarie Duh, VC InC TAC
+- John O'Keefe
+
+_____________________________________
+Oregon State University (mP)
+
++ Erica Lomax, Lead
+
+Current EntReg is some tables in banner to be replaced with midPoint; also interested in success with dockerized components; already have Shib and Grouper; Shib in AWS
+
++ Andy Morgan
+- Rice University
+- Dean Lane, Lead
+- Brian Woods
+- Paul Engle
+- Liz Brigman
+______________________________________
+Rice  (mP)
+
++ Dean Lane, Lead
+
+Current is 12-15 yrs old, getting fragile; hoping mP will help; CSProject: Standalone Groouper & Shib to TIER packaged versions, mP in testbed for this cycle; looking forward to collab, expect good things; looking for Banner integration along w CO Sch o'Mines, mP doesn't do banner?
+
++ Paul Engle
++ Brian
+
+_____________________________________
+University of California, MerCED (mP)
+
+- Nick Dugan, Lead
+
+Dep CIO & CISO; Sun Identity, searching for a registry, in an interim state; have a few year roadmap; looking fwd to adopting TIER; last year JohnK converting X; 'IdM loader' is their registry now, looking to mP as priority; Unicon has helped them; New to containers...
+
+- Michael Bergstrom
+- John Kamminga
+- Matthew Cato
+- Matthew Faulkner
+
+_____________________________________
+University of Illinois, Urbana-Champaign (mP later)
+
+- Keith Wessel, Lead  InC TAC Chair, BTAA Provisioning Chair
+
+Shib IdP but not yet Grouper; TIER will get it off the ground, as 'AuthZ Mgr'; Elastic Beanstalk for Grouper, eventually Shib; complement GA Tech; Trade Docker expertise for Grouper expertise; mP already there, run by central admin but only for password sync; not planning registry/provisioning swap-out tomorrow, but we'll keep an eye on you all.
+
+- Erik Coleman, Proj Mgr, Arch
+- Tracy Tolliver, Dir App Services
+- Ester Ch'a, Communications
+  Engelbach
+  X
+
+_____________________________________
+University of Maryland Baltimore County (mP)
+
+- Todd Haddaway, Lead, Proj Mgr; JackS is sponsor: CS: Roll out dockerized Grouper in prod; autoprovisioning GoogleGroups from Grouper; mP repl for 15 yr old IdReg, Jason knows it all, but.. mP: Start w temporary accounts; Mature Shib env, but not smooth upgrade path. Also have UMBC legacy authN for SSO; Kudos to GDG
+
+- Chris Sutherin Grouper
+- Paul Riddle Shib
+- Jason Griego mP
+
+_____________________________________
+University of Michigan
+
+- Liam Hoekenga, Lead
+
+Cloud 1st strategy from top; Shib deployment lead for 8-9 yrs; Primary CS: Deploy Grouper in TIER distribution, use for access mgmt. broadly speaking; Current IAM is NetIQ is 10 yrs old; Containerization of Shib eventually;
+
+- Jack Stewart, sol arch
+- DePriest Dockins
+- Amie Lahaan, BAnalyst
+- Kelly Trosvig, CIO
+
+_____________________________________
+Internet 2
+
+- Kevin Morooney (Program Sponsor)
+- Ann West (TIER Community Lead)
+- Steve Zoppi (TIER Development Lead)
+- Erin Murtha (Project Manager)
+- Glenn Lipscomb (Marketing Lead)
+- Gail Krovitz (Community Engagement)
+- Paul Caskey (TIER SME/Training Lead)
+- Mike Zawacki (technical support)
+
+support folks intro by Ann
+
+start the agenda...

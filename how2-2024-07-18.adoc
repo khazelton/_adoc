@@ -1,0 +1,93 @@
+*Trevor Lucas* 10:31
+
+Hello, I am trying to create a few different intents on my AD resource that include "Full Time Employee", "Student Employee", "admin", "service", "test", etc. I thought I could filter by OU and am struggling with getting the Filter to work within a particular schema object. Service and Test accounts are in their own OUs, but I can also filter by name because they follow a standard convention. attributes/name contains 'service' and attributes/name contains 'test' works for those two.
+
+With Users, I am struggling because dn and distinguishedName don't seem to filter well. I can't use attributes/dn contains "CN=Users,DC=unco,DC=edu" because I get errors that I can't use wildcards with __NAME__ (DN). If I use something like attributes/distinguishedName contains "CN=Users,DC=unco,DC=edu", it returns that zero objects were processed. So it's like the attribute is being ignored completely.
+
+What I CAN do is specify an individual DN and that does work as expected. attributes/distinguishedName = 'CN=first.last,OU=Student Employees,DC=unco,DC=edu' does return the single user to the Student Employee view in Accounts. In addition, I could use attributes/description = "Managed by StudMA" to filter SEMP accounts, but the description can't exactly be trusted to stay static, so that would be unreliable at best.
+
+This has come about because the default intent imported EVERYTHING into midPoint, not just regular users. And not only did it import those objects, it also moved them from their respective OUs into the Users container. I never expected an Import task to actually move things around in AD so I'm trying to understand what caused that and how to avoid it in the future. Computers, Service Accounts, etc all got brought in when I didn't want them, so now I'm trying to fine-tune things. A very valuable lesson to run things through simulations first and to double check mapping strength before importing objects :smile:. Good thing it was in dev!
+
+I have searched through the documentation and have not found anything regarding this filter other than that specific DN example. The docs I'm finding have to do with midpoint Queries, which appear to be completely different and you would use those in the Query Playground.
+
+Maybe there's another way to filter by OU that I'm not thinking of? Any advice is welcome. (edited) 
+
+
+*Ivan Noris*
+
+LDAP does not support wildcards in DN. 
+What you could use to distinguish subtrees with different intents is Base context 
+https://docs.evolveum.com/connectors/resources/ldap/ldap-tips-and-tricks/#base-context[]
+
+this is currently not visible in Resource wizard though]
+
+
+*Trevor Lucas* 2 days ago
+Ivan, thank you for the reply! I swear I had looked at that page before but did not look closely enough. I was trying to use the Filter through the GUI, and didn't realize I had to add an extra <baseContex> stanza to the XML. That was the missing puzzle piece. Case sensitivity was also an issue I was having with filtering. Things are making more sense now. Thank you so much!
+For clarification, does that GUI Filter use the midPoint Query Language or does it use some other syntax?
+
+*Robert King* 2 days ago
+Ivan Noris
+Would this same thing work for delineation?  Or do you need to use baseContext for this to work?
+
+*Trevor Lucas* 2 days ago
+@Robert King
+What I ended up doing was removing the filter that I was trying to use in the GUI and putting it within the <delineation> code block. so the whole object looks like this:
+
+```
+<objectType id="296">
+            <kind>account</kind>
+            <intent>Admin Account</intent>
+            <displayName>Admin Account</displayName>
+            <default>false</default>
+            <delineation>
+                <objectClass>ri:user</objectClass>
+                <baseContext>
+                    <objectClass>ri:user</objectClass>
+                    <filter>
+                        <q:text>attributes/dn = "ou=administrative accounts,dc=unco,dc=edu"</q:text>
+                    </filter>
+                </baseContext>
+            </delineation>
+            <focus>
+                <type>c:UserType</type>
+            </focus>
+</objectType>
+```
+
+*Trevor Lucas* 2 days ago
+I don't know if that answers your question or not. I originally tried putting <baseContext> as its own stanza but then was getting errors that you can't use delineation and legacy baseContext together.
+
+*Trevor Lucas* 12:18
+
+@Trevor Lucas LDAP does not support wildcards in DN. What you could use to distinguish subtrees > > with different intents is Base context 
+https://docs.evolveum.com/connectors/resources/ldap/ldap-tips-and-tricks/#base-context…
+
+Ivan, thank you for the reply! I swear I had looked at that page before but did not look closely enough. I was trying to use the Filter through the GUI, and didn't realize I had to add an extra <baseContex> stanza to the XML. That was the missing puzzle piece. Case sensitivity was also an issue I was having with filtering. Things are making more sense now. Thank you so much!
+
+For clarification, does that GUI Filter use the midPoint Query Language or does it use some other syntax?
+
+*Robert King*  2 days ago
+@Ivan Noris
+Would this same thing work for delineation?  Or do you need to use baseContext for this to work?
+
+*Trevor Lucas* 2 days ago
+Robert King
+What I ended up doing was removing the filter that I was trying to use in the GUI and putting it within the <delineation> code block. so the whole object looks like this:
+
+*Trevor Lucas* 2 days ago
+I don't know if that answers your question or not. I originally tried putting <baseContext> as its own stanza but then was getting errors that you can't use delineation and legacy baseContext together.
+
+*Ivan Noris*  1 day ago
+You are right. More correct example is here https://docs.evolveum.com/midpoint/reference/support-4.8/resources/resource-configuration/schema-handling/changes-in-4.6/#resource-ob[…]-delineation
+
+*Ivan Noris* 1 day ago
+If everything goes right, it should be possible to do this in Resource wizard (I would like to use that in Group synchronization training), but I need to wait for devs. Hopefully v4.9.
+
+*Robert King*  1 day ago
+Assuming that DN cannot be filtered using a startsWith or endsWith, since it cannot be filtered on wildcard.  Would it be possible to achieve a similar delineation using memberOf attribute from AD?  Given that the target user objects are a member of an AD group?
+
+*Ivan Noris* 1 day ago
+Did not try; what I tried was to use "cn" - it worked, but I am not certain that it should/would work all the time as cn is normally not stored in shadow object (at least before 4.9). Anyway I succeeded with cn and startsWith/endsWith for my test scenarios. I believe this will be similar for any other attribute ...
+
+- - -

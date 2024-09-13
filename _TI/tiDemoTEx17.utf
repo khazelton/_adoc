@@ -1,0 +1,159 @@
+~/_notesPlus/tierDemoTEx17.utf
+
+_____________________
+h6. 2018-01-04 16:45  preo for App Design Brown Bag
+
+ssh -i ~/.ssh/tier_rsa -l kh docker.testbed.tier.internet2.edu
+
+
+_____________________
+h6. 2018-01-04 11:35  prep for App Design Brown Bag
+
+- getting inside the RabbitMQ container
+
+ssh -i ~/.ssh/tier_rsa -l kh docker.testbed.tier.internet2.edu
+
+[kh@ip-172-31-17-104 ~]$ docker ps
+CONTAINER ID        IMAGE         COMMAND                  CREATED       STATUS       PORTS           									NAMES                                                                                                        
+9a625bf64d74        rabbitmq      "docker-entrypoint..."   5 months ago  Up 3 months  0.0.0.0:4369->4369/tcp, 	
+																					  0.0.0.0:5671-5672->5671-5672/tcp, 25672/tcp                                            
+																																		gifted_aryabhata
+
+docker exec -it 9a625bf64d74 /bin/bash
+
+cd /root
+./rabbitmqadmin  --help
+
+I have the message processing java class running in a screen session.
+
+? how to run the java watcher
+
+----------
+I've got a couple of screen sessions running on docker.testbed.tier.internet2.edu. They  are running as root to get around  some of the problems of multi-user screen and TTY.
+    
+    After you "sudo su -" you should see two sessions if you do a "screen -ls"
+    
+    [root@ip-172-31-17-104 ~]# screen -ls
+    There are screens on:
+         25314.pts-1.ip-172-31-17-104    (Detached)
+         25422.pts-1.ip-172-31-17-104    (Detached)
+    
+    The top one is the grouperToMidpoint class that does the rest calls to midPoint based on Grouper changes, and the second one is the Trace class that is printing whatever goes through RabbitMQ.
+    
+    So if do two console windows and ssh to the host and sudo su - you should be able to do:
+    
+    screen -r 25314.pts-1.ip-172-31-17-104 in one window and 
+    
+    screen -r 25422.pts-1.ip-172-31-17-104 in the other and have a stdout display for both running classes all there and ready.
+_____________________
+h6. 2017-10-08 17:59  setup for Tier Provisioning Demo, Tech Ex 2017
+
+sentrifugo		http://docker.testbed.tier.internet2.edu:8100/index.php/employee/
+midPoint 		https://midpoint.testbed.tier.internet2.edu/midpoint/login
+grouper			https://docker.testbed.tier.internet2.edu/grouper/
+drupal			http://docker.testbed.tier.internet2.edu:8090/ 
+
+Midpoint and OpenLDAP: 		midpoint.testbed.tier.internet2.edu
+
+Grouper, Sentrifugo, 
+Mariadb, Drupal, RabbitMQ:	docker.testbed.tier.internet2.edu
+
+EK GrouperToMidpoint class runs in a screen session under my id on docker.testbed.tier.internet2.edu.
+sentr
+  empp0001
+  59b998076cdf4
+  
+gr,dr
+TL5LUJhpDeeqvGKw
+
+
+_____________________
+h6. 2018-01-04 11:01  messaging infrastructure
+
+The message consumer I did as a midPoint connector for creating accounts is:
+
+https://github.internet2.edu/TIER/midpoint-connectors/tree/master/connector-amqp-import
+
+The consumer that listened for grouper messages to create roles and resource projections in midPoint is:
+
+https://github.internet2.edu/TIER/midpoint-demo/tree/master/grouper-to-midpoint
+
+For producing messages on the Grouper side, I just used the Unicon plugin:
+
+https://github.com/Unicon/grouper-amqp-esb-publisher
+
+BTW on that one, they did accept my pull request and added my changes that enable username password support, so you no longer need to merge in my patch separately.
+
+For producing messages on the SOR side, I just used a mysql plugin and a trigger. This is the git for the plugin (C, not Java):
+
+https://github.com/ssimicro/lib_mysqludf_amqp
+
+
+
+_____________________
+h6. 2017-09-16 05:26  
+
+Hi Keith,
+
+- I usually just do the following from outside the container on the host, and then just drop in the container to check out the logs.
+
+docker cp <connector.jar> 3325b6f80ea1:/var/opt/midpoint/icf-connectors/
+
+docker stop 3325b6f80ea1
+
+docker start 3325b6f80ea1
+
+- Then for log viewing.
+
+docker exec -it 3325b6f80ea1 /bin/bash 
+
+tail -f /var/log/tomcat8/idm.log
+
+We could build another image with the connector included to create more containers from, but for testing I've just been doing the above. 
+
+Ethan
+
+java
+mysql user & default mP password
+grouper-to-midpoint class
+_____________________
+h6. 2017-09-14 21:24  
+
+Per my other email, I wanted to be sure somebody besides me had all the administrative logins for the testbed applications. The one you didn't already have from this previous email was for the Sentrifugo mock HR system (http://docker.testbed.tier.internet2.edu:8100) The login is "empp0001" and the password is "59b998076cdf4" for the default admin user.
+
+Thanks,
+
+Ethan
+
+________________________________________
+From: Kromhout, Ethan A.
+Sent: Friday, September 1, 2017 12:15 PM
+To: Keith Hazelton
+Subject: Re: Demo prep
+
+After some momentary panic trying to remember the passwords I had setup, I have the URLs below to share. I hadn't logged in for a few weeks and had to get reoriented. The password for the midPoint install default account is our old friend "entreg007", I set the Grouper default account and the Drupal admin account password to "TL5LUJhpDeeqvGKw" .  I haven't generated good certificates or vanity URLs for Grouper or Drupal, but I'm sure I could work with Chris on that if we think it matters.
+
+ssh -i ~/.ssh/tier_rsa -l kh docker.testbed.tier.internet2.edu
+
+midPoint https://midpoint.testbed.tier.internet2.edu/midpoint/
+Grouper https://docker.testbed.tier.internet2.edu/grouper/
+Drupal http://docker.testbed.tier.internet2.edu:8090/
+
+The rabbitMQ docker instance is running on the docker.testbed.tier.internet2.edu host as well, and 
+I have the message processing java class running in a screen session. 
+You should be able to create a midpoint user, add and OpenLDAP projection and then find it in grouper. 
+If you add the user to the app:drupal_allow group, 
+  a message with flow from Grouper over AMQP which 
+  will cause midPoint to add a Drupal projection to the user, 
+and they should be provisioned in Drupal in a few seconds. Once provisioned you can see them in the "People" tab inside Drupal.
+
+Let me know if you run into any issues or have any questions.
+
+Thanks,
+
+Ethan
+
+
+
+_____________________
+h6. 2017-10-08 17:06  references and links

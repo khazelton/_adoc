@@ -1,0 +1,264 @@
+=== mptrain.adoc
+
+- - -
+_2023-11-10 07:21 demo using simulation to test import of a new resource_
+
+```
+ssh -L8443:localhost:8443 -L10443:localhost:443 -L4443:localhost:4443 -L15672:localhost:15672 -L10389:localhost:389 -l student  18.119.192.38
+
+Gmg86m3ZYalbiaohvaTZ
+
+cd firststeps
+
+docker stop $(docker ps -a -q); docker rm $(docker ps -a -q); docker rmi $(docker images -q) --force; docker volume rm $(docker volume ls -q)
+
+docker-compose up -d
+
+docker ps
+```
+browse to 18.119.192.38/midpoint +
+
+http://bit.ly/siwg-01[] <- SIWG scribing doc
+
+==== Begin Demo
+
+/opt/midpoint/var/resources/export.csv
+
+attributes/empnum not startsWith "8"
+
+*- config/sync -*
+
+unmatched-add +
+linked-synchronize
+
+*- config/mapping -*
+
+empnum-to-name +
+empnum-to-persNumber +
+firstname-to-givenName +
+surname-to-familyName
+
+*- capabilities -*
+
+toggle create and delete off +
+edit update, set enable false
+
+*- simulate import -*
+'import preview' of HR acct 1001 +
+in "Simulated development" exec mode +
+
+click 1001 in processed objects +
+NOTE: locality & lifecycle state are missing +
+back to 'processed objects' +
+back to list of accounts +
+configure Mappings +
+locality-to-locality +
+status-to-lifecycle-state script:
+```
+switch (input) {
+case 'In':
+'active'
+break
+case 'Long-term leave':
+'suspended'
+break
+case 'Former employee':
+'archived'
+break
+//default:
+//'suspended'
+//break
+}
+```
+
+done, save mappings 
+
+import preview of HR acct 1001 +
+in "Simulated development" exec mode +
+note locality and lifecycle state populated +
+
+back to 'processed objects' +
+back to list of accounts +
+set lifecycle state to active 
+
+*- import HR accounts for real -*
+
+resource HR
+accounts
+tasks / create task
+import task
+set 'simulate task' to OFF <- !!
+create task
+'next resource objects' (keep defaults)
+'next distribution' (keep defaults)
+Save and Run
+
+Server tasks › Import tasks +
+'Tasks' and click View import tasks +
+'Defined tasks' +
+click 'Import task: HR: HR Person' +
+operation statistics
+
+*- confirm Users have been created from HR resource -*
+
+Users / all users +
+click 1001 'user' +
+back
+
+*- apply Person archetype to HR accounts -*
+. go to Users › Persons and check there are no entries
+2. go to Resources › All resources
+3. edit HR resource
+4. click Accounts menu item
+5. click Configure , then click Basic attributes item in the context menu
+6. click Next: Resource data
+7. click Next: MidPoint data
+a. Archetype: click Choose, then click Person
+8. click Save settings
+9. click Exit wizard
+10. click Defined Tasks menu item
+11. click the task Import task: HR: HR Person to display task details
+12. click Operation statistics to watch the task progress
+13. click "Run now" button and wait for the task completion (task status: closed)
+14. go to Users › Persons and check if users have been imported
+
+
+
+- - -
+_2023-11-07 11:24 review 1st steps_
+
+```
+~/opt/_adoc/mptrain.aadoc
+
+~/opt/First-steps-knowledge-transfer-i2
+
+kh@MBProMax-2 opt % ls -la First-steps-knowledge-transfer-i2
+total 32872
+drwxrwxr-x@   7 kh  staff       224 Nov  7 11:45 .
+drwxr-xr-x  218 kh  staff      6976 Nov  4 19:13 ..
+-rw-rw-r--@   1 kh  staff    124095 Oct 26 02:03 LABS-MID301-4.8-LTS-prerequisites.pdf
+-rw-rw-r--@   1 kh  staff   1614077 Oct 26 02:03 LABS-MID301-4.8-LTS.pdf
+-rw-r--r--@   1 kh  staff       934 Oct 27 07:19 README.txt
+-rw-r--r--@   1 kh  staff      8180 Nov  7 11:45 docker-compose.yml
+-rw-rw-r--@   1 kh  staff  15072185 Oct 26 02:06 midpoint-first-steps-slides.pdf
+kh@MBProMax-2 opt %
+```
+
+*- Prerequisites -*
+
+```
+  671  cd First-steps-knowledge-transfer-i2
+  672  ls -ls
+  673  ssh -L8443:localhost:8443 -L10443:localhost:443 -L4443:localhost:4443 -L15672:localhost:15672 -L10389:localhost:389 -l student  18.119.192.38
+
+student@18.119.192.38's password: 
+Gmg86m3ZYalbiaohvaTZ
+
+docker ps
+
+CONTAINER ID   IMAGE                          COMMAND                  CREATED         STATUS                   PORTS                               NAMES
+e980651a14e4   nginx:1.24.0-alpine            "/docker-entrypoint.…"   2 minutes ago   Up 2 minutes (healthy)   0.0.0.0:80->80/tcp, :::80->80/tcp   firststeps-portal-1
+7c92411b0d93   tomcat:9.0.80-jre11-temurin    "catalina.sh run"        2 minutes ago   Up 2 minutes             8080/tcp                            firststeps-hr-1
+738bd22fba52   evolveum/midpoint:4.8-alpine   "/opt/midpoint/bin/m…"   2 minutes ago   Up 2 minutes (healthy)   8080/tcp                            firststeps-midpoint-server-1
+f7d1143b05f9   osixia/phpldapadmin:stable     "/container/tool/run…"   2 minutes ago   Up 2 minutes             80/tcp, 443/tcp                     firststeps-phpldapadmin-1
+01411b78572b   postgres:16-alpine             "docker-entrypoint.s…"   2 minutes ago   Up 2 minutes             5432/tcp                            firststeps-midpoint-data-1
+e70f5b80666d   osixia/openldap:1.5.0          "/container/tool/run…"   2 minutes ago   Up 2 minutes             389/tcp, 636/tcp                    firststeps-ad-1
+00a4ee54363b   postgres:11-alpine3.17         "docker-entrypoint.s…"   2 minutes ago   Up 2 minutes (healthy)   5432/tcp                            firststeps-hr-db-1
+[student@ip-172-31-9-146 firststeps]$
+
+http://18.119.192.38/[] <- midPoint Training Main Navigation Page (click 'midPoint')
+
+administrator 1st3ps
+```
+
+*- Module 1 Create HR Resource-*
+
+Path for HR CSV:
+/opt/midpoint/var/resources/export.csv 
+
+Paste the reclassification filler in the 'filter' text box, NOT IN THE CODE BLOCK
+
+*- Module 2 Configure HR Resource-*
+
+*- Module 3 Single Source System Entry Import Simulation -*
+
+
+
+
+
+*- Module 4 -*
+*- Module 5 -*
+*- Module 6 -*
+*- Module 7 -*
+*- Module 8 -*
+*- Module 9 -*
+
+- - -
+_2023-10-30 09:26 mon oct 30 1st steps daay two_
+
+- - -
+_2023-10-26 10:15 First Steps Run-through_
+
+administrator 1st3ps
+
+lifecycle 'proposed' is flag to use in simulations
+
+switch (input) {
+    case 'In':
+        'active'
+        break
+    case 'Long-term leave':
+        'suspended'
+        break
+    case 'Former employee':
+        'archived'
+        break
+//default:
+//'suspended'
+//break
+}
+
+Error processing focus(user:null(1040)): constraint violation: Found conflicting existing object with property name = PP({.../common/common-3}name):[PPV(PolyString:1040)]: user:511d2216-e049-40e1-bf05-295af61cfddd(1040)
+
+- - -
+_2022-10-06 13:26 mP Basics Nov 2022 ~/opt/midPointTrain-2022-11_
+
+reg code: 6b5599 +
+https://learning.internet2.edu/coursesx/113[] +
+
+- - -
+_2022-04-25 12:04 midPoint Basics April 2022 ~/opt/midPointTrain-2022-04_
+
+https://learning.internet2.edu/courses/91
+
+https://docs.google.com/spreadsheets/d/1w6U1swXQISFzIX23EMJweCYWGjSetI91_nWB0QWGL3Y/edit#gid=0
+
+52.15.225.7	student	b9a23048	ssh -L8443:localhost:8443 -L10443:localhost:443 -L4443:localhost:4443 -L15672:localhost:15672 -L10389:localhost:389 -l student  52.15.225.7
+
+LABS-basics-prerequisites-5.pdf
+ <= Guide Revision 2022.mp-4.4.2s, 2022-04-19 +
+
+
+- - -
+_2021-12-07 09:50 midPoint Basics December 2021_
+
+https://learning.internet2.edu/courses/82
+ <= +
+https://docs.google.com/spreadsheets/d/1T79aIgUTnQODJQrg_NUSM3-txNnnwrVh15ysZRWUtPc/edit#gid=0
+ <= +
+Keith Hazelton (Teacher's Assistant)	3.144.93.28	student	b41a5309
+ssh -L8443:localhost:8443 -L10443:localhost:443 -L4443:localhost:4443 -L15672:localhost:15672 -L10389:localhost:389 -l student  3.144.93.28
+
+- - -
+_2021-12-08 09:50 day two_
+
+sudo less /var/lib/docker/volumes/grouper_midpoint_home/_data/example-mail-notifications.log
+
+Delete on unassign +/- delayed delete: https://docs.evolveum.com/midpoint/reference/resources/resource-configuration/schema-handling/activation/#disable-on-unassign
+
+- - -
+_2021-12-04 12:44 prep for training on NbP_
+
+Module 1 complete:
+` mP 4.4 installed and running on assigned vm 3.144.93.28
+` IntelliJ studio 2.1.2 installed and mP training project created, connected to vm and communicating

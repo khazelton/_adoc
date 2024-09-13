@@ -1,0 +1,125 @@
+=== identifiers.adoc
+
+- - -
+_2024-08-14 16:04 guids & uuids as keys_
+
+https://medium.com/@mattbentley_67939/how-we-doubled-the-performance-of-our-app-when-using-guid-uuid-primary-keys-in-sql-f9e43d228e1e[] +
+
+
+- - -
+_2024-02-28 10:02 idempotency solution_
+
+the-way-psps-such-as-paypal-stripe-and-adyen-prevent-duplicate-payment-idempotency-keys-615845c185bf
+https://www.javacodegeeks.com/2021/06/making-post-and-patch-requests-idempotent.html[] <- transaction id's +
+
+- - -
+_2024-02-09 13:02 multiple identifiers for a given entity_
+
+can we define a category in which objects are identifiers for a specific designated object (terminal and initial object) and arrows frpmn each identifier to the terminal object and from the initial object to each identifier  
+
+https://ncatlab.org/nlab/show/zero+object[] <- Initial, Terminal, Zero Object is an enriched category over pointed sets  
+
+3. Properties
+
+Proposition 3.1. A category has a zero object precisely if it has 
+- an initial object ' ∅ ' and 
+- a terminal object ' * '' and 
+- the unique morphism '∅ → *' is an isomorphism.
+
+Remark 3.2. In a category with a zero objectID 0, there is always a 
+canonical morphism 
+from any objectID A 
+to any other objectID B called the 
+'zero morphism', given by the composite 
+'A → 0 → B'
+
+Thus, such a category becomes enriched over the category of pointed sets
+
+- - -
+_2021-08-03 12:07 invariant property assertions as a way to analyze the capabilities and limits of a particular architecture_
+
+E.g. to be a valid ID X-walk, the '0' objectID must be immutable.
+Further, if any objecID 'A' is to be altered, then objectID A drops out of the ID X-walk, unless/until a new Arrow takes the existing ObjectID 'A' to a new ObjectID C such that the 'zero morphism' 'C -> 0 -> A' holds: 
+
+- - -
+_2021-08-03 12:05 [refeds] Best practice for identifier migration_
+
+see email thread
+
+- - -
+_2021-07-29 16:30 21 July SIWG agenda item on canonical entity schema_
+
+335
+00:48:46
+Keith H / Internet2: If you're starting from scratch, which almost nobody is here would be our recommendations on, you know how you handle your identifiers. What you might want to do for net ids for us ssl login identifiers what you might want to do to try to come up with a you know truly persistent stable non name based that would be another point that we try to make, for, if you want it to be permanent and stay with the user and uniquely identify them and only them. Well i've heard people even argue that since they've got a lot of people so have to campus ID is a is a pretty good thing for login. That EMPLID might be a reasonable internal thing but anyway, I think we could do this it takes a little guts to put A recommendation out there, but if we don't do that we're not probably providing as much help as the Community could use so i'd like to do that probably would be in the form of A rough draft that I would hope, people would take issue with and fix our call out where the situations where you know. You're recommending this is a really good practice or best practice, but you know, nobody I know is in a position to do that so let's come up with something without "Best" in the title
+
+- - -
+_2021-07-23 15:35 JonM's KB piece on identifiers_
+
+https://kb.wisc.edu/iam/choosing-identifiers-for-your-application
+ <= +
+- - -
+_2021-07-15 13:46 InC think piece: Federated Identifiers, Albert Wu_
+
+https://spaces.at.internet2.edu/display/federation/understanding-federated-user-identifiers
+- - -
+_2021-05-11 14:02 prep for SI WG identifier flows_
+
+what attrs are in the schema for a COmanage guest? +
+~ Distinguished Name +
+~ Family Name +
+~ Full Name +
+~ Given Name +
+~ Email Address +
+~ UID (from extension/Guest_ID)
+
+which user attrs from an SoR or a provisioned SP are in the Shadow account?
+
+- - -
+_2021-05-11 14:02 prep for SI WG identifier flows_
+
+browse to https://aktis.org, brings up the TAP Workbench jump page
+configure a MidPoint Studio environment for the workbench: NOTE URL: https://aktis.org/midpoint
+connect Studio to WB midPoint, use midPoint tab to search for objects and view them (COmanage guests show up in "Guest LDAP" resource)
+see /Users/khazelton/opt/I2 midpoint basics/objects/resources/GuestLDAP.xml
+
+- - -
+
+*Log into COmanage dev w I2 credential*
+
+Name:  Keith Hazelton (Primary, Official, English)
+
+I2 Collaboration ePPN: hazelton@internet2.edu is +
+Subject ID: keith.hazelton.2@at.internet2.edu +
+  <= COmanage UI after login +
+Email: hazelton@internet2.edu (Official, Unverified) +
+
+
+https://comanage.dev.at.internet2.edu/registry/co_people/canvas/6880
+ +
+organizational identity: Keith Hazelton +
+Internet2 Collaboration Person Id: C22613248 +
+
+using a new Google id for the 1st time with COmanage: +
+'The identifier "100098682594117797104@google.com"
+ is not registered.
+ If your request for enrollment is still being processed,
+ you will not be able to login until it is approved.
+ Please contact an administrator for assistance.' +
+
+- - -
+
+*Log into COmanage Dev as khazelton@metazome.info via eduid.se*
+mks2 783w smx0
+I2 collaboration ePPN: puzid-nalal@eduid.se (ePPN)
+khazelton@metazome.info (Official, Verified)
+keith.hazelton.3@at.internet2.edu (Internet2 Collaboration Principal Name)
+C13069112 (Internet2 Collaboration Person Id)
+Subject ID for puzid-nalal@eduid.se is keith.hazelton.3@at.internet2.edu
+
+- - -
+_2021-04-13 09:00 mpug identifier discussion_
+
+https://github.internet2.edu/internet2/iam-knowledge-bits/blob/main/docs/identifier-guidance.adoc
+
+mpug.adoc for same day discussion notes

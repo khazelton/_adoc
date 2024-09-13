@@ -1,0 +1,239 @@
+~/_notesPlus/tierIdEco.utf  https://wiki.evolveum.com/display/ecosystem/Home  +49 7071 407109-0 
+_____________________
+h6. 2016-02-26 20:07  take the time to brainstorm areas with maximum benefit to TIER and to IdEcosys
+
+- What are IdEc goals for 2016?
+- Evolveum Midpoint for provisioning?
+- Connector Commons?
+- API/event message interop?
+
+_____________________
+h6. 2016-01-15 10:00 chat w Peter  +49 7071 407109-0
+
+https://identityworkshop.eu/17-proceedings-2015 session 16, "Session 16 Cooperation of open source identity management products"
+
+EWTI is a private organized un-conference; small company in Indiana; involved with Refeds, Geant; normal private org. conference; since they are colocated, you get the usual Refeds crowd.
+
+Diff is US is HE only, Identity Mgmt. Ecosystem is private companies that want to sell open source IdM to any customer, not just HE/Research; players are small companies who think they might compete with NetIQ and IBM by getting a complete software stack and to giive customer insurance that all the components will interoperate; aims are quite similar; 
+
+Several roles: integrator (DAASI gets 80% of revenue from projects), software creators/developers/support (OpenLDAP), quasi-licenses; Forgerock has not shown interest in becoming a member of IdEco because of their way of viewing "Open Source". IdEco partner & web host, Evolveum. Midpoint is their fork of OpenIDM; had another name (insight?); pretty bad fight between ForgeRock and Evolveum; Peter got them to shake hands; 
+
+connectors used by Syncope, ForgeRock, Midpoint:  Have a broader conversation with Evolveum about their evolving new connector framework; 
+
+389 is followup of Sun
+Apache is yet another one; OpenDJ
+
+DAASI does more work for big organizations; we don't have SaaS as a thing; EU HE community and ARC project work item on IdMaaS; Will be a running env. out of that;
+
+CAS? Germany two project with both Shib & CAS; openldap-based metadirectory plug-in/overlay, 'access log overlay' prov/sync engine based on that; evolveum/midpoint has RDBMS
+
+ETL in DAASI; identify person, attr. merging; how data gets into metadirectory, all changes thare are logged, and the provisioning engine listens to that;
+
+IdM Ecosystem has multiple solutions to any given problem and they can all interoperate; 
+
+Grouper is part; up to now, no one has raised hand to support Grouper; EU turns to other solutions: LDAP groups wi portal front ends in DAASI;
+
+coop based on ecoSys is Service Provider & customers approach them, define a contact point; 
+
+TIER <==> IdM Ecosystem: informal cooperation, info exchange, technical discussions; PG: Good thing to have a formal liaison between the groups; had a very nice F2F with TomB; meeting w presentation from Benn Oshrin; TomB 
+
+PG will be drafting a charter based on Guidelines: https://wiki.evolveum.com/display/ecosystem/Guidelines
+
+try to get the Charter partners to agree to a model of collaboration; 
+
+For PR, minimal good thing would be an MOU to formalize our mutual respect; closer collab. needs further study; define different kinds of membership;
+What's our interest in TIER; 
+
+formal teleconf. w TIER and IdM EcoSys parties; target February
+----------
+Yes, I'll call +49 7071 407109-0 at 17:00 CET.  In case you don't already have this, here's a link to the wiki page for the TIER Working Groups:
+https://spaces.internet2.edu/display/TWGH/TIER+Working+Groups+Home 
+
+To subscribe to the TIER Data Structures and API Working Group mailing list, visit https://lists.internet2.edu/sympa/subscribe/tier-api  
+
+Coincidentally, there is an (open) API WG call just one hour before our call, see https://docs.google.com/document/d/1adLttRDhjR6UTvF99dxl9XoiHCTRil886bDMKaNme0s/edit 
+
+         Talk to you soon,  --Keith
+
+---------- 
+From: Peter Gietz <peter.gietz@daasi.de>
+Date: Thursday, December 3, 2015 at 08:55
+To: Tom Barton <tbarton@uchicago.edu>, Steven Zoppi <szoppi@internet2.edu>
+Cc: Radovan Semancik <radovan.semancik@evolveum.com>, 
+Igor Farinic <ifarinic@evolveum.com>, 
+Matthew Hardin <mhardin@symas.com>, 
+Keith Hazelton <keith.hazelton@wisc.edu>
+
+Subject: Re: Identity Ecosystem & TIER
+
+Hi Steve, Tom,
+
+@Tom thanks a lot for the introduction. I am Ccing Radovan and Igor, who are are the inventors of the Identity Ecosystem activity, and Matthew as the US member of it.
+
+In our EWTI https://identityworkshop.eu/ session on the Identity Ecosystem (see see https://wiki.evolveum.com/display/ecosystem/Home), we found that there is quite an overlap in the TIER and ID Ecosystem, namely 
+
+- to have different IAM Open Source products interoperate. 
+
+We found little differences in motivation (
+- co-operatively using the software stack vs. co-operatively providing interoperable solutions to customers), 
+
+and larger differences in funding perspectives (
+- governmental funding and membership fees of the users vs. customer pays for integration and development work). 
+
+Anyway enough overlap so that it seems worthwhile 
+
+- to continue a conversation or even to actively collaborate. 
+  - May be some of the software components...might fill gaps identified in TIER, e.g. in the field of provisioning
+  - May be vice versa things like grouper and comanage might fit into the ID Ecosystem
+  - May be that actual technical interoperability problem solutions might be worth while to share
+  - May be members of the ID Ecosystem can provide services to members of the TIER constituency
+  
+  (BTW very soon to come will be an AD password synch tool that can provision AD password changes to e.g. OpenLDAP in a secure way) of the Ecosystem might fill gaps identified in TIER, e.g. in the field of provisioning, may be vice versa things like grouper and comanage might fit into the ID Ecosystem. May be that actual technical interoperability problem solutions might be worth while to share. May be members of the ID Ecosystem can provide services to members of the TIER constituency, etc. etc.
+
+I understand that 
+- the TIER API WG is a place to discuss and work on gaps. 
+
+Should we 
+
+- first have some political statements on collaboration possibilities?  
+- And it might also be good to sort out how the ongoing international co-operation within REFEDS etc. can compliment to this.
+
+BTW: When TIER was Cifer I had some similar discussions with Keith about possible input from my Company to the Cifer software stack. Thus yet another Cc
+@Keith: May be you want to get involved into this conversation?
+
+Just some first input from my side.
+
+Cheers,
+
+Peter
+
+Am 03.12.2015 um 13:27 schrieb Tom Barton:
+> Hi Steve, I'd like to introduce you to Peter Gietz, and Peter, > Steve. > > Peter is a long time participant and leader in federation and > research infrastructure who runs a software company DAASIhttps://wiki.evolveum.com/display/ecosystem/Home
+ > International. DAASI and some other small software firms in EU have > formed a sort of cooperative they call the "Identity Ecosystem". > Between them they have a (non-exclusive) focus on R&E stemming at > least in part from their personal backgrounds. >
+ > Here at EWTI the Identity Ecosystem folks combined with Benn Oshrinn, > who told them a bit about TIER. It seemed to me that a good next step > would be for you, Steve, and Peter to speak about prospects for > partnerships between these efforts. Although
+ Geant does not target > campus IdM directly, I think Identity Ecosystem does, and to that > extent there may be opportunities to cooperatively leverage each > others' work. > > Related, I have asked Keith Hazelton if he'd invite an individual > from another
+ company in this ecosystem to join the APIs WG. And of > course that's one great way to partner. > > I hope you guys have a great and productive chat! > > Tom >
+
+
+-- 
+
+Peter Gietz, CEO
+
+DAASI International GmbH        
+Europaplatz 3                   
+D-72072 Tübingen                
+Germany                    
+
+phone: +49 7071 407109-0
+fax:   +49 7071 407109-9  
+email: peter.gietz@daasi.de
+web:   www.daasi.de
+
+Sitz der Gesellschaft: Tübingen
+Registergericht: Amtsgericht Stuttgart, HRB 382175
+Geschäftsleitung: Peter Gietz
+
+
+-- 
+_______________________________________________________________________
+
+Peter Gietz (CEO)
+DAASI International GmbH                   phone: +49 7071 407109-0
+Europaplatz 3                              Fax:   +49 7071 407109-9
+D-72072 Tübingen                           mail:  peter.gietz@daasi.de
+Germany                                    Web:   www.daasi.de
+
+DAASI International GmbH, Tübingen
+Geschäftsführer Peter Gietz, Amtsgericht Stuttgart HRB 382175
+
+Directory Applications for Advanced Security and Information Management
+_______________________________________________________________________
+
+https://identityworkshop.eu/17-proceedings-2015
+
+Session 16 <Cooperation of open source identity management products> (14:15/Room K1)
+
+Convener: Igor Farinic
+
+Abstract:How to make it possible to integrate indentity management source from different space for costumers?
+
+Tags: Open source
+
+Notes
+
+Working group.
+
+The idea behind the product:
+
+Identity eco-system, something like a marketing place to increase innovation, re-assure some revenues.
+Developing an open source identity management tool.
+Evolved to something we call eco-system
+
+The basic idea is to be open-source. So it's like an alternative tool.
+
+Describe the first steps:
+
+some guidelines
+spread the idea: more members
+
+TIER- similar idea
+
+"We are trying to do it for enterprises as well"
+
+Internet2 TIER http://www.internet2.edu/vision-initiatives/initiatives/trust-identity-education-research/
+
+Missing provision capability
+
+Most important:
+
+Ideas- smaller projects cooperate together.
+Integration between two projects?
+
+Spherical cow group– well connected to TIER.
+
+"When you're sitting here you are providing very good software.
+
+Different aspect to this.
+
+How the customers will see this? Not only companies but the individuals as well.
+
+CAS?
+
+Open id connector, vendors support the project. There is no point of projects joining the eco-system.
+
+Important: promise.
+
+Most companies are promising that we'll make it work together.
+
+Too many combinations in different projects to test out every combination.
+
+Initiatives such as TIER? The idea behind it and the motivation is a different one.
+
+Provide the best open-source experience ever!
+
+TIER- sustainable funding to keep the project going; identity management stack?
+
+Different sustainability- small company, getting money from customers to get bugs fixed.
+
+Common aim:  
+
+Open source to work as good as possible
+Each project working on its own but the idea is cooperation.
+Eco-system of pieces that work together.
+
+The TIER group can become a member of the Eco-system/group.
+
+Q: What's the path/pattern? To branding?
+
+A: Providing an STML.
+
+Most of the projects are not really TIER related.
+_____________________
+h6. 2016-01-15 06:06 references and links
+
+https://identityworkshop.eu/  EU Workshop on Trust and Identity (EWTI)
+https://identityworkshop.eu/17-proceedings-2015 
+https://wiki.evolveum.com/display/ecosystem/Home 
+https://groups.google.com/forum/#!forum/identity-ecosystem
+https://wiki.evolveum.com/display/midPoint/Home  <== provisioning component
+

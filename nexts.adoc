@@ -1,0 +1,299 @@
+=== nexts.adoc
+grep -rnw . -e '\[next\]' +
+grep -rnw . -e '^next\]'
+grep -rnw . -e '^] '
+
+- - -
+] SchEdBrd: extensible ePSA: use voPersonExternalAffiliation 2024-08-22 14:43
+
+- - -
+] slavek re contributions space_2024-08-14 21:09
+
+- - -
+_2024-05-24 12:22 tapoverflow_
+
+] create a tap overflow resource on Spaces to capture Q&A from #incommon-midpoint and other channels
+
+- - -
+_2023-06-25 11:16:36 July 10-14_
+
+] KeithW response +
+] Samples for big N performance testing of midPoint https://internet2.app.box.com/s/geayc7d50v32f7uthrdywpwm0o5687yi[] +
+] GraphQL data structures for Grouper ABAC (suited to hierarchical and other complex data structures) +
+] PaulS re SCIM at I2/Evol Tues +
+] Ann SCIM reply after ^
+] Zoom licensing demo (provIAM?)+
+] Grpr SQL integration with midPoint +
+
+- - -
+_2023-04-27 11:09:01 _mP enhancements as UserGroup topic_
+
+] See 04-05 siwg on topic ideas +
+] CompArch June12: Radovan on Evolveum Doxumentation Processes and Philosophy +
+√ Create a SCIM 2 page on the T&I Wiki (Tues. meeting) +
+] deliverable: "Contextualized Glossary of Terms" / funcModel.adoc +
+] work w U NBruns on COmanage rep of ERP data +
+] Get a demo from the Fanner folk at UIUC +
+] mP Resource def: wizards and X-Em-el mano a mano +
+] look at deep inducements in courses and affiliations via archetype +
+
+Grouper attribute based access control with JEXL-scripted groups
+
+- - -
+_2023-04-21 08:44:49 in progress_
+
+*- API: authNZ for APIs -* +
+*- CON: connector how-tos -* push csv and db table docs to review draft, explore SCIM v2 +
+*- DOC: doc system -* push to a demo poc by fri 26 May +
+*- ERP: recommended Grouper, mP models of AM info representations from ERP -* +
+*- FPR: func prog / full stack -* +
+*- MAP: function-to-feature map, incl commercial products  -* +
+*- ONT: IAM ontology / functional model -* start w mP, brstorm stages, plan & launch phase I +
+*- PRZ: presention condensation -* +
+*- STR: rethink T&I engagement from top to bottom -* +
+
+- - -
+
+*- piano training -*
+
+*- midi studio -*
+
+√ mac - keyboard midi/usb hookup +
+- add sampled grand piano as new midi instrument +
+- learn midi 2.0 spec and new capabilities +
+- learn state of midi 2.0 adoption and implementation +
+- research use of midi as robot control plane +
+
+---
+
+*- ACT: Progressive Activism -*
+
+
+.
+
+- - -
+_2023-02-14 12:59:23 top proj this week_
+
+` propose a workbench session for TechEx
+` recomm to Apryl for mP feature story (OSU or another one)`
+` tap diagramming before March 6
+` db table connector config
+` finish Ethan PS Integration precis
+
+- - -
+_2022-12-28 11:11:08  9-13 Jan_
+
+- - -
+_2022-12-28 11:27:17  thru 8 Jan_
+
+`*-rethink T&I engagement from top to bottom-* +
+``*- strategic prioritization of goals -* +
+
+ 
+- - -
+_2022-12-07 20:32:03 2023 SOW_
+
+` layered overlay conceptual models +
+` work w campuses on documenting case studies +
+` performance analysis +
+` connector how-tos +
+
+- - -
+_2022-11-30 08:45 SIWG topic ideas_
+
+Future Topic Ideas
+
+Evaluation of Grouper / midPoint integration models to guide further development +
+COmanage as Registry: Development and documentation +
+Ad hoc series of meetings to review draft Connector How-to documents +
+Grouper / midPoint:  Venn diagram of fine-grained IAM functionality +
+Review ACAMP session notes for new work items +
+Access management policy: formulation and implementation +
+Cross-system schema mapping +
+Guidelines and tradeoffs in API AuthNZ +
+Catalyst partners: Experience with campus adoption of SaaS for IAM Components +
+
+- - -
+_2022-07-24 16:24 priority epics and stories_
+
+Focus on What form of presentation and selection of topics would be of greatest value to our audience?
+
+How does it tie into the use case plus overlay presentation conundrum
+
+Where is the sweet spot in the range from individual case studies to prescriptive recipes/workbooks
+
+kh: I’d love to work with you and Apryl as you develop your ideas.
+Laura Paglione: FYI — the case studies page in case you haven’t see it: +
+https://learning.internet2.edu/courses/98/pages/case-studies +
+
+T&I is in a unique position to define a conceptual-level functional and type analysis
+
+PSINT could pioneer this curated collection of campus journeys
+
+gartner 'data fabrics'. no big directory: solutions like RadiantLogic; 'attributes for all needs'
+
+2023 SoW +
+Psint report +
+grpr/mP conceptual alignment +
+schema mappings +
+func design +
+
+* PSINT deliverable shape
+
+* start from category-theoretic model of objects as types and morphisms between types; How far can you get?
+
+* layered functional models as polyarchy (grab any node as root, analyze resulting tree/lattice)
+
+* graphQL MVDemo of Grouper graphs and policy expressions
+
+* OpenAPI3 and JSON Schema
+
+* OWL as top-level representation; map down to JSON Schema
+
+* SPIFFE for API AuthNZ
+
+* provIAM connector base framework forked and tagged +
+
+.
+
+- - -
+_2022-06-10 11:21 Base CAMP week wrap_
+
+Hello all, I'm interested in other smaller colleges and universities that have implemented MidPoint and the steps they took to get started.  Please reach out to me if you are willing to share! Heidi Thompson, thompsonh@grinnell.edu.
+
+- - -
+_2022-02-07 10:30 this week_
+
+Joanne Boomer  15:16
+Hey Keith - per our conversation on Monday, do you have someone who could work with the team on an issue they are having.  They are having issues connecting to AD LDAP subject source.  We will also have questions about connecting a MSSQL DB as a data source as well.  Do you think you could find someone who could get on a call with them to help?  I'm including Seth b/c I will be out of the office for a week and a half or so.  Thanks!
+
+` stripped down end-user UI screens leveraging mP UI customization options, csp2022 16 Mar +
+` escaping interrupt driven task take-up +
+` inventory all the things (in our world) +
+` https://code.likeagirl.io/a-gentle-theoretical-introduction-to-kafka-f009c5af9eb6 +
+
+- - -
+_2022-01-01 11:46 new years priorities_
+
+` Jim Lookabaugh - ! Labs +
+` check completeness of ID Match API documentation` +
+` elicit project challenges from CSP cohort +
+` kjk gpii
+
+- - -
+_2021-09-18 12:58 updated list_
+
+` check alignment of ID Match APIs and Radovan's proposal +
+` investigate Slack apis for groups, users, and memberships CRUD +
+` revive Banner WG and agree on deliverables +
+` identifier best practices with SMU and Lafayette +
+
+` pre-plan future SIWG sessions w members +
+` create a cloneable connector development package +`
+` modify mP WB Grouper naming to conform with Grouper Deployment Guide +
+` *checklist of (partitioned set of) IAM capabilities; TAP, Sailpoint (by package), Okta* +
+` selected use cases (See CirrusID writeups https://docs.google.com/document/d/1RXRXLGFqb_bpj6NoD1yfQj1xCcSaHTxPkSmeH2MdXuU/edit# ) +
+` make case for normalized minimal registry person schema +
+` update Jira +
+` *R&D: Elixir, Phoenix Liveview, Absinthe, GraphQL* +
+
+- - -
+_2021-04-07 11:03 today, this week, and beyond_
+
+- email R Frovarp re doing an introduction to GraphQL (Septemberish)
+≈ Babb on their mP <> CSV <> Canvas
+≈ VOperson schema doc from BennO vs Attr. Dictionary
+≈
+- expand temporal and territorial field of view; share the learnings
+- keep track of all the good code in https://github.internet2.edu/ICP-OPS
+` TAP ref arch as c4 landscape diagram +
+
+- Instrument and Walk through Grouper/mP async code
+- gsh templates as model for midPoint "CLI"
+` schema work: attr dict. idMatch API
+- We mid-day: (de-)prov functions x COm, Grouper, mP
+- Fr EoD R Frovarp on Scripted SQl connector for SI call
+- Post ssh connector etc. questions on inctrust-si
+- Get eduMember working in LDAP connector
+- Test mP => Confluence connector (SCIM 2?)
+
+.
+
+- - -
+_2020-10-06 12:23 Updated list of nexts_
+
+(base) nbp:_adoc khazelton$ grep -rnw . -e "^next\]"
+<- Matches 'next]' at beginning of line only
+
+```
+./nexts.adoc:13:./x                                         4 =>  R Frovarp on Scripted SQl connector for SI call
+./nexts.adoc:36:./banner.adoc:181:next]                           AD mapping
+./nexts.adoc:56:./oauthOidc.adoc:2:[next]                     .   Run mitreid oauth/oidc examples from https://github.com/mitreid-connect
+
+./oauthOidc.adoc:2:next]                                          Run mitreid oauth/oidc examples from https://github.com/mitreid-connect
+./uwIam.adoc:6:next]                                              write up conops for registry / grouper integration
+./_TI/tiCompArch.adoc:8:next]                                     draft FAQ entries in GDoc, share w JAS
+
+
+./banner.adoc:13:next] search for 'schema' on I2 github; Move Banner work to https://github.internet2.edu/internet2/banner-integration; complete schema map
+./banner.adoc:238:next] creat db w schema that matches MattB's SORGrouperTables/Person db; plug in BennO's test data,
+./banner.adoc:239:next] 1) add as resource to mP and time reconciliation tasks
+./banner.adoc:240:next] 2) hand off connection string for Ethan to do a db-index-based diff update to n+1 from n
+```
+
+- - -
+_2020-08-03 10:09 high priority work items_
+
+I would like to take a one-week vacation from meetings, but I’d like your feedback. I have several tasks in progress that require focused attention and time. These include:
+
+- add TAP sec tools to CompArch agenda
+√ create I2 GHE repo for SIS and HR .csv: 'sorcsv'
+- Assign Internet2 OID for TAP
+- Completion of Configurable Banner Connectorves
+- find ~/documents -type f -name '*.txt' \ -exec grep -s DOGS {} \; -print
+
+.
+
+- - -
+_2020-07-14 09:38_
+
+```
+./nexts.adoc                                6 =>  Tues. Match API specification for Wed. SI
+./nexts.adoc                                8 =>  Tues. discussion starter for TAP product sheet (midPoint section) for Thurs
+./nexts.adoc                                9 =>  prep for Thurs trialog on provisioning
+./nexts.adoc                               10 =>  prep for Fri SI on Course Rosters with Grouper
+```
+- - -
+_2020-05-01 06:36_
+```
+                                            0 =>  Ping MikeL re I2 Net+ contract for GCP
+./banner.adoc:181:next]                           AD mapping
+./midPoint.adoc:5:next]                     1 =>  Yep, I'll reach out to U Chicago re their midPoint deployment; (!Labs to intro their Zoom connector)
+./banner.adoc:12:[next]                     1 =>  create db w schema that matches MattB's SORGrouperTables/Person db
+                                                  1) plug in BennO's test data,
+                                                  2) add as resource to mP and time reconcilation tasks
+                                                  3) hand off connection string for Ethan to do a db-index-based diff update to n+1 from n
+./icpData.adoc:15:next]                   √ 2 =>  look at NickR's message format; attempt to work up an AsyncAPI (https://www.asyncapi.com/)
+./banner.adoc:15:[next]                     2 =>  Mindset conversation with MRG
+./banner.adoc:208:next] 2020-03-24                Create GraphQL queries against banner schema
+./connectors.adoc:2:[next] 2020-03-18         =>  spell out steps toward a how-to for LDAP/AD provisioning with midPoint
+./csp.adoc:38:[next]                        4 =>  TommyD @ SMU: product comparison matrix; marketing material, list
+                                                  capabilities, etc. for each component; BTAA (de)Prov; describe TAP components to CIOs
+representation
+./nexts.adoc                                5 =>  2020-05-01 06:36 document ICP Grouper/COm/mP arch . ChrisHu, PaulC, and KeithH
+./nexts.adoc                                7 =>  Axiom investigations: XSD to OWL (see http://j.mp/evosow)
+
+
+
+
+./csp.adoc:6:[next]                           =>  reach out to selected individuals to discuss cooperative drafting of TAP how-to documents
+./oauthOidc.adoc:2:[next]                     .   Run mitreid oauth/oidc examples from https://github.com/mitreid-connect
+./csp.adoc:585:_2019-10-19 15:53 [next]       .   sketch midPoint ontology as step toward functional model_
+./js.adoc:2:[next]                            =>  base camp for react/express/next
+./banner.adoc:23:[next] 2020-03-24            .   Create GraphQL queries against banner schema
+./icpData.adoc:3:[next]                       .   Draw a midPoint-centric arch model; show which systems need what from where. DW is not the solution +
+./icpData.adoc:12:[next]                      .   Do an ontology model of a typical Grouper representation of a HE institution;
+                                                  SZ: 'the view is the contract' discuss
+```
+
+- - -

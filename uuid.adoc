@@ -1,0 +1,24 @@
+=== uuid.adoc
+- - -
+_2020-02-05 13:10 UUID considerations_
+
+https://github.com/kripod/uuidv7[] <- UUIDv7 TS codebase, dash of bash +
+https://medium.com/@mattbentley_67939/how-we-doubled-the-performance-of-our-app-when-using-guid-uuid-primary-keys-in-sql-f9e43d228e1e[] <- how to minimize performance hit WRT bigint +
+https://buildkite.com/blog/goodbye-integers-hello-uuids[] +
+https://drive.google.com/file/d/1OQ4UGuNgTi3Vy4Zla5mShB8O7RnzD66Q/view <= ENTITY LINKAGE AND LINEAGE | Draft – Proposal for Standard Schema Implementation, Steve Zoppi and Darrell Sher +
+https://www.postgresql.org/docs/12/uuid-ossp.html <= UUID version 1 generation in Postgresql +
+https://github.com/ramsey/uuid <= UUID version 1 generation in PHP +
+https://github.com/cowtowncoder/java-uuid-generator <= UUID version 1 generation in Java +
+https://www.npmjs.com/package/uuid <= UUID version 1 generation in npmjs +
+
+- - -
+_2018-03-18 12:23  references and links_
+
+https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html +
+https://www.percona.com/blog/2017/05/03/uuid-generated-columns/ +
+https://www.postgresql.org/docs/9.1/datatype-uuid.html +
+https://pynative.com/python-uuid-module-to-generate-universally-unique-identifiers/ +
+https://www.npmjs.com/package/uuid  <= +
+https://blog.tompawlak.org/generate-unique-identifier-nodejs-javascript <= npm install node-uuid +
+https://benramsey.com/projects/ramsey-uuid/  <= php version +
+https://www.ietf.org/rfc/rfc4122.txt <= A UUID URN Namespace +

@@ -1,0 +1,24 @@
+=== tiLearning.adoc
+- - -
+_2020-04-26 12:24 how-tos, tutorials, user manuals and reference material_
+
+"There's lots of good info in there, but it's impossible for people to find it"
+
+https://documentation.divio.com/ <= !! 4 doctypes: tutorials, how-to guides, technical reference and [discursive] explanation *about* s'thing
+
+- - -
+_2020-04-26 12:22 references and links_
+
+https://documentation.divio.com/ <= !! 4 doctypes: tutorials, how-to guides, technical reference and [discursive] explanation *about* s'thing +
+https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1002538 <= protocols.io
+https://trainingindustry.com/articles/it-and-technical-training/create-an-effective-online-course-for-tech-users-in-4-steps/ +
+https://www.oreilly.com/library/view/information-architecture-for/0596527349/ch01.html <= Defining Information Architecture (IA), 3rd Ed. +
+https://careerfoundry.com/en/blog/ux-design/a-beginners-guide-to-information-architecture/ <= Excellent Beginner's Guide To IA (2020) +
+https://www.tcbok.org/wiki/careers/career-paths/information-architect/ <= Information Architect - Technical Communication Body of Knowledge (TCBOK) +
+https://www.google.com/search?client=firefox-b-1-d&amp;q=effective+user+guides <= effective user guides - Google Search +
+https://www.wikihow.com/Create-a-User-Manual <= How to Create a User Manual (with Pictures) - wikiHow +
+https://www.techsmith.com/blog/user-documentation/ <= How to Build the Best User Documentation (New Guide) | Blog | TechSmith +
+https://www.google.com/search?client=firefox-b-1-d&amp;q=awesome+user+manuals  <= awesome user manuals - Google Search +
+https://www.google.com/search?client=firefox-b-1-d&amp;q=sample+user+manual+for+software+application  <= Google Search +
+https://instrktiv.com/en/user-manual-template/ <= User Manual Template and Guide to Create Your Own Manual in 15 Steps +
+https://blog.screensteps.com/10-examples-of-great-end-user-documentation <= !! 10 Examples of Great End User Documentation +

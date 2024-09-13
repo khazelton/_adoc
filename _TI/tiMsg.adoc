@@ -1,0 +1,1587 @@
+=== tierMsg.adoc
+lagom.adoc  <= reactive µsvc framework (cf Spring Cloud)
+
+- - -
+_2020-03-30 14:28 Pavol's messaging connector w MattB and EthanK_
+
+https://github.com/Evolveum/midpoint/tree/master/provisioning/ucf-impl-builtin/src/main/java/com/evolveum/midpoint/provisioning/ucf/impl/builtin/async
+
+Keith LeV BEIS sends SPML, Passes modified JSON to Ethan's messaging connector code
+
+https://spaces.at.internet2.edu/display/MID/Grouper+integration+demo#Grouperintegrationdemo-Startingnearreal-timesynchronizationfromGroupertomidPoint
+
+conscript Pavol/Slavek to create an AMQP 1.0 connector; or use SQS, SNS; Is there a legit reason to do a mP outbound messaging connector
+
+to understand config, look through midpoint_server/container_files/mp-home/post-initial-objects/functionLibraries/function-library-grouper.xml
+
+mailing list blast resp to Frovarp; IaaS have pretty well-founded methods for provisioning
+isn't there an inbound messaging channel in Grouper?
+
+```
+From: Keith Hazelton <hazelton@internet2.edu>
+Sent: Monday, March 30, 2020 4:43 PM
+To: Richard Frovarp <richard.frovarp@ndsu.edu>
+Subject: Re: [midPoint] Example AMQP / Async resource?
+
+Richard,
+
+The best description of the current Grouper-to-midPoint AMQP message based connector is found here https://spaces.at.internet2.edu/display/MID/Grouper+integration+demo. The most relevant section starts with Starting near-real time synchronization from Grouper to midPoint
+
+I agree that the phrase you found on https://spaces.at.internet2.edu/pages/viewpage.action?spaceKey=MID&title=Detailed+description is misleading. I changed it to the following:
+
+"RabbitMQ is used to achieve near real-time synchronization from Grouper to midPoint. Grouper publishes changes to AMQP and midPoint updates itself based on those AMQP messages."
+
+We need more input from the community to understand which messaging capabilities should be added to the InCommon Trusted Access Platform. I'll try to collect that information.
+
+         Regards,   --Keith
+```
+
+- - -
+_2019-04-02 09:44 documenting async apis_
+
+https://blog.apisyouwonthate.com/organizing-your-asyncapi-documents-4bedc1b3eb05 +
+
+- - -
+_2019-01-02 Grouper messaging PoC setup_
+
+* what is the interface contract for the membership add/delete Grouper AMQP exchange?
+
+subjectId, RoleId, delta.type: (add, delete, replace)
+
+
+* non-automated process: maintain a Grouper groupName to midPoint role translation table
+
+
+- - -
+_2018-12-31 20:38 Grouper messaging PoC setup_
+
+* connector
+** receives membership change message from grouper
+
+** issues attributeDelta to mP
+or
+** uses Grouper getGroup to return all the memberships of the subject in the messages
+
+
+
+- - -
+_2018-12-18 17:56 Event sourcing and CQRS_
+
+https://hackernoon.com/1-year-of-event-sourcing-and-cqrs-fb9033ccd1c6
+
+https://axoniq.io/ <= axon framework
+https://www.baeldung.com/axon-cqrs-event-sourcing
+
+- - -
+
+_2018-12-07 Kafka vs AMQP and Queues vs Logs_
+
+https://jack-vanlightly.com/blog/2017/12/3/rabbitmq-vs-kafka-series-introduction
+https://jack-vanlightly.com/blog/2017/12/4/rabbitmq-vs-kafka-part-1-messaging-topologies +
+https://jack-vanlightly.com/blog/2017/12/5/rabbitmq-vs-kafka-part-2-rabbitmq-messaging-patterns-and-topologies +
+https://jack-vanlightly.com/blog/2017/12/8/rabbitmq-vs-kafka-part-3-kafka-messaging-patterns +
+https://jack-vanlightly.com/blog/2017/12/15/rabbitmq-vs-kafka-part-4-message-delivery-semantics-and-guarantees +
+https://jack-vanlightly.com/blog/2018/8/31/rabbitmq-vs-kafka-part-5-fault-tolerance-and-high-availability-with-rabbitmq +
+https://jack-vanlightly.com/blog/2018/9/2/rabbitmq-vs-kafka-part-6-fault-tolerance-and-high-availability-with-kafka
+
+https://jack-vanlightly.com/blog/2018/5/20/event-driven-architectures-the-queue-vs-the-log +
+https://jack-vanlightly.com/blog/2018/5/21/event-driven-architectures-queue-vs-log-case-study
+
+- - -
+
+_2018-08-15 05:38 Wednesday AM_
+
+Infrastructure Platform Roadmap
+  - Optional Pre-read: https://martinfowler.com/articles/talk-about-platforms.html
+
+Building a common infrastructure platform
+
+Operationalizing the Platform - Dave/Nick
+
+  - Infrastructure planning & roadmapping
+     - Platform
+
+  - Systems & Maintenance Responsibilities
+
+  - Disaster Recovery  and Uptime/Maintenance
+
+  - IAM Architecture and Policy / Duties and Responsibilities
+
+Instrumentation, Performance Metrics, Analysis and Measurement - Nick
+
+- - -
+
+_2018-08-14 14:03 eda architectures_
+
+https://hackernoon.com/event-driven-architecture-implementation-140c51820845
+
+- - -
+
+_2018-05-02 16:32  post WG call with Matt, Ethan, Keith_
+
+- - -
+
+_2018-05-02 15:17  WG call: Matt, Ethan, Keith_
+
+Ethan's amqp connector
+
+https://github.internet2.edu/docker/rabbitmq.git
+
+docker run -d  --name=rabbitmq -p 4369:4369 -p 5672:5672 -p 15672:15672 -p 25672:25672 <imageid>
+
+docker logs -f rabbitmq
+
+log into rabbitMQ
+
+- - -
+
+_2018-04-24 14:46  RabbitMQ_
+
+I've got the Java that updates resources/roles in midPoint based on group memberships up and running in its own container on docker.testbed. Drupal is up, and I've tested provisioning and deprovisioning events to Drupal based on membership changes.
+
+Here is that short trace java program I mentioned:
+https://github.com/ekromhout/rabbitmq-trace
+
+You may already have these somewhat more complex examples, but just in case:
+https://github.internet2.edu/TIER/midpoint-demo/tree/master/grouper-to-midpoint
+https://github.internet2.edu/TIER/midpoint-connectors/tree/master/connector-amqp-import
+
+The later has a sample message payload as well.
+
+And lastly this is that container with multiple processes, and so supervisord:
+https://github.com/ekromhout/rabbitmq-docker
+
+Thanks, Ethan
+
+- - -
+
+_2018-04-23 10:05 RabbitMQ admin on docker.testbed.tier.internet2.edu:15672_
+
+guest/z5EPB6VyZeuC6ASq
+
+ssh -i ~/.ssh/id_rsa   -l kh docker.testbed.tier.internet2.edu +
+ssh -i ~/.ssh/tier_rsa -l kh docker.testbed.tier.internet2.edu
+
+banner: UsXWzbYTp7ttjDfZ
+
+- ssh to docker.tb.ti.i2.edu
+
+```
+[kh@ip-172-31-17-104 ~]$ sudo ls -la /home/ekromhout
+total 177764
+drwx------ 11 ekromhout ekromhout     4096 Apr 23 19:04 .
+drwxr-xr-x  9 root      root          4096 Apr  6 15:40 ..
+-rw-rw-r--  1 ekromhout ekromhout     1652 Aug  4  2017 000-default.conf
+-rw-------  1 ekromhout ekromhout    23759 Apr 23 19:29 .bash_history
+-rw-r--r--  1 ekromhout ekromhout       18 Aug 15  2016 .bash_logout
+-rw-r--r--  1 ekromhout ekromhout      193 Aug 15  2016 .bash_profile
+-rw-r--r--  1 ekromhout ekromhout      124 Aug 15  2016 .bashrc
+drwxrwxr-x  2 ekromhout ekromhout     4096 Aug  1  2017 bin
+drwxr-xr-x  2 ekromhout root          4096 Sep  5  2017 cert
+-rw-rw-r--  1 ekromhout ekromhout  2419343 Apr 20 20:08 connector-drupal-1.0.0.3.jar
+-rw-rw-r--  1 ekromhout ekromhout   441835 Apr 23 14:46 ctools-7.x-1.14.tar.gz
+-rw-rw-r--  1 ekromhout ekromhout  8632320 Aug  4  2017 deps.tar
+-rw-rw-r--  1 ekromhout ekromhout     2155 Apr 10 13:34 docker-ps-2018-04-10
+drwxr-xr-x  2 ekromhout docker        4096 Aug  3  2017 drupal
+-rw-rw-r--  1 ekromhout ekromhout  3281269 Apr 20 20:36 drupal-7.58.tar.gz
+-rw-r--r--  1 ekromhout ekromhout 19671040 Apr 20 20:38 drupal-backup.tar
+-rw-rw-r--  1 ekromhout ekromhout    71680 Aug  3  2017 drupal.tar
+-rw-rw-r--  1 ekromhout ekromhout       89 Aug  4  2017 entrypoint.sh
+drwx------  6 ekromhout ekromhout     4096 Apr 11 14:23 grouper
+-rw-rw-r--  1 ekromhout ekromhout  9551133 Aug  3  2017 grouper-amqp-esb-publisher-all-ethan.jar
+-rw-rw-r--  1 ekromhout ekromhout  2672249 Apr 23 20:59 groupermidpoint-0.1-SNAPSHOT-jar-with-dependencies.jar
+-rw-r--r--  1 ekromhout ekromhout    51200 Jul 31  2017 grouper.tar
+drwxrwxr-x  2 ekromhout ekromhout     4096 Apr 23 18:44 groupertomidpoint-docker
+-rw-r--r--  1 ekromhout ekromhout    13602 Oct 16  2017 groupertomidpoint.jar
+-rw-rw-r--  1 ekromhout ekromhout    13536 Oct  5  2017 groupertomidpoint.jar.2017-10-16
+-rw-rw-r--  1 ekromhout ekromhout      747 Apr  6 15:15 id_rsa (1).pub
+-rw-rw-r--  1 ekromhout ekromhout      740 Apr  6 15:33 id_rsa (2).pub
+-rw-rw-r--  1 ekromhout ekromhout      401 Apr  6 14:32 id_rsa.pub
+-rw-rw-r--  1 ekromhout ekromhout     8029 Nov  7 18:41 index.html
+-rw-rw-r--  1 ekromhout ekromhout    20871 Nov  7 18:42 index.html.1
+-rw-rw-r--  1 ekromhout ekromhout   102400 Sep 21  2017 lib_mysqludf_amqp.tar
+-rw-rw-r--  1 ekromhout ekromhout   481280 Sep 21  2017 mysql_rabbit.tar
+drwxrw----  3 ekromhout ekromhout     4096 Aug  1  2017 .pki
+-rw-r--r--  1 ekromhout ekromhout     1778 Apr  5 17:41 rabbit.json
+-rwxr-xr-x  1 ekromhout ekromhout    32406 Apr 11 13:21 rabbitmqadmin
+drwxrwxr-x  3 ekromhout ekromhout     4096 Apr 19 16:43 rabbitmq-docker
+drwxrwxr-x  3 ekromhout ekromhout     4096 Sep 13  2017 sentrifugo
+-rw-rw-r--  1 ekromhout ekromhout 67184640 Sep 13  2017 sentrifugo.tar
+-rw-rw-r--  1 ekromhout ekromhout 67164693 Aug  4  2017 Sentrifugo.zip
+-rw-r--r--  1 ekromhout ekromhout    29694 Aug  3  2017 sources.xml
+drwxr-xr-x  2 ekromhout ekromhout     4096 Jul 27  2017 .ssh
+-rw-rw-r--  1 ekromhout ekromhout     1332 Oct  4  2017 Trace$1.class
+-rw-rw-r--  1 ekromhout ekromhout     2596 Oct  4  2017 Trace.class
+-rw-r--r--  1 ekromhout ekromhout      544 Apr 16 14:26 trigger-gs2018.sql
+-rw-r--r--  1 ekromhout ekromhout      545 Sep 21  2017 trigger.sql
+-rw-------  1 ekromhout ekromhout    16013 Apr 23 18:44 .viminfo
+-rw-rw-r--  1 ekromhout ekromhout      180 Sep 13  2017 .wget-hsts
+[kh@ip-172-31-17-104 ~]$
+```
+
+- - -
+
+_2018-03-23 11:19  message topics, event types, ordering & partitioning heuristics_
+
+https://www.confluent.io/blog/put-several-event-types-kafka-topic/
+
+- - -
+
+_2018-01-16 07:20  Reactive Streams: AMQP 1.0 Is a Really Good ''Reactive'' Protocol  (saved)_
+
+- - -
+
+_2017-12-01 05:51  spring integration intro tutorial_
+
+http://www.baeldung.com/spring-integration
+
+- - -
+
+_2017-11-19 13:53  spring-cloud-stream  http://www.baeldung.com/spring-cloud-stream_
+
+https://github.com/eugenp/tutorials/tree/master/spring-cloud/spring-cloud-stream/spring-cloud-stream-rabbit
+
+Spring Cloud Stream is a framework
+- built on top of Spring Boot and Spring Integration that
+- helps in creating event-driven or message-driven microservices
+
+https://docs.spring.io/spring-cloud-stream/docs/current/reference/htmlsingle/
+
+- - -
+
+_2017-11-18 12:09  https://github.com/hseeberger/reactive-flows  <== Reactive Flows_
+
+- - -
+
+h6. 2017-11-18 11:38  rabbitMQ  and event sourcing
+
+https://www.slideshare.net/mieldonkers/cqrs-and-event-sourcing-with-akka-cassandra-and-rabbitmq
+https://www.npmjs.com/package/rabbit-eventstore
+- - -
+
+h6. 2017-11-18 11:15  rabbitMQ vs Kafka  https://content.pivotal.io/blog/understanding-when-to-use-rabbitmq-or-apache-kafka
+
+- - -
+
+h6. 2017-09-23 08:34  spring boot + rabbitMQ for event messaging
+
+https://reflectoring.io/event-messaging-with-spring-boot-and-rabbitmq/
+
+- - -
+
+h6. 2017-07-09 08:08  from Δ to events
+
+But, there’s a new guy in town! Debezium (http://debezium.io/, https://github.com/debezium) is a new open source project [Apache 2], stewarded by RedHat, which offers connectors for Oracle, MySQL, PostgreSQL and even MongoDB.
+
+Not only that you can extract CDC events, but you can propagate them to Apache Kafka, which acts as a backbone for all the messages needed to be exchanged between various modules of a large enterprise system.
+
+https://vladmihalcea.com/2017/06/28/a-beginners-guide-to-cdc-change-data-capture/
+
+_____________________
+h6. 2017-06-22 14:41  simple e2e web notification client and service leveraging node, express, VAPID
+
+https://dzone.com/articles/web-push-notifications-1
+_____________________
+h6. 2017-03-21 11:22 event-driven messaging with mP
+
+From: midPoint <midpoint-bounces@lists.evolveum.com> on behalf of Pavol Mederly <mederly@evolveum.com>
+Reply-To: midPoint General Discussion <midpoint@lists.evolveum.com>
+Date: Tuesday, March 21, 2017 at 04:57
+To: midPoint General Discussion <midpoint@lists.evolveum.com>
+Subject: Re: [midPoint] JMS based workflow configuration
+
+Hello,
+actually, some years ago, when we started to implement midPoint at the largest Slovak university, we came across the same situation. Systems at that university exchanged identity information primarily by JMS. I've even hacked a code into midPoint that used Apache Camel to listen on JMS destinations and processed incoming messages.
+But the solution was not well-thought, so I erased the code. We eventually went by using SQL connector to read data synchronously from a database table.
+
+During all the time I came across similar requirements once more; for another European customer. And now, thinking about it again, I think this could be doable.
+
+Technically, instead of using synchronize() method which fetches changes from resource and feeds them to notifyChange() method, we would simply pull changes from JMS queue/topic and feed them to notifyChange().
+
+This is the live sync part. However, besides that, a reconciliation would need to be implemented somehow. E.g. by fetching a big CSV file and processing it using traditional approach.
+
+Overall, the live sync part presents a bit of technical work, but architecturally it would fit. So maybe a few MDs of work. You could perhaps even do it yourself (notifyChange is part of a public midPoint API).
+
+Hope this helps, Pavol Mederly
+Software developer
+evolveum.com
+----------
+On 20.03.2017 16:29, Prabhakara Rao Doddapaneni wrote:
+Is this something new I am trying to do with midPoint?
+
+Date: Mon, 6 Mar 2017 19:30:26 +0000 (UTC)
+From: Prabhakara Rao Doddapaneni <dp_rao@yahoo.com>
+To: "midpoint@lists.evolveum.com" <midpoint@lists.evolveum.com>
+Subject: [midPoint] JMS based workflow configuration
+Message-ID: <1001644321.2237664.1488828626312@mail.yahoo.com>
+Content-Type: text/plain; charset="utf-8"
+
+One of my resources cannot be configured to respond to sync poll.  I plan to send a message in JMS Q so that midpoint can listen to that message and reconcile/add the user into repository.  What is the ideal solution to achieve this?  has anybody come across this situation?
+Thanks,Prabhakar.
+
+
+
+
+
+_______________________________________________
+midPoint mailing list
+midPoint@lists.evolveum.com
+http://lists.evolveum.com/mailman/listinfo/midpoint
+
+
+
+
+_____________________
+h6. 2016-09-12 16:15  chat with JimJ re open issues
+
+
+_____________________
+h6. 2016-09-12 15:26  successful send/receive amqp message from testbed.tier (TICS) to midpoint.testbed on queue SorPerson, vhost /
+
+Jim,
+
+I’ll call you at 5:15 Eastern.
+
+Meanwhile, it looks like it’s working.
+
+I somehow erased the three messages you sent, but I just created another user with TICS and then received that message on midpoint.testbed:
+
+midpoint#>python /usr/local/src/receive.py
+
+ [*] Waiting for messages. To exit press CTRL+C
+
+ [x] Received '{"userName": "kh5br", "externalID": "hazelton@wisc.edu", "name": {"middleName": "UnknownInitials", "givenName": "Keith", "familyName": "Hazelton", "displayName": "Keith Hazelton", "formatted": "Keith UnknownInitials Hazelton"}, "emails": [{"value": "UnknownEPPN"}], "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"]}'
+
+Pretty printed it looks like
+
+{
+  "userName": "kh5br",
+  "externalID": "hazelton@wisc.edu",
+  "name": {
+    "middleName": "UnknownInitials",
+    "givenName": "Keith",
+    "familyName": "Hazelton",
+    "displayName": "Keith Hazelton",
+    "formatted": "Keith UnknownInitials Hazelton"
+  },
+  "emails": [
+    {
+      "value": "UnknownEPPN"
+    }
+  ],
+  "schemas": [
+    "urn:ietf:params:scim:schemas:core:2.0:User"
+  ]
+}
+
+
+Here’s the python module, receive.py, that pulled from the queue:
+
+#!/usr/bin/env python
+import pika
+
+credentials = pika.PlainCredentials('keith', 'Ent-Reg-=mp')
+
+connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost',
+        port=5672,
+        virtual_host='/',
+        credentials=credentials))
+
+channel = connection.channel()
+
+channel.queue_declare(queue='SorPerson')
+
+def callback(ch, method, properties, body):
+    print(" [x] Received %r" % body)
+
+channel.basic_consume(callback,
+                      queue='SorPerson',
+                      no_ack=True)
+
+print(' [*] Waiting for messages. To exit press CTRL+C')
+channel.start_consuming()
+
+               Regards,   --Keith
+----------------------------------
+
+Additional created identities
+
+{
+  "userName": "avg9dg",
+  "externalID": "jaj@virginia.edu",
+  "name": {
+    "middleName": "Villian",
+    "givenName": "Auric",
+    "familyName": "Goldfinger",
+    "displayName": "Auric Goldfinger",
+    "formatted": "Auric Villian Goldfinger"
+  },
+  "emails": [
+    {
+      "value": "UnknownEPPN"
+    }
+  ],
+  "schemas": [
+    "urn:ietf:params:scim:schemas:core:2.0:User"
+  ]
+}
+
+{
+  "userName": "rmr3ig",
+  "externalID": "hazelton@wisc.edu",
+  "name": {
+    "middleName": "M",
+    "givenName": "Rodger",
+    "familyName": "Rabbit",
+    "displayName": "Roger Rabbit",
+    "formatted": "Rodger M Rabbit"
+  },
+  "emails": [
+    {
+      "value": "UnknownEPPN"
+    }
+  ],
+  "schemas": [
+    "urn:ietf:params:scim:schemas:core:2.0:User"
+  ]
+}
+
+_____________________
+h6. 2016-09-12 13:08  administering rabbitmq
+
+midpoint#>rabbitmqadmin --version
+rabbitmqadmin 3.6.4
+
+midpoint#>find / -iname rabbitmq
+/run/rabbitmq
+/etc/rabbitmq
+/var/lib/rabbitmq
+/var/log/rabbitmq
+/usr/lib/ocf/resource.d/rabbitmq
+/usr/lib/rabbitmq
+
+midpoint#>ls -la /var/log/rabbitmq
+
+total 28
+drwxr-xr-x.  2 rabbitmq rabbitmq 4096 Sep 10 23:39 .
+drwxr-xr-x. 11 root     root     4096 Sep 10 23:39 ..
+-rw-r--r--.  1 rabbitmq rabbitmq 2158 Sep 12 12:57 rabbit@midpoint.log
+-rw-r--r--.  1 rabbitmq rabbitmq 1773 Sep  3 23:30 rabbit@midpoint.log-20160904.gz
+-rw-r--r--.  1 rabbitmq rabbitmq 6252 Sep 10 23:39 rabbit@midpoint.log-20160911
+-rw-r--r--.  1 rabbitmq rabbitmq    0 Aug 30 13:42 rabbit@midpoint-sasl.log
+-rw-r--r--.  1 root     root        0 Sep  9 16:14 startup_err
+-rw-r--r--.  1 root     root      348 Sep  9 16:15 startup_log
+
+midpoint#>ls -la /var/log/rabbitmq/rabbit@midpoint.log
+-rw-r--r--. 1 rabbitmq rabbitmq 2158 Sep 12 12:57 /var/log/rabbitmq/rabbit@midpoint.log
+
+midpoint#>cat /var/log/rabbitmq/rabbit@midpoint.log
+
+=INFO REPORT==== 12-Sep-2016::09:23:41 ===
+accepting AMQP connection <0.1494.0> (172.31.5.24:57853 -> 172.31.6.112:5672)
+
+=ERROR REPORT==== 12-Sep-2016::09:23:42 ===
+closing AMQP connection <0.1494.0> (172.31.5.24:57853 -> 172.31.6.112:5672):
+{handshake_timeout,handshake}
+
+=INFO REPORT==== 12-Sep-2016::09:25:20 ===
+accepting AMQP connection <0.1498.0> (172.31.5.24:57856 -> 172.31.6.112:5672)
+
+=ERROR REPORT==== 12-Sep-2016::09:25:22 ===
+closing AMQP connection <0.1498.0> (172.31.5.24:57856 -> 172.31.6.112:5672):
+{bad_header,<<"quit\r\n??">>}
+
+=INFO REPORT==== 12-Sep-2016::09:33:05 ===
+accepting AMQP connection <0.1504.0> (172.31.5.24:57890 -> 172.31.6.112:5672)
+
+=INFO REPORT==== 12-Sep-2016::09:33:05 ===
+closing AMQP connection <0.1504.0> (172.31.5.24:57890 -> 172.31.6.112:5672)
+
+=INFO REPORT==== 12-Sep-2016::13:05:19 ===
+accepting AMQP connection <0.1592.0> (172.31.5.24:57979 -> 172.31.6.112:5672)
+
+=INFO REPORT==== 12-Sep-2016::13:05:19 ===
+closing AMQP connection <0.1592.0> (172.31.5.24:57979 -> 172.31.6.112:5672)
+
+=INFO REPORT==== 12-Sep-2016::13:16:31 ===
+accepting AMQP connection <0.1609.0> (172.31.5.24:57987 -> 172.31.6.112:5672)
+
+=INFO REPORT==== 12-Sep-2016::13:16:31 ===
+closing AMQP connection <0.1609.0> (172.31.5.24:57987 -> 172.31.6.112:5672)
+
+=INFO REPORT==== 12-Sep-2016::16:02:10 ===
+Management plugin: using rates mode 'basic'
+
+=INFO REPORT==== 12-Sep-2016::16:02:10 ===
+Management plugin started. Port: 15672
+
+=INFO REPORT==== 12-Sep-2016::16:02:10 ===
+Statistics database started.
+
+=INFO REPORT==== 12-Sep-2016::16:02:10 ===
+Plugins changed; enabled [mochiweb,webmachine,rabbitmq_web_dispatch,
+                          amqp_client,rabbitmq_management_agent,
+                          rabbitmq_management], disabled []
+
+=WARNING REPORT==== 12-Sep-2016::16:56:53 ===
+HTTP access denied: user 'guest' - invalid credentials
+
+=ERROR REPORT==== 12-Sep-2016::16:56:53 ===
+webmachine error: path="/api/users"
+"Unauthorized"
+
+=WARNING REPORT==== 12-Sep-2016::16:57:52 ===
+HTTP access denied: user 'guest' - invalid credentials
+
+=ERROR REPORT==== 12-Sep-2016::16:57:52 ===
+webmachine error: path="/api/definitions"
+
+midpoint#>cat /var/log/rabbitmq/startup_log
+
+              RabbitMQ 3.6.1. Copyright (C) 2007-2016 Pivotal Software, Inc.
+  ##  ##      Licensed under the MPL.  See http://www.rabbitmq.com/
+  ##  ##
+  ##########  Logs: /var/log/rabbitmq/rabbit@midpoint.log
+  ######  ##        /var/log/rabbitmq/rabbit@midpoint-sasl.log
+  ##########
+              Starting broker... completed with 0 plugins.
+midpoint#>ls -la /usr/lib/rabbitmq
+
+----------
+midpoint#>rabbitmqadmin --help
+Usage
+=====
+  rabbitmqadmin [options] subcommand
+
+Options
+=======
+--help, -h              show this help message and exit
+--config=CONFIG, -c CONFIG
+                        configuration file [default: ~/.rabbitmqadmin.conf]
+--node=NODE, -N NODE    node described in the configuration file [default:
+                        'default' only if configuration file is specified]
+--host=HOST, -H HOST    connect to host HOST [default: localhost]
+--port=PORT, -P PORT    connect to port PORT [default: 15672]
+--path-prefix=PATH_PREFIX
+                        use specific URI path prefix for the RabbitMQ HTTP API
+                        (default: blank string) [default: ]
+--vhost=VHOST, -V VHOST
+                        connect to vhost VHOST [default: all vhosts for list,
+                        '/' for declare]
+--username=USERNAME, -u USERNAME
+                        connect using username USERNAME [default: guest]
+--password=PASSWORD, -p PASSWORD
+                        connect using password PASSWORD [default: guest]
+--quiet, -q             suppress status messages [default: True]
+--ssl, -s               connect with ssl [default: False]
+--ssl-key-file=SSL_KEY_FILE
+                        PEM format key file for SSL
+--ssl-cert-file=SSL_CERT_FILE
+                        PEM format certificate file for SSL
+--ssl-ca-cert-file=SSL_CA_CERT_FILE
+                        PEM format CA certificate file for SSL
+--ssl-disable-hostname-verification
+                        Disables peer hostname verification
+--format=FORMAT, -f FORMAT
+                        format for listing commands - one of [raw_json, long,
+                        pretty_json, kvp, tsv, table, bash] [default: table]
+--sort=SORT, -S SORT    sort key for listing queries
+--sort-reverse, -R      reverse the sort order
+--depth=DEPTH, -d DEPTH
+                        maximum depth to recurse for listing tables [default:
+                        1]
+--bash-completion       Print bash completion script [default: False]
+--version               Display version and exit
+
+More Help
+=========
+
+For more help use the help subcommand:
+
+  rabbitmqadmin help subcommands  # For a list of available subcommands
+  rabbitmqadmin help config       # For help with the configuration file
+
+midpoint#>rabbitmqadmin help subcommands
+Usage
+=====
+  rabbitmqadmin [options] subcommand
+
+  where subcommand is one of:
+
+Display
+=======
+
+  list users [<column>...]
+  list vhosts [<column>...]
+  list connections [<column>...]
+  list exchanges [<column>...]
+  list bindings [<column>...]
+  list permissions [<column>...]
+  list channels [<column>...]
+  list parameters [<column>...]
+  list consumers [<column>...]
+  list queues [<column>...]
+  list policies [<column>...]
+  list nodes [<column>...]
+  show overview [<column>...]
+
+Object Manipulation
+===================
+
+  declare queue name=... [node=... auto_delete=... durable=... arguments=...]
+  declare vhost name=... [tracing=...]
+  declare user name=... password=... tags=...
+  declare exchange name=... type=... [auto_delete=... internal=... durable=... arguments=...]
+  declare policy name=... pattern=... definition=... [priority=... apply-to=...]
+  declare parameter component=... name=... value=...
+  declare permission vhost=... user=... configure=... write=... read=...
+  declare binding source=... destination=... [arguments=... routing_key=... destination_type=...]
+  delete queue name=...
+  delete vhost name=...
+  delete user name=...
+  delete exchange name=...
+  delete policy name=...
+  delete parameter component=... name=...
+  delete permission vhost=... user=...
+  delete binding source=... destination_type=... destination=... properties_key=...
+  close connection name=...
+  purge queue name=...
+
+Broker Definitions
+==================
+
+  export <file>
+  import <file>
+
+Publishing and Consuming
+========================
+
+  publish routing_key=... [exchange=... payload=... payload_encoding=... properties=...]
+  get queue=... [count=... requeue=... payload_file=... encoding=...]
+
+  * If payload is not specified on publish, standard input is used
+
+  * If payload_file is not specified on get, the payload will be shown on
+    standard output along with the message metadata
+
+  * If payload_file is specified on get, count must not be set
+
+midpoint#>rabbitmqadmin help config
+
+Usage
+=====
+rabbitmqadmin [options] subcommand
+
+Configuration File
+==================
+
+  It is possible to specify a configuration file from the command line.
+  Hosts can be configured easily in a configuration file and called
+  from the command line.
+
+Example
+=======
+
+  # rabbitmqadmin.conf.example START
+
+  [host_normal]
+  hostname = localhost
+  port = 15672
+  username = guest
+  password = guest
+  declare_vhost = / # Used as default for declare / delete only
+  vhost = /         # Used as default for declare / delete / list
+
+  [host_ssl]
+  hostname = otherhost
+  port = 15672
+  username = guest
+  password = guest
+  ssl = True
+  ssl_key_file = /path/to/key.pem
+  ssl_cert_file = /path/to/cert.pem
+
+  # rabbitmqadmin.conf.example END
+
+Use
+===
+
+  rabbitmqadmin -c rabbitmqadmin.conf.example -N host_normal ...
+
+- set up for authenticated access from command line
+
+rabbitmqadmin declare exchange --vhost=vhostFoo name=exchangeNew type=direct -u administrator -p password
+_____________________
+h6. 2016-09-12 11:03  rabbitmq on midpoint.testbed
+
+midpoint#>rabbitmq-plugins enable rabbitmq_management
+
+The following plugins have been enabled:
+  mochiweb
+  webmachine
+  rabbitmq_web_dispatch
+  amqp_client
+  rabbitmq_management_agent
+  rabbitmq_management
+
+Applying plugin configuration to rabbit@midpoint... started 6 plugins.
+
+midpoint#>rabbitmqctl status
+Status of node rabbit@midpoint ...
+[{pid,2574},
+ {running_applications,
+     [{rabbitmq_management,"RabbitMQ Management Console","3.6.1"},
+      {rabbitmq_web_dispatch,"RabbitMQ Web Dispatcher","3.6.1"},
+      {webmachine,"webmachine","1.10.3"},
+      {mochiweb,"MochiMedia Web Server","2.13.0"},
+      {compiler,"ERTS  CXC 138 10","7.0"},
+      {ssl,"Erlang/OTP SSL application","8.0"},
+      {inets,"INETS  CXC 138 49","6.3"},
+      {rabbitmq_management_agent,"RabbitMQ Management Agent","3.6.1"},
+      {amqp_client,"RabbitMQ AMQP Client","3.6.1"},
+      {public_key,"Public key infrastructure","1.2"},
+      {crypto,"CRYPTO","3.7"},
+      {syntax_tools,"Syntax tools","2.0"},
+      {asn1,"The Erlang ASN1 compiler version 4.0.3","4.0.3"},
+      {rabbit,"RabbitMQ","3.6.1"},
+      {mnesia,"MNESIA  CXC 138 12","4.14"},
+      {os_mon,"CPO  CXC 138 46","2.4.1"},
+      {rabbit_common,[],"3.6.1"},
+      {xmerl,"XML parser","1.3.11"},
+      {ranch,"Socket acceptor pool for TCP protocols.","1.2.1"},
+      {sasl,"SASL  CXC 138 11","3.0"},
+      {stdlib,"ERTS  CXC 138 10","3.0"},
+      {kernel,"ERTS  CXC 138 10","5.0"}]},
+ {os,{unix,linux}},
+ {erlang_version,
+     "Erlang/OTP 19 [erts-8.0] [source-6dc93c1] [64-bit] [smp:2:2] [async-threads:64] [hipe] [kernel-poll:true]\n"},
+ {memory,
+     [{total,53823120},
+      {connection_readers,0},
+      {connection_writers,0},
+      {connection_channels,0},
+      {connection_other,2832},
+      {queue_procs,19728},
+      {queue_slave_procs,0},
+      {plugins,334936},
+      {other_proc,17605640},
+      {mnesia,62352},
+      {mgmt_db,50040},
+      {msg_index,40528},
+      {other_ets,1388528},
+      {binary,354016},
+      {code,24331258},
+      {atom,992433},
+      {other_system,8640829}]},
+ {alarms,[]},
+ {listeners,[{clustering,25672,"::"},{amqp,5672,"::"}]},
+ {vm_memory_high_watermark,0.4},
+ {vm_memory_limit,3173434982},
+ {disk_free_limit,50000000},
+ {disk_free,2504720384},
+ {file_descriptors,
+     [{total_limit,924},{total_used,2},{sockets_limit,829},{sockets_used,0}]},
+ {processes,[{limit,1048576},{used,200}]},
+ {run_queue,0},
+ {uptime,244082},
+ {kernel,{net_ticktime,60}}]
+midpoint#>
+_____________________
+h6. 2016-09-02 06:13  VERY simple Java to RabbitMQ integration with Spring
+
+http://www.java-allandsundry.com/2016/08/integrating-with-rabbitmq-using-spring.html
+_____________________
+h6. 2016-09-12 09:12  Fire up AMQP listener on midpoint.testbed
+
+- per
+
+../receive.py
+../rabbitMQonOMbP.sh
+_____________________
+h6. 2016-08-31 12:16  administering RabbitMQ
+
+[kh@midpoint ~]$ sudo bash
+midpoint#>rabbitmqctl status
+Status of node rabbit@midpoint ...
+[{pid,27097},
+ {running_applications,[{rabbit,"RabbitMQ","3.6.1"},
+                        {mnesia,"MNESIA  CXC 138 12","4.14"},
+                        {rabbit_common,[],"3.6.1"},
+                        {xmerl,"XML parser","1.3.11"},
+                        {ranch,"Socket acceptor pool for TCP protocols.",
+                               "1.2.1"},
+                        {os_mon,"CPO  CXC 138 46","2.4.1"},
+                        {sasl,"SASL  CXC 138 11","3.0"},
+                        {stdlib,"ERTS  CXC 138 10","3.0"},
+                        {kernel,"ERTS  CXC 138 10","5.0"}]},
+ {os,{unix,linux}},
+ {erlang_version,"Erlang/OTP 19 [erts-8.0] [source-6dc93c1] [64-bit] [async-threads:64] [hipe] [kernel-poll:true]\n"},
+ {memory,[{total,35819344},
+          {connection_readers,0},
+          {connection_writers,0},
+          {connection_channels,0},
+          {connection_other,0},
+          {queue_procs,26128},
+          {queue_slave_procs,0},
+          {plugins,0},
+          {other_proc,13285912},
+          {mnesia,60000},
+          {mgmt_db,0},
+          {msg_index,38664},
+          {other_ets,892832},
+          {binary,11024},
+          {code,15449173},
+          {atom,662433},
+          {other_system,5393178}]},
+ {alarms,[]},
+ {listeners,[{clustering,25672,"::"},{amqp,5672,"::"}]},
+ {vm_memory_high_watermark,0.4},
+ {vm_memory_limit,771144089},
+ {disk_free_limit,50000000},
+ {disk_free,4326563840},
+ {file_descriptors,[{total_limit,924},
+                    {total_used,2},
+                    {sockets_limit,829},
+                    {sockets_used,0}]},
+ {processes,[{limit,1048576},{used,142}]},
+ {run_queue,0},
+ {uptime,84193},
+ {kernel,{net_ticktime,60}}]
+
+midpoint#>sudo rabbitmqctl add_user tics entreg007
+Creating user "tics" ..
+.
+midpoint#>sudo rabbitmqctl add_user keith Ent-Reg-=mp
+Creating user "keith" ...
+
+midpoint#>rabbitmqctl help
+Usage:
+rabbitmqctl [-n <node>] [-t <timeout>] [-q] <command> [<command options>]
+
+Options:
+    -n node
+    -q
+    -t timeout
+
+Default node is "rabbit@server", where server is the local host. On a host
+named "server.example.com", the node name of the RabbitMQ Erlang node will
+usually be rabbit@server (unless RABBITMQ_NODENAME has been set to some
+non-default value at broker startup time). The output of hostname -s is usually
+the correct suffix to use after the "@" sign. See rabbitmq-server(1) for
+details of configuring the RabbitMQ broker.
+
+Quiet output mode is selected with the "-q" flag. Informational messages are
+suppressed when quiet mode is in effect.
+
+Operation timeout in seconds. Only applicable to "list" commands. Default is
+"infinity".
+
+Commands:
+    stop [<pid_file>]
+    stop_app
+    start_app
+    wait <pid_file>
+    reset
+    force_reset
+    rotate_logs <suffix>
+
+    join_cluster <clusternode> [--ram]
+    cluster_status
+    change_cluster_node_type disc | ram
+    forget_cluster_node [--offline]
+    rename_cluster_node oldnode1 newnode1 [oldnode2] [newnode2 ...]
+    update_cluster_nodes clusternode
+    force_boot
+    sync_queue [-p <vhost>] queue
+    cancel_sync_queue [-p <vhost>] queue
+    purge_queue [-p <vhost>] queue
+    set_cluster_name name
+
+    add_user <username> <password>
+    delete_user <username>
+    change_password <username> <newpassword>
+    clear_password <username>
+
+            authenticate_user <username> <password>
+
+    set_user_tags <username> <tag> ...
+    list_users
+
+    add_vhost <vhost>
+    delete_vhost <vhost>
+    list_vhosts [<vhostinfoitem> ...]
+    set_permissions [-p <vhost>] <user> <conf> <write> <read>
+    clear_permissions [-p <vhost>] <username>
+    list_permissions [-p <vhost>]
+    list_user_permissions <username>
+
+    set_parameter [-p <vhost>] <component_name> <name> <value>
+    clear_parameter [-p <vhost>] <component_name> <key>
+    list_parameters [-p <vhost>]
+
+    set_policy [-p <vhost>] [--priority <priority>] [--apply-to <apply-to>]
+<name> <pattern>  <definition>
+    clear_policy [-p <vhost>] <name>
+    list_policies [-p <vhost>]
+
+    list_queues [-p <vhost>] [<queueinfoitem> ...]
+    list_exchanges [-p <vhost>] [<exchangeinfoitem> ...]
+    list_bindings [-p <vhost>] [<bindinginfoitem> ...]
+    list_connections [<connectioninfoitem> ...]
+    list_channels [<channelinfoitem> ...]
+    list_consumers [-p <vhost>]
+    status
+    environment
+    report
+    eval <expr>
+
+    close_connection <connectionpid> <explanation>
+    trace_on [-p <vhost>]
+    trace_off [-p <vhost>]
+    set_vm_memory_high_watermark <fraction>
+    set_vm_memory_high_watermark absolute <memory_limit>
+    set_disk_free_limit <disk_limit>
+    set_disk_free_limit mem_relative <fraction>
+
+<vhostinfoitem> must be a member of the list [name, tracing].
+
+The list_queues, list_exchanges and list_bindings commands accept an optional
+virtual host parameter for which to display results. The default value is "/".
+
+<queueinfoitem> must be a member of the list [name, durable, auto_delete,
+arguments, policy, pid, owner_pid, exclusive, exclusive_consumer_pid,
+exclusive_consumer_tag, messages_ready, messages_unacknowledged, messages,
+messages_ready_ram, messages_unacknowledged_ram, messages_ram,
+messages_persistent, message_bytes, message_bytes_ready,
+message_bytes_unacknowledged, message_bytes_ram, message_bytes_persistent,
+head_message_timestamp, disk_reads, disk_writes, consumers,
+consumer_utilisation, memory, slave_pids, synchronised_slave_pids, state].
+
+<exchangeinfoitem> must be a member of the list [name, type, durable,
+auto_delete, internal, arguments, policy].
+
+<bindinginfoitem> must be a member of the list [source_name, source_kind,
+destination_name, destination_kind, routing_key, arguments].
+
+<connectioninfoitem> must be a member of the list [pid, name, port, host,
+peer_port, peer_host, ssl, ssl_protocol, ssl_key_exchange, ssl_cipher,
+ssl_hash, peer_cert_subject, peer_cert_issuer, peer_cert_validity, state,
+channels, protocol, auth_mechanism, user, vhost, timeout, frame_max,
+channel_max, client_properties, recv_oct, recv_cnt, send_oct, send_cnt,
+send_pend, connected_at].
+
+<channelinfoitem> must be a member of the list [pid, connection, name, number,
+user, vhost, transactional, confirm, consumer_count, messages_unacknowledged,
+messages_uncommitted, acks_uncommitted, messages_unconfirmed, prefetch_count,
+global_prefetch_count].
+
+
+midpoint#>hostname -s
+midpoint
+
+midpoint#>rabbitmqctl list_users
+
+Listing users ...
+tics	[]
+keith	[]
+guest	[administrator]
+
+
+
+midpoint#>rabbitmqctl list_user_permissions tics
+
+Listing permissions for user "tics" ...
+
+midpoint#>rabbitmqctl list_user_permissions guest
+
+Listing permissions for user "guest" ...
+
+/	.*	.*	.*
+
+midpoint#>rabbitmqctl list_user_permissions keith
+
+Listing permissions for user "keith" ...
+
+midpoint#>rabbitmqctl change_password guest nuh-uh-uhh!
+_____________________
+h6. 2016-08-31 07:25  NewSorPerson
+
+midpoint#>cat producer.py
+----------
+import pika
+import json
+from config import Config
+
+f = file('simple.cfg')
+cfg = Config(f)
+connection = pika.BlockingConnection(pika.ConnectionParameters(host=cfg.RABBIT_HOST))
+channel = connection.channel()
+channel.queue_declare(queue=cfg.QUEUE_TOPIC)
+
+data = {
+      "schemas":["urn:ietf:params:scim:schemas:core:2.0:User"],
+      "userName":"bjensen",
+      "externalId":"bjensen",
+      "name":{
+       	"formatted":"Ms. Barbara J Jensen III",
+       	"familyName":"Jensen",
+       	"givenName":"Barbara",
+       	"middleName": "Jane",
+       	"displayName": "Babs Jensen"
+		},
+      "emails":[
+       {
+         "value":"bjensen@example.com"
+		}]
+     }
+
+message = json.dumps(data)
+channel.basic_publish(exchange='', routing_key=cfg.QUEUE_TOPIC, body=message)
+
+print(" [x] Sent data to RabbitMQ")
+
+connection.close()
+----------
+
+[kh@midpoint src]$ cat consumer.py
+-----------
+import pika
+import json
+import config as cfg
+
+connection = pika.BlockingConnection(pika.ConnectionParameters(host=cfg.HOST))
+channel = connection.channel()
+channel.queue_declare(queue=cfg.VIRTUAL_HOST)
+
+print(' [*] Waiting for messages. To exit press CTRL+C')
+
+def callback(ch, method, properties, body):
+    print("Method: {}".format(method))
+    print("Properties: {}".format(properties))
+    data = json.loads(body)
+    print("schemas: {}".format(data['schemas']))
+    print("userName: {}".format(data['userName']))
+    print("name: {}".format(data['name']))
+    print("emails: {}".format(data['emails']))
+
+channel.basic_consume(callback, queue=cfg.QUEUE_TOPIC,no_ack=True)
+channel.start_consuming()
+----------
+
+midpoint#>cat simple.cfg
+
+RABBIT_HOST: 'localhost' QUEUE_TOPIC: 'newSorPerson'
+
+midpoint#>python producer.py
+
+ [x] Sent data to RabbitMQ
+
+midpoint#>python consumer.py
+
+ [*] Waiting for messages. To exit press CTRL+C
+
+Method: <Basic.Deliver(['consumer_tag=ctag1.93e42eb0a5f748b49134176fdd41d544', 'delivery_tag=1', 'exchange=', 'redelivered=False', 'routing_key=newSorPerson'])>
+Properties: <BasicProperties>
+schemas: [u'urn:ietf:params:scim:schemas:core:2.0:User']
+userName: bjensen
+name: {u'middleName': u'Jane', u'givenName': u'Barbara', u'displayName': u'Babs Jensen', u'formatted': u'Ms. Barbara J Jensen III', u'familyName': u'Jensen'}
+emails: [{u'value': u'bjensen@example.com'}]
+
+^c to exit
+
+midpoint#>rabbitmqctl list_queues
+
+Listing queues ...
+hello	0
+newSorPerson	0
+
+- email to Jim Jokl:
+
+I now have a simple message queue, ‘newSorPerson’ running on localhost at midpoint.testbed..
+
+Here is a sender side python script (assumes that RabbitMQ and pip packages config, json and pika are installed.
+There may be a couple errors, I just blindly modified the code running on my localhost.
+
+The only additional essential ports to open are 5672 outbound on Testbed Identity Control Site and 5672 inbound on midpoint.testbed.tier.internet2.edu.
+
+The ‘data’ attribute value is the same identical json that would be in the request body of a SCIM POST to /Users.
+
+midpoint#>cat producer.py
+----------
+import pika
+import json
+from config import Config
+
+credentials = pika.PlainCredentials('tics', 'entreg007')
+parameters = pika.ConnectionParameters('midpoint.testbed.tier.internet2.edu', 5672, 'newSorRecord', credentials)
+connection = pika.BlockingConnection(parameters)
+
+channel = connection.channel()
+channel.queue_declare(queue=’newSorPerson’)
+
+data = {
+      "schemas":["urn:ietf:params:scim:schemas:core:2.0:User"],
+      "userName":"bjensen",
+      "externalId":"bjensen",
+      "name":{
+              "formatted":"Ms. Barbara J Jensen III",
+              "familyName":"Jensen",
+              "givenName":"Barbara",
+              "middleName": "Jane",
+              "displayName": "Babs Jensen"
+              },
+      "emails":[
+       {
+         "value":"bjensen@example.com"
+              }]
+     }
+
+message = json.dumps(data)
+channel.basic_publish(exchange='', routing_key=’newSorPerson’, body=message)
+
+print(" [x] Sent data to RabbitMQ")
+
+connection.close()
+
+___________________________________
+email & jabber: keith.hazelton@wisc.edu
+calendar: http://go.wisc.edu/i6zxx0
+_____________________
+h6. 2016-08-30 19:04  json message via python per https://cuongba.com/install-rabbitmq-and-send-json-data-with-python-on-ubuntu/
+
+midpoint#>cat producer.py
+----------
+import pika
+import json
+from config import Config
+
+f = file('simple.cfg')
+cfg = Config(f)
+connection = pika.BlockingConnection(pika.ConnectionParameters(host=cfg.RABBIT_HOST))
+channel = connection.channel() channel.queue_declare(queue=cfg.QUEUE_TOPIC))
+
+data = {
+      "schemas":["urn:ietf:params:scim:schemas:core:2.0:User"],
+      "userName":"bjensen",
+      "externalId":"bjensen",
+      "name":{
+       	"formatted":"Ms. Barbara J Jensen III"
+       	"familyName":"Jensen",
+       	"givenName":"Barbara",
+       	"middleName": "Jane",
+       	"displayName": "Babs Jensen"
+		},
+      "emails":[
+       {
+         "value":"bjensen@example.com"
+		}
+}
+
+message = json.dumps(data)
+channel.basic_publish(exchange='', routing_key=cfg.QUEUE_TOPIC, body=message)
+
+print(" [x] Sent data to RabbitMQ")
+
+connection.close()
+----------
+
+midpoint#>cat simple.cfg
+
+RABBIT_HOST= 'localhost' QUEUE_TOPIC = 'newSorPerson'
+
+midpoint#>cat consumer.py
+----------
+import pika
+import json
+import config as cfg
+
+connection = pika.BlockingConnection(pika.ConnectionParameters(host=cfg.RABBIT_HOST))
+channel = connection.channel() channel.queue_declare(queue=cfg.QUEUE_TOPIC)
+
+print(' [*] Waiting for messages. To exit press CTRL+C')
+
+def callback(ch, method, properties, body):
+    print("Method: {}".format(method))
+    print("Properties: {}".format(properties))
+    data = json.loads(body)
+    print("schemas: {}".format(data['schemas']))
+    print("userName: {}".format(data['userName']))
+    print("name: {}".format(data['name']))
+    print("emails: {}".format(data['emails']))
+
+channel.basic_consume(callback, queue=cfg.QUEUE_TOPIC,no_ack=True)
+channel.start_consuming()
+----------
+
+_____________________
+h6. 2016-08-30 16:06  prep for testing between iam vm and midpoint vm
+
+Ø  “Right now we capture: givenName, surname, initials (which I label as “middle name”, mail, cn, uid, eppn, and displayName.”
+
+Here’s the mapping from your attributes to their SCIM User Schema representation:
+
+uid:
+        "userName":"bjensen",
+
+givenName,  surname, initials (middleName), displayName (formatted name):
+		"name":{
+       	"formatted":"Ms. Barbara J Jensen III"
+       	"familyName":"Jensen",
+       	"givenName":"Barbara"
+       	"middleName": "Jane"
+       	"displayName": "Babs Jensen"
+     },
+
+ mail:
+      "emails":[
+       {
+         "value":"bjensen@example.com"
+       }
+
+ eppn:
+                                "externalId":"bjensen",
+
+So, the JSON-formatted body of the POST would look like this:
+
+{
+      "schemas":["urn:ietf:params:scim:schemas:core:2.0:User"],
+      "userName":"bjensen",
+      "externalId":"bjensen",
+      "name":{
+       	"formatted":"Ms. Barbara J Jensen III"
+       	"familyName":"Jensen",
+       	"givenName":"Barbara",
+       	"middleName": "Jane",
+       	"displayName": "Babs Jensen"
+		},
+      "emails":[
+       {
+         "value":"bjensen@example.com"
+		} ]
+
+}
+
+- - -
+_2016-08-30 13:39  Using RabbitMQ with Pika for Python_
+
+https://pika.readthedocs.io/en/0.10.0/
+
+- - -
+_2016-08-30 12:59  getting started with RabbitMQ_
+
+```
+midpoint#>pwd
+/usr/local/src
+# Sender
+
+midpoint#>vi send.py
+
+midpoint#>cat send.py
+
+#!/usr/bin/env python
+import pika
+
+connection = pika.BlockingConnection(pika.ConnectionParameters(
+               'localhost'))
+channel = connection.channel()
+channel.queue_declare(queue='hello')
+channel.basic_publish(exchange='',
+                      routing_key='hello',
+                      body='Hello World!')
+print(" [x] Sent 'Hello World!'")
+
+connection.close()
+
+midpoint#>python send.py
+
+ [x] Sent 'Hello World!'
+midpoint#>
+
+# Receiver
+
+#!/usr/bin/env python
+import pika
+
+connection = pika.BlockingConnection(pika.ConnectionParameters(
+        host='localhost'))
+channel = connection.channel()
+
+channel.queue_declare(queue='hello')
+
+def callback(ch, method, properties, body):
+    print(" [x] Received %r" % body)
+
+channel.basic_consume(callback,
+                      queue='hello',
+                      no_ack=True)
+
+print(' [*] Waiting for messages. To exit press CTRL+C')
+channel.start_consuming()
+
+midpoint#>python receive.py
+
+ [*] Waiting for messages. To exit press CTRL+C
+ [x] Received 'Hello World!'
+
+
+
+- - -
+_2016-08-30 12:43  midpoint rabbitmq continued_
+
+needed to add a line to /etc/hosts
+
+127.0.0.1 midpoint
+
+Now rabbitmq starts up
+
+----------
+midpoint#>systemctl start rabbitmq-server
+
+midpoint#>systemctl status rabbitmq-server
+
+● rabbitmq-server.service - LSB: Enable AMQP service provided by RabbitMQ broker
+   Loaded: loaded (/etc/rc.d/init.d/rabbitmq-server)
+   Active: active (running) since Tue 2016-08-30 13:42:42 EDT; 1min 30s ago
+     Docs: man:systemd-sysv-generator(8)
+  Process: 26722 ExecStart=/etc/rc.d/init.d/rabbitmq-server start (code=exited, status=0/SUCCESS)
+   CGroup: /system.slice/rabbitmq-server.service
+           ├─26902 /bin/sh /etc/rc.d/init.d/rabbitmq-server start
+           ├─26904 /bin/bash -c ulimit -S -c 0 >/dev/null 2>&1 ; /usr/sbin/rabbitmq-server
+           └─26906 /bin/sh /usr/sbin/rabbitmq-server
+
+Aug 30 13:42:40 midpoint.testbed.tier.internet2.edu systemd[1]: Starting LSB: Enable AMQP service provided by RabbitMQ broker...
+Aug 30 13:42:40 midpoint.testbed.tier.internet2.edu su[26792]: (to rabbitmq) root on none
+Aug 30 13:42:40 midpoint.testbed.tier.internet2.edu su[26922]: (to rabbitmq) root on none
+Aug 30 13:42:40 midpoint.testbed.tier.internet2.edu su[26926]: (to rabbitmq) root on none
+Aug 30 13:42:42 midpoint.testbed.tier.internet2.edu rabbitmq-server[26722]: Starting rabbitmq-server: SUCCESS
+Aug 30 13:42:42 midpoint.testbed.tier.internet2.edu rabbitmq-server[26722]: rabbitmq-server.
+Aug 30 13:42:42 midpoint.testbed.tier.internet2.edu systemd[1]: Started LSB: Enable AMQP service provided by RabbitMQ broker.
+
+_____________________
+h6. 2016-08-30 12:07  remote AMQP hosts
+
+https://www.rabbitmq.com/federation.html
+
+----------
+Jim,
+
+I’m in the midst of setting up a RabbitMQ host speaking AMQP on midpoint.testbed.tier.internet2.edu
+
+Ports that need to be open on the host: 5672, 5671 (AMQP 0-9-1 without and with TLS)
+I’m guessing I need your help on AWS to open those ports.
+
+BTW,  This page shows how to make a remote connection to that host using the Pika Library from Python.
+
+http://pika.readthedocs.io/en/latest/modules/parameters.html
+
+- - -
+_2016-08-29 20:29  install rabbitMQ per https://www.unixmen.com/install-rabbitmq-server-centos-7/_
+
+```
+midpoint#>wget https://www.rabbitmq.com/releases/rabbitmq-server/v3.6.1/rabbitmq-server-3.6.1-1.noarch.rpm
+
+--2016-08-29 21:27:02--  https://www.rabbitmq.com/releases/rabbitmq-server/v3.6.1/rabbitmq-server-3.6.1-1.noarch.rpm
+Resolving www.rabbitmq.com (www.rabbitmq.com)... 192.240.153.117
+Connecting to www.rabbitmq.com (www.rabbitmq.com)|192.240.153.117|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 5088884 (4.9M) [application/x-redhat-package-manager]
+Saving to: ‘rabbitmq-server-3.6.1-1.noarch.rpm’
+
+100%[============================================================================>] 5,088,884   5.13MB/s   in 0.9s
+
+- - -
+_2016-08-29 21:27:03 (5.13 MB/s) - ‘rabbitmq-server-3.6.1-1.noarch.rpm’ saved [5088884/5088884]_
+
+midpoint#>rpm --import https://www.rabbitmq.com/rabbitmq-signing-key-public.asc
+
+midpoint#>yum install rabbitmq-server-3.6.1-1.noarch.rpm
+
+Loaded plugins: fastestmirror
+Examining rabbitmq-server-3.6.1-1.noarch.rpm: rabbitmq-server-3.6.1-1.noarch
+Marking rabbitmq-server-3.6.1-1.noarch.rpm to be installed
+Resolving Dependencies
+--> Running transaction check
+---> Package rabbitmq-server.noarch 0:3.6.1-1 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+======================================================================================================================
+ Package                     Arch               Version             Repository                                   Size
+======================================================================================================================
+Installing:
+ rabbitmq-server             noarch             3.6.1-1             /rabbitmq-server-3.6.1-1.noarch             5.5 M
+
+Transaction Summary
+======================================================================================================================
+Install  1 Package
+
+Total size: 5.5 M
+Installed size: 5.5 M
+
+Is this ok [y/d/N]: y
+
+Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : rabbitmq-server-3.6.1-1.noarch                                                                     1/1
+  Verifying  : rabbitmq-server-3.6.1-1.noarch                                                                     1/1
+
+Installed:
+  rabbitmq-server.noarch 0:3.6.1-1
+
+Complete!
+```
+
+- That’s it. We have installed RabbitMQ.We must allow the following ports via SELinux, and Firewall in order to access RabbitMQ remote management console from the remote systems.
+
+Make sure the following ports can be opened:
+
+4369 (epmd), 25672 (Erlang distribution)
+5672, 5671 (AMQP 0-9-1 without and with TLS)
+15672 (if management plugin is enabled)
+61613, 61614 (if STOMP is enabled)
+1883, 8883 (if MQTT is enabled)
+To allow the above ports in firewall, run the following commands one by one:
+
+firewall-cmd --permanent --add-port=4369/tcp
+firewall-cmd --permanent --add-port=25672/tcp
+firewall-cmd --permanent --add-port=5671-5672/tcp
+firewall-cmd --permanent --add-port=15672/tcp
+firewall-cmd --permanent --add-port=61613-61614/tcp
+firewall-cmd --permanent --add-port=8883/tcp
+Restart firewall service:
+
+firewall-cmd --reload
+
+And then, run the following command to allow SELinux to enable RabbitMQ service:
+
+systemctl start rabbitmq-server
+
+
+- startup failed
+
+midpoint#>systemctl start rabbitmq-server
+
+Job for rabbitmq-server.service failed because the control process exited with error code. See "systemctl status rabbitmq-server.service" and "journalctl -xe" for details.
+
+midpoint#>systemctl status rabbitmq-server.service
+● rabbitmq-server.service - LSB: Enable AMQP service provided by RabbitMQ broker
+   Loaded: loaded (/etc/rc.d/init.d/rabbitmq-server)
+   Active: failed (Result: exit-code) since Tue 2016-08-30 13:22:24 EDT; 16s ago
+     Docs: man:systemd-sysv-generator(8)
+  Process: 25870 ExecStart=/etc/rc.d/init.d/rabbitmq-server start (code=exited, status=1/FAILURE)
+
+Aug 30 13:21:14 midpoint.testbed.tier.internet2.edu systemd[1]: Starting LSB: Enable AMQP service provided by RabbitMQ broker...
+Aug 30 13:21:14 midpoint.testbed.tier.internet2.edu su[25940]: (to rabbitmq) root on none
+Aug 30 13:21:51 midpoint.testbed.tier.internet2.edu su[26071]: (to rabbitmq) root on none
+Aug 30 13:21:51 midpoint.testbed.tier.internet2.edu su[26074]: (to rabbitmq) root on none
+Aug 30 13:22:24 midpoint.testbed.tier.internet2.edu rabbitmq-server[25870]: Starting rabbitmq-server: FAILED - check /var/log/rabbitmq/startup_{log, _err}
+Aug 30 13:22:24 midpoint.testbed.tier.internet2.edu rabbitmq-server[25870]: rabbitmq-server.
+Aug 30 13:22:24 midpoint.testbed.tier.internet2.edu systemd[1]: rabbitmq-server.service: control process exited, code=exited status=1
+Aug 30 13:22:24 midpoint.testbed.tier.internet2.edu systemd[1]: Failed to start LSB: Enable AMQP service provided by RabbitMQ broker.
+Aug 30 13:22:24 midpoint.testbed.tier.internet2.edu systemd[1]: Unit rabbitmq-server.service entered failed state.
+Aug 30 13:22:24 midpoint.testbed.tier.internet2.edu systemd[1]: rabbitmq-server.service failed.
+
+midpoint#>date
+Tue Aug 30 13:22:46 EDT 2016
+
+midpoint#>ls -la /var/log/rabbitmq
+total 8
+drwxr-xr-x.  2 rabbitmq rabbitmq   42 Aug 29 21:39 .
+drwxr-xr-x. 11 root     root     4096 Aug 29 21:28 ..
+-rw-r--r--.  1 root     root        0 Aug 30 13:21 startup_err
+-rw-r--r--.  1 root     root       66 Aug 30 13:22 startup_log
+
+midpoint#>cat /var/log/rabbitmq/startup_log
+
+ERROR: epmd error for host midpoint: timeout (timed out)
+
+midpoint#>journalctl -xe
+
+--
+-- The start-up result is done.
+Aug 30 13:21:14 midpoint.testbed.tier.internet2.edu su[25940]: pam_unix(su:session): session opened for user rabbitmq by (uid=0)
+Aug 30 13:21:14 midpoint.testbed.tier.internet2.edu systemd[1]: Starting Session c7 of user rabbitmq.
+-- Subject: Unit session-c7.scope has begun start-up
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+--
+-- Unit session-c7.scope has begun starting up.
+Aug 30 13:21:51 midpoint.testbed.tier.internet2.edu su[25940]: pam_unix(su:session): session closed for user rabbitmq
+Aug 30 13:21:51 midpoint.testbed.tier.internet2.edu su[26071]: (to rabbitmq) root on none
+Aug 30 13:21:51 midpoint.testbed.tier.internet2.edu systemd[1]: Started Session c8 of user rabbitmq.
+-- Subject: Unit session-c8.scope has finished start-up
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+--
+-- Unit session-c8.scope has finished starting up.
+--
+-- The start-up result is done.
+Aug 30 13:21:51 midpoint.testbed.tier.internet2.edu su[26071]: pam_unix(su:session): session opened for user rabbitmq by (uid=0)
+Aug 30 13:21:51 midpoint.testbed.tier.internet2.edu systemd[1]: Starting Session c8 of user rabbitmq.
+-- Subject: Unit session-c8.scope has begun start-up
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+--
+-- Unit session-c8.scope has begun starting up.
+Aug 30 13:21:51 midpoint.testbed.tier.internet2.edu su[26074]: (to rabbitmq) root on none
+Aug 30 13:21:51 midpoint.testbed.tier.internet2.edu systemd[1]: Started Session c9 of user rabbitmq.
+-- Subject: Unit session-c9.scope has finished start-up
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+--
+-- Unit session-c9.scope has finished starting up.
+--
+-- The start-up result is done.
+Aug 30 13:21:51 midpoint.testbed.tier.internet2.edu su[26074]: pam_unix(su:session): session opened for user rabbitmq by (uid=0)
+Aug 30 13:21:51 midpoint.testbed.tier.internet2.edu systemd[1]: Starting Session c9 of user rabbitmq.
+-- Subject: Unit session-c9.scope has begun start-up
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+--
+-- Unit session-c9.scope has begun starting up.
+Aug 30 13:22:22 midpoint.testbed.tier.internet2.edu su[26071]: pam_unix(su:session): session closed for user rabbitmq
+Aug 30 13:22:24 midpoint.testbed.tier.internet2.edu su[26074]: pam_unix(su:session): session closed for user rabbitmq
+Aug 30 13:22:24 midpoint.testbed.tier.internet2.edu rabbitmq-server[25870]: Starting rabbitmq-server: FAILED - check /var/log/rabbitmq/startup_{log, _err}
+
+Aug 30 13:22:24 midpoint.testbed.tier.internet2.edu rabbitmq-server[25870]: rabbitmq-server.
+Aug 30 13:22:24 midpoint.testbed.tier.internet2.edu systemd[1]: rabbitmq-server.service: control process exited, code=exited status=1
+Aug 30 13:22:24 midpoint.testbed.tier.internet2.edu systemd[1]: Failed to start LSB: Enable AMQP service provided by RabbitMQ broker.
+-- Subject: Unit rabbitmq-server.service has failed
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+--
+-- Unit rabbitmq-server.service has failed.
+--
+-- The result is failed.
+Aug 30 13:22:24 midpoint.testbed.tier.internet2.edu systemd[1]: Unit rabbitmq-server.service entered failed state.
+Aug 30 13:22:24 midpoint.testbed.tier.internet2.edu systemd[1]: rabbitmq-server.service failed.
+Aug 30 13:22:24 midpoint.testbed.tier.internet2.edu polkitd[5233]: Unregistered Authentication Agent for unix-process:25865:44361697 (system bus name :1.332, object
+lines 1581-1638/1638 (END)
+_____________________
+h6. 2016-08-29 18:02  references and links
+
+https://thepracticaldeveloper.com/2018/11/24/spring-boot-kafka-config/
+https://thepracticaldeveloper.com/2016/10/23/produce-and-consume-json-messages-with-spring-boot-amqp/
+https://docs.spring.io/spring-cloud-stream/docs/current/reference/htmlsingle/
+http://www.baeldung.com/spring-cloud-stream
+https://github.com/eugenp/tutorials/tree/master/spring-cloud/spring-cloud-stream/spring-cloud-stream-rabbit
+https://www.slideshare.net/mieldonkers/cqrs-and-event-sourcing-with-akka-cassandra-and-rabbitmq
+https://www.npmjs.com/package/rabbit-eventstore
+https://content.pivotal.io/blog/understanding-when-to-use-rabbitmq-or-apache-kafka  <== rabbitMQ vs Kafka
+https://spring.io/guides/gs/messaging-rabbitmq/
+https://www.rabbitmq.com/ssl.html
+http://weblogs.asp.net/jeffreyabecker/Using-SSL-client-certificates-for-authentication-with-RabbitMQ
+https://pika.readthedocs.io/en/0.10.0/  <== python RabbitMQ
+https://pypi.python.org/pypi/pika  <== Python AMQP client
+https://www.unixmen.com/install-rabbitmq-server-centos-7/
+https://www.cloudamqp.com/docs/java.html
+http://www.java-allandsundry.com/2016/08/integrating-with-rabbitmq-using-spring.html  <== spring to rabbitmq
+https://dzone.com/articles/web-push-notifications-1  <== simple e2e web notification
+	client and service leveraging node, express, VAPID
+https://vladmihalcea.com/2017/06/28/a-beginners-guide-to-cdc-change-data-capture/  <== ++ xform Δ to events debezium
+https://dzone.com/articles/scalable-distributed-systems-using-akka-spring-boot-ddd-and-java
+  - https://github.com/ajmalbabu/distributed-computing

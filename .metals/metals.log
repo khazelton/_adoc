@@ -1,0 +1,170 @@
+2022.11.27 09:47:21 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/khazelton/opt/_adoc/.metals/lsp.trace.json or /Users/khazelton/Library/Caches/org.scalameta.metals/lsp.trace.json
+2022.11.27 09:47:22 INFO  logging to file /Users/khazelton/opt/_adoc/.metals/metals.log
+2022.11.27 09:47:22 INFO  Started: Metals version 0.11.9 in workspace '/Users/khazelton/opt/_adoc' for client Visual Studio Code 1.73.1.
+2022.11.27 09:47:23 INFO  time: initialize in 1.3s
+2022.11.27 09:47:23 WARN  Build server is not auto-connectable.
+2022.11.27 09:47:37 INFO  running '/Users/khazelton/.sdkman/candidates/java/current/bin/java -Djline.terminal=jline.UnsupportedTerminal -Dsbt.log.noformat=true -Dfile.encoding=UTF-8 -jar /var/folders/6h/cgsd0pbx71jd99y92xklf8400000gn/T/metals9155003050093212107/sbt-launch.jar -Dbloop.export-jar-classifiers=sources bloopInstall'
+2022.11.27 09:47:38 WARN  no build target for: /Users/khazelton/opt/_adoc/project/metals.sbt
+2022.11.27 09:47:38 WARN  no build target for: /Users/khazelton/opt/_adoc/project/project/metals.sbt
+2022.11.27 09:47:38 INFO  skipping build import with status 'Started'
+2022.11.27 09:47:39 INFO  [info] welcome to sbt 1.7.3 (Amazon.com Inc. Java 17.0.5)
+2022.11.27 09:47:39 INFO  [info] loading global plugins from /Users/khazelton/.sbt/1.0/plugins
+2022.11.27 09:47:41 INFO  [info] loading settings for project root-_adoc-build-build from metals.sbt ...
+2022.11.27 09:47:41 INFO  [info] loading project definition from /Users/khazelton/opt/_adoc/project/project
+2022.11.27 09:47:42 INFO  [info] loading settings for project root-_adoc-build from metals.sbt ...
+2022.11.27 09:47:42 INFO  [info] loading project definition from /Users/khazelton/opt/_adoc/project
+2022.11.27 09:47:44 INFO  no build target found for /Users/khazelton/opt/_adoc/project/project/metals.sbt. Using presentation compiler with project's scala-library version: 3.2.0
+2022.11.27 09:47:44 INFO  [success] Generated .bloop/root-_adoc-build.json
+2022.11.27 09:47:44 INFO  [success] Total time: 2 s, completed Nov 27, 2022, 9:47:44 AM
+2022.11.27 09:47:44 INFO  [info] set current project to root-_adoc (in build file:/Users/khazelton/opt/_adoc/)
+2022.11.27 09:47:44 INFO  [success] Generated .bloop/root-_adoc-test.json
+2022.11.27 09:47:44 INFO  [success] Generated .bloop/root-_adoc.json
+2022.11.27 09:47:44 INFO  [success] Total time: 0 s, completed Nov 27, 2022, 9:47:44 AM
+2022.11.27 09:47:45 INFO  time: ran 'sbt bloopInstall' in 7.2s
+2022.11.27 09:47:45 INFO  Attempting to connect to the build server...
+2022.11.27 09:47:45 INFO  Setting up current java home /Users/khazelton/.sdkman/candidates/java/current in /Users/khazelton/.bloop/bloop.json
+2022.11.27 09:47:49 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/khazelton/opt/_adoc/.metals/bsp.trace.json or /Users/khazelton/Library/Caches/org.scalameta.metals/bsp.trace.json
+2022.11.27 09:47:51 INFO  Attempting to connect to the build server...
+2022.11.27 09:47:51 INFO  Bloop uses /Users/khazelton/.sdkman/candidates/java/current defined at /Users/khazelton/.bloop/bloop.json
+2022.11.27 09:47:51 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/khazelton/opt/_adoc/project/.metals/bsp.trace.json or /Users/khazelton/Library/Caches/org.scalameta.metals/bsp.trace.json
+2022.11.27 09:47:51 INFO  time: Connected to build server in 6.03s
+2022.11.27 09:47:51 INFO  Connected to Build server: Bloop v1.5.4
+2022.11.27 09:47:54 INFO  time: indexed workspace in 3.27s
+Nov 27, 2022 9:51:53 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Nov 27, 2022 9:51:53 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2022.11.27 09:52:17 INFO  shutting down Metals
+2022.11.27 09:52:17 INFO  Shut down connection with build server.
+2022.11.27 09:52:17 INFO  Shut down connection with build server.
+2022.11.27 09:52:36 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/khazelton/opt/_adoc/.metals/lsp.trace.json or /Users/khazelton/Library/Caches/org.scalameta.metals/lsp.trace.json
+2022.11.27 09:52:36 INFO  logging to file /Users/khazelton/opt/_adoc/.metals/metals.log
+2022.11.27 09:52:36 INFO  Started: Metals version 0.11.9 in workspace '/Users/khazelton/opt/_adoc' for client Visual Studio Code 1.73.1.
+2022.11.27 09:52:37 INFO  time: initialize in 0.57s
+2022.11.27 09:52:38 INFO  Attempting to connect to the build server...
+2022.11.27 09:52:38 INFO  Bloop uses /Users/khazelton/.sdkman/candidates/java/current defined at /Users/khazelton/.bloop/bloop.json
+2022.11.27 09:52:38 INFO  skipping build import with status 'Installed'
+2022.11.27 09:52:38 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/khazelton/opt/_adoc/.metals/bsp.trace.json or /Users/khazelton/Library/Caches/org.scalameta.metals/bsp.trace.json
+2022.11.27 09:52:38 INFO  Attempting to connect to the build server...
+2022.11.27 09:52:38 INFO  Bloop uses /Users/khazelton/.sdkman/candidates/java/current defined at /Users/khazelton/.bloop/bloop.json
+2022.11.27 09:52:38 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/khazelton/opt/_adoc/project/.metals/bsp.trace.json or /Users/khazelton/Library/Caches/org.scalameta.metals/bsp.trace.json
+2022.11.27 09:52:38 INFO  time: Connected to build server in 0.64s
+2022.11.27 09:52:38 INFO  Connected to Build server: Bloop v1.5.4
+2022.11.27 09:52:40 INFO  time: indexed workspace in 1.49s
+Nov 27, 2022 10:00:04 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Nov 27, 2022 10:00:08 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Nov 27, 2022 10:00:28 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Nov 27, 2022 10:00:29 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2022.11.27 10:05:57 INFO  shutting down Metals
+2022.11.27 10:05:57 INFO  Shut down connection with build server.
+2022.11.27 10:05:57 INFO  Shut down connection with build server.
+2022.11.27 10:06:12 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/khazelton/opt/_adoc/.metals/lsp.trace.json or /Users/khazelton/Library/Caches/org.scalameta.metals/lsp.trace.json
+2022.11.27 10:06:12 INFO  logging to file /Users/khazelton/opt/_adoc/.metals/metals.log
+2022.11.27 10:06:12 INFO  Started: Metals version 0.11.9 in workspace '/Users/khazelton/opt/_adoc' for client Visual Studio Code 1.73.1.
+2022.11.27 10:06:12 INFO  time: initialize in 0.6s
+2022.11.27 10:06:12 INFO  Attempting to connect to the build server...
+2022.11.27 10:06:12 INFO  Bloop uses /Users/khazelton/.sdkman/candidates/java/current defined at /Users/khazelton/.bloop/bloop.json
+2022.11.27 10:06:13 INFO  skipping build import with status 'Installed'
+2022.11.27 10:06:13 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/khazelton/opt/_adoc/.metals/bsp.trace.json or /Users/khazelton/Library/Caches/org.scalameta.metals/bsp.trace.json
+2022.11.27 10:06:13 INFO  Attempting to connect to the build server...
+2022.11.27 10:06:13 INFO  Bloop uses /Users/khazelton/.sdkman/candidates/java/current defined at /Users/khazelton/.bloop/bloop.json
+2022.11.27 10:06:13 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/khazelton/opt/_adoc/project/.metals/bsp.trace.json or /Users/khazelton/Library/Caches/org.scalameta.metals/bsp.trace.json
+2022.11.27 10:06:13 INFO  time: Connected to build server in 0.34s
+2022.11.27 10:06:13 INFO  Connected to Build server: Bloop v1.5.4
+2022.11.27 10:06:15 INFO  time: indexed workspace in 1.5s
+2022.11.27 10:15:35 INFO  shutting down Metals
+2022.11.27 10:15:35 INFO  Shut down connection with build server.
+2022.11.27 10:15:35 INFO  Shut down connection with build server.
+2022.11.27 10:38:13 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/khazelton/opt/_adoc/.metals/lsp.trace.json or /Users/khazelton/Library/Caches/org.scalameta.metals/lsp.trace.json
+2022.11.27 10:38:13 INFO  logging to file /Users/khazelton/opt/_adoc/.metals/metals.log
+2022.11.27 10:38:13 INFO  Started: Metals version 0.11.9 in workspace '/Users/khazelton/opt/_adoc' for client Visual Studio Code 1.73.1.
+2022.11.27 10:38:14 INFO  time: initialize in 0.61s
+2022.11.27 10:38:14 INFO  Attempting to connect to the build server...
+2022.11.27 10:38:14 INFO  Bloop uses /Users/khazelton/.sdkman/candidates/java/current defined at /Users/khazelton/.bloop/bloop.json
+2022.11.27 10:38:14 INFO  skipping build import with status 'Installed'
+2022.11.27 10:38:15 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/khazelton/opt/_adoc/.metals/bsp.trace.json or /Users/khazelton/Library/Caches/org.scalameta.metals/bsp.trace.json
+2022.11.27 10:38:15 INFO  Attempting to connect to the build server...
+2022.11.27 10:38:15 INFO  Bloop uses /Users/khazelton/.sdkman/candidates/java/current defined at /Users/khazelton/.bloop/bloop.json
+2022.11.27 10:38:15 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/khazelton/opt/_adoc/project/.metals/bsp.trace.json or /Users/khazelton/Library/Caches/org.scalameta.metals/bsp.trace.json
+2022.11.27 10:38:15 INFO  time: Connected to build server in 0.45s
+2022.11.27 10:38:15 INFO  Connected to Build server: Bloop v1.5.4
+2022.11.27 10:38:16 INFO  time: indexed workspace in 1.54s
+Nov 27, 2022 10:39:26 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Nov 27, 2022 11:06:29 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Nov 27, 2022 11:06:41 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2022.11.27 11:06:57 INFO  shutting down Metals
+2022.11.27 11:06:57 INFO  Shut down connection with build server.
+2022.11.27 11:06:57 INFO  Shut down connection with build server.
+2022.11.27 11:29:39 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/khazelton/opt/_adoc/.metals/lsp.trace.json or /Users/khazelton/Library/Caches/org.scalameta.metals/lsp.trace.json
+2022.11.27 11:29:39 INFO  logging to file /Users/khazelton/opt/_adoc/.metals/metals.log
+2022.11.27 11:29:39 INFO  Started: Metals version 0.11.9 in workspace '/Users/khazelton/opt/_adoc' for client Visual Studio Code 1.73.1.
+2022.11.27 11:29:39 INFO  time: initialize in 0.62s
+2022.11.27 11:29:39 INFO  Attempting to connect to the build server...
+2022.11.27 11:29:39 INFO  Bloop uses /Users/khazelton/.sdkman/candidates/java/current defined at /Users/khazelton/.bloop/bloop.json
+2022.11.27 11:29:40 INFO  skipping build import with status 'Installed'
+2022.11.27 11:29:41 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/khazelton/opt/_adoc/.metals/bsp.trace.json or /Users/khazelton/Library/Caches/org.scalameta.metals/bsp.trace.json
+2022.11.27 11:29:41 INFO  Attempting to connect to the build server...
+2022.11.27 11:29:41 INFO  Bloop uses /Users/khazelton/.sdkman/candidates/java/current defined at /Users/khazelton/.bloop/bloop.json
+2022.11.27 11:29:41 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/khazelton/opt/_adoc/project/.metals/bsp.trace.json or /Users/khazelton/Library/Caches/org.scalameta.metals/bsp.trace.json
+2022.11.27 11:29:41 INFO  time: Connected to build server in 0.58s
+2022.11.27 11:29:41 INFO  Connected to Build server: Bloop v1.5.4
+2022.11.27 11:29:42 INFO  time: indexed workspace in 1.55s
+Nov 27, 2022 11:47:47 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Nov 27, 2022 11:52:52 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2022.12.01 11:38:55 INFO  shutting down Metals
+2022.12.01 11:38:55 INFO  Shut down connection with build server.
+2022.12.01 11:38:55 INFO  Shut down connection with build server.
+2022.12.01 18:40:12 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/khazelton/opt/_adoc/.metals/lsp.trace.json or /Users/khazelton/Library/Caches/org.scalameta.metals/lsp.trace.json
+2022.12.01 18:40:12 INFO  logging to file /Users/khazelton/opt/_adoc/.metals/metals.log
+2022.12.01 18:40:12 INFO  Started: Metals version 0.11.9 in workspace '/Users/khazelton/opt/_adoc' for client Visual Studio Code 1.73.1.
+2022.12.01 18:40:13 INFO  time: initialize in 0.68s
+2022.12.01 18:40:14 INFO  Attempting to connect to the build server...
+2022.12.01 18:40:14 INFO  Bloop uses /Users/khazelton/.sdkman/candidates/java/current defined at /Users/khazelton/.bloop/bloop.json
+2022.12.01 18:40:14 INFO  skipping build import with status 'Installed'
+2022.12.01 18:40:14 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/khazelton/opt/_adoc/.metals/bsp.trace.json or /Users/khazelton/Library/Caches/org.scalameta.metals/bsp.trace.json
+2022.12.01 18:40:14 INFO  Attempting to connect to the build server...
+2022.12.01 18:40:14 INFO  Bloop uses /Users/khazelton/.sdkman/candidates/java/current defined at /Users/khazelton/.bloop/bloop.json
+2022.12.01 18:40:14 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/khazelton/opt/_adoc/project/.metals/bsp.trace.json or /Users/khazelton/Library/Caches/org.scalameta.metals/bsp.trace.json
+2022.12.01 18:40:14 INFO  time: Connected to build server in 0.52s
+2022.12.01 18:40:14 INFO  Connected to Build server: Bloop v1.5.4
+2022.12.01 18:40:17 INFO  time: indexed workspace in 2.14s
+Dec 01, 2022 6:41:59 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2022.12.03 10:59:58 INFO  shutting down Metals
+2022.12.03 10:59:58 INFO  Shut down connection with build server.
+2022.12.03 10:59:58 INFO  Shut down connection with build server.
+2023.07.20 13:47:29 INFO  Started: Metals version 0.11.12 in workspace '/Users/khazelton/opt/_adoc' for client Visual Studio Code 1.80.1.
+Jul 20, 2023 1:47:29 PM org.flywaydb.core.internal.license.VersionPrinter printVersionOnly
+INFO: Flyway Community Edition 9.16.3 by Redgate
+Jul 20, 2023 1:47:29 PM org.flywaydb.core.internal.license.VersionPrinter printVersion
+INFO: See release notes here: https://rd.gt/416ObMi
+Jul 20, 2023 1:47:29 PM org.flywaydb.core.internal.license.VersionPrinter printVersion
+INFO: 
+Jul 20, 2023 1:47:29 PM org.flywaydb.core.internal.database.base.BaseDatabaseType createDatabase
+INFO: Database: jdbc:h2:file:/Users/khazelton/opt/_adoc/.metals/metals (H2 2.1)
+Jul 20, 2023 1:47:29 PM org.flywaydb.core.internal.command.DbValidate validate
+INFO: Successfully validated 4 migrations (execution time 00:00.007s)
+Jul 20, 2023 1:47:29 PM org.flywaydb.core.internal.command.DbMigrate migrateGroup
+INFO: Current version of schema "PUBLIC": 4
+Jul 20, 2023 1:47:29 PM org.flywaydb.core.internal.command.DbMigrate logSummary
+INFO: Schema "PUBLIC" is up to date. No migration necessary.
+2023.07.20 13:47:29 INFO  time: initialize in 0.3s
+2023.07.20 13:47:29 INFO  Attempting to connect to the build server...
+2023.07.20 13:47:29 INFO  Bloop uses /Users/khazelton/.sdkman/candidates/java/current defined at /Users/khazelton/.bloop/bloop.json
+2023.07.20 13:47:33 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/khazelton/opt/_adoc/.metals/bsp.trace.json or /Users/khazelton/Library/Caches/org.scalameta.metals/bsp.trace.json
+2023.07.20 13:47:35 INFO  time: Connected to build server in 4.78s
+2023.07.20 13:47:35 INFO  Connected to Build server: Bloop v1.5.6
+2023.07.20 13:47:37 INFO  time: indexed workspace in 2.69s
+2023.07.22 19:58:15 INFO  Shutting down server
+2023.07.22 19:58:15 INFO  shutting down Metals
+2023.07.22 19:58:15 INFO  Shut down connection with build server.
+2023.07.22 19:58:15 INFO  Exiting server

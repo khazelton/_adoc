@@ -1,0 +1,1813 @@
+=== grpr-mp.adoc
+ssh csprootuser@khazelton.workbench.incommon.org T3...3-! bander P..1 +
+git clone https://github.internet2.edu/internet2/InCommonTAP-Examples.git
+
+SEE mpGrouperInteg kh.wb.inc.org and MBProMax 
+
+- - -
+_2024-08-20 17:59 restored khwb, loading 100k+_
+
+
+
+- - -
+_2024-08-19 10:38 109K usetive limi
+*- issue: Add member in Grouper UI search function failing. check subject source config -*
+
+review docker-commpose.perf1.yml and grouper Dockerfile
+
+
+- - -
+_2024-08-14 19:32 prep for Friday SIWG: Perf Testbed_
+
+== Beginning with kh wb in original startup state
+
+=== Setting up the performance testbed
+
+*- set environment and aliases -*
+
+source ~/.bashrc
+
+*- SCP the .csv resource data files, tinnyHrs.csv, bigSis.csv, bigHrms.csv, from {MBProMax}:~/opt/khwb/csv to /home on WB host -*
+
+cd opt/khwb/csv
+scp csv/bigHrms.csv csprootuser@khazelton.workbench.incommon.org:
+scp csv/bigSis.csv csprootuser@khazelton.workbench.incommon.org:
+scp csv/tinnyHrms.csv csprootuser@khazelton.workbench.incommon.org:
+``
+
+*- then move into place on wb host -*
+
+```
+cd mp-home
+~/*.csv .
+```
+
+*- Modify docker-compose.yml -*
+
+*- Add the new .csv data file to the volume bind section of the midpoint_server segment of the docker-compose.yml file -*
+
+```
+     - type: bind
+       source: ./midpoint_server/container_files/csv/source-hr.csv
+       target: /opt/midpoint/csv/source-hr.csv
+     - type: bind
+       source: ./midpoint_server/container_files/mp-home/tinnyHrms.csv
+       target: /opt/midpoint/var/tinnyHrms.csv
+     - type: bind
+       source: ./midpoint_server/container_files/mp-home/bigSis.csv
+       target: /opt/midpoint/var/bigSis.csv
+     - type: bind
+       source: ./midpoint_server/container_files/mp-home/bigHrms.csv
+       target: /opt/midpoint/var/bigHrms.csv
+
+     - mp_pw:/opt/mp-pw
+```
+*- docker-compose down, docker-compose up -d -*
+
+*- In workbench mP ui, create new resources by importing resource definition .xml files -*
+
+SourceBigHrms.xml +
+SourceBigSISa.xml +
+SourceTinnyHrms.xml
+
+*- Create and run import tasks to populate the new resources -*
+
+.
+
+- - -
+_2024-08-07 12:11 _
+
+```
+cd InCommonTAP-Examples/Workbench
+docker-compose up --build -d
+ssh csprootuser@khazelton.workbench.incommon.org T3...3-! bander P..1 +
+git clone https://github.internet2.edu/internet2/InCommonTAP-Examples.git
+
+cd InCommonTAP-Examples/Workbench
+docker-compose up --build -d
+docker exec -it workbench-midpoint_server-1 /bin/bash +
+ls -la /opt/midpoint/var +
+export mphome=/csp-tap/InCommonTAP-Examples/Workbench/midpoint_server/container_files/mp-home +
+export wb=/csp-tap/InCommonTAP-Examples/Workbench +
+export gwb=csprootuser@khazelton.workbench.incommon.org +
+https://internet2.app.box.com/s/geayc7d50v32f7uthrdywpwm0o5687yi[] <- COm test data +
+SorID, GivenName, FamilyName, EmailAddress, Telephone, Title, Department, ReferenceID +
+                                                       Empl.  Biology +
+```
+
+*- to go back to pristine i2 repo code -*
+```
+sudo mkdir /csp-tap
+chown csprootuser:csprootuser /csp-tap
+cd csp-tap
+git clone https://github.internet2.edu/internet2/InCommonTAP-Examples.git
+```
+*- then back to above script starting with -*
+```
+cd InCommonTAP-Examples/Workbench
+```
+- - -
+_2024-08-04 12:45 kh workbench wiped and rebuilt_
+
+Error: During compose up: references to a uHawaii.xsd in docker logs midpoint; +
+Cause: Old docker images with incorrect information +
+Solution: Wipe all workbench Docker artifacts and rebuild from fresh clone of WB repo
+
+*- add multiple epSA values to several users and see what the detailed user view shows -*
+
+
+*- test with tinyHrms resource -*
+
+<icfc:configurationProperties>
+    <icfi:filePath>target/midpoint.csv</icfi:filePath>
+    <icfi:encoding>utf-8</icfi:encoding>
+    <icfi:fieldDelimiter>,</icfi:fieldDelimiter>
+    <icfi:multivalueDelimiter>;</icfi:multivalueDelimiter>
+    <icfi:uniqueAttribute>username</icfi:uniqueAttribute>
+    <icfi:passwordAttribute>password</icfi:passwordAttribute>
+</icfc:configurationProperties>
+
+
+*- redo large file config per 2023-08-17 -*
+
+- - -
+_2024-07-10 10:24 add members to test groups_
+
+email, department, employeeNumber are in bitea.csv hr source file
+
+group construction, ii_
+
+add department to LDAP target resource outbound mapping
+
+Use export function from PhpLdapAdmin
+filter (uid="*") ?
+attributes: dn, department, employeeNumber
+
+creates ...Downloads/export(n).csv
+
+...csv/uids.csv  <- replace line 1 ("dn") with entityIdOrIdentifier
+
+entityIdOrIdentifier department
+alice_anderson
+ann_gasper
+ann_henderson
+ann_morrison
+ann_morrison_1
+ann_vales
+
+In Grouper, open a group for membership adds
+select 'import from file',   choose export.csv, in 20 seconds, job is done.
+
+above was working with tinnyHrms.csv resource
+
+- - -
+_2024-07-09 10:10 creating test groups_
+
+*- start gsh session in workbench-grouper_data container -*
+```
+docker exec -it workbench-grouper_data-1 /bin/bash
+sudo -u tomcat /bin/bash
+$GROUPER_DAEMON/bin/gsh.sh
+GrouperSession grouperSession = GrouperSession.startRootSession();
+```
+*- create test group in ref:dept: (Administration) -*
+```
+GroupSave groupSave = new GroupSave().assignName("ref:dept:Administration")
+Group Administration = groupSave.save()
+```
+GroupSave groupSave = new GroupSave().assignName("ref:dept:zz")
+Group zz = groupSave.save()
+
+GroupSave groupSave = new GroupSave().assignName("ref:dept:Mathematics")
+Group Mathematics = groupSave.save()
+
+InformationTechnology
+Linguistics
+Maintenance
+Mathematics
+Physics
+Sociology
+*- other Departments to create -*
+```
+AgriculturalEngineering
+ArtHistory
+Astronomy
+Biology
+                ComputerSciences
+DiningServices
+EastAsianStudies
+EnglishLiterature
+                InformationTechnology
+Linguistics
+Maintenance
+Mathematics
+Physics
+Sociology
+```
+
+- - -
+_2024-06-20 10:42 creating test groups, add members_
+
+```
+sudo -u tomcat /bin/bash
+$GROUPER_DAEMON/bin/gsh.sh
+help() <- gsh help
+:h <- groovy help
+
+GrouperSession grouperSession = GrouperSession.startRootSession();
+
+addMember(group name, subject id)
+addMember(test:volunteers, sidney_gonzalez_9)   
+```
+
+- - -
+GrouperSession grouperSession = GrouperSession.startRootSession();
+
+Group groupAbc = new GroupSave().assignName("a:b:c").assignCreateParentStemsIfNotExist(true).save();
+
+addMember(group name, subject id)
+
+Group group = GroupFinder.findByName(grouperSession, "a:b:c", true);
+group.addMember(SubjectFinder.findByIdAndSource("someId", "sourceId", true), false);
+
+      personalNumber.matches?("xxx(.*)")); 
+
+      focus.name.matches?("hrms(.*)")); 
+
+        
+
+khwb/csv/tinyHrms.csv <- 20 records of hrms people 
+
+- - -
+_2024-06-14 17:07 populating lots of groups, some with large numbers of members_
+
+https://spaces.at.internet2.edu/pages/viewpage.action?pageId=14517859[] <- GrouperShell (gsh) +
+
+https://spaces.at.internet2.edu/display/Grouper/Grouper+custom+template+via+GSH[] +
+
+- - -
+_2024-06-14 13:32 fixing limit exceeded error with wb DS 389 LDAP svr_
+
+*- added 4 operational attributes to the cn=admin entry to remove key limits: -*
+
+nsSizeLimit: -1
+nsLookThroughLimit: -1
+nsIdleTimeout: 5000
+nsTimeLimit: 120
+
+Workbench]$ docker exec workbench-directory-1 ldapsearch -x -H ldap://localhost -b dc=internet2,dc=edu -D "cn=admin,dc=internet2,dc=edu" -w "password" employeeNumber=jhunter_2
+
+# extended LDIF
+#
+# LDAPv3
+# base <dc=internet2,dc=edu> with scope subtree
+# filter: employeeNumber=jhunter_2
+# requesting: ALL
+#
+
+# james_hunter_2, People, internet2.edu
+dn: uid=james_hunter_2,ou=People,dc=internet2,dc=edu
+uid: james_hunter_2
+mail: JamesKHunter@hotmail.nil
+employeeNumber: jhunter_2
+givenName: James
+sn: Hunter
+cn: James Hunter
+objectClass: inetOrgPerson
+objectClass: eduPerson
+objectClass: eduMember
+objectClass: incwbPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 2
+# numEntries: 1
+
+- - -
+
+
+```
+docker exec workbench-directory-1 ldapsearch -x -H ldap://localhost -b dc=internet2,dc=edu -D "cn=admin,dc=internet2,dc=edu" -w "password" cn
+...
+# patricia_garcia_7, People, internet2.edu
+dn: uid=patricia_garcia_7,ou=People,dc=internet2,dc=edu
+cn: Patricia Garcia
+
+# louise_smith_75, People, internet2.edu
+dn: uid=louise_smith_75,ou=People,dc=internet2,dc=edu
+cn: Louise Smith
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 109409
+# numEntries: 109408
+```
+
+- - -
+docker exec workbench-directory-1 ldapsearch -x -H ldap://localhost -b dc=internet2,dc=edu -D "cn=admin,dc=internet2,dc=edu" -w "password"
+
+# search result
+search: 2
+result: 11 Administrative limit exceeded
+
+# numResponses: 5001
+# numEntries: 5000
+
+other attributes that might be helpful if nsSizeLimit alone doesn’t do the trick:
+nsLookThroughLimit: -1
+nsIdleTimeout: 5000
+nsTimeLimit: 120
+- - -
+_2024-06-12 08:52 Apache Dir Studio Access to WB LDAP_
+
+working command inside directory container:
+
+ldapsearch -D "cn=admin" -W -p 636 -h localhost -b "dc=internet2,dc=edu" -s sub cn
+
+
+ldapsearch -h localhost -D "cn=Directory Manager" -W -b dc=ehowstuff,dc=local uid=user1
+
+- - -
+https://spaces.at.internet2.edu/display/I2/LDAP+Page[]
+
+For accounts that need large searches/updates (e.g. grouper and comanage), use these attributes on the service account:
+
+    nsLookThroughLimit: -1
+    nsSizeLimit: -1
+    nsIdleTimeout: 5000
+    nsTimeLimit: 120
+
+    secureCRT ssh client
+
+    localhost
+    9636
+
+    Use SSL Encryption (LDAPs)
+
+    documentation: Red Hat Directory Server 11
+
+    06'33" - 17'11" <= Pauls wallkthrough on I2/Evol coord meeting recording
+    https://internet2.zoom.us/rec/play/Of-QVdrAWjc1XyL2iflYxzDhTNYG6eIbnONE3uO5Tjv8RDw3yg27x76p3aKCkfz7wJV_6wDPEJ9Zy6pW.edpx6Y8Syneb1cf2?canPlayFromShare=true&from=share_recording_detail&continueMode=true&componentName=rec-play&originRequestUrl=https%3A%2F%2Finternet2.zoom.us%2Frec%2Fshare%2F2FT5JsCFLbH83Z2LUZWdePcP8am3D-IUqM2eSydSa-tepjQyH9nIKgAB2XQkbTxn.2NRFxXS4SXPypO2L[]
+
+- - -
+_2024-06-11 12:54 upping sizelimit on LDAP grouper user_
+
+ssh -i "us-east-1-key.pem" csprootuser@khazelton.workbench.incommon.org
+
+ssh -i ~/.ssh/id_ed25519 -N -L 389:localhost:389 csprootuser@khazelton.workbench.incommon.org
+
+- - -
+_2024-06-10 10:42 ldap grouper finding subjects_
+
+-z is the option that sets sizelimit for max number of returns
+[root@a227044c836f /]# ldapsearch -h localhost -p 389 -D "cn=Directory Manager" -W -z 200000 -b dc=internet2,dc=edu cn="Aaron Benson"
+
+Enter LDAP Password:
+# extended LDIF
+#
+# LDAPv3
+# base <dc=internet2,dc=edu> with scope subtree
+# filter: cn=Aaron Benson
+# requesting: ALL
+#
+
+# aaron_benson_2, People, internet2.edu
+dn: uid=aaron_benson_2,ou=People,dc=internet2,dc=edu
+uid: aaron_benson_2
+mail: AaronKBenson@gmail.nil
+employeeNumber: abenson_2
+givenName: Aaron
+sn: Benson
+cn: Aaron Benson
+objectClass: inetOrgPerson
+objectClass: eduPerson
+objectClass: eduMember
+objectClass: incwbPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+
+# aaron_benson_4, People, internet2.edu
+dn: uid=aaron_benson_4,ou=People,dc=internet2,dc=edu
+uid: aaron_benson_4
+mail: AaronKBenson@gmail.nil
+employeeNumber: abenson_4
+givenName: Aaron
+sn: Benson
+cn: Aaron Benson
+objectClass: inetOrgPerson
+objectClass: eduPerson
+objectClass: eduMember
+objectClass: incwbPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 3
+# numEntries: 2
+[root@a227044c836f /]#
+
+- - -
+
+	uid=james_virgil
+ 	cn=James Virgil
+
+[root@a227044c836f /]# ldapsearch -h localhost -p 389 -D "cn=Directory Manager" -W -b dc=internet2,dc=edu uid=james_virgil
+Enter LDAP Password:
+# extended LDIF
+#
+# LDAPv3
+# base <dc=internet2,dc=edu> with scope subtree
+# filter: uid=james_virgil
+# requesting: ALL
+#
+
+# james_virgil, People, internet2.edu
+dn: uid=james_virgil,ou=People,dc=internet2,dc=edu
+uid: james_virgil
+mail: JamesKVirgil@gmail.nil
+employeeNumber: jvirgil
+givenName: James
+sn: Virgil
+cn: James Virgil
+objectClass: inetOrgPerson
+objectClass: eduPerson
+objectClass: eduMember
+objectClass: incwbPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+
+- - -
+_2024-06-08 20:53 define 50k SIS resource_
+
+start with duplicate of SourceBigHrmsHRMS.xml, SourceBigSIS.xml
+                                                       
+- - -
+_2024-06-08 14:20 pick up test environment configuration_
+
+*- core files -*
+
+opt/khwbig <- ~/ideaProjects/khwbig the working directory for this project
+opt/khwb   <- root folder for all variants of files used with khwbig runs
+
+*- prep opt/khwb raw csv's to match layout of bigHrms.csv -*
+
+```
+get rid of superfluous US national code field w regex in vsCode: 
+,\d, -> ,
+remove repeating commas:
+,,,,,,, -> ,
+,,, -> ,
+,, -> ,
+add field name line as row 1
+
+SorID,GivenName,FamilyName,EmailAddress,Telephone,Title,Department,ReferenceID
+hrms1,Myrtle,Jefferson,MyrtleWJefferson@yahoo.nil,507-798-2339,Employee,Biology,d3b5b15c-3ce2-4ce5-9752-acb941ed0e78
+sis1,Carolyn,Headrick,CarolynRHeadrick@gmail.nil,330-524-3607,291-94-4527,Student,"Graduate School",cf182d55-35d4-46be-8910-662ef5b19a78
+```
+
+*- get csv file into position in kh.wb and add bind to docker-compose.yml -*
+
+*- create SIS archetype modeled on HRMS archetype -*
+
+place in ideaProjects/khwbig/objects/archetypes
+
+in mP define new SIS resource, import records
+
+
+- - -
+_2024-03-28 16:25 _
+
+objectTemplateRef: User Template
+User Template contains fullname construction script
+- - -
+_2024-03-28 08:30 ldap to subjectIds to group_
+
+*- √ restore 50k csv account resource -*
+
+*- populate large grouper groups -*
+
+https://spaces.at.internet2.edu/pages/viewpage.action?spaceKey=Grouper&title=Grouper+Loader+LDAP+examples[] <- !! complete ldap loader example +
+https://spaces.at.internet2.edu/display/Grouper/Grouper+Loader+add+new+job[] <- main Grouper Loader page 
+
+
+addMember(group name, subject id)
+https://spaces.at.internet2.edu/pages/viewpage.action?pageId=14517859[] <- gsh 
+
+- - -
+_2024-03-27 13:12 import large groups to Grouper_
+
+https://raw.githubusercontent.com/Internet2/grouper/master/grouper-qs-builder/subjects.sql[] <- Save this file into subjects.sql and run it to load test subjects
+
+- - -
+_2024-03-25 11:33 creating a list of subject ids for import to Grouper groups_
+
+attribute mappings
+
+[root@5c7fb9e90af5 /]# cat run/secrets/m_database_password.txt
+password
+                                                       
+- - -
+_2024-03-24 18:02 loading large groups into grouper_
+
+ldapsearch -D "cn=Directory Manager" -W -p 389 -h loocalhost -b "dc=internet2,dc=edu" -s sub -x "(objectclass=*)" sn cn
+
+Filter performed: (incwbPersonEmployeeID=hrms10006)
+
+- - -
+_2024-03-19 16:35 group construction, ii_
+
+Use export function from PhpLdapAdmin
+filter (uid="*") ?
+attributes: dn, department
+
+creates ...Downloads/export(n).csv
+
+...csv/uids.csv  <- replace line 1 ("dn") with entityIdOrIdentifier
+
+entityIdOrIdentifier
+alice_anderson
+ann_gasper
+ann_henderson
+ann_morrison
+ann_morrison_1
+ann_vales
+
+In Grouper, open a group for membership adds
+select 'import from file',   choose export.csv, in 20 seconds, job is done.
+
+above was working with tinnyHrms.csv resource
+
+repeat test with 2k entries: 2kHrms.csv and Source2kTestHRMSminusSchema.xml
+
+compute a minutes-per-1000 metric
+then run the 5 10k entry test hrms file with SourceBigTestHRMS
+
+import into 5 distinct groups, create one 50 k file from those groups
+
+- - -
+_2024-03-18 13:37 group construction_
+
+*- export 'uid' from LDAP to csv; use as input to Grouper UI add members from file -*
+```
+LDAP Resource
+	uid=chris_powell
+ 	dn	uid=chris_powell,ou=People,dc=internet2,dc=edu
+ 	cn	Chris Powell
+ 	User Name	chris_powell
+```
+
+- - -
+_2024-03-14 14:26 create large n groups in Grouper
+
+*-  Grouper GSH add members*
+https://spaces.at.internet2.edu/pages/viewpage.action?pageId=14517859[] +
+
+*-  Grouper UI add members to group  -*
+
+add members to group
+
+ test : volunteers
+
+- - -
+_2024-03-12 18:48 tracing provisioning of 50k hrms_
+
+SorID:          hrms50000       last row in bigHrms.csv
+personalNumber: hrms50000       midPoint user search
+userName:       louise_smith40  LDAP
+
+- - -
+_2024-03-12 12:24 try importing 50k records from bigHrms.csv_
+
+*- Server Import Task of 50k users -*
+
+10k in 0.5 hours, so projecting 50k wiil take 2.5 hours (2:40 wall clock time)
+
+All  10k entries in bitea.csv are subjects in Grouper
+through
+Row 2996 in biteb.csv, Randy Hensley is a subject known to Grouper
+Row 2997 in biteb.csv, Jessica Jackson is NOT a subject known to Grouper
+
+so Grouper is seeing only the first 12997 records
+
+
+                                                       title  ou  <- in mP User schema
+- - -
+_2024-03-11 18:48 trying to get fullname consruction right_
+
+container_files/csv/source-hr.csv inbound schema handling mappings
+
+source-hr.csv
+
+id,     firstname,lastname, department, mail,                 validFrom,  validTo
+E600001,John R,   Smith,    HR_SOR,     xjsmith@example.com,  2018-01-01, 9999-12-31
+
+uid           -> extension/HR_ID
+departmend    -> organizationalUnit
+firstname     -> givenName
+lastname      -> familyName
+lastname      -> fullName     basic.concatName(firstname, input)
+mail          -> emailAddress
+
+
+testHrms.csv     in mP
+
+SorID         -> personalNumber
+GivenName     -> givenName
+FamilyName    -> familyName
+FamilyName    -> fullName     basic.concatName(GivenName, input)
+EmailAddress  -> emailAddress
+Telephone
+Title         -> title
+Department    -> organizationalUnit
+
+SorID,  GivenName,  FamilyName, EmailAddress,               Telephone,    Title,    Department, ReferenceID
+(all ri:)             d3b5b15c-3ce2-4ce5-9752-acb941ed0e78
+
+pers#   givenName   familyName  emailAddress                              
+hrms1,  Myrtle,     Jefferson,  MyrtleWJefferson@yahoo.nil  507-798-2339,
+
+title     organizationalUnit    
+Employee, Biology       
+                                    
+
+```
+    <schemaHandling>
+        <objectType id="1">
+            <kind>account</kind>
+            <intent>default</intent>
+            <displayName>Default Account</displayName>
+            <default>true</default>
+            <objectClass>ri:AccountObjectClass</objectClass>
+
+            <attribute id="2">
+                <ref>ri:uid</ref>
+                <limitations id="7">
+                    <access>
+                        <read>true</read>
+                        <add>false</add>
+                        <modify>false</modify>
+                    </access>
+                </limitations>
+                <inbound id="8">
+                    <target>
+                        <path>extension/HR_ID</path>
+                    </target>
+                </inbound>
+                
+            <attribute id="3">
+                <ref>ri:department</ref>
+                <displayName>Department name</displayName>
+                <limitations id="13">
+                    <access>
+                        <read>true</read>
+                        <add>false</add>
+                        <modify>false</modify>
+                    </access>
+                </limitations>
+                <inbound id="14">
+                    <target>
+                        <path>organizationalUnit</path>
+                        <set>
+                            <predefined>all</predefined>
+                        </set>
+                    </target>
+                </inbound>
+            </attribute>
+
+            <attribute id="4">
+                <ref>ri:firstname</ref>
+                <displayName>First name</displayName>
+                <limitations id="15">
+                    <access>
+                        <read>true</read>
+                        <add>false</add>
+                        <modify>false</modify>
+                    </access>
+                </limitations>
+                <inbound id="16">
+                    <target>
+                        <path>givenName</path>
+                    </target>
+                </inbound>
+            </attribute>
+
+            <attribute id="5">
+                <ref>ri:lastname</ref>
+                <displayName>Last name</displayName>
+                <limitations id="17">
+                    <access>
+                        <read>true</read>
+                        <add>false</add>
+                        <modify>false</modify>
+                    </access>
+                </limitations>
+                <inbound id="18">
+                    <target>
+                        <path>familyName</path>
+                    </target>
+                </inbound>
+
+                <inbound id="19">
+                    <source>
+                        <name>firstname</name>
+                        <path>$projection/attributes/ri:firstname</path>
+                    </source>
+                    <expression>
+                        <script>
+                            <code>basic.concatName(firstname, input)</code>
+                        </script>
+                    </expression>
+                    <target>
+                        <path>fullName</path>
+                    </target>
+                </inbound>
+            </attribute>
+
+            <attribute id="6">
+                <ref>ri:mail</ref>
+                <displayName>E-mail</displayName>
+                <limitations id="20">
+                    <access>
+                        <read>true</read>
+                        <add>false</add>
+                        <modify>false</modify>
+                    </access>
+                </limitations>
+                <inbound id="21">
+                    <target>
+                        <path>emailAddress</path>
+                    </target>
+                </inbound>
+            </attribute>
+            
+        </objectType>
+    </schemaHandling>
+
+
+
+            <attribute id="39">
+                <ref>ri:GivenName</ref>
+                <inbound id="31">
+                    <strength>strong</strength>
+                    <target>
+                        <path>givenName</path>
+                    </target>
+                </inbound>
+            </attribute>
+
+            <attribute id="32">
+                <ref>ri:FamilyName</ref>
+                <inbound id="12">
+                    <strength>strong</strength>
+                    <target>
+                        <path>familyName</path>
+                    </target>
+                </inbound>   
+                <inbound id="19">
+                    <source>
+                        <path>ri:givenName</path>
+                    </source>
+                    <expression>
+                        <script>
+                            <code>basic.concatName(givenName, input)</code>
+                        </script>
+                    </expression>
+                    <target>
+                        <path>fullName</path>
+                    </target>
+                </inbound>                
+            </attribute>  
+    ```
+- - -
+_2024-03-10 11:41 add title, department, import 2k from hrms_
+
+extract 2kHrms.csv +
+change csv file name ro 2kHrms.csv in resource configuration +
+add attributes title and ou (Department) to MBProMax:~/opt/khwb/Source2kTestHRMS.xml; use as resource def file in mP +
+add 2kHrms.csv to bound volumes in docker-compose.yml +
+
+- - -
+_2024-03-09 14:14 reboot kh.wb_
+
+*- jump page restart leave config files in place -*
+
+*- successful import of 2k HR records -*
+
+*- successful addition of 1850+ members to test:volunteers -*
+
+*- fix identifier mappings from .csv to LDAP to Grouper
+
+
+
+- - -
+_2024-03-09 10:13 troubleshooting test HRMS subjects missing from LDAP_
+
+*- import tinyHrms.csv into TestHRMS resource,  confirm they're showing up in LDAP -*
+
+edit non.adoc/SourceBTestHRMS.xml
+
+mP crashes trying to view accounts imported from 500Hrms.csv as SourceBTestHRMS.xml
+
+- - -
+_2024-03-08 10:36 importing 10k per run to make it quicker to check for correctness_
+
+*- clear the mP repository for clean start -*
+
+https://docs.evolveum.com/midpoint/guides/cleaning-up-the-mess/[]
+
+*- first fix LDAP resource to populate CN with personalNumber rather than fullName -*
+
+
+
+*- importing 10k per run -*
+
+```
+pwd
+/Users/kh/opt/khwb/feb15
+
+cat splitcsv.sh
+
+split -l 10000 bigHrms.csv
+for i in *; do mv "$i" "$i.csv"; done
+
+./splitCsv.sh
+
+mv xaa.csv bitea.csv
+mv xab.csv biteb.csv
+mv xac.csv bitec.csv
+mv xad.csv bited.csv
+mv xae.csv bitee.csv
+
+scp bite* csprootuser@khazelton.workbench.incommon.org:
+
+ssh csprootuser@khazelton.workbench.incommon.org
+cd $mphome
+
+cp ~/bite* .
+```
+
+*- import each file by pointing the resource import file at each bite^ in turn -*
+
+- - -
+_2024-03-07 12:46 finalizing large N groups test data prep_
+
+basic.containsIgnoreCase("hrms") <- filter to select test data accounts; use in ldap role assignment
+
+- - -
+_2024-03-06 12:40 pushed through issues to a working 2nd HR resource_
+
+*- Next steps -*
+
+- Delete and reimport bigHrms.csv with resource definition from tinyHrms +
+- Define groups and create large N groups with Grouper-provided functions +
+
+*- defined cn in Outbound LDAP to be SorID, then import and provision worked -*
+
+- - -
+_2024-02-18 19:14 success importing 49k testHrms, now adding assignments_
+
+<i class="fa-solid fa-user-tie"></i>
+```
+IdeaProjects
+├── khwbig
+│   ├── credentials.kdbx
+│   ├── khwbig.iml
+│   ├── objects
+│   │   ├── archetypes
+│   │   │   ├── Guest.xml
+│   │   │   └── HR.xml
+│   │   └── resources
+│   │       ├─- SourceGuestDB.xml
+                 SourceHRSystem.xml
+                 SourceSISDB.xml
+                 SourceTestHRMS.xml
+```
+
+- - -
+_2024-02-16 20:24 debug kh.wb_
+
+*- error: missing aux obj class incwbPerson ??? -*
+
+- - -
+_2024-02-15 10:05 debug kh.wb_
+
+https://unix.stackexchange.com/questions/744633/how-to-install-certbot-via-snap-on-amazon-linux-2023[]
+
+
+*- oids for connectors break between builds; Filter on connector name instead -*
+
+```
+    <connectorRef relation="org:default" type="c:ConnectorType">
+        <!-- ConnId com.evolveum.polygon.connector.csv.CsvConnector v2.7 -->
+        <filter>
+            <q:equal>
+                <q:path>c:connectorType</q:path>
+                <q:value>com.evolveum.polygon.connector.csv.CsvConnector</q:value>
+            </q:equal>
+        </filter>
+    </connectorRef>
+```
+
+- - -
+_2024-02-14 18:05 edit docker-compose.yml to bind testHrms.csv into container_
+
+```
+... midpoint_server
+     - type: bind
+       source: ./midpoint_server/container_files/mp-home/testHrms.csv
+       target: /opt/midpoint/var/testHrms.csv
+...
+```
+fix csv oid:
+
+0d17ed42-c8e9-4064-99a6-9a1aeb0eedd6
+
+- - -
+_2024-02-13 21:24 all done but one item of prep for testHrms resource_
+
+edit docker-compose.yml to bind testHrms.csv into container
+
+- - -
+_2024-02-13 12:36 outline the step-by-step how-to_
+
+follow steps from 2024-02-06 below.
+
+- - -
+
+α β γ δ ε ζ 
+η θ ι κ λ μ 
+ν ξ ο π ρ σ 
+τ γ φ χ ψ ω
+
+https://symbl.cc/en/html-entities/
+
+&pound; 
+
+F &compfn; G &compfn; H
+
+- - -
+ _2024-02-06 16:45 test large groups on kh.wb_
+
+*- After workbench is rebooted, -*
+
+*- all three files needed to update Workbench to support testX.csv are in MBProMax:~/opt/khwb -*
+
+from ~/opt/khwb
+
+scp testHrms.csv csprootuser@khazelton.workbench.incommon.org:
+testHrms.csv to $mphome +
+
+scp internet2.xsd csprootuser@khazelton.workbench.incommon.org:
+cp internet2.xsd $mphome/schema +
+
+scp  incwbperson-obj.ldif csprootuser@khazelton.workbench.incommon.org:
+incwbperson-obj.ldif to ../Workbench/directory/container_files/seed-data/ +
+
+...
+-rw-r--r-- 1 csprootuser csprootuser 2290 Feb 14 01:21 testHrms.csv
+-rw-r--r-- 1 csprootuser csprootuser 4083 Feb 14 01:25 internet2.xsd
+-rw-r--r-- 1 csprootuser csprootuser 1412 Feb 14 01:30 incwbperson-obj.ldif
+
+*- check docker-compose to insure that testHrms.csv is bound volume /opt/midpoint/var/testHrms.csv -*
+
+     ... midpoint_server
+     - type: bind
+       source: ./midpoint_server/container_files/mp-home/testHrms.csv
+       target: /opt/midpoint/var/testHrms.csv
+     ...
+
+*- add SorID and ReferenceID (attr and obj class) to schema extension file -*
+
+../Workbench/directory/container_files/seed-data/incwbperson-obj.ldif
+
+*- don't reference connectors by OID in a resource definition file that's intended for upload or import -*
+
+
+- - -
+_2024-01-23 07:20 continue development of Large Group Eest env on kh wb_
+
+*- all three files needed to update Workbench to support bigsis.csv are in MBProMax:~/opt/khwb -*
+
+bigHrms.csv +
+internet2.xsd +
+incwbperson-obj.ldif +
+
+*- fresh copies to wb from MBProMax:~/opt/khwb -*
+
+cd ~/opt/khwb
+scp bigHrms.csv csprootuser@khazelton.workbench.incommon.org:/csp-tap/InCommonTAP-Examples/Workbench/midpoint_server/container_files/mp-home
+
+scp internet2.xml csprootuser@khazelton.workbench.incommon.org:/csp-tap/InCommonTAP-Examples/Workbench/midpoint_server/container_files/mp-home <- once bigHrms resource is correectly defined; before that, rebuild the resource via the wizard
+
+scp internet2.xsd csprootuser@khazelton.workbench.incommon.org:/csp-tap/InCommonTAP-Examples/Workbench/midpoint_server/container_files/mp-home/schema/
+
+scp incwbperson-obj.ldif csprootuser@khazelton.workbench.incommon.org:/csp-tap/InCommonTAP-Examples/Workbench/directory/container_files/seed-data/
+
+/csp-tap/InCommonTAP-Examples/Workbench...
+
+.../midpoint_server/container_files/mp-home...
+.../internet2.xml <- +
+.../schema/internet2.xsd <- +
+
+.../directory/container_files/seed-data...
+.../incwbperson-obj.ldif <- +
+
+*- edit docker-compose.yml to map the new .csv files into container space -*
+
+- - -
+_2024-01-21 10:30 run test with bigsis.csv excerpt of COm test data_
+
+*- copy to csprootuser home so rebuild of Workbench will not disturb them -*
+
+scp testHrms.csv           csprootuser@khazelton.workbench.incommon.org: +
+scp internet2.xsd        csprootuser@khazelton.workbench.incommon.org: +
+scp incwbperson-obj.ldif csprootuser@khazelton.workbench.incommon.org: +
+
+*- once Workbench is rebuilt on workbench host, move these files into their proper localtion -*
+
+```
+export mphome=/csp-tap/InCommonTAP-Examples/Workbench/midpoint_server/container_files/mp-home
+csprootuser home:
+
+cp bigsis.csv           $mphome
+cp internet2.xsd        $mphome/schema  <- skipped inadvertently once
+cp incwbperson-obj.ldif /csp-tap/InCommonTAP-Examples/Workbench/directory/container_files/seed-data/
+                        
+*- then bounce Workbench and dump existing volumes -*
+
+docker-compose down -v
+docker-compose up -d
+```
+- - -
+_2024-03-05 16:40 push through_
+
+*- tinyHrms fullname populated from GivenName and FamilyName (see orig HR resource) -*
+
+*- add SorID and RefID to LDAP
+
+
+- - -
+_2024-01-20 11:18 add bigsis resource to kh.Workbench..._
+
+forgot to add bigsis.csv to docker-compose midpoint_server section
+
+[root@5b9a03d223b9 /]# ls -la /opt/midpoint/var/
+total 36
+drwxr-xr-x 15 root root 4096 Jan 20 22:58 .
+drwxr-xr-x  1 root root   17 Jan 17 21:57 ..
+-rw-r--r--  1 root root 1213 Oct 17 09:56 README.txt
+-rw-r--r--  1 root root 2571 Jan 17 21:55 config.xml
+drwxr-x---  2 root root    6 Jan 20 22:51 connid-connectors
+-rw-r-----  1 root root 2746 Jan 20 22:58 cs-portal.csv
+drwxr-x---  2 root root    6 Jan 20 22:51 export
+-rw-r-----  1 root root 1461 Jan 20 22:58 faculty-portal.csv
+drwxr-xr-x  2 root root  202 Jan 20 22:50 icf-connectors
+drwxr-x---  2 root root    6 Jan 20 22:51 idm-legacy
+drwxr-x---  2 root root    6 Jan 20 22:51 import
+-rw-------  1 root root  518 Jan 20 22:51 keystore.jceks
+drwxr-xr-x  2 root root   82 Jan 20 22:50 lib
+drwxr-xr-x  2 root root   74 Jan 20 22:50 log
+-rw-r--r--  1 root root   15 Jan 17 21:55 mailing-lists.csv
+drwxr-xr-x 14 root root  250 Jan 20 22:50 post-initial-objects
+drwxr-xr-x  3 root root   25 Jan 20 22:50 res
+drwxr-xr-x  2 root root   27 Jan 20 22:50 schema
+-rw-r--r--  1 root root  351 Jan 17 21:55 source-external.csv
+-rw-r--r--  1 root root   93 Jan 17 21:55 staff-portal.csv
+drwxr-x---  2 root root    6 Jan 20 22:51 tmp
+drwxr-x---  2 root root    6 Jan 20 22:51 trace
+drwxr-x---  3 root root   20 Jan 20 22:51 work
+[root@5b9a03d223b9 /]#
+..
+-rw-r--r--  1 root root 1213 Oct 17 09:56 README.txt
+-rw-r--r--  1 root root 2571 Jan 17 21:55 config.xml
+drwxr-x---  2 root root    6 Jan 20 18:02 connid-connectors
+-rw-r-----  1 root root 2746 Jan 20 18:06 cs-portal.csv
+drwxr-x---  2 root root    6 Jan 20 18:02 export
+-rw-r-----  1 root root 1461 Jan 20 18:06 faculty-portal.csv
+drwxr-xr-x  2 root root  202 Jan 20 18:02 icf-connectors
+drwxr-x---  2 root root    6 Jan 20 18:02 idm-legacy
+drwxr-x---  2 root root    6 Jan 20 18:02 import
+-rw-------  1 root root  518 Jan 20 18:03 keystore.jceks
+drwxr-xr-x  2 root root   82 Jan 20 18:02 lib
+drwxr-xr-x  2 root root   74 Jan 20 18:02 log
+-rw-r--r--  1 root root   15 Jan 17 21:55 mailing-lists.csv
+drwxr-xr-x 14 root root  250 Jan 20 18:02 post-initial-objects
+drwxr-xr-x  3 root root   25 Jan 20 18:02 res
+drwxr-xr-x  2 root root   27 Jan 20 18:02 schema
+-rw-r--r--  1 root root  351 Jan 17 21:55 source-external.csv
+-rw-r--r--  1 root root   93 Jan 17 21:55 staff-portal.csv
+drwxr-x---  2 root root    6 Jan 20 18:02 tmp
+drwxr-x---  2 root root    6 Jan 20 18:02 trace
+drwxr-x---  3 root root   20 Jan 20 18:03 work
+*- Bounce Workbench -*
+
+*- Define new Big SIS resource derived from COm test data -*
+
+- - -
+_2024-01-20 08:30 shift to a flow of csv - mP - LDAP - Grouper_
+
+*- troubleshoot addition of incwbpersonSorId and ...RefId -*
+
+changes needed:
+
+*- mp-home/schema/internet2.xsd -> ~/opt/internet2.xsd -*
+
+add sorId and refId to the existing user schema extensions
+
+edited version:
+
+```
+➜  ~ cat ~/opt/khwb/internet2.xsd
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<xsd:schema elementFormDefault="qualified"
+  targetNamespace="http://grouper-demo.tier.internet2.edu"
+  xmlns:tns="http://grouper-demo.tier.internet2.edu"
+  xmlns:a="http://prism.evolveum.com/xml/ns/public/annotation-3"
+  xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <xsd:complexType name="UserExtensionType">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <a:extension ref="c:UserType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="HR_ID" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <a:indexed>true</a:indexed>
+            <a:displayName>Employee ID</a:displayName>
+            <a:displayOrder>130</a:displayOrder>
+            <a:help>HR ID</a:help>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+	  <xsd:element name="SIS_ID" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <a:indexed>true</a:indexed>
+            <a:displayName>Student ID</a:displayName>
+            <a:displayOrder>120</a:displayOrder>
+            <a:help>SIS ID</a:help>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+     <xsd:element name="Guest_ID" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <a:indexed>true</a:indexed>
+            <a:displayName>Guest ID</a:displayName>
+            <a:displayOrder>140</a:displayOrder>
+            <a:help>Guest ID</a:help>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+     <xsd:element name="UserID" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <a:indexed>true</a:indexed>
+            <a:displayName>User ID</a:displayName>
+            <a:displayOrder>110</a:displayOrder>
+            <a:help>User ID</a:help>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+     <xsd:element name="sorId" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <a:indexed>true</a:indexed>
+            <a:displayName>SoR ID</a:displayName>
+            <a:displayOrder>150</a:displayOrder>
+            <a:help>sorId ID</a:help>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="refId" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <a:indexed>true</a:indexed>
+            <a:displayName>Ref ID</a:displayName>
+            <a:displayOrder>160</a:displayOrder>
+            <a:help>ref ID</a:help>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="OrgExtensionType">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <a:extension ref="c:OrgType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+        <xsd:element name="grouperName" type="xsd:string" minOccurs="0"/>
+        <xsd:element name="grouperDisplayName" type="xsd:string" minOccurs="0"/>
+        <xsd:element name="ldapDn" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArchetypeExtensionType">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <a:extension ref="c:ArchetypeType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+        <xsd:element name="grouperNamePrefix" type="xsd:string" minOccurs="0"/><!-- e.g. ref:affiliation: -->
+        <xsd:element name="ldapRootDn" type="xsd:string" minOccurs="0"/>	<!-- e.g. ou=Affiliations,ou=Groups,dc=internet2,dc=edu -->
+        <xsd:element name="midPointNamePrefix" type="xsd:string" minOccurs="0"/><!-- e.g. affiliation_ -->
+        <xsd:element name="midPointDisplayNamePrefix" type="xsd:string" minOccurs="0"/>		<!-- e.g. Affiliation: -->
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
+
+scp into place on kh.wb...
+
+➜  ~ scp ~/opt/khwb/internet2.xsd csprootuser@khazelton.workbench.incommon.org:
+
+csprootuser@khazelton.workbench.incommon.org's password:
+internet2.xsd                                   100% 4075    39.7KB/s   00:00
+```
+
+*- edit incwbperson-obj.ldif, add sorId and refId -*
+
+```
+➜  seed-data git:(main) ✗ pwd
+/Users/kh/opt/InCommonTAP-Examples-current/Workbench/directory/container_files/seed-data
+
+cat directory/container_files/seed-data/incwbperson-obj.ldif
+#
+# incwbPerson Objectclass
+#
+#
+# "incwbperson" attributes
+#
+dn: cn=schema
+changetype: modify
+#
+add: attributetypes
+attributeTypes: ( 1.3.6.1.4.1.5923.999.1.1.1
+ NAME 'incwbPersonStudentID'
+ DESC 'incwbPerson Student ID'
+ EQUALITY caseIgnoreMatch
+ SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE X-ORIGIN 'user defined' )
+attributeTypes: ( 1.3.6.1.4.1.5923.999.1.1.2
+ NAME 'incwbPersonEmployeeID'
+ DESC 'incwbPerson Employee ID'
+ EQUALITY caseIgnoreMatch
+ SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE X-ORIGIN 'user defined' )
+#
+attributeTypes: ( 1.3.6.1.4.1.5923.999.1.1.3
+ NAME 'incwbPersonGuestID'
+ DESC 'incwbPerson Guest ID'
+ EQUALITY caseIgnoreMatch
+ SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE X-ORIGIN 'user defined' )
+-
+#
+add: objectclasses
+objectClasses: ( 1.3.6.1.4.1.5923.999.1.2 NAME 'incwbPerson'
+ AUXILIARY
+ MAY ( incwbPersonStudentID $ incwbPersonEmployeeID $ incwbPersonGuestID )
+ )
+#
+# end of LDIF
+
+scp incwbperson-obj.ldif csprootuser@khazelton.workbench.incommon.org:
+csprootuser@khazelton.workbench.incommon.org's password:
+incwbperson-obj.ldif                        100% 1412    15.2KB/s   00:00
+
+pwd
+/csp-tap/InCommonTAP-Examples/Workbench/directory
+
+[csprootuser@ip-172-31-40-60 directory]$ ls -la container_files/seed-data
+total 16
+drwxr-xr-x 2 csprootuser root          97 Jan 20 16:46 .
+drwxr-xr-x 6 csprootuser root          59 Jan 17 21:55 ..
+-rw-r--r-- 1 csprootuser root        1624 Jan 17 21:55 data.ldif
+-rw-r--r-- 1 csprootuser root         617 Jan 17 21:55 ds-setup.inf
+-rw-r--r-- 1 csprootuser root         649 Jan 17 21:55 edumember-obj.ldif
+-rw-r--r-- 1 csprootuser csprootuser 1412 Jan 20 16:29 incwbperson-obj.ldif
+```
+
+*- schema handling bigsis.xml -*
+
+workbench csv files for mP resources are in 
+  /csp-tap/InCommonTAP-Examples/Workbench/midpoint_server/container_files/mp-home
+
+in the container, the path to the csv resources is
+  /opt/midpoint/var/bigsis.csv
+
+
+- - -
+_2024-01-18 10:19 troubleshoot addition of incwbpersonSorId and ...RefId_
+
+```
+pwd
+/csp-tap/InCommonTAP-Examples/Workbench/midpoint_server/container_files/mp-home
+nano post-initial-objects/resources/100-ldap-main.xml
+
+ls -la schema
+total 4
+drwxr-xr-x 2 csprootuser root   27 Jan 17 21:55 .
+drwxr-xr-x 7 csprootuser root  233 Jan 17 21:55 ..
+-rw-r--r-- 1 csprootuser root 3323 Jan 17 21:55 internet2.xsd
+
+  GNU nano 2.9.8                                               schema/internet2.xsd
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<xsd:schema elementFormDefault="qualified"
+  targetNamespace="http://grouper-demo.tier.internet2.edu"
+  xmlns:tns="http://grouper-demo.tier.internet2.edu"
+  xmlns:a="http://prism.evolveum.com/xml/ns/public/annotation-3"
+  xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <xsd:complexType name="UserExtensionType">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <a:extension ref="c:UserType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+
+      <xsd:element name="HR_ID" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <a:indexed>true</a:indexed>
+
+            <a:displayName>Employee ID</a:displayName>
+            <a:displayOrder>130</a:displayOrder>
+            <a:help>HR ID</a:help>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+
+	  <xsd:element name="SIS_ID" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <a:indexed>true</a:indexed>
+            <a:displayName>Student ID</a:displayName>
+            <a:displayOrder>120</a:displayOrder>
+            <a:help>SIS ID</a:help>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+
+     <xsd:element name="Guest_ID" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <a:indexed>true</a:indexed>
+            <a:displayName>Guest ID</a:displayName>
+            <a:displayOrder>140</a:displayOrder>
+            <a:help>Guest ID</a:help>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+
+     <xsd:element name="UserID" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <a:indexed>true</a:indexed>
+            <a:displayName>User ID</a:displayName>
+            <a:displayOrder>110</a:displayOrder>
+            <a:help>User ID</a:help>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="OrgExtensionType">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <a:extension ref="c:OrgType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+        <xsd:element name="grouperName" type="xsd:string" minOccurs="0"/>
+        <xsd:element name="grouperDisplayName" type="xsd:string" minOccurs="0"/>
+        <xsd:element name="ldapDn" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArchetypeExtensionType">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <a:extension ref="c:ArchetypeType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+        <xsd:element name="grouperNamePrefix" type="xsd:string" minOccurs="0"/>		<!-- e.g. ref:affiliation: -->
+        <xsd:element name="ldapRootDn" type="xsd:string" minOccurs="0"/>		<!-- e.g. ou=Affiliations,ou=Groups,dc=internet2,dc=edu -->
+        <xsd:element name="midPointNamePrefix" type="xsd:string" minOccurs="0"/>		<!-- e.g. affiliation_ -->
+        <xsd:element name="midPointDisplayNamePrefix" type="xsd:string" minOccurs="0"/>		<!-- e.g. Affiliation: -->
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
+```
+
+- - -
+_2024-01-17 11:41 troubleshoot addition of incwbpersonSorId and ...RefId_
+
+*- before rebuilding kh.wb.inc.org, save the altered files from existing kh.wb.inc.org -*
+
+```
+kh.wb:-bash-4.2$ pwd
+/home/csprootuser
+-bash-4.2$ ls -la wbfiles
+total 20
+drwxrwxr-x 2 csprootuser csprootuser   80 Jan 17 17:31 .
+drwx------ 8 csprootuser csprootuser 4096 Jan 17 17:30 ..
+-rw-r--r-- 1 csprootuser csprootuser 6051 Jan 17 17:30 head.ldif
+-rw-r--r-- 1 csprootuser csprootuser 1414 Jan 17 17:31 incwbperson-obj1.ldif
+-rw-r--r-- 1 csprootuser csprootuser 1414 Jan 17 17:31 incwbperson-obj.ldif
+-bash-4.2$
+
+MBProMax:#bash-3.2$ pwd
+/Users/kh
+scp csprootuser@khazelton.workbench.incommon.org:wbfiles/*.* wbfiles
+MBProMax:#bash-3.2$ pwd
+/Users/kh
+bash-3.2$ ls -la wbfiles
+total 32
+drwxr-xr-x   5 kh  staff   160 Jan 17 11:37 .
+drwxr-x---+ 83 kh  staff  2656 Jan 17 11:36 ..
+-rw-r--r--   1 kh  staff  6051 Jan 17 11:37 head.ldif
+-rw-r--r--   1 kh  staff  1414 Jan 17 11:37 incwbperson-obj.ldif
+-rw-r--r--   1 kh  staff  1414 Jan 17 11:37 incwbperson-obj1.ldif
+```
+
+*- proceed to rebuild wb... and then copy saved alternate files to proper wb... location -*
+
+- - -
+_2024-01-15 09:55 LDAP server_
+
+*- open head.csv with 'sheet and insert obj class columns, then convert to ldif -*
+
+*- csv to ldif -*
+
+/Users/kh/opt/csv2ldif2-1.2/csv2ldif2.pl -b 'ou=people,dc=edu,dc=org' < head.csv > head.ldif
+
+- - -
+
+https://github.com/osixia/docker-openldap[]
+
+see README.md
+
+```
+docker run \
+	--env LDAP_ORGANISATION="Aktis LLC" \
+	--env LDAP_DOMAIN="aktis.org" \
+	--env LDAP_ADMIN_PASSWORD="Pa55word1" \
+	--detach osixia/openldap:1.5.0
+```
+
+
+
+- - -
+_2024-01-14 15:19 ready to import COdata ldif into the directory_
+
+add the preamble (obj classes) to each COperson ldif entry
+
+decide path: import to wb directory? As a step in bringing up WB containers?
+
+check (schema handling,...) for affected bits
+
+
+- - -
+_2024-01-13 22:10 convert COm csv to ldif_
+
+```
+./csv2ldif2-1.2/csv2ldif2.pl -b 'ou=people,dc=edu,dc=org' < non.adoc/head.csv > non.adoc/head.ldif
+
+Result:
+
+dn: Sorid=hrms1,ou=people,dc=edu,dc=org
+Sorid: hrms1
+objectclass: incwbPerson
+objectclass: eduPerson
+objectclass: eduMember
+objectclass: inetOrgPerson
+objectclass: orgPerson
+objectclass: person 
+objectclass: top
+GivenName: Myrtle
+FamilyName: Jefferson
+EmailAddress: MyrtleWJefferson@yahoo.nil
+Telephone: 507-798-2339
+Title: Employee
+Department: Biology
+ReferenceID: d3b5b15c-3ce2-4ce5-9752-acb941ed0e78
+
+COattrs.csv:
+
+inbound mappings: 
+
+Sorid                 incwbpersonSorID
+GivenName,            given
+FamilyName,           sn
+EmailAddress,         mail      
+Telephone,            telephoneNumber
+TelephoneCountryCode, x
+NationalID,           x
+Title,                eduPersonAffiliation
+Department,           ou
+ReferenceID           incwbpersonRefID
+
+...
+
+incwbpersonSorID,given,sn,mail,telephoneNumber,l,
+
+- - -
+_2024-01-13 13:34 convert COm csv to ldif_
+
+./csv2ldif2.pl -b 'basedn' [options] < data.csv > output.ldif
+
+```
+pwd
+/Users/kh/opt
+
+./csv2ldif2-1.2/csv2ldif2.pl -b 'ou=people,dc=internet2,dc=edu' < non.adoc/head.csv > non.adoc/head.ldif
+
+➜  opt ./csv2ldif2-1.2/csv2ldif2.pl -b 'ou=people,dc=edu,dc=org' ../non.adoc/head.csv > ../non.adoc/head.ldif
+
+code non.adoc/head.ldif
+
+dn: cn=hrms1,ou=people,dc=internet2,dc=edu
+cn: hrms1
+...
+
+for extension attributes beyond eduPerson:
+https://github.com/voperson/voperson/blob/main/schema/openldap/voperson.schema[]
+
+- - -
+_2024-01-11 09:51 csv to ldif to OpenLDAP to mP as resource to Grouper as subj and group source_
+
+==== work plan
+
+*- scp archived COm data to workbench host -*
+
+  ```
+  cd ~/opt
+  scp COmanageMatchSampleData.tar.gz csprootuser@khazelton.workbench.incommon.org:
+  ```
+  add header row to each COm test data .csv files: +
+  SORID,null1,null2,GivenName,null3,FamilyName,null4,null5,null6,null7,null8,null9,EmailAddress,Telephone,TelephoneCountryCode,NationalID,Title,Department,ReferenceID
+
+  on MBProMax: +
+```/Users/kh/opt/COmanageMatchSampleData/Matched
+➜  Matched ls -la
+total 170952
+drwxr-xr-x  18 kh  staff       576 Jan 11 14:20 .
+drwxr-xr-x   5 kh  staff       160 Mar 25  2023 ..
+-rw-r--r--@  1 kh  staff      6148 Jan 11 14:20 .DS_Store
+-rw-r--r--   1 kh  staff  11550035 Jan 11 13:38 Archive.zip
+-rw-r--r--@  1 kh  staff      5907 Dec  6  2017 README.boxnote
+-rw-r--r--@  1 kh  staff   4721821 Oct  9  2017 alumni-arch.csv
+-rw-r--r--@  1 kh  staff   4826238 Oct  9  2017 alumni-busn.csv
+-rw-r--r--@  1 kh  staff   4913141 Oct  9  2017 alumni-cont.csv
+-rw-r--r--@  1 kh  staff   5311162 Oct  9  2017 alumni-cugs.csv
+-rw-r--r--@  1 kh  staff   4961080 Oct  9  2017 alumni-engr.csv
+-rw-r--r--@  1 kh  staff   4756060 Oct  9  2017 alumni-grad.csv
+-rw-r--r--@  1 kh  staff   4610048 Oct  9  2017 alumni-jour.csv
+-rw-r--r--@  1 kh  staff   4774766 Jan 11 13:38 alumni-laws.csv
+-rw-r--r--@  1 kh  staff   4932223 Oct  9  2017 alumni-meds.csv
+-rw-r--r--@  1 kh  staff   5235363 Oct  9  2017 alumni-mine.csv
+-rw-r--r--@  1 kh  staff   8834180 Jan 11 13:36 guest.csv
+-rw-r--r--@  1 kh  staff   7275677 Jan 11 13:37 hrms.csv
+-rw-r--r--@  1 kh  staff   8923356 Jan 11 13:37 sis.csv
+```
+
+on workbench host:
+```
+  ls -la  /csp-tap/InCommonTAP-Examples/Workbench/midpoint_server/container_files/csv
+  total 29120
+  drwxr-xr-x 2 csprootuser root             98 Jan 11 20:03 .
+  drwxr-xr-x 7 csprootuser root             77 Jan 10 00:39 ..
+  -rw-r--r-- 1 csprootuser csprootuser 4774766 Jan 11 20:01 alumni-laws.csv
+  -rw-r--r-- 1 csprootuser csprootuser 8834180 Jan 11 20:02 guest.csv
+  -rw-r--r-- 1 csprootuser csprootuser 7275677 Jan 11 20:03 hrms.csv
+  -rw-r--r-- 1 csprootuser csprootuser 8923356 Jan 11 20:03 sis.csv
+  -rw-r--r-- 1 csprootuser root            351 Jan 10 00:39 source-hr.csv
+```
+*- define LDAP schema for COm data -*
+
+https://www.rfc-editor.org/rfc/rfc4519
+https://www.rfc-editor.org/rfc/rfc4524
+https://wiki.refeds.org/display/STAN/eduPerson+%28202208%29+v4.4.0
+
+
+*- convert COm csv data files to ldif -*
+
+- - -
+_2024-01-08 22:04 kh.wb.. making test data avail. to WB Grouper loader via LDAP_
+
+```
+~/opt/csv2ldif2-1.2 ./csv2ldif2.pl
+
+Parameter -b basedn is mandatory!
+./csv2ldif2.pl: Convert CSV to LDIF   (Ver 1.1)
+Usage: ./csv2ldif2.pl -b 'basedn' [options] < data.csv > output.ldif
+
+Available options:
+  -b  BaseDN for the entries; Mandatory!
+  -B  Disable base64 encoding
+  -c  Attribute name for CN to use, if -f is specified      (default: 'cn')
+      Overrides the CSV-Name if set.
+  -d  Delimeter which separates the fields in CSV           (default: ',')
+  -e  Encoding of the input file                            (default: 'latin1')
+  -E  Encoding of attribute values, see -h when changing!   (default: 'utf8')
+  -f  Fields to use for DN (comma seperated, e.g. '3,1,2')  (default: '1')
+      Order matters, so you can select random fields.
+      If you specify -f with more than one fieldnumber,
+      you should also specify -c!
+  -F  Separator between multiple cn fields, see -f          (default: ' ')
+  -h  Display more help than this short usage notice
+  -i  Fields to ignore (comma seperated with range)         (default: no fields)
+  -q  Quote character                                       (default: '"')
+  -s  Fields to select (comma seperated with range)         (default: all fields)
+  -v  Print version information and exit
+  -x  Print empty attribute values
+  If any options are omitted defaults will be used.
+
+You can use ranges (e.g. '2,4-6') with parameters -i and -s.
+
+For EXCEL csv exports you probably need to adjust -e and -d,
+however this depends on the EXCEL version and your region:
+  ´./csv2ldif2.pl -e 'CP850' -d ';' [more ortions]´
+
+More Help and some hints are available using the -h parameter.
+```
+
+- - -
+_2023-12-20 09:55 :bld: simple SQL grouper loader from csv test data_
+
+https://spaces.at.internet2.edu/display/Grouper/Grouper+Loader+add+new+job[] +
+https://spaces.at.internet2.edu/display/Grouper/Grouper+loader+on+UI[] +
+https://spaces.at.internet2.edu/display/Grouper/Grouper+loader+SQL+simple+example[] +
+
+- - -
+_2023-07-31 10:59:07 setting up grouper / midpoint environment for large N groups and large N memberships_
+
+Test platform: ```{my}.workbench.incommon.org```
+
+*- With midPoint 4.6 -*
+
+- copy data files to defined locations: 
+
+ cp /home/csprootuser/COmanageMatchSampleData/Matched/hrms.csv Workbench/midpoint_server/container_files/csv/source-hrms.csv 
+
+ cp /home/csprootuser/COmanageMatchSampleData/Matched/sis.csv Workbench/midpoint_server/container_files/csv/source-sis.csv +
+
+- Edit docker-compose.yml to bind these volumes to the container using
+```
+...
+- type: bind 
+   source: ./midpoint_server/container_files/csv/source-sis.csv 
+   target: /opt/midpoint/csv/source-sis.csv 
+- type: bind
+   source: ./midpoint_server/container_files/csv/source-hrms.csv
+   target: /opt/midpoint/csv/source-hrms.csv
+...
+```
+
+- Connect to the workbench instance using midPoint Studio
+
+- Model the resource definitions for hrms.csv and sis.csv on the existing workbench file +
+```kb-wb/objects/resources/SourceHRSystem.xml
+```
+naming them
+
+ kb-wb/objects/resources/SourceTestHrmsSystem.xml
+
+and +
+
+ kb-wb/objects/resources/SourceTestSisSystem.xml
+
+- First line of .csv files should contain comma-delimited field names
+```sorid,given,surname,email,ph#,cntry-code,natID,occup,dept,RefID
+```
+
+- Import the files below into the resources SourceTestHrmsSystem and SourceTestSisSystem
+
+ /home/csprootuser/COmanageMatchSampleData/Matched/hrms.csv 
+
+and +
+
+ /home/csprootuser/COmanageMatchSampleData/Matched/sis.csv 
+
+into a midPoint organization, ‘test’. 
+
+- Run reconciliation on a sample user and verify correctness of midPoint objects
+
+- Add LDAP accounts for each user (about 100000 users). 
+
+*- With Grouper -*
+
+- Create a 'test' reference folder and create groups 'test:hrms' and 'test:sis' under it
+
+- Use Grouper loader jobs with LDAP as a subject source +
+Put those users into two large reference groups: +
+```
+ref:test:hrms
+ref:test:sis
+```
+- Create a large number of small groups based on the last three digits of the 
+‘natID’ attribute, +
+a string formatted as a US social security number: +
+ xxxx-xx-abcd +
+with this example natID, the user would be added to the group +
+```‘ref:test:bcd’
+```
+- Loading all records Will create up to 1000 groups.
+
+.
+
+- - -
+_2023-07-30 14:00:54 COmanage test data sets by affiliation_ 
+
+scp'd COmanage Match Sample Data box folder to khazelton.workbench.incommon.org
+
+```
+[csprootuser@ip-172-31-62-244 Matched]$ pwd
+/home/csprootuser/COmanageMatchSampleData/Matched
+[csprootuser@ip-172-31-62-244 Matched]$ ls -la
+total 72376
+drwxr-xr-x 2 csprootuser csprootuser     306 Jul 30 18:57 .
+drwxr-xr-x 4 csprootuser csprootuser      74 Mar 25 18:01 ..
+-rw-r--r-- 1 csprootuser csprootuser 4721821 Oct  9  2017 alumni-arch.csv
+-rw-r--r-- 1 csprootuser csprootuser 4826238 Oct  9  2017 alumni-busn.csv
+-rw-r--r-- 1 csprootuser csprootuser 4913141 Oct  9  2017 alumni-cont.csv
+-rw-r--r-- 1 csprootuser csprootuser 5311162 Oct  9  2017 alumni-cugs.csv
+-rw-r--r-- 1 csprootuser csprootuser 4961080 Oct  9  2017 alumni-engr.csv
+-rw-r--r-- 1 csprootuser csprootuser 4756060 Oct  9  2017 alumni-grad.csv
+-rw-r--r-- 1 csprootuser csprootuser 4610048 Oct  9  2017 alumni-jour.csv
+-rw-r--r-- 1 csprootuser csprootuser 4774601 Oct  9  2017 alumni-laws.csv
+-rw-r--r-- 1 csprootuser csprootuser 4932223 Oct  9  2017 alumni-meds.csv
+-rw-r--r-- 1 csprootuser csprootuser 5235363 Oct  9  2017 alumni-mine.csv
+-rw-r--r-- 1 csprootuser csprootuser 8834015 Sep 16  2017 guest.csv
+-rw-r--r-- 1 csprootuser csprootuser 7275512 Sep 16  2017 hrms.csv
+-rw-r--r-- 1 csprootuser csprootuser    5907 Dec  6  2017 README.boxnote
+-rw-r--r-- 1 csprootuser csprootuser 8923191 Oct  7  2017 sis.csv
+[csprootuser@ip-172-31-62-244 Matched]$
+```
+--- Step 1: Use Grouper Loader to import student and hr files
+
+follow https://spaces.at.internet2.edu/display/Grouper/Grouper+Penn+one-time+import+from+CSV[]
+
+Create thw two groups: 
+
+kh:ref:hrms +
+kh:ref:sis
+
+$ "new GroupSave().assignName('penn:isc:ts:nnn:service:policy:" & A1 & "').assignCreateParentStemsIfNotExist(true).save();"
+
+- - -
+_2023-07-28 16:46:12 create a test suite of groups: many members, many groups_
+
+use two affiliation files from BennO's Match Test csv people files
+
+test with kh.wb.inc.org
+
+share with Slavek
+
+--- Step 1: Use Grouper Loader to import students and hr files
+
+follow https://spaces.at.internet2.edu/display/Grouper/Grouper+Penn+one-time+import+from+CSV[]
+
+*- files where persons are defined -*
+
+1st line should include field names
+
+sorid,,,given,,surname,,,,,,email,ph#,cntry-code,natID,occup,dept,RefID
+
+hrms51,,,Karen,,Rice     ,,,,,,,   KarenRRice@gmail.nil, 530-431-7287,1, 559-76-8291,    Employee,   Physics              , 352c7838-7af4-428c-94ee-133d0a2570f4
+
+alum8,,, Aleida,,Whitcomb,,,,,,,AleidaCWhit@hotmail.nil, 337-533-5226,1, 665-01-5457,    Alumni,    "Business School'74" , 5b1f7c27-51e5-4518-b7fb-a0ce861db852
+
+sis1,,,  Carolyn,,Headrick  ,,,,,,, CarolnHead@gmail.nil, 330-524-3607,1, 291-94-4527,   Student,   "Graduate School"   , cf182d55-35d4-46be-8910-662ef5b19a78
+
+guest1,,,Louise,, Guerra,,,,,,,  LouiseJGuerra@yahoo.nil, 806-677-2269,1, 632-94-7157,   Guest,    "University Guests" , 8dfff203-39fc-4218-ad6e-3ddb110881ab
+
+- - -
+_2023-07-25 12:45:00 COmanage test data sets by affiliation_
+
+https://internet2.app.box.com/s/geayc7d50v32f7uthrdywpwm0o5687yi[]

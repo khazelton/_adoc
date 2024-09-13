@@ -1,0 +1,427 @@
+~/_notesPlus/tierMgmtApi.utf  https://docs.google.com/document/d/1rkRPwPgckntJi9OIR4gqhu_4_d7wjRgUCZCu5gHeRyg/edit 
+_____________________
+h6. 2017-01-17 13:42 BIRT
+
+http://www.eclipse.org/birt/
+
+An open source technology platform used to create data visualizations and reports that can be embedded into rich client and web applications.
+
+_____________________
+h6. 2016-09-15 16:55  id.i2 serving application+json docs
+
+httpd.conf:
+...
+AddDefaultCharset utf-8
+AddType 'application/json; charset=UTF-8' .json
+...
+_____________________
+h6. 2016-09-15 16:20  cerif.org issues
+
+- non-responsive at /elk, but basic cerif.org:80 is live....
+
+[root@metazome logstash]# vi /etc/logstash/conf.d/10-tier-syslog-filter.conf
+----------
+input {
+  tcp {
+    port => 5000
+    type => syslog
+  }
+  udp {
+    port => 5000
+    type => syslog
+  }
+}
+
+filter {
+  syslog_pri { }
+  kv {
+    field_split => ","
+    value_split => ":"
+    trimkey => "\.\[\]"
+  }
+
+}
+
+
+output {
+  elasticsearch { hosts => ["localhost:9200"] }
+  file {
+  path => "/tmp/debug.logstash"
+  }
+}
+----------
+
+- is elasticsearch running?
+
+[root@metazome logstash]# cat /etc/elasticsearch/logging.yml
+# you can override this using by setting a system property, for example -Des.logger.level=DEBUG
+es.logger.level: INFO
+rootLogger: ${es.logger.level}, console, file
+logger:
+  # log action execution errors for easier debugging
+  action: DEBUG
+
+  # deprecation logging, turn to DEBUG to see them
+  deprecation: INFO, deprecation_log_file
+
+  # reduce the logging for aws, too much is logged under the default INFO
+  com.amazonaws: WARN
+  # aws will try to do some sketchy JMX stuff, but its not needed.
+  com.amazonaws.jmx.SdkMBeanRegistrySupport: ERROR
+  com.amazonaws.metrics.AwsSdkMetrics: ERROR
+
+  org.apache.http: INFO
+
+  # gateway
+  #gateway: DEBUG
+  #index.gateway: DEBUG
+
+  # peer shard recovery
+  #indices.recovery: DEBUG
+
+  # discovery
+  #discovery: TRACE
+
+  index.search.slowlog: TRACE, index_search_slow_log_file
+  index.indexing.slowlog: TRACE, index_indexing_slow_log_file
+
+additivity:
+  index.search.slowlog: false
+  index.indexing.slowlog: false
+  deprecation: false
+
+appender:
+  console:
+    type: console
+    layout:
+      type: consolePattern
+      conversionPattern: "[%d{ISO8601}][%-5p][%-25c] %m%n"
+
+  file:
+    type: dailyRollingFile
+    file: ${path.logs}/${cluster.name}.log
+    datePattern: "'.'yyyy-MM-dd"
+    layout:
+      type: pattern
+      conversionPattern: "[%d{ISO8601}][%-5p][%-25c] %.10000m%n"
+
+  # Use the following log4j-extras RollingFileAppender to enable gzip compression of log files. 
+  # For more information see https://logging.apache.org/log4j/extras/apidocs/org/apache/log4j/rolling/RollingFileAppender.html
+  #file:
+    #type: extrasRollingFile
+    #file: ${path.logs}/${cluster.name}.log
+    #rollingPolicy: timeBased
+    #rollingPolicy.FileNamePattern: ${path.logs}/${cluster.name}.log.%d{yyyy-MM-dd}.gz
+    #layout:
+      #type: pattern
+      #conversionPattern: "[%d{ISO8601}][%-5p][%-25c] %m%n"
+
+  deprecation_log_file:
+    type: dailyRollingFile
+    file: ${path.logs}/${cluster.name}_deprecation.log
+    datePattern: "'.'yyyy-MM-dd"
+    layout:
+      type: pattern
+      conversionPattern: "[%d{ISO8601}][%-5p][%-25c] %m%n"
+
+  index_search_slow_log_file:
+    type: dailyRollingFile
+    file: ${path.logs}/${cluster.name}_index_search_slowlog.log
+    datePattern: "'.'yyyy-MM-dd"
+    layout:
+      type: pattern
+      conversionPattern: "[%d{ISO8601}][%-5p][%-25c] %m%n"
+
+  index_indexing_slow_log_file:
+    type: dailyRollingFile
+    file: ${path.logs}/${cluster.name}_index_indexing_slowlog.log
+    datePattern: "'.'yyyy-MM-dd"
+    layout:
+      type: pattern
+      conversionPattern: "[%d{ISO8601}][%-5p][%-25c] %m%n"
+[root@metazome logstash]# 
+
+_____________________
+h6. 2016-09-12 12:23  Scott on component APIs
+
+Pull: Shib IdP can easily expose RESTful endpoints for json docs
+
+Push: Not yet well defined
+
+Logging, of course
+
+
+_____________________
+h6. 2016-08-24 10:05  Apache log analysis w ELK
+
+http://logz.io/blog/apache-log-analysis/?utm_source=marketo&utm_medium=email&utm_content=button&utm_campaign=Newsletters.Newsletter%20Aug%2024
+_____________________
+h6. 2016-08-11 10:57  ELK 5.0 alpha x
+
+https://www.elastic.co/downloads/past-releases/elasticsearch-5-0-0-alpha4
+_____________________
+h6. 2016/07/14/ 08:24 
+
+To join via computer audio/vidio - https://bluejeans.com/ 8771977885/browser
+Or use the Blue Jeans App and join conference: 8771977885
+
+To join via phone dial: 408.740.7256
+Toll Free:
+888.240.2560
+Enter Conference ID: 8771977885 #
+
+Running Agenda/Notes at: http://tinyurl.com/hq9d3ql
+
+Gentlemen – the Running Agenda/Notes is available now for review
+and comment. Keith has suggested that “suggesting” is a good way
+to add your thoughts right now and then they will be incorporated
+into the document as it evolves.
+
+We will be using this document as part of the Component Architects mtg
+on Wed to continue refinement and progress so that we can be as productive
+as possible on Thursday.
+
+Thank you very much for your time in participating and all your contribution.
+
+Best regards,
+Bill
+
+MRTG graphs for Apache values
+
+Using MOD-APACHE-SNMP and MRTG [Multi Router Traffic Grapher] you can graph any of the APACHE2-MIB objects. For example, it´s possible to get graphs for KBytes / Secs (APACHE2-MIB::serverKBytesPerSec.0), the number of busy Workers (APACHE2-MIB::busyWorkers.0) or any other mib object that you want to graph.
+
+Download docs, examples and some scripts to use MRTG with MOD-APACHE-SNMP from 
+http://eplx.homeip.net/mod_apache_snmp/downloads/mrtg_scripts.tar.gz 
+
+_____________________
+h6. 2016/07/13/ 13:24 component-arch ccall
+
+
+Keith Hazelton added suggestions to Instrumentation Working Doc
+  - https://docs.google.com/document/d/1rkRPwPgckntJi9OIR4gqhu_4_d7wjRgUCZCu5gHeRyg/edit
+  
+  
+
+Splunk/logstash/logly/etc are great at detecting errors in the application stack, as long as you know how to pull them. Being able to check your application servers for health from the log files can replace a lot of active checks to your web server.
+
+Nagios does active checks for "are the services all up?" and 
+
+(Splunk)/logstash fills in for "is the entire backend healthy at this point in time." 
+
+Don't get me wrong, Splunk is awesome for log retention, log reporting and event correlation, but it is way too expensive for system monitoring type data.
+
+Use splunk for monitoring events and log files. Use something else for system statistics and trending.
+
+And yes, you can certainly roll your own with ELK. The problem with ELK is that as it scales, it tends to end up costing more than other tools (just looking at this, http://everythingshouldbevirtual.com/highly-available-elk-elasticsearch-logstash-kibana-setup - i calculate somewhere around 4k a month in AWS costs for a setup).
+To your point though, there are many tools that do a ton of different stuff. It's best to try everything and go with what works for you. I know that all of the logging tools have AT LEAST 15 day, if not 30 days trials. I think this is true for APM/monitoring tools as well.
+permalinkembedparent
+_____________________
+h6. 2016-07-01 14:42  instrumentation breakout notes from Developer F2F
+
+https://docs.google.com/document/d/1M8pTVgdLrKMuDB_HYJ94U1Rn6y_6gtB7ww-bwsbvX0E/edit 
+_____________________
+h6. 2016-06-30 16:03  elk for docker
+
+http://logz.io/learn/docker-monitoring-elk-stack/?utm_source=marketo&utm_medium=email&utm_content=button&utm_campaign=Guides%20and%20Tutorials.Guide%20to%20Docker.Send%20guide 
+_____________________
+h6. 2016-05-13 11:17  
+
+And we are back:   http://cerif.org/elk/
+
+Same state as before. Still needs improvements on the filter to avoid it trying to split apart the time as a key/value in the message…but that was on the todo list before. So now we can continue J
+ 
+—babb
+
+---------- 2016-04-05 -----------
+Just about to send you an email with the update—all working. 
+
+http://cerif.org/elk/
+
+username: elk
+password: .0.S.
+
+We can add more users if we want or change it something more sophisticated later on. 
+
+You can have ChrisH start sending it syslog data on port 5000. Once we have some actual data to work with, we can play around with setting up filters, adding some more tags based on the message received, looking at different data visualizations, etc. 
+
+Right now port 5000 is open to the whole internet, so anything can send it messages. We can lock that down more if you want. 
+
+_____________________
+h6. 2016-03-31 14:05 rsyslog to logstash (dev setup with Grouper Demo Server)
+
+http://www.rsyslog.com/doc/master/index.html
+http://www.freeipa.org/page/Howto/Centralised_Logging_with_Logstash/ElasticSearch/Kibana
+https://techpunch.co.uk/development/how-to-ship-logs-with-rsyslog-and-logstash
+
+- Get a logstash server running on http://mon.cerif.org:5544
+
+- configure log forwarding on Grouper demo server; find out if changelog can be tapped remotely
+_____________________
+h6. 2016-03-31 11:43 SNMP, Graphite, elasticsearch, logstash, kibana
+
+https://www.elastic.co/webinars/kibana-101-get-started-with-visualizations
+
+Thursday,March 31, 2016
+9:00 a.m. PDT / 12:00 p.m. EDT / 5:00 p.m. BST / 6:00 p.m. CEST
+
+<p>Kibana enables visual exploration and real time analysis of your data in Elasticsearch. In this webinar, we will use a live demo to show how to create a dashboard from scratch in Kibana. This webinar is perfect for attendees that are new to Kibana and are looking for a primer on data exploration, visualization, and dashboarding in Kibana.</p>
+<p>The demo will focus on 3 main features:</p>
+<ul>
+<li>Discover tab
+<ul>
+<li>Build intuition about data and understand its underlying structure</li>
+<li>Start to explore the questions that can be asked of the data</li>
+</ul>
+</li>
+<li>Visualize tab
+<ul>
+<li>Build graphs to dive into specific questions and test hypothesis</li>
+</ul>
+</li>
+<li>Dashboard tab
+<ul>
+<li>Compile dashboards to see and share your data story</li>
+<li>Monitor the trends and events in real time</li>
+</ul>
+</li>
+</ul>
+
+lucene    <== for search in kibana
+
+http://elastic.co/downoads/kibana
+http://elastic.co/guide
+http://github.com/elastic/kibana
+
+_____________________
+h6. 2016-03-09 16:48  SZ on SNMP instrumentation demo for GS 2016
+
+see also "references and links"
+
+[2016-03-09, 4:36:45 PM] Steven Zoppi: This chapter covers the following topics:
+
+    MIB Development Process explains how MIBs are implemented as MBeans
+
+    SNMP Protocol Adaptor shows how to build an SNMP agent with the components of the Java DMK
+
+    Managing the SNMP Adaptors provides the basic SNMPv3 security information you need for the examples in this chapter
+
+    Sending Traps demonstrates the SNMP trap mechanism in the SNMP adaptors
+
+    Standalone SNMP Agents demonstrates an alternative way of implementing an SNMP agent
+
+    Multiple Agents shows how to implement an agent instantiating more than one SNMPv3 adaptor
+    
+[2016-03-09, 4:36:51 PM] Steven Zoppi: 
+
+_____________________
+h6. 2016-02-14 15:20  TIER CompArch ccall
+
+Monitoring, Managing and Configuring, interface points for Shib, Grouper, COmanage,...
+ - aka control plane
+ 
+Shib Roadmap re metrics and instrumentation: from https://wiki.shibboleth.net/confluence/display/DEV/Project+Roadmap
+
+IdP Metrics and Instrumentation		
+	Java, JMI (JMX?), Distributed Tools	 
+	The original plan to instrument V3 with 
+		more manageability in terms of 
+		perf. mgmt, 
+		metrics and 
+		counters, etc. 
+	was tabled and might be revived.
+
+JMX:
+- http://activemq.apache.org/jmx.html
+- https://opendmk.java.net/
+- http://snmpadaptor4j.sourceforge.net/
+  - snmpAdaptor4j is an adaptor for Java Management eXtensions (JMX) providing a simple access to MBeans via the SNMP protocol. Thus, this adapter you allow to connect most monitoring tools (like Nagios and Cacti) to your Java applications.
+  - https://www.nagios.org/  ==> ~ FOSS
+  - https://en.wikipedia.org/wiki/Cacti_(software) ==> FOSS
+  
+  Define APIs needed to support a RESTful subject source for use by Grouper
+  
+
+_____________________
+h6. 2016-02-03 18:23 example of app-level heartbeat on thread "InC Duo Incident Today"
+
+I didn’t see any data in the thread on how to actually do the monitoring, so I asked Duo in a support ticket and they recommended a particular link on the API host to pull:
+https://$APIHOST/auth/v2/ping
+
+where APIHOST is your specific hostname which would look something like:
+api-12345678.duosecurity.com
+
+This pulls a little JSON packet like so:
+{"response": {"time": 1454437771}, "stat": "OK"}
+
+The specific recommendation was "The best course of action for monitoring your API hostname to discover when an issue may occur would be to set up a heartbeat ping to your specific API hostname. This can be utilized with a script to automatically email if packets are consistently dropped or if a connection is unable to be made.”
+
+I double-checked with them if this would be superior to the simple ping of the host, and they said yes it does exercise the application.
+
+For anyone who already implemented monitoring of their API host, can you confirm whether you did something like this, or if it was just the simple TCP check of the port on the host?
+
+Thanks, Russ.
+_____________________
+h6. 2016-01-26 16:18 snmp
+
+SNMP: OpenLDAP is instrumented for SNMP, a model for instrumenting Grouper, instrumenting APIs,...
+
+gD/ref/microservicesinjavaDz.pdf
+https://github.com/dropwizard/dropwizard
+
+"The DropWizard Metrics library is one of the more popular approaches to capturing application metrics (gauges, meters, histograms, and counters). Spring Boot's Actuator module provides deep integration with the DropWizard Metrics library, and supports exposing health endpoints, environment information, endpoint mapping information, request logs, and more. Time-series databases like Hazelcast,
+StatsD, Graphite, InfluxDB, and OpenTSDB support the visualization and processing of metrics. DropWizard Metrics and Spring Boot Actuator can transparently export collected metrics to these time-series databases."
+_____________________
+h6. 2015-10-31 18:58  instrumentation api ideas
+
+model on shib sp handlers (implicit paths under SP root)
+leveraging logging
+
+see notes toward future WGs on instrumentation :  F-TICKs,...
+_____________________
+h6. 2015-10-07 16:26  nick roy
+
+instrumentation of IdP and SP to help us garner understanding of what is deployed and on
+_____________________
+h6. 2015-10-07 15:51  references and links
+
+ls -la /Users/hazelton/_notesPlus/ref/Unified_Log_Processi_v10_MEAP.pdf 
+  -rw-r--r--@ 1 hazelton  AD\Domain Users  6638664 Feb  4 07:44
+https://tools.ietf.org/html/rfc2578  <== Structure of Management Information Version 2 (SMIv2)
+http://www.net-snmp.org/wiki/index.php/Writing_your_own_MIBs
+https://www.webnms.com/cagent/help/snmp/c_snmp_definemib.html  <== Defining a MIB
+https://www.webnms.com/cagent/help/snmp/c_snmp_mibeditor.html  <== SNMP MIB editor
+https://msdn.microsoft.com/en-us/library/aa909833.aspx  <== MSDN toaster MIB example
+http://www.amazon.com/Essential-SNMP-Douglas-R-Mauro-ebook/dp/B0043EWUZ2/ref=mt_kindle?_encoding=UTF8&me=
+http://www.simpleweb.org/ietf/mibs/
+https://www.loggly.com/blog/why-json-is-the-best-application-log-format-and-how-to-switch/ 
+https://dzone.com/articles/tools-and-techniques-for-logging-microservices-1
+http://www.infoq.com/presentations/spring-boot-devops  <== monitoring & metrics in Java DevOps, also Vaadin Java UI framework
+http://www.infoq.com/articles/effective-monitoring-habits
+https://dzone.com/articles/reporting-metrics-apache-kafka  Kafka as abstraction layer between metric producers and consumers
+http://www.confluent.io/blog/stream-data-platform-2/
+http://www.confluent.io/blog/stream-data-platform-1/  <== ++
+https://consul.io/intro/index.html  <== ++ register/discover (micro)services; health monitoring; MozPubLicense 2
+  https://consul.io/intro/getting-started/install.html
+http://blog.scottlowe.org/2015/02/06/quick-intro-to-consul/
+http://www.slf4j.org/  Simple Logging Facade for Java
+  http://www.slf4j.org/manual.html
+https://dzone.com/articles/10-best-practices-for-log-management-and-analytics-1
+http://www.splunk.com/en_us/homepage.html  <== You see servers and devices, apps and logs, traffic and clouds. We see data—everywhere. Splunk®
+https://www.packer.io/ <== create machine and container images for multiple platforms from a single source configuration
+http://www.internet2.edu/vision-initiatives/initiatives/performance/
+http://www.perfsonar.net/
+2-feb-16 email from Chris Phillips: [consent-manager-internals] Datapoint on notification of consent events .. FW: [Id-event] Proposal for Identity Event Standard
+https://www.loggly.com/blog/logging-tips-for-power-users-contextual-logging/  <== log entries carrying additional context data
+http://www.jitendrazaa.com/blog/java/snmp/create-snmp-client-in-java-using-snmp4j/
+https://opendmk.java.net/ <== open version of Java DMK (Dynamic Management Kit)  SNMP tools
+http://docs.oracle.com/cd/E19698-01/816-7609/  <== Java DMK Tutorials
+https://github.com/dropwizard/dropwizard/blob/master/LICENSE   <== 
+gD/ref/BeginnersGuide2LogstashGrokLogz.io.pdf
+http://logback.qos.ch/reasonsToSwitch.html  <== Logback
+https://github.com/grgrzybek/tomcat-slf4j-logback <== ++
+http://logz.io/blog/apache-log-analysis/
+https://www.elastic.co/community  <== ++
+https://www.elastic.co/blog
+https://www.elastic.co/learn
+https://sematext.com/blog/2016/04/25/elasticsearch-ingest-node-vs-logstash-performance/
+http://www.eclipse.org/birt/

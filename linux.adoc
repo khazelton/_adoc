@@ -1,0 +1,177 @@
+     === linux.adoc
+- - -
+_2020-10-28 09:08 livepatch for xps ubuntu_
+
+f52e6603e3ed41bfacb9175086813649
+
+```
+sudo snap install canonical-livepatch
+sudo canonical-livepatch enable f52e6603e3ed41bfacb9175086813649
+```
+
+- - -
+_2018-08-13 15:49 change screen resolution_
+
+cut resolution in half, restore afterwards
+
+xrandr -s 1600x900
+
+cd  cd /opt/Protege-5.2.0
+./run.sh
+
+xrandr -s 3200x1800
+
+- - -
+_2017-06-23 06:10  ports in use, kill_
+
+lsof -n -i:8080 | grep LISTEN
+
+- - -
+_2016/08/16/ 09:35 uninstall by make;  delete a set of files_
+
+http://www.cyberciti.biz/tips/uninstall-files-installed-from-a-source-code-tar-ball.html
+
+- - -
+_2016-07-27 11:35  ekalinin_
+
+http://manu.sporny.org/2016/json-ld-context-caching/
+
+history | grep wget (return wget commands in console history)
+- - -
+_h6. 2015-10-14 16:48  ssh_
+
+- generate keypairs for ssh
+
+https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+
+ssh-keygen -t rsa -b 4096 -C "khazelton@metazome.info"
+
+# Creates a new ssh key, using the provided email as a label
+Generating public/private rsa key pair.
+
+- disabling password-based ssh, force use of pub/priv keys
+
+http://www.linux.org/threads/how-to-force-ssh-login-via-public-key-authentication.4253/
+
+A main advantage of key authentication is that you can be protected against brute-force password guessing attacks. However, requiring a private key for ssh access means that you have to store the key somewhere on client system, which can be another avenue of attack.
+
+Here is how to disable ssh password authentication so that you can force ssh login via public key only.
+Open sshd configuration file, and add the following line (or uncomment it if it’s commented out).
+
+Code:
+sudo nano /etc/ssh/sshd_config
+PasswordAuthentication no
+Make sure that you have the following in /etc/ssh/sshd_config, in order to allow private/public key authentication.
+
+RSAAuthentication yes
+PubkeyAuthentication yes
+Finally, reload ssh server configuration to make the change effective.
+Code:
+sudo /etc/init.d/ssh reload
+The above setting will disable ssh login via password, system-wide. If what you want is to disable ssh password login for individual users, you can do the following.
+
+
+ssh-dss AAAAB3NzaC1kc3MAAACBAI2WDFDpFKJta0ociBGc13iG9tVIyGMWRCzQbzvqrNPVd9dBQaIyIk1w/EyrT+zxIlpk6whKOf3TVcYh7+lC4wkVTAXqlCN2J3J8UZ35G1l20EzITvuhk6EuHHIePAgXVxo6p8JyNlgxzY+rCGOC9lYKWYjQQFeu+rgpClqezwibAAAAFQDNNezyh+XqLQ1BU50nwVA/tLjaVwAAAIBAYvnuY6oz4FqvYULx90U2W14E+R1fCmLt6XnDc3oVJ2G7AOcuSBpzD3v3CGde4QUsX8/JCcIk+oPIOWW1/N5o4p/ZxLrIzVDMm3SRo7pxYTULOTAuAuipfr/ubQ1NjrXkxBMlOeFXxeaXmEnXWl4ErUgq+bIa9cvNMUCC4hu2fQAAAIAo3ht1yKTpqibUk1R+ULyM2266i7KYjvekad5Zw6aI7pi1+0+pTaiEKdifejAec658+iOnmqOiDhWqpB4vsGViO5zVkxMs4DmQanjzzxItumEYDMKu6IVevsCw3qAtMNOj6550B55aqHMsBWipiFLWrk7G1xd7GJR1kLbWGuvfSA== kei2th@Keiths-MacBook-Pro-2.local
+
+- - -
+_2012-09-25 07:46:06 misc useful commands_
+
+* set system clock date
+
+- http://perdues.com/doc/ntp.html  <== good doc "Using the Network Time Protocol in Linux or Informal NTP Client HOWTO"
+
+- start ntpd on startup:
+[root@cerif opt]# chkconfig --level 345 ntpd on
+[root@cerif opt]# chkconfig
+...
+ntpd           	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+
+- check date against other ntp servers
+
+[root@cerif opt]# ntpq -p
+
+     remote           refid      st t when poll reach   delay   offset  jitter
+==============================================================================
+ krillin.ecansol 204.9.54.119     2 u   21   64    1   20.782  -260232   0.002
+ vimo.dorui.net  198.82.1.203     3 u   20   64    1   74.210  -260228   0.002
+ ntp.jtsage.com  209.51.161.238   2 u   19   64    1   41.522  -260228   0.002
+
+[root@cerif opt]# /sbin/service ntpd stop
+Shutting down ntpd:                                        [  OK  ]
+
+[root@cerif opt]# ntpdate 209.51.161.238
+
+29 Jul 16:21:24 ntpdate[27002]: step time server 209.51.161.238 offset -260.230513 sec
+
+[root@cerif opt]# date
+Mon Jul 29 16:21:27 UTC 2013
+
+[root@cerif opt]# /sbin/service ntpd start
+
+Starting ntpd:                                             [  OK  ]
+[root@cerif opt]# date
+Mon Jul 29 16:21:38 UTC 2013
+[root@cerif opt]#
+
+* getting a directory tree listing without "tree" command
+
+ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
+
+* http://www.cyberciti.biz/tips/linux-display-open-ports-owner.html  <== GREAT screencast
+
+- - -
+_2009/07/10 07:04 asciimath:[expr]_
+
+WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
+Posted: 06 Sep 2010 04:03 PM PDT
+When you logging into a Linux box using ssh, the Linux where you are logging from will ask you to validate the authenticity of the key presented by that host.
+
+Once you answer yes, that key will be stored. Future logging attempts to that same server will check they key against what is stored in the file:
+
+~/.ssh/known_hosts
+If they do not match, may mean that someone is in the middle trying to capture your password, so be careful when you see some alert like this:
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED! @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that the RSA host key has just been changed.
+The fingerprint for the RSA key sent by the remote host is
+5c:0b:18:56:b6:cd:12:10:32:cd:1d:a2:9a:cd:e5:1c.
+Please contact your system administrator.
+Add correct host key in /home/user/.ssh/known_hosts to get rid of this message.
+Offending key in /home/user/.ssh/known_hosts:3
+RSA host key for server.mydomain.com has changed and you have requested strict checking.
+Host key verification failed.
+<!--break-->
+Now you have a lot of options, I usually used this one:
+
+Using vi
+
+Considering that the offending key is in line 3 do this:
+
+vi $HOME/.ssh/know_hosts
+
+Then enter
+
+:3
+to go to line 3, then, press dd to delete the line. and finally save and close the file with:
+
+:wc
+The other option is easier:
+
+Using command line
+
+Just enter this command:
+
+ssh-keygen -R g.garron.me
+
+If the server you are trying to access is g.garron.me
+
+From the man page:
+
+-R hostname
+Removes all keys belonging to hostname from a known_hosts file. This option is useful to delete hashed hosts
+
+As I said before, use this with care, and only modify your .ssh/know_hosts if you know why the key on the other side host has changed.

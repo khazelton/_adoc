@@ -1,0 +1,90 @@
+./schemaBrd.adoc:77] Benjamin Oshrin and Keith Hazelton +
+./archF2f-2023-AA.adoc:16] align i2 and community around user-supporting functions: account linking, account recovery, enrollment, Grouper Lite,
+./elixir.adoc:74] From Keith H / Internet2 to Anindita Bandyopadhyay, West Arete (Direct Message): Hello! I would love to connect w you about elixir, data pipelines and Broadway
+./linode.adoc:6] Set up https for aktis, co-op; Check firewall settings on Linode.
+./_TI/tiCompArch.adoc:11] project roadmaps and priorities; draft FAQ entries in GDoc, share w JAS +
+./_TI/tiCompArch.adoc:12] Conceptual-level functional models that IAM infra must collectively and exhaustively address.
+./_TI/tiCompArch.adoc:1249] send slack message to April about AnnW's project to bring more case studies on line for potential adopters. Will become more formal over time.
+./_TI/tiCompArch.adoc:1423] reach out to grady bailey about possible TAP mentoree role +
+./_TI/tiCompArch.adoc:2252] Invite ChrisHy to Fri meeting: New provisioning framework obsoletes the existing Grouper -> midPoint event connector
+./_TI/tiWorkPlans.adoc:533] get SteveZ a skill set list to factor in to his agency conversations about more web dev, ui,...
+./_TI/tiWorkPlans.adoc:1111] steve to set meeting for him, me and Drew to introduce the PoC app.
+./_TI/tiWorkPlans.adoc:1413]: ask for access to AWS Glue I2 data catalog; This is tee'd up for (probably) next week.
+./_TI/tiWorkPlans.adoc:1432] Connector requirements for now: CRUD for people, groups, memberships in Slack (and Canvas);
+./_TI/tiWorkPlans.adoc:1484] SIWG Help RobC: CACTI hopes to spawn # of WGs
+./_TI/tiWorkPlans.adoc:1486] offer to help prep AnnW/MikeC IAM Discussions
+./_TI/tiWorkPlans.adoc:1594] review Internet2 Identity Services Program Update 2021
+./csp.adoc:5] check w AnnW about moving https://incommon.org/community/mace-registries/registrations-in-the-urnmacedirentitlement-namespace to REFEDS +
+./csp.adoc:590] clearly describe the ideal mP vision of people and resource accounts and multiple roles on one resource
+./csp.adoc:684] push mP role info TO Grouper (via LDAP??) (what are use cases for role info mastered in mP, not Grpr?); self-repairing unresolvable subject
+./csp.adoc:753] TAP async messaging failure modes
+./csp.adoc:1551] TommyD @ SMU: product comparison matrix; marketing material, list of capabilities, etc. for each component; BTAA (de)Prov; describe TAP components to CIOs
+./csp.adoc:2100] sketch midPoint ontology as step toward functional model_
+./csp.adoc:2156] reach out to selected individuals to discuss cooperative drafting of TAP how-to documents +
+./cirrusId.adoc:52] sketch out mP - SoR sync options from NRT to full reconciliation; talk to Paul about sharing Canvas connector; How does Cirrus differ from a classic SoR? It might want to be more RPC-like
+./cirrusId.adoc:379] Thorough Workbench checkout; Getting started blurb for all.
+./cirrusId.adoc:524] Come up with an overview doc for the CoManage search/match API so that we can later schedule a discussion with Cirrus Engineering
+./test-data-howto.adoc:1322] Use U Del plan as an initial test case for campus integration
+./docs4grouper.adoc:11] dream up a high-level structure for 4 doc types (ChrisHu, DrewA,..)
+./js.adoc:2] base camp for react/express/next
+./banner.adoc:38] Is it possible you could forward my question?  It is: Does the current “planned Banner connector” effort intend on leveraging the Ethos API?
+./banner.adoc:435] unicon working with MattB, KeithL, and ToddB !!!  They all like JJ
+./banner.adoc:630] AD mapping
+./banner.adoc:649] Mindset conversation with MRG +
+./banner.adoc:650] creat db w schema that matches MattB's SORGrouperTables/Person db; plug in BennO's test data, +
+./banner.adoc:651] 1) add as resource to mP and time reconcilation tasks +
+./banner.adoc:652] 2) hand off connection string for Ethan to do a db-index-based diff update to n+1 from n +
+./banner.adoc:1233] AD mapping
+./banner.adoc:1249] Mindset conversation with MRG +
+./banner.adoc:1250] creat db w schema that matches MattB's SORGrouperTables/Person db; plug in BennO's test data, +
+./banner.adoc:1251] 1) add as resource to mP and time reconcilation tasks +
+./banner.adoc:1252] 2) hand off connection string for Ethan to do a db-index-based diff update to n+1 from n +
+./banner.adoc:1504] 2020-03-24 Create GraphQL queries against banner schema
+./csp2022teams.adoc:8] reach out to Charise about functional model maps and arch documentation templates for Unicon's late October IAM Assessment +
+./csp2022teams.adoc:9] reach out to selected individuals to discuss cooperative drafting of TAP how-to documents +
+./mpug.adoc:244] see how ORCID explains 'account linking' to researchers
+./mpug.adoc:326] edit draft ident guidance based on this meeting: https://github.internet2.edu/internet2/iam-knowledgebase/blob/main/identifier-guidance.adoc
+./(A)CAMP-2021.adoc:112] Keith Hazelton: All the proposed schemes for *enterprise ids* that I’ve heard so far can work in SAML and OIDC contexts at the cost of a couple additional syntax and semantic constraints. I will write up the details and add a link to these notes when it’s ready
+./c4model.adoc:6] TAP ref arch as c4 landscape diagram
+./workbench.adoc:1478] Use U Del plan as an initial test case for campus integration
+./eda.adoc:5] schedule Richard Frovarp to present/discuss asynchronous messaging based on his MS Thesis
+./covidMobNet.adoc:7] M3 modeling transmission dynamics of SEIR
+./midPoint.adoc:5] Yep, I'll reach out to U Chicago re their midPoint deployment; (!Labs to intro their Zoom connector)
+./midPoint.adoc:56] Martin Douglas: final slide: couple future goals that Grouper could help with: lifecycle mgmt, true access mgmt
+./react.adoc:300] - alfa-jango FedMgr UI work contains techniques useful for a general TAP UI
+./CILogon.adoc:42] global authZ via Partic Syntax JWT's via ga4gh passport and scitokens
+./csp2024.adoc:370] Notify UNCC when the new table-based Grouper/midPoint integration
+./csp2024.adoc:421] push edited schema extension for uin up to ~/opt/midpoint-4.6/var/schema/fanner.xsd
+./csp2024.adoc:425] configure schema mapping section to finish the resource def.
+./csp2024.adoc:445] interviiew on Sailpoint IIQ adoption (// Workday) and exit
+./csp2024.adoc:521] Gabor about a community-defined how-to for selective TAP component deployment and integration
+./csp2024.adoc:528] CirrusIdentity:Genericize, document their service functionalisy: fedAuthNZ, protocol gateway, identity lifcycle
+./csp2024.adoc:789] slack messages to #csp2022-only or #csp2022-teamleads about
+./siwg.adoc:84] Conceptual-level functional models that IAM infra must collectively and exhaustively address.
+./siwg.adoc:179] Treatment of Regisry and Provisioning in Base CAMP: more on functional model and less on solution face-offs
+./apiSec.adoc:25] write up a note about this. Note that !Labs supports JWTs in their connector-base project
+./catTheory.adoc:194] PRIORITY ONE materials for learning CatTheory: Richard Southwell
+./catTheory.adoc:216] work Kindle version and Inter-Library Loan copy:
+./catTheory.adoc:218] work Bartosz Milewski Cat Theory for Programmers (2021-09-05)
+./dataMgmt.adoc:11] AttributesNFDI-AAI <- for ScEdB consideration; include eduMember attrs
+./connectors.adoc:8] LDAP/AD provisioning with midPoint
+./icpData.adoc:22] Draw a midPoint-centric arch model; show which systems need what from where. DW is not the solution +
+./icpData.adoc:139] look at NickR's message format; attempt to work up an AsyncAPI (https://www.asyncapi.com/) representation
+./icpData.adoc:415] schema for BarryR's data models, taxonomies, tables
+./icpData.adoc:436] Do an ontology model of a typical Grouper representation of a HE institution; SZ: 'the view is the contract' discuss
+./csp2022.adoc:8] reach out to Charise about functional model maps and arch documentation templates for Unicon's late October IAM Assessment +
+./csp2022.adoc:9] reach out to selected individuals to discuss cooperative drafting of TAP how-to documents +
+./csp2022.adoc:15] `https://hub.docker.com/u/i2incommon <= get latest mP out there
+./csp2022.adoc:379] identifier best practices with SMU and Lafayette
+./assadi.adoc:8] send AA links to mobility data
+./scim.adoc:3] test prov. to salesforce, AzureAD, aws, confluence, slack, sailpoint,...
+./emergents.adoc:6] https://www.youtube.com/watch?v=AWHGQfzfHxI&t=2035s <- firebase for data
+./graphQL.adoc:226] Work through prerequisites to GraphQL Workshop
+./csp2023.adoc:151] Notify UNCC when the new table-based Grouper/midPoint integration
+./csp2023.adoc:202] push edited schema extension for uin up to ~/opt/midpoint-4.6/var/schema/fanner.xsd
+./csp2023.adoc:206] configure schema mapping section to finish the resource def.
+./csp2023.adoc:226] interviiew on Sailpoint IIQ adoption (// Workday) and exit
+./csp2023.adoc:302] Gabor about a community-defined how-to for selective TAP component deployment and integration
+./csp2023.adoc:309] CirrusIdentity:Genericize, document their service functionalisy: fedAuthNZ, protocol gateway, identity lifcycle
+./csp2023.adoc:570] slack messages to #csp2022-only or #csp2022-teamleads about
+./mace.adoc:57] urn registry cleanup

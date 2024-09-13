@@ -1,0 +1,90 @@
+=== docSystem.adoc
+- - -
+_2024-08-16 07:58 labelling Confluence Pages_
+
+https://spaces.at.internet2.edu/wiki/labels/listlabels-alphaview.action?key=TCS
+- - -
+_2024-07-17 13:15 4 types of documentation_
+
+https://docs.divio.com/documentation-system/[] <- canonical discussion +
+
+* tutorials
+* how-tos
+* reference
+* concepts and bigger picture ('explanations')
+
+
+- - -
+_2023-10-18 12:03 chat w SteveZ_
+
+I associate hierarchy with 
+
+- The organization of a book, 
+  - logical sequence of topics, 
+  - simple to complex
+  - (book, chapter, verse,..)
+
+- Tree of life (sub-class relations) Kingdom,Phylum,C,O,F,Genus,Species https://images.squarespace-cdn.com/content/5f02d28f35d64d2a5022eeb1/ed2fcad4-bf94-494e-90cc-647d8943a630/30.png?format=1500w&content-type=image%2Fpng[]
+
+
+- - -
+I'd appreciate your reactions to some thoughts I had about the Grouper Survey Initial Recommendations: https://docs.google.com/document/d/1uWRomgUflT6Ec03vo-tL795XUUr2HdpU0WrVLZC-Yvs/edit?usp=sharing[]
+
+Page Warnings
+- Experimental
+- Since
+- Deprecated
+- Obsolete
+- Replaced By
+- Outdated
+
+
+*- Steve Zoppi -*
+
+I have a similar "sense" of those taxonomies from the survey feedback too...
+
+I think that the missing "prescription" is how to maintain documentation in alignment with the version - so right now (the way you've written it up) it lacks the information hierarchy ands presumes "tagging" may be the primary means of categorizing a given article or document.  
+
+The thing I'm wrestling with (in my head) is 
+- the _information hierarchy_ that encapsulates _each group_ of documents.
+
+I don't have good answers (yet) but I'm considering that there needs to be 
+- _two branches_ (at least) of hierarchy: 
+(1) Global/Persistent Concepts and Facilities artifacts/documents/articles
+(2) Ephemeral/Version-bound artifacts/documents/articles.
+
+- - -
+_2023-04-06 11:18:07 Setting up evolveum-like doc site_
+
+https://docs.evolveum.com/about/jekyll-environment/[] <- install, config, build, run jekyll site +
+
+*- local jekyll instance of Evolveum Docs running: -*
+
+http://localhost:4000/ +
+
+- - -
+_2023-04-04 11:28:40 adding commenting to a static site_
+
+https://github.com/eduardoboucas/staticman[] <- open source commenting system +
+https://staticman.net/docs/index.html[] +
+https://mademistakes.com/mastering-jekyll/static-comments-improved/[] <- staticman plus +
+
+https://averagelinuxuser.com/static-website-commenting/[] +
+https://docs.evolveum.com/about/jekyll-environment/[] +
+
+https://remark42.com/docs/getting-started/installation/[] +
+
+https://simondosda.github.io/posts/2021-09-13-blog-github-pages-1-introduction.html[] +
+... +
+https://simondosda.github.io/posts/2021-09-17-blog-github-pages-5-comment-1.html[] +
+https://simondosda.github.io/posts/2021-09-18-blog-github-pages-6-comment-2.html[] +
+
+- - -
+_2023-04-03 13:11:12 evolveum approach to documentation_
+
+https://docs.evolveum.com/about/writing-documentation/[] <- ref manual for Evolveum Documentation +
+https://docs.evolveum.com/about/jekyll-environment/[] <- setting up jekyll
+https://github.com/Evolveum/docs/[] <- Source Code of Evolveum Documentation Site +
+https://docs.evolveum.com/about/asciidoc/[] +
+
+- - -

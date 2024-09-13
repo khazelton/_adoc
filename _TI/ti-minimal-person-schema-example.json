@@ -1,0 +1,36 @@
+{
+	"id": "2819c223-7f76-453a-413861904646",
+	"dateCreated": "2012-02-02T02:02:02",
+	"dateInactivated": "2017-07-07T07:07:07",
+	"friendlyName": "jqpublic",
+	"status": "active",
+	"beginTimestamp": "2016-06-06T06:06:06",
+	"endTimestamp": "",
+	"updatingEntityId": "",
+	"updatingSOR": "",
+	"protect": false,
+	"identifiers": [{
+		"userName": "jqpublic"
+	}],
+	"names": [{
+		"type": "legal",
+		"formatted": "John Q. Public",
+		"givenName": "John",
+		"familyName": "Public",
+		"middleName": "Q.",
+		"honorificPrefix": "Mr.",
+		"honorificSuffix": "Jr."
+	}],
+	"emails": [{
+		"type": "home",
+		"value": "jpublic@example.invalid"
+	}],
+	"phoneNumbers": [{
+		"type": "mobile",
+		"primary": true,
+		"value": "+15555551212"
+	}],
+	"meta": {
+		"resourceType": "Person"
+	}
+}

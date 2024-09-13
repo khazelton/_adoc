@@ -1,0 +1,516 @@
+swagger: '2.0'
+schemes:
+  - http
+  - https
+host: tierapi.getsandbox.com
+basePath: /tier/v2
+info:
+  contact:
+    email: tier-api@internet2.edu
+    name: TIER API Working Group
+    url: 'https://spaces.internet2.edu/display/DSAWG'
+  description: "The TIER APIs helps education and research organizations with Identity and Access Management (IAM) challenges.  This API definition represents the first few group-related operations using SCIM-compliant responses including eduPerson extension (as provided by PennState at https://github.com/PennState/tier).  (* Note that only the first operation or two can
+    be interactively tested at this time. *)"
+  termsOfService: 'http://www.internet2.edu/policies/intellectual-property-framework/'
+  title: TIER Basic Operations with SCIM-compatible response (including eduPersonExtension)
+  version:  1.0.0
+externalDocs:
+  url: 'https://spaces.internet2.edu/display/DSAWG/'
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - description: Users representation operations
+    name: Users
+  - description: Groups representation operations
+    name: Groups
+paths:
+  '/Users/{userId}':
+    get:
+      summary: Get full SCIM eduPerson extension User representation with all groups (form 1)
+      description: Get full SCIM eduPerson extension User representation with all groups (form 1)
+      parameters:
+        - name: userId
+          description:  Id of user
+          in: path
+          type: string
+          required: true
+        - name: startIndex
+          description: Starting index for results
+          in: query
+          type: integer
+          required: false
+        - name: count
+          description: Maximum number of results requested
+          in: query
+          type: integer
+          required: false
+      responses:
+        '200':
+          description: The request has succeeded
+          schema:
+            $ref: '#/definitions/SCIMUserList'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized request
+        '404':
+          description: Representation not found
+        '500':
+          description: Internal server error
+      tags:
+        - Users
+  '/Users/{userId}?attributes=groups':
+    get:
+      summary: Get list of group for User representation specified (form 2)
+      description: Get list of group for User representation specified (form 2)
+      parameters:
+        - name: userId
+          description:  Id of user
+          in: path
+          type: string
+          required: true
+        - name: startIndex
+          description: Starting index for results
+          in: query
+          type: integer
+          required: false
+        - name: count
+          description: Maximum number of results requested
+          in: query
+          type: integer
+          required: false
+      responses:
+        '200':
+          description: The request has succeeded
+          schema:
+            $ref: '#/definitions/SCIMUserList'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized request
+        '404':
+          description: Representation not found
+        '500':
+          description: Internal server error
+      tags:
+        - Users
+  '/Groups/{groupId}':
+    get:
+      summary: Get members of a specified group (form 1)
+      description: Get members of a specified group (form 1)
+      parameters:
+        - name: groupId
+          description: Id of group
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: The request has succeeded.
+          schema:
+            $ref: '#/definitions/SCIMUserList'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized request
+        '404':
+          description: Representation not found
+        '500':
+          description: Internal server error
+      tags:
+        - Groups
+  '/Groups/{groupId}?attributes=members':
+    get:
+      summary: Get members of a specified group (form 2)
+      description: Get members of a specified group (form 2)
+      parameters:
+        - name: groupId
+          description: Id of group
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: The request has succeeded.
+          schema:
+            $ref: '#/definitions/SCIMUserList'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized request
+        '404':
+          description: Representation not found
+        '500':
+          description: Internal server error
+      tags:
+        - Groups
+  '/Users?filter="id eq {userId}" and groups[value eq "{groupId}"]':
+    get:
+      summary: Determine if user specified is in group specified (form 1)
+      description: Determine if user specified is in group specified (form 1)
+      parameters:
+        - name: groupId
+          description: Id of group
+          in: path
+          type: string
+          required: true
+        - name: userId
+          description: Id of user
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: The request has succeeded.
+          schema:
+            $ref: '#/definitions/SCIMUserList'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized request
+        '500':
+          description: Internal server error
+      tags:
+        - Groups
+  '/Users?filter=userName eq "{userName}" and groups[display eq "{display}"]':
+    get:
+      summary: Determine if user specified is in group specified (form 2)
+      description: Determine if user specified is in group specified (form 2)
+      parameters:
+        - name: userName
+          description: Username provided
+          in: path
+          type: string
+          required: true
+        - name: display
+          description: Group display name provided
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: The request has succeeded.
+          schema:
+            $ref: '#/definitions/SCIMUserList'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized request
+        '500':
+          description: Internal server error
+      tags:
+        - Groups
+definitions:
+  SCIMUserList:
+    description:  | 
+      Describes the members contains within a specified group. Based upon Penn State worked example at https://github.com/PennState/tier
+    properties:
+      totalResults:
+        description: Total users returned
+        type: integer
+      startIndex:
+        description: Staring index of results
+        type: integer
+      itemsPerPage:
+        description: Total users per page
+        type: integer
+      schemas:
+        description: Array of schema related to response
+        type: array
+        items:
+          type: string
+      Resources:
+        type: array
+        items:
+          type: object
+          properties:
+            meta:
+              type: object
+              properties:
+                version:
+                  type: string
+              required:
+              - version
+            id:
+              type: string
+            externalId:
+              type: string
+            active:
+              type: boolean
+            addresses:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  display:
+                    type: string
+                  primary:
+                    type: boolean
+                  country:
+                    type: string
+                  formatted:
+                    type: 'null'
+                  locality:
+                    type: string
+                  postalCode:
+                    type: string
+                  region:
+                    type: string
+                  streetAddress:
+                    type: string
+                required:
+                - type
+                - display
+                - primary
+                - country
+                - formatted
+                - locality
+                - postalCode
+                - region
+                - streetAddress
+            displayName:
+              type: string
+            emails:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  value:
+                    type: string
+                  display:
+                    type: string
+                  primary:
+                    type: boolean
+                required:
+                - type
+                - value
+                - display
+                - primary
+            groups:
+              type: array
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+                  $ref:
+                    type: string
+                  display:
+                    type: string
+                  type:
+                    type: string
+                required:
+                - value
+                - $ref
+                - display
+                - type
+            locale:
+              type: string
+            name:
+              type: object
+              properties:
+                formatted:
+                  type: string
+                familyName:
+                  type: string
+                givenName:
+                  type: string
+                middleName:
+                  type: string
+                honorificPrefix:
+                  type: string
+                honorificSuffix:
+                  type: string
+              required:
+              - formatted
+              - familyName
+              - givenName
+              - middleName
+              - honorificPrefix
+              - honorificSuffix
+            nickName:
+              type: string
+            phoneNumbers:
+              type: array
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+                  display:
+                    type: string
+                  type:
+                    type: string
+                  primary:
+                    type: boolean
+                required:
+                - value
+                - display
+                - type
+                - primary
+            preferredLanguage:
+              type: string
+            timezone:
+              type: string
+            title:
+              type: string
+            userName:
+              type: string
+            userType:
+              type: string
+            schemas:
+              type: array
+              items:
+                type: string
+            urn:internet2:params:scim:schemas:EduPersonExtension:
+              type: object
+              properties:
+                eduPersonAffiliation:
+                  type: array
+                  items:
+                    type: string
+                eduPersonNickname:
+                  type: array
+                  items:
+                    type: string
+                eduPersonPrimaryAffiliation:
+                  type: string
+                eduPersonPrincipalName:
+                  type: string
+                audio:
+                  type: string
+                cn:
+                  type: string
+                description:
+                  type: string
+                displayName:
+                  type: string
+                facsimileTelephoneNumber:
+                  type: array
+                  items:
+                    type: string
+                givenName:
+                  type: array
+                  items:
+                    type: string
+                homePhone:
+                  type: array
+                  items:
+                    type: string
+                homePostalAddress:
+                  type: array
+                  items:
+                    type: string
+                initials:
+                  type: array
+                  items:
+                    type: string
+                locality:
+                  type: array
+                  items:
+                    type: string
+                mail:
+                  type: array
+                  items:
+                    type: string
+                manager:
+                  type: array
+                  items:
+                    type: string
+                mobile:
+                  type: array
+                  items:
+                    type: string
+                postalCode:
+                  type: array
+                  items:
+                    type: string
+                preferredLanguage:
+                  type: string
+                street:
+                  type: array
+                  items:
+                    type: string
+                telephoneNumber:
+                  type: array
+                  items:
+                    type: string
+                title:
+                  type: array
+                  items:
+                    type: string
+                o:
+                  type: array
+                  items:
+                    type: string
+                ou:
+                  type: array
+                  items:
+                    type: string
+                sn:
+                  type: array
+                  items:
+                    type: string
+                st:
+                  type: array
+                  items:
+                    type: string
+              required:
+              - eduPersonAffiliation
+              - eduPersonNickname
+              - eduPersonPrimaryAffiliation
+              - eduPersonPrincipalName
+              - audio
+              - cn
+              - description
+              - displayName
+              - facsimileTelephoneNumber
+              - givenName
+              - homePhone
+              - homePostalAddress
+              - initials
+              - locality
+              - mail
+              - manager
+              - mobile
+              - postalCode
+              - preferredLanguage
+              - street
+              - telephoneNumber
+              - title
+              - o
+              - ou
+              - sn
+              - st
+          required:
+          - meta
+          - id
+          - externalId
+          - active
+          - addresses
+          - displayName
+          - emails
+          - groups
+          - locale
+          - name
+          - nickName
+          - phoneNumbers
+          - preferredLanguage
+          - timezone
+          - title
+          - userName
+          - userType
+          - schemas
+          - urn:internet2:params:scim:schemas:EduPersonExtension
+    required:
+    - totalResults
+    - startIndex
+    - itemsPerPage
+    - schemas
+    - Resources

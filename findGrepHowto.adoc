@@ -1,0 +1,11 @@
+=== findGrepHowto.adoc
+```
+find ./_adoc -type f -name '*.adoc' -exec grep -s banner {} \; -print
+^^^^ ^^^^^^^ ^^^^^^^        ^^^^^^                ^^^^^^        ^^^^^
+ 1      2      3              4                     5             6
+
+
+find and print all occurrences of 'banner' in files of type 'adoc' in the ./_adoc folder tree
+^^^^     ^^^^^                     ^^^^^^     ^^^^^          ^^^^^         ^^^^^^^
+  1        6                         5          3              4              2
+```

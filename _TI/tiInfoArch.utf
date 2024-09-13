@@ -1,0 +1,20 @@
+tierInfoArch.utf
+
+_____________________
+h6. 2017-11-30 10:59  Info/Data Architecture Conference
+
+'Global' value of a give attribute comes from a script that reflects a nat. lang. biz rule.
+TIER crowd calls the global attr list as a 'metadirectory'
+____________________
+h6. 2017-11-29  16:29 Info / Data Architecture and Program Design meeting Wed/Thu 28-29 Nov.
+- pub sub infra for
+- biz process around data stewardship
+- shepherded by an information architect
+- FM, Salesforce, Sympa, COmanage, data source/target
+- all that's missing is data governance
+- FM is one plug-in to the message bus send/receive
+
+MDQ pipeline needs feeding
+
+postgres / Amazon RDS as RDBMS provider
+

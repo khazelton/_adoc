@@ -1,0 +1,321 @@
+=== julia.adoc
+SEE juliaHowto terminology math linearAlg octave 
+https://jacobzelko.com/10082023195125-julia-learning-resources[] <- Zelko, Jacob. Resources for Learning the Julia Programming Language. (2023) +
+https://computationalthinking.mit.edu/Fall24/[] +
+https://github.com/mitmath/computational-thinking[] <- uses Julia +
+https://www.julia-vscode.org/docs/dev/[] <- Julia documentation +
+
+- - -
+_2024-07-30 17:02 _
+
+~/opt/{Julia}
+Filename
+```
+AlgebraicDynamics.jl
+AlgebraicPetri.jl
+alj
+Catlab.jl
+catThAppl-18.s097-january-iap-2019
+diagrams
+discopy
+EpidemicModeling
+julGraphBasic
+JuliaGraphs-LightGraphs.jl-6ee63a9
+JuliaTutorials
+JuliaTutorials-main
+JuliaTutorials-main.zip
+lecture-julia.notebooks
+LinAlg4DataScience
+LinAlgTuts.jl
+MasterJulia2nd
+MJ2
+Pluto.jl
+StockFlow.jl
+stringD'grams
+Toolips.jl
+```
+
+- - -
+_2024-07-18 12:18 jupyter notebooks in ~/opt_
+
+*- from 2024-04-19 -*
+
+]next time w srf: utility of taking a worked-up as-is architectures using arch refresh entities and re expressing it in algebraic / functional wire diagrams
+
+approach Grady about collaborating on an as-is architecture for UT-Austin IAM; See if Paul Spaude has any case studies like that.
+
+https://www.algebraicjulia.org/assets/slides/nist-workshop-2022/main#/title-slide[] <- slides for ^ tutorial +
+
+/Julia, /JuliaGraphBasic, /AlgebraicDynamics.jl, /Catlab, /GATlab 
+
+- - -
+_2024-07-17 14:48 begin MIT Computational Thinking course_
+
+https://computationalthinking.mit.edu/Fall24/
+
+- - -
+_2024-06-15 19:52 updating_
+
+```
+julia> using Pkg
+
+julia> Pkg.update()
+    Updating registry at `~/.julia/registries/General.toml`
+   Installed StaticArraysCore ──── v1.4.3
+   Installed OpenSSL_jll ───────── v3.0.14+0
+   Installed StaticArrays ──────── v1.9.5
+   Installed MutableArithmetics ── v1.4.5
+   Installed AlgebraicInterfaces ─ v0.1.3
+   Installed ZMQ ───────────────── v1.2.6
+  Downloaded artifact: OpenSSL
+  No Changes to `~/.julia/environments/v1.10/Project.toml`
+    Updating `~/.julia/environments/v1.10/Manifest.toml`
+  [23cfdc9f] ↑ AlgebraicInterfaces v0.1.2 ⇒ v0.1.3
+  [d8a4904e] ↑ MutableArithmetics v1.4.4 ⇒ v1.4.5
+  [90137ffa] ↑ StaticArrays v1.9.4 ⇒ v1.9.5
+  [1e83bf80] ↑ StaticArraysCore v1.4.2 ⇒ v1.4.3
+  [c2297ded] ↑ ZMQ v1.2.5 ⇒ v1.2.6
+  [458c3c95] ↑ OpenSSL_jll v3.0.13+1 ⇒ v3.0.14+0
+Precompiling project...
+  ✓ ZMQ
+  44 dependencies successfully precompiled in 41 seconds. 259 already precompiled.
+  1 dependency precompiled but a different version is currently loaded. Restart julia to access the new version
+        Info We haven't cleaned this depot up for a bit, running Pkg.gc()...
+      Active manifest files: 6 found
+      Active artifact files: 127 found
+      Active scratchspaces: 7 found
+     Deleted 10 package installations (367.925 KiB)
+
+Pkg.build("IJulia")
+    Building Conda ─→ `~/.julia/scratchspaces/44cfe95a-1eb2-52ea-b672-e2afdf69b78f/51cab8e982c5b598eea9c8ceaced4b58d9dd37c9/build.log`
+    Building IJulia → `~/.julia/scratchspaces/44cfe95a-1eb2-52ea-b672-e2afdf69b78f/47ac8cc196b81001a711f4b2c12c97372338f00c/build.log`
+```
+
+- - -
+_2024-06-02 21:52 Work through Mastering Julia, 2nd ed._
+
+opt/Mastering-Julia-Second-Edition +
+https://github.com/PacktPublishing/Mastering-Julia-Second-Edition[] +
+
+
+- - -
+_2024-06-02 13:19 running tutorials_
+
+
+julia> using IJulia; notebook(detached=true)
+Process(`'C:\Users\JuliaUser\.julia\v0.7\Conda\deps\usr\Scripts\jupyter' notebook`, ProcessRunning)
+
+use this path in Julia Notebooks +
+/Users/kh/opt/JuliaTutorials-main/introductory-tutorials/intro-to-julia
+
+Gotta be  'using' LinearAlgebra even though it's in the standard library
+
+- - -
+_2024-06-01 11:36 julia parametric polymorphism and multi-dispatch_
+
+https://chifi.dev/taking-full-advantage-of-parametric-polymorphism-with-julia-20bcdf95d233[] +
+
+- - -
+_2024-05-31 09:54 tools_
+
+https://learning.oreilly.com/library/view/think-julia/9781492045021/ch13.html#word-frequency-analysis-xaU7TW[] <- histograms of word freq +
+https://docs.julialang.org/en/v1/base/collections/[] <- collections and iterations +
+
+Looping is fine in Julia, so no need to replace it by recursion. One could use broadcasting and dispatch (hiding the if) though:
+
+updatekeys(f, v) = v  # Base case, i.e., leave atomic `v` alone
+updatekeys(f, v::AbstractDict) = Dict(zip(f.(keys(v)),
+                                          updatekeys.(Ref(f), values(v))))
+
+- - -
+
+https://github.com/upstash/semantic-cache[] +
+
+julia> using Dictionaries, BenchmarkTools
+
+julia> dictionary = HashDictionary(rand(Int64, 10_000_000), rand(Int64, 10_000_000));
+
+julia> @btime dictionary .+ 1;
+  135.975 ms (22 allocations: 256.00 MiB)
+
+julia> dict = Dict(rand(Int64) => rand(Int64) for _ in 1:10_000_000);
+
+julia> @btime Dict(k => v+1 for (k,v) in dict);
+  10.283 s (73 allocations: 541.17 MiB)
+  
+- - -
+_2024-05-29 07:12 Julia for Quantum Computing_
+
+https://medium.com/juliazoid/heres-why-quantum-computing-could-be-the-big-break-for-the-julia-language-4684eb15bc12[] +
+https://github.com/QuantumBFS/Yao.jl[] +
+https://github.com/amazon-braket/Braket.jl[] +
+
+- - -
+_2024-04-19 17:58 jupyter notebooks in ~/opt_
+
+next time w srf: utility of taking a worked-up as-is architectures using arch refresh entities and re expressing it in algebraic / functional wire diagrams
+
+https://www.algebraicjulia.org/assets/slides/nist-workshop-2022/main#/title-slide[] <- slides for ^ tutorial +
+
+/Julia, /JuliaGraphBasic, /AlgebraicDynamics.jl, /Catlab, /GATlab 
+
+- - -
+_2024-04-14 21:45 GATlab_
+
+GATlabPaper <-!! +
+
+Generalized Algebraic Theory: GAT
+
+"The ur-example of a GAT is the theory of categories, in which the type of a morphism depends on a pair of objects, the domain and codomain. Though a relatively simple type theory, GATs suffice to axiomatize essentially any theory consisting of a category equipped with extra structure that is defined algebraically (equationally)."
+
+https://forest.localcharts.org/gatlib.xml[] <- GATlab catalog of GATs: theories, models, theory mmorphisms +rkfij +
+https://blog.algebraicjulia.org/post/2023/03/algebraic-geometry-1/[] <- Owen Lynch, Algebraic geometry for the working programmer +
+https://blog.algebraicjulia.org/post/2023/05/algebraic-geometry-2/[] <- Symbolic presentations of dynamical systems +
+https://github.com/AlgebraicJulia/GATlab.jl/pull/136[] <- Owen Lynch, Symbolic Compositional Resource Sharers +
+https://github.com/AlgebraicJulia/AlgebraicDynamics.jl[] +
+https://blog.algebraicjulia.org/post/2021/01/machines/[] <- Composing open dynamical systems I: Directed composition +
+https://blog.algebraicjulia.org/post/2023/11/intertypes/[] <= Owen Lynch, "Introducing Intertypes", cross-language serialization for ADTs and ACSets +
+https://compositionality-journal.org/papers/compositionality-4-5/[] Patterson, Lynch, Fairbanks. Categorical data structures for technical computing. Compositionality 4, 5 (2022). arXiv:2106.04703. DOI:10.32408/compositionality-4-5 +
+
+- - -
+_2024-04-05 10:11 stepping into algebraic Julia_
+
+https://github.com/AlgebraicJulia/Semagrams.jl?tab=readme-ov-file[] <- editor for graph-like structures w Catlab +
+https://blog.algebraicjulia.org/post/2020/09/cset-graphs-1/[] <- 1st in series about graphs and c-sets, Evan Patterson +
+https://juliazoid.com/functional-musings-with-julia-language-part-i-613cec37907d[] <- series by Gil Junqueira +
+https://medium.com/juliazoid/functional-musings-with-julia-language-part-2-c1f6f515d15f[] +
+https://medium.com/@giljunqueira/functional-musings-with-the-julia-language-part-3-lazy-evaluation-1da41afdb930[] +
+https://medium.com/@giljunqueira/dft-from-scratch-with-julia-language-61c7f281e0e2[] <- series of math explorations posts +
+https://www.youtube.com/watch?v=CTwxOF_Dc_Y[] <- !! Evan Patterson, Algebraic Julia Tutorial +
+operadModel.pdf <- slides for ^ +
+https://ncatlab.org/nlab/show/operad[] <- def of operad at nLab +
+
+https://www.youtube.com/watch?v=sx8FELiIPg8[] <- limits and colimits +
+https://www.google.com/search?client=firefox-b-1-d&q=category+theory+limits+and+colimits#fpstate=ive&vld=cid:08148e21,vid:TtvVHokhSoM,st:0[] <- limits and colimits +
+
+https://math.ucr.edu/home/baez/compositional_modeling/[] <- John Baez' Stuff; main work these days is using categories to make better software for modeling [w Julia libraries] +
+
+- - -
+_2024-03-30 09:41 Algebraic Julia Repo_
+
+```
+cd ~/opt
+git clone git@github.com:AlgebraicJulia/Catlab.jl.git
+
+cd Catlab.jl
+ls -la
+drwxr-xr-x   16 kh  staff   512 Mar 30 09:46 .
+drwxr-xr-x  289 kh  staff  9248 Apr  4 11:26 ..
+drwxr-xr-x   12 kh  staff   384 Mar 30 09:46 .git
+drwxr-xr-x    3 kh  staff    96 Mar 30 09:46 .github
+-rw-r--r--    1 kh  staff   130 Mar 30 09:46 .gitignore
+-rw-r--r--    1 kh  staff   188 Mar 30 09:46 CONDUCT.md
+-rw-r--r--    1 kh  staff   511 Mar 30 09:46 CONTRIBUTING.md
+-rw-r--r--@   1 kh  staff  1082 Mar 30 09:46 LICENSE
+-rw-r--r--    1 kh  staff  2403 Mar 30 09:46 Project.toml
+-rw-r--r--    1 kh  staff  4711 Mar 30 09:46 README.md
+drwxr-xr-x    9 kh  staff   288 Mar 30 09:46 benchmark
+-rw-r--r--    1 kh  staff   191 Mar 30 09:46 codecov.yml
+drwxr-xr-x    7 kh  staff   224 Mar 30 09:46 docs
+drwxr-xr-x    9 kh  staff   288 Mar 30 09:46 ext
+drwxr-xr-x    9 kh  staff   288 Mar 30 09:46 src
+drwxr-xr-x   10 kh  staff   320 Mar 30 09:46 test
+```
+- - -
+_2024-03-29 18:09 algebraic Julia Learning resources_
+
+https://github.com/AlgebraicJulia[] +
+https://www.algebraicjulia.org/[] +
+https://www.youtube.com/watch?v=CTwxOF_Dc_Y[] <- !! Evan Patterson, Algebraic Julia Tutorial +
+https://www.algebraicjulia.org/assets/slides/nist-workshop-2022/main#/title-slide[] <- slides for ^ tutorial +
+https://algebraicjulia.github.io/Catlab.jl/dev/[] <- "Catlab.jl is a framework for applied and computational category theory, written in the Julia language" +
+
+- - -
+_2024-03-03 13:36 Julia 1st runs_
+
+```
+https://julialang.org/learning/notebooks/[] <- video tutorials for Julia +
+
+julia  <- Start Julia REPL
+
+               _
+   _       _ _(_)_     |  Documentation: https://docs.julialang.org
+  (_)     | (_) (_)    |
+   _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
+  | | | | | | |/ _` |  |
+  | | |_| | | | (_| |  |  Version 1.10.2 (2024-03-01)
+ _/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
+|__/                   |
+
+^d  <- Exit Julia REPL
+
+julia -v
+julia version 1.10.2
+
+julia> help
+ERROR: UndefVarError: `help` not defined
+  Welcome to Julia 1.10.2. The full manual is available at
+
+  https://docs.julialang.org[]
+
+  as well as many great tutorials and learning resources:
+
+  https://julialang.org/learning/[]
+  https://github.com/JuliaAcademy/JuliaTutorials[]
+  https://www.youtube.com/user/JuliaLanguage[]
+
+  For help on a specific function or macro, type ? followed by its name, e.g. ?cos, or ?@time, and
+  press enter. Type ; to enter shell mode, ] to enter package mode.
+
+  To exit the interactive session, type CTRL-D (press the control key together with the d key), or type
+  exit().
+  
+julia  <- start Julia
+
+jupyter lab  <- in another console window, start jupyter
+```
+
+*- in Jupyter Launcher start notebook / julia; now kernel is set to julia; save as julia-00.ipynb -*
+
+```
+[1] 44^6  ^↩
+
+[2] 7256313856
+```
+- - -
+_2023-03-20 09:30:41 references and links_
+
+
+https://cheatsheet.juliadocs.org[] +
+https://github.com/sswatson/cheatsheets/blob/master/plotsjl-cheatsheet.pdf[] +
+https://www.youtube.com/playlist?list=PLP8iPy9hna6Q343_8sSq4f306VGLW4TLK[] <- JuliaCon 2021 sessions +
+https://proceedings.juliacon.org/[] open access juliacon proceedings journal +
+https://www.youtube.com/@TheJuliaLanguage/playlists[] <- all Julia vids on Utube +
+
+https://medium.com/juliazoid/idset-in-julia-1-11-303b2b64f54d[] +
+Mastering Julia - Second Edition; O'R funcProg/ <- !! +
+https://discourse.julialang.org/t/easiest-and-most-complete-package-for-postgresql-right-now-feb-2022/75920[] <- see TheCedarPrince answer +
+https://medium.com/juliazoid/is-makie-jl-up-to-speed-fd57530ee9ae[] <- Makie is a plotting ecosystem for the Julia language that is extremely feature-packed and actively developed +
+https://medium.com/juliazoid/setting-up-your-julia-session-33f58c6fbaf2[] +
+https://medium.com/@giljunqueira/functional-musings-with-the-julia-language-part-3-lazy-evaluation-1da41afdb930[] +
+https://github.com/emmaccode/JuliaLessons/tree/master[] <- Julia lessons, E Boudreau +
+https://www.youtube.com/playlist?list=PLCXbkShHt01s3kd2ZA62KoKhWBFfKXNTd[] <- Toolips tutorial +
+https://medium.com/chifi-media/core-package-status-december-1st-2023-8e0b600a095b[] updates all chifi Emma Boudreau +
+https://docs.sciml.ai/ModelingToolkit/dev/[] <- ModelingToolkit.jl Symbolic-numeric modeling with some features from symbolic comp like SymPy or Mmatica & some from equation-based like Simulink acausal Modelica +
+https://www.algebraicjulia.org/assets/slides/juliacon-2020.pdf[] +
+https://github.com/SciML/ModelingToolkit.jl/tree/master[] +
+https://medium.com/tag/julialang[] +
+https://emmaccode.medium.com/[] <- big Julia promoter and info sharer +
+https://algebraicjulia.github.io/Catlab.jl/latest/[] <- cat theory for Julia +
+_Mastering Julia_ 2nd ed.  o'r funcprog +
+_Julia as a Second Language_ o'r funcprog +
+_Julia for Data Analysis_ o'r funcprog +
+https://juliadatascience.io/[] <- data sci a la Julia 'book' +
+https://juliaacademy.com/p/intro-to-julia[] +
+https://github.com/JuliaAcademy/Introduction-to-Julia[] +
+https://julialang.org/[] +
+https://julialang.org/blog/2022/08/julia-1.8-highlights/[] +
+https://www.youtube.com/user/JuliaLanguage/playlists[] +
+https://julialang.org/learning/[] +
+https://discourse.julialang.org/t/functional-programming-in-julia/55548[] +
+https://towardsdatascience.com/how-to-properly-program-julia-code-e95efe9f0085[] <- func prog +

@@ -1,0 +1,745 @@
+=== siwg.adoc  http://bit.ly/siwg-01
+https://internet2.monday.com/boards/2516784927/views/129463423[] <- InC Community Activities: SIWG on Monday +
+ISU, Ben "Rap" "plié" <- dance move
+
+- - -
+_2024-08-16 20:02 gradyB UT Austin_
+
+SOR: IBM Mainrame
+
+some mainframe broker connections that then bring that data into our legacy identity manager, which is a homegrown Java application called the. We. We refer to it as TIM, the U, Texas identity manager,
+
+employee data, we use workday for all of our Hr employee data.
+
+They export that data into a flat file that they put on a transfer server that a deployment of SalePoint IIQ. Reads processes and then sends over to TIM our legacy identity manager.
+
+Moving from Sailpoint to midPoint, replace flat file w Aws lambda function that's going to process that flat file and convert it and put it into a database. And midpoint is reading the database. so we're kind of adopting that intermediate database model that is better.
+
+some addl info from UT System thru SP IIQ to TIM. tobe midPoint
+
+UT System Linrary has its Patron db, with own affil and entitlement, but they have UT EIDs
+
+all that identity data flows Into Tim, the U. Texas identity manager. That is a
+now 16-17 year old. Java application.
+All homegrown, and it manages all of our identity data.
+
+Benefits is all separate, Benefit Focus outsourced sys, goes into MF thru sec. module, then to TIM
+
+oracle database backend 
+
+Don't have a comprehensive Ent Reg.  More data in TED Tex ent reg on OpenLDAP, all 11 million records
+
+TIM has PIT data and change records
+
+into midpoint, so midpoint will be our future comprehensive identity registry. As well as our identity manager.
+
+nothing writes identities to Ted except for Tim.  SP writes group data to TED
+
+move to midpoint midpoint will eventually become that
+fully authoritative for all of the data in in Ted and and other systems, midpoint is going to be our Id Mngr, Id Reg and provisioning engine
+
+SP IIQ came in // workday (func overlap) TIM speaks to MF very well. TIM Will become mocrosvc bridge to midPoint
+
+Sailpoint did some groups, but now Grouper has become the Enterprise Group Service, EGS
+
+mP is exclusive provisioning engine, Grouper prov not used
+
+midpoint provisions eligible users to an intermediate database that grouper uses as its subject source. And then grouper creates those groups and the groups that it's responsible for provisions, those to an intermediate database that midpoint reads, and then midpoint provisins those down to Active Directory and to Ted. And you know we have the possibility of provisioning groups. To other locations in the future.
+
+AD-specific groups maintained by the AD Team
+
+pushing all this to EGS
+
+AuthN/Fed: Shib + Duo, SimpleSamlPHP for guest authN; Collectively the Enterprise AuthN service all connected to InC Federation
+
+400-600 SSO service integrations
+
+moving to get rid of that, to consolidate on an enterprise AuthN svc all via SSPhp
+
+Provisioning: TIM to TED, AD, Radius, and MF at present; mP will take over all of this
+
+AD Team does Entra, Azure, but goal is mP as sole provisioning engine
+
+MF, wkday, system, library, > TIM, TED, SailP, Duo, Radius, 
+
+
+
+
+
+
+
+- - -
+_2024-08-01 21:39 prep for 2 Aug SIWG_
+
+https://github.internet2.edu/internet2/iam-knowledge-bits/blob/main/docs/ps2grouper.adoc[] <- Grouper Data Integration with PeopleSoft @ UNC Chapel Hill
+
+https://github.internet2.edu/internet2/iam-knowledge-bits/blob/main/docs/future-proofed-and-federation-ready-enterprise-ids.adoc[] <-Federation-ready enterprise ids
+
+https://github.internet2.edu/internet2/iam-knowledge-bits/blob/main/docs/postgres-only-workbench.adoc[] <- Modifying the Workbench so the HR source system and the Wordpress database shift from Mariadb to Postgres. Then Postgres is the only needed database
+
+- - -
+_2024-06-25 16:45 grouper mP attribute question from Catherine Winfrey_
+
+#incommon-grouper, Catherine Winfrey  16:25
+
+I have asked about this before but it has been quite awhile. Time finally exists to work on this again.  Checking what our options are now.
+
+We need to 
+- provision custom attributes assigned to Grouper groups 
+- to groups in our target system.
+
+We have a custom provisioner that issues API calls to the target system. Additionally, we have a need for this in our Grouper-to-Midpoint provisioner.
+
+This is the approach that we found documented
+https://spaces.at.internet2.edu/display/Grouper/Grouper+provisioning+groups+using+attribute+framework
+
+I want to confirm that, per the previous discussion, this is still true for this solution:
+"A single view is required, even to provision multiple attributes"
+
+and ask:
+
+Does the provisioning happen during both full and incremental provisioning runs?
+
+Having a single view does not seem practical when more than a couple of attributes are to be provisioned. Will test.
+
+What we had hoped was to use a translation script such as
+
+[source,bash]
+----
+{grouperProvisioningGroup. retrieveAttributeValueString ('customAttributeName')}
+----
+
+but the above referenced discussion indicated this would not work:
+
+The way the method is named, it seems like it would be pulling attribute framework attributes, but it really means values in objects related to the provisioner.
+
+Probably a dream but - if grouperProvisioningGroup.retrieveAttributeValueString doesn't work, can a translation script be written (GSH?) to retrieve the attribute framework attributes? Using what classes?
+
+- - -
+_2024-05-15 15:32 Performance of Grouper/midPoint jdbc connector_
+
+See SIWG notes from May 15
+
+https://github.com/port-43/incommon-tap-examples/tree/main/grouper-to-midpoint-integration
+
+- - -
+_2024-03-21 13:27 Prep for Fri. 29 April mP/Grpr TF_
+
+https://docs.aws.amazon.com/waf/latest/developerguide/waf-rules.html
+
+fedMgr use cases and access management info:
+Johnny Lasker, Dave Shafer, Paul, Chris, Drew, alfa jango
+
+- - -
+_2024-03-15 19:00 future agenda setting_
+
+*- mP / Grouper Performance testing environment -*
+
+- - -
+_2024-02-05 20:11 siwg futures2 on Wed 7 Feb_
+
+https://internet2.edu/wp-content/uploads/2023/09/Futures2-Presentation.pdf[]
+
+- - -
+_2024-02-01 21:00 Use cases to capabilities_
+
+https://github.internet2.edu/ti/systems-architecture[] <- arch diagrams +
+https://github.internet2.edu/ti/systems-architecture/blob/6756f57fd07f162b054ffd327d59b3e7a2830284/iam/iam-jit-enroll.puml[] +
+https://github.internet2.edu/ti/systems-architecture/blob/6756f57fd07f162b054ffd327d59b3e7a2830284/iam/images/iam-jit-enroll.png[] +
+
+next] Conceptual-level functional models that IAM infra must collectively and exhaustively address.
+
+- - -
+_2023-12-13 13:03 BTAA Survey questions as doc_
+
+- - -
+_2023-12-08 08:42 Rbac vs Abac_
+
+- ABAC can lead to greater sensitivity to changes in the ERP's data model
+- ABAC tends to reduce the use of shared affiliation definitions
+- RBAC tends to explode the number of groups, one for each combination of reference groups
+
+Perhaps a happy medium would be a mix of reference groups and abac statements is 
+
+- - -
+_2023-06-14 11:32:53 TF Attribute Basis of Allow/Deny Policies_
+
+==== Attribute Basis of Allow/Deny Policies
+===== Access Policy Information Structures Derived from ERP Data)
+
+CACTI-Approved Proposal for Task Force: https://docs.google.com/document/d/1d7848og2emi8kybmbnP4EniV3320IMl1USog6la-9AI/edit?usp=sharing
+
+Task Force activities will be organized and coordinated by our Software Integration Working Group
+
+Task Force Wiki Page: https://spaces.at.internet2.edu/x/RZJQDw[] +
+Initial work items ^ +
+
+*- Problem Statement -*
+
+If has proved challenging to identify shared patterns in how ERP-sourced data is brought into IAM infrastructures and how access policies are in good part derived from this data..This was the case for the TAP working groups on integration with Banner and with Peoplsoft ERPs.
+
+The mission of this task force is to start from access policies instead. There is a greater likelihood that many generic access policies are in use at multiple institutions. Beyond identifying a set of generic access policies, this Task Force will go on to explore which ERP-sourced attribute types factor into the formulation of these access policies. The extract and transform processing of raw ERP data is necessarily specific to the campus IT system components, so the Task Force will have to assume that each campus will solve that problem on its own. Task Force guidance will pick up the story at that point to suggest common practices for the remainder of the access policy implementation story.
+
+*- Work Items -*
+
+*Document the IAM attribute types:* +
+Behind the allow and deny policy group definitions in the “Example Access Policy” section of the Grouper Deployment Guide +
+Behind the policy examples from the MACE-Paccman Working Group https://spaces.at.internet2.edu/display/macepaccman/Home +
+
+*- Stakeholders -*
+
+*Policy determination: It's complicated*
+
+Custodians of ERPs (who do not always approach requests from an institutional perspective) +
+Executive-level mandates (i.e. trump card holders) +
+Service or Resource "Owners" (does seem like they should have a say) +
+Advocates of resource access for the people whose interests they proxy (to whom do they appeal?) +
+Policy statements hidden in code and in databases, often partially unknown to anyone (source of much confusion) +
+Department-level resource managers (highly decentralized) +
+If all else fails, and it often does, the Central IT and IAM teams end up defining and implementing the policies by default (double-plus ungood, but quite common) +
+
+*Policy-supporting IT Infrastructure managers/developers/staff*
+
+*- Deliverables -*
+
+*Task Force guidelines and recommendations* +
+
+Ideally applicable to +
+To both RBAC and ABAC models of access control +
+To Grouper, midPoint, hybrid, and commercial solutions +
+
+- - -
+_2023-06-08 12:09:24 RBAC and the rise of ABAC in Grouper_
+
+` How do policy groups work in an ABAC world? +
+` Does this lead to importing more attributes from systems of record to provide the data points for dynamic ABAC groups? +
+` Lotsa columns in a table of affiliations  * +
+` Will loader jobs still be useful? +
+` Will ref: groups still be useful? +
+` If we want to try this out, which versions of Grouper support it? +
+
+- - -
+* umichHR: {jobCategory=Faculty}:{campus=UM_ANN-ARBOR}:{deptId=304000}:{deptGroup=MEDICAL_SCHOOL}:{deptDescription=MM Orthopaedic Surgery}:{deptGroupDescription=Medical School}:{deptVPArea=EXEC_VP_MED_AFF}:{jobcode=201000}:{jobFamily=10}:{emplStatus=A}:{regTemp=R}:{supervisorId=12345678}:{tenureStatus=TEN}:{jobIndicator=P}
+
+* For a single my_people_affiliation table, having a column for each distinct keyword would require about 70 columns. In any given row, most columns would have a null value. At the other extreme, we could use a single column for the affiliation data, so the columns would be employee_id, affiliation_name, affiliation_value. At this extreme, most queries would require substring matching. Would a structure between these make sense? Is a separate table for each affiliation better?  (Dont worry about a table with all data). FROM UMich TechEx on Grouper (link below)
+
+.
+
+- - -
+
+https://incommon.org/news/new-features-with-grouper/ <- ABAC in Grouper Q & A +
+https://internet2.edu/wp-content/uploads/2022/12/techex22-IAM-Wolverine-vs-Grouper-Hoekenga.pdf <- UMich TechEx on Grouper +
+https://spaces.at.internet2.edu/display/Grouper/Grouper+attribute+based+access+control+with+scripted+groups <- !! 2022/12 +
+
+- - -
+_2023-04-12 13:00:00 Working Group Plans_
+
+https://internet2-bunch.monday.com/boards/2516784927/views/96643970 <- Monday.com InC Activity kanban +
+http://bit.ly/siwg-01 <- SIWG notes from April 5 +
+
+what kind of person would be helpful in taking some of the burden of SIWG projects?
+
+BillK: draft InCommon Software WG changes: 
+https://docs.google.com/document/d/1d7848og2emi8kybmbnP4EniV3320IMl1USog6la-9AI/edit#heading=h.b5czysvlmo6mn +
+
+next] Treatment of Regisry and Provisioning in Base CAMP: more on functional model and less on solution face-offs
+
+- - -
+_2023-04-05 12:04:05 SIWG meeting_
+
+==== SIWG meeting topics
+
+===== Catalyst Partners reflections on HE IAM; 
+lightning BoF, Paul offering; Trends: Azure has ‘all the data’, lots of connectors and monopolizing the space; SIS integrations, why no connectors for those? [Ask Dedra]; can get a Dev license for free;  
+KH,
+[PaulS]: Friday 14th 10 am Eastern
+
+
+===== Chris Hubing, Chris Hyzer, SlavekL on new Grouper db table provisioning
+Grouper side: Putting data in; midPoint side: pulling data out; Scripted db table connector; Drew: What’s best way to consume Grouper data; Intermediate db brings lots of advantages; Slavek needs a bit more time: BK Asking for an MVP by mid-May
+KH, PS, GB: actively integrating Grouper and midPoint; new approach not working-deletions, Unicorn working on it,; Shadow query in user template was core problem with performance in the messaging solution. Unicon version of a table-based solution;
+
+
+===== ABAC basics and beyond
+JL, KM
+
+
+===== Campus case studies;  Case study contributions lifecycle
+GE: didn’t pick this one: Is it for SIWG to do this. We have to get better at the whole case-study lifecycle (elicitation to documentation) IAM  Coffee Hour, less formal and polished; New ribbon for case study mavens at tech ex, Camp   Idea from Grady is also to take these maven orgs on the InCommon Organizations page on the web
+JL, KM
+
+
+===== IAM Outbound message streaming (Or future state?)
+Drew inbound async has its place; PaulS no real problem here.Connectors look at what’s there, do value deltas; Okta, Azure are using messaging; GB: We have it in our legacy change manager; Will want to continue that with midPoint
+BenR: We are writing to a DB and there is a Debizium connector that picks up the changes and turns them into messages in a Kafka queue
+
+
+===== Past Presentation summaries and publication
+In progress
+
+
+===== Connector how-to's
+In progress
+
+
+===== Function-to-component diagram template (start with COmanage, midPoint, Grouper)
+GE, DA, AM, KM
+The TIER effort was aimed at this originally, time for another round.
+
+
+===== Guidelines and tradeoffs in API AuthNZ
+GE
+
+===== Crosswalk Glossary of concepts and terms COmanage, Grouper, midPoint 
+GE
+KM: Must be in a pleasant and consumable by CIOs etc.
+
+===== Documentation as DevOps (See Writing Evolveum Documentation)
+
+
+- - -
+_2023-03-30 08:16:31 topic hopper_
+
+Catalyst companies reflections on HE IAM +
+Chris Hubing, Chria Hyzer, Slavek on new Grouper db table provisioning +
+ABAC basics and beyond
+Outbound message streaming +
+Presentation polishing and publication +
+Connector how-to's +
+Function to component mapping template +
+
+
+- - -
+_2022-11-16 14:00 BTAA Prov. Cookbook_
+
+BTAA Provisioning Cookbook deep dive (comments, questions – and suggestions, maybe)
+Each of you pick a section to review in advance and discuss on the call
+
+https://spaces.at.internet2.edu/x/SgBsDQ
+
+1. Introduction +
+
+2. Problem Statement +
+   This document concerns itself primarily with the provisioning of data out of the IAM system, but also with flows from Institutional Systems of Record.
+
+3. Basic Concepts +
+   Identity, Subject
+   Identifiers
+   Affiliations roles, groups, etc.
+   JIT vs JIC
+
+4. Identity Provisioning +
+   ID Matching: triage into positive, potential and unmatched identities; potential match handling processes.
+   Institutional username assignment: Self-selected, assigned; allow changes; DON'T reassign a username to a different person; Large namespace; list of prohibited names;
+   Identifiers for services and target directories:    assign opaque identifier that won't change;
+   Per-SP user identifiers.
+   Social IDs: Support appropriate accound-linking; Leverage social ids at onboarding and offboarding; Assess levels of assurance, advise SPs; ID Matching to include social ids
+
+5. Identity Lifecycle +
+   State and affiliation changes: capture transitions with implications for entitlements to services; Together with SPs, clarify intended entitlement policies and their indicator attributes; Support multiple affiliations per user; Designate a 'primary' affiliation in case where an application assumes the existence of one.
+   Grace periods: support them, work with SPs to properly define them; consider security risks that come with grace periods; Support early termination of grace periods;
+   Deactivation: Retain critical user data even after deactivation or deletion; Reinstatement policies and practices; Inform SPs of the deactivation practices; Clear communication with users.
+
+6. Passwords, Multi-Factor Authentication, and Provisioning +
+   Limit number of passwords your institution requires users to remember; Encourage Web SSO; Take NIST advice; DON'T require frequent password changes; Consider passwordless solutions.
+   Initial password setting: use temp. one-time-use password at account activation; identity proofing at time of password setting;
+   Adopt multifactor authN; More than password-based authN for multi-factor changes or additions.
+   Provisioning of credentials: Favor federated IAM over credential assignment; **Ideally support pairwise user-SP identifiers; Assess and audit SP handling of credentials; Deactivation over deletion of accounts; Prevent reassignment of one-assigned username; At deactivation, address each factor;
+
+
+7. Service Provisioning +
+   Reconciliation: Detect synchronization failures; Support scheduled full user base replication; Consider contextual attributes in access decisions, e.g. user location; Track development of fine-grained authorization functionalities; Remediate SP synchronization failures; Remediation processes to cover all error scenarios; Delete provisioned user info before deleting the central user identity; Assure that only designated sources of truth can change user information;
+   De-provisioning: Make sure all info needed for re-activation is in hand before deprovisioning services; Just-in-time deprovisioning is complicated by fact that the deprovisioning won't be detected until the next user login, which may be delayed or never occur; Alert users to migrated data and other resources before deprovisioning; At reactivation of a service, be alert to orphaned user data on the SP left over from previous activation;
+   Considerations for cloud services: See BTAA Cloud Services Cookbook;
+
+8. Target Directory Provisioning +
+   Create linked identifiers for cross referencing identities across systems; Establish a non-name-based (opaque) institutional identifier for each person in the system (NOT NetID); Unique identifiers for each source and target system; Synchronization between directories
+
+9. Authorization +
+   SAML supports two models for authZ: PDP--Decision made at IdP and passed to SP,  and PIP--App applies its policy based on asserted user attributes and context.
+   9.1 Role types: Biz roles: affiliations;  IT roles:  Application roles: user & admin; Asset roles: objects to which the app roles convey rights of access. AuthZ Often represented by membership in groups.
+   9.2 RBAC & ABAC. Some roles generated automatically from system of record information; Some are assigned directly or on request. RFP-like concern: Vendor support for multiple roles per user. Grouper noted. 9.3 Role engineering: start simple, clear naming conventions, RBAC for biz roles, ABAC for IT roles; tradeoff between roles and attributes in access policies; Follow GDG, provide clear & comprehensive documentation
+
+10. Assuring Provisioned Authorization Is Correct +
+    Assuring alignment of access and policy. Attestation (review access) and Audit.
+    Attestation: implications for prov/deprov and grace periods, remediate non-response and non-remediation
+    Audit: Early & frequent engagement with auditors; standardize followup procedures when audits come out
+
+11. Product Lifecycle +
+    RFP-like questions for onboarding and integrating new services and avoiding vendor lock-in at offboarding
+
+
+- - -
+_2022-10-18 09:32 IGA_
+
+IGA enables enterprises to control access and mitigate risk by automating the creation and management of user accounts, roles, and entitlements. This allows companies to streamline onboarding, offboarding, provisioning, policy management, access governance, and other identity security measures.
+
+- - -
+_2022-05-18 09:38 Our legacy ELK dashboard_
+
+https://dashboard.testbed.tier.internet2.edu/elk/app/kibana#/dashboard
+ <= then click dashboard and select "TIER Basic Dashboard" +
+
+- - -
+_2022-05-08 10:29 SIWG Roadmap_
+
+https://docs.google.com/document/d/16nhw6dCDe6sbl-kzEEQY__iqu5sGfOsqx0wviJHInDk/edit#heading=h.pj4blu2jphr5
+ <= monday board: All T&I activities +
+
+] Scan more recent SI meeting notes for other AIs
+
+==== agenda ideas
+` Jason Everling, bshp.edu, mP expert +
+
+- - -
+_2021-07-21 Software Integration Working Group transcription_
+
+Welcome people entering their own names or other people's names i'm entering them in but
+ tonight's can delay us getting rolling until we get them
+ recorded here in the agenda online agenda
+ I think we are pretty much there
+
+So We all are probably partially recovered from base camp week last week, maybe some of you didn't go, but it was a great time
+if you did go you know that
+So I really was hoping we could
+Think over you know muse over some of the things we heard there from each other and see if there are
+topics that we should get on to our to do list at the very least, based on the level of interest we heard there
+
+What you have right here well just first of all, one day, is just a pointer to how you get to the  materials that i've gotten linked from here, and the presentations and slides so yeah the link base camp, on item one takes you to the homepage of the course
+
+Once you're there if you scroll down halfway or so you'll see the five tabs for the five days you pick one of the days
+And then, when you get to that page you scroll all the way down to the bottom and that's where this presentation is are so you can work your way back through the day and get the slides and the presentations.
+
+What I did in one be his notes that we were captured by various scribes during the campfire sessions, and these are pretty much as they were captured at the time, so not a lot of spit and Polish has gone into this, but I thought they made pretty interesting reading, as is, and it was a way to refresh my own mind kinds of conversations we had there but
+mainly interested in what you all heard out of that.
+
+If one of these bullets under one be strike your fancy you've been refined that are talk about what you'd like to see or if you've got something completely other there's a one see here for other hot topics from camp and Wendy I tried to capture a couple things where
+People are saying gee i'd really
+Like some help in this area, or that area
+
+So Basically, this is all kind of a survey of
+Current topics of interest and current areas of work
+So with that I would guess the way I would phrase, the question is, if you think of what you're likely to have to accomplish in the next year 18 months.
+Which kinds of topics are the ones that you really feel like it would be materially assistance to you to dig down a bit as a community or as a subgroup of the Community.
+
+The keys to that I think are definitely going to be on our plate over the next year or once a year 18 months are the group or templates that's probably sooner rather than later
+and  Then, also in API gateway is something that i've been talking about is the next project for some time, and I really want to make some progress on in the next next little while.
+Excellent, Those are definitely of interest to me i'm
+Sure, as we learn more i'd love to hear more about what others in the Community are doing
+
+Could you say just a little more for those of us that aren't
+As familiar with, well, I suppose, either of those Cooper templates look as a good for and API gateway what's the advantage of thinking about that. You know, for for group or templates we've got kind of a pattern that we use both for reference groups and for ap groups it's similar but not identical to what you see outlined in the The Grouper deployment guide but
+You know there's basically a series of groups that need to get created in a folder that ultimately lead to an authorized group and it's the authorized group that ends up getting published to directories and other places, and the applications for provisioning actions, and right now, you know we've got scripts that we run to create those groups for people as as they need them, but what we'd really like to do is to give people the ability to create folders in there.
+
+You know the people out in our it Community create folders and then use a template to create this this set of groups that results in a an
+authorizing structure, without having to do any any manual effort and without having to contact central it, you know for a group of super admins to do it for. So we've been kind of excited about this for a while had thought about trying to do it, but the old Java based templates
+But the GSA templates look like exactly what we've been hoping for
+So that's that's our primary use cases being able to delegate out
+People to create this this Nice Deployment guide kind of structure for themselves
+And then, for the API gateway and this particular for me goes well beyond
+Just identity management api's but also into api's that are maintained by our era P group and others is to have an nice place where developers around campus can come that they can explore the api's that are available
+
+You know, maybe, depending on what kind of a gateway we get they could
+Do do test runs of gets and whatnot just to see what the data coming back and forth would look like
+And then make requests, you know, Sir, Sir, have a governance component, where they can make a request to get access to a set of information that then can be approved by whoever is responsible party for access to that data
+
+Right now it's gets a lot trickier, and you know the one API you get access to, and whether or not you get dumped a flat file, or you know told to go looking dapper it really depends on who in central it you happen to talk to
+Rather than you know what is the best
+Data access method for you as a developer
+And you know for the university's governance process
+i'm looking to deploy the Kong gateway Open Source addition, in the next month
+To start going down that path
+Which is a
+gateway yeah Hong Kong is one of the ones we want to look at so You excited to hear about your experience
+  One of the ones you've been looking at. There is because we've already got informatica presence on campus will look at their offering Kong I definitely wanted to look at and then maybe was a ws or two, I think, has a semi Open Source offering Those are three I know about, but i'm also going to get you know Some
+  hoping to hear other things from the Community, you know with additional suggestions and
+  Have you know some some of my peers here at unc look around and come up with ideas
+  Sorry, I was typing and I got informatica and there were a couple of things you mentioned
+  Kong and ws or two all right
+  Richard Could you say up
+  A little more about what kind of project you're looking at and
+  Maybe what's what's driving us this is, I mean, to my mind it's a sign of API maturity, I guess, when you start bumping into
+  problems that an API gateway can help her but curious about your particular situation there
+  For way too long we've been sharing data through Oracle just like straight to David and I migrated off Oracle over the past year, along with the migration to
+  group or mid point, etc, and so I need to get to the point where I can share data more elegantly then strangely straight through database tables that tons of Apps connected because that's obviously a bad design
+  And we need to get off of it and so i've been exploring graph API graphic graphic graph que El excuse me, so the idea is to go to graph que El idea
+  We have we also do a bunch of web APP development myself and others around here, and so we have like a
+  Java library that's connected together that automatically pulls it like automatically throws cast
+  authentication in front of everything which course brings back all the groups that have been provisioned by group or into active directory etc, and so the
+  advantages, I see from a game API gateway, this is why we're just going to open source version, right now, because it just does it all
+  Is it basically the gateway access like an active directory a grouper and a CAS or IDP of whatever you want to call it all in one
+  Because we can go through, and have somebody we haven't not someone an application authenticate through the gateway and then the gateway will assign roles, and so the custom API that will spin up will only have to go through and
+  validate well it's going to have to handle authentication against what the gateway does
+  Because that's all they care about they won't have to manage their own credit, the gate we will manage the credits, they will the gateway would take care of all these problems, and then it can send roles if we needed roles, because you can
+  Do stuff and graphs well in spring security with roles, and so the gateway just takes care of all that work for us, and so we do it in one spot gateway does it and then our downstream custom code that we're after right
+  Only knows how to interact with the gateway and not have to re implement this functionality all the time
+  Okay well
+  So I know we have at least two interested parties here ethan tonight
+  So
+  However, you can kind of report in from time to time on lessons you're learning or
+  You know benefits, you see, or or issues
+  Please remember to do that, I think there's a backlog of things that you talked about doing that I would love to hear more about so, but this one's definitely
+  high on the list
+  So yeah good news that's great
+  yep I can definitely do that one of the other ones, I want to try to figure out I haven't dug enough into calm to see how it would be possible
+  But we have several applications to bring it back to this group, even more so, we have several applications that hit up the grouper web service API
+  And it'd be nice to instead of maybe there's better ways to do this in grouper but right now that's pointing against an active directory account and we share those credits way too much
+  And so it'd be nice to like bounce the actual group or API access through Kong and then have con issue separate credentials
+  And as a proxy able to send the the shared credentials that we're currently using, but we can do better access control and, as a group are using it to the web service access into group a group or a few wise
+  yeah
+  that's good and a couple of the campfires that I was in people ask a question about the breadth of coverage
+  Of the midpoint api's and so i'm going to try to pin that down, as I say, the first rough answer I come to is it's pretty full coverage, I mean grouper I don't think they ever release a new Java thing without
+  Having an API to a company and so they're probably the
+  You know the thought leader and practitioner in this crowd, but I believe mid points set their sights on doing that, as well, so
+    And yeah wouldn't it be great if there were one place, regardless of the component you're talking about
+With one set of processes that were used across something yeah    I think we're getting there when we get you know, like you say multiple components that are
+    Using api's for one purpose or another it starts to make more sense    Okay    What about other people who were at Camp or weren't see some titles here that look interesting   Oh, I did originally build this as a   Listening session so maybe i'll phrase it as a as a question
+them to each of you, that would like to answer it, which is basically again what's On your list or you think will be on your list sometime this year next 18 months That you're going to have to deal with one or the other, and then we could come at it a different way and just
+  probe whether you've got all the tools and knowledge, you need on those things but anybody willing to
+  pick up the MIC
+  Oh good
+  So I just scroll down and see lost a little bit
+  Testing testing for a good point
+  Testing configuration management i've got that stuff stuff shorts southern get, and so I feel fairly good about configuration management, but the the testing is
+  I haven't read the Doc yet, but you know
+  yeah well Rachel loudon from unc Charlotte
+  said that they
+  feel like in general they've got a good approach to testing for other things, and so they're hoping, they can leverage that for taming investigating midpoint so again the concrete thing would probably be
+  To see when she would feel comfortable
+  Coming to on these calls and kind of walking through your approach but yeah she did a lot of stuff with scripting and automating
+  The testing like I say she at least knows what what success would look like
+  And so that might be a really interesting conversation so i'll
+  i'll kind of curious what testing means in that scenario
+  I guess
+  Some of us just the usual stuff that they upgrade something or or add a new
+  But
+  Is it testing midpoint that midpoint functioning correctly or that your business policy and rules are functioning correctly
+  I suspect it's the latter that has mid points a piece of it, but what you're really
+  isn't matter is that a monster kind of integration test right is everything you know cooperating and getting the job done
+  yeah okay I don't know if midpoint has any way of doing this, one of the
+  Barbie it for me to say anything nice about the Microsoft product, but that I didn't eat integration thing one of the nice things that had
+  Is you could do a dry run like I could go say what if I ran a full sync on this user
+  And it would spit out while i'm going to change this data element and move this data home and do this kind of stuff
+  And if you didn't like it, then you just click the cancel button, but if it was good, then you could click a commit button and would actually committed, so I don't know if there's any way, we could
+  If midpoint can support that could support it all that kind of stuff but that would give you a way to evaluate the ladder, the business policy part of that
+  i'm assuming the that you have midpoint and like a cic D pipeline that can test and validate the basic functionality and midpoint
+  Well then, the question is how do you put that in that pipeline I
+  My point does, yes, Dr RON capability and we're running to mid points I haven't probably one of the Dev one, but you know it's always trying to figure out how to best go through and handle that and put it together and test and update and make sure your tests are meaningful
+  You know you're right, you could have a certain set of tasks that were dry run only and like copies of your regular tasks that you could run probably programmatically
+  What are the other bigger challenges with this
+  is how do you integrate with some, how do you test the connectors and stuff on a system it doesn't give you necessarily a test system to go against
+  You know, like you said you can spin up a test G sweet, so you could test it against that, and if you screw up will then the test G sweet
+  I don't know that we have like and maybe this is this something you request, but I don't know that we have a test zoom instance I can test zoom against right there's all those sorts of problems too and it's beyond mid point is trying to test this sort of system period
+  Having lived with these
+  Products in this scenario for a long time, I have always felt like that trying to set up a test environment, a real true meaningful test environment for this kind of a tool is impossible and it's like chasing your tail because you end up recreating everything just to test it
+  yeah I would agree that's been my experience to and the problem is
+  Is that that's harder for junior people to deal with because they don't have the experience of when they're gonna blow things up i've screwed it up things up in my time that have a pretty good idea, before I had to do a danger zone but
+  yeah I never had a test system for that Microsoft identity tool, it was
+  Some pretty sketchy moments that didn't never bit me but
+  it's just too hard to have a test environment
+  But Paul you've started by saying Microsoft did something right in this space
+  They did well their tool is far from perfect you'll never hear me say that, but you know you've learned to manage the quirks of it and, and it is at least predictable and useful but I hear they're abandoning yet or somebody posted that recently so yeah
+  So yeah but trying to you know recreate the test of arm and I watched many try and it's like okay well yeah you've got this test ad What about a test people so often the test students system and all these other things that you're never going to get
+  yeah and then with real data, what would that look like yeah
+  Right never getting is that
+  We, in some ways, have the opposite problem, which is that
+  Particularly our therapy group, like test systems and they'd like a lot of them and they like them to have copies of production data which is both dangerous and expensive
+  I think, during one peoplesoft upgrade cycle, we made it to like  environments
+  Okay yeah I can see how that could happen
+  yeah so
+  I just wrapped on my new code, you know if user ID equal peak ascii then
+  What loose
+  yeah
+  Okay well yeah let's go, you know compare now it's like the tricks we're using but
+  doesn't well it's gonna take
+  Some development and
+  experimentation to even approach good enough solution, probably on that that space, but
+  I will talk to Rachel about
+  presenting her
+  Father doing
+  integrate what I would call the integration testing
+  Okay i'm back to
+  The other fish in the sea
+  Anybody willing to talk about with the year coming up looks like on your campus
+  i'm kind of go back to your previous question here, so one of the things i'm going to try to figure out how to do and I don't i'm hoping that other people have the problem, so we can discuss it here but i'm going to need to try to figure out how to get
+  midpoint and grouper to work together in the provision on demand case
+  I when we do provision on demand, I like taking positive control of the accounts, we can do username renamed and stuff like that, and I know that midpoint can go ahead and discover like a zoom account was created our zoom is provision on demand through and common
+  authentication so I know that midpoint can go through, and you can discover I don't have this integration working, something I do, but I know that, like mid point you go through and discover who has a zoom account and start managing them
+  Eventually, when we want to remove people and lock them out, we kind of want that process to actually flow through Gruber
+  question is, how do you we can easily start from group or until mid point hey do these things that works, but if the discovery happens in mid point, how do we get it to group or an Intel group or to tell midpoint to get rid of it
+  stepped in there, I I haven't spent a ton of time trying to figure out and I don't know if anybody else has but there seems to be a set of steps in there that i'm not entirely aware of, right now, as far as just the algorithm of how to do that
+  yeah yeah I think
+  We will be implementing that in a fairly near future and it's the same kind of notion, where we do just in time provisioning, for you know from ship login to zoom
+  And so we'll have a notion of awareness and midpoint that a zoom account exists, but not automatically provision zoom accounts and then, when people's association with the university ends
+  we're going to have group or communicate that to mid point and ask midpoint to, among other things, we move zoom licenses
+  So I think it's pretty similar your your use case if i'm if i'm not just reading my ears
+  yeah the current connector for grouper is read only right
+  Yes
+  yep yeah i'm just i'm not i'm not pushing information from zoom to grouper i'm doing that calculations at the midpoint
+  Would this be a different basis sorry park
+  And I haven't experienced Sam think that's better I was just pointing it out, since that was the original question
+  You can leverage roles and Meta roles within midpoint to govern the provisioning of those zoom accounts, so that
+ If you relied on the presence of an account in zoom and had midpoint ingest that information you could enable That that role membership for that individual likewise you can remove that role membership for that individual from any triggering source, including grouper so you could have group or tied into the same Meta role or role within midpoint based on the removal of an individual from let's say a group or group of you know let's say you've got zoom Members as a group, a group
+ and remove that individual from there, you can tie that into the midpoint role and the role removal could then trigger the De provisioning of that zoom account so a given role could be driven by two different resources
+  interesting
+  Could you say a little more about that that trigger capability
+ Yes, where where would those triggers get picked up or
+  Is in that role policies, so the role policy could be defined conditionally and when the condition proven true the individual let's say we're talking about users
+So when the issue is proven true the user would be granted essentially the inducement for that account and whenever the condition proves false midpoint will automatically De-provision that user From that account so your rules by which you have the condition defined can be dependent on the grouper membership or,  You know, some type of information from zoom or both, so you can rely on the policy statement for the Metarole membership
+And whenever again, as I mentioned just now, whenever it's proven true provisioning would occur and whenever it turns out false midpoint will D provision that individual from that account
+  I think, had a DEMO of that capability
+At one point, it was it based on just kind of what you described right there
+  yeah it i'm glad you brought that up yeah we did a DEMO back last fall and again another one in the spring
+ And it didn't tie in group or per se, I was involved in the second presentation in the spring and I hinted that one could do it, I didn't actually set it up or demonstrated
+But yeah it's that's what I was hinting at during the second presentation, one could integrate their group membership system and leverage that for the automated Deprovisioning if you let's say you had an entire graduating class you wanted to do provision from zoom accounts that would be one way to do it
+  hey so Jim I don't know, maybe in a future call, we could just start down the path of discussing what it would look like to do that to get Rupert to be in the loop
+  I like that idea Keith
+look forward to putting that together sometime in the future, you bet
+  Okay excellent okay
+  While i'm typing other people can be thinking or speaking
+  folks from Illinois state and I won't
+  call any particular person, but i'm just wondering if anything you heard at Camp bears on anything that you're looking at in the near future, I know you just wrapped up a CSP roles, so you probably have your plans pretty well aligned, by now, but just curious if there's
+  Some bits that you're still worried about or missing for getting the year done
+  I guess, one of the things on this list from
+  camp that at least i'm interested in hearing the direction of where it goes and what people are doing so the
+  API gateways that's been something
+  we've talked someone at icu about but
+  As far as the actual product that we're going to put in place i'm not totally sure so be interesting to hear what other people's true goes in the reasons why
+  One of the ones we talked about is apogee
+  So maybe a phrase this as a question anybody
+  got
+  plans or intentions to integrate co manage and midpoint
+  Typical thing would be COmanage just some kind of guests system or invitee sponsored role as of things
+  Anybody working with those two things which, like we know, have a lot of overlap, but
+  yeah that's definitely what we'll be doing at SMU um we we kind of see COmanage as not just a guest system we manufacture it's difficult for me to understand using it for only a guest system
+Our Our view is that will use it as our identity registry or person registry
+And that will mean that it will bring in identities from all sorts systems, primarily that's peoplesoft, but we have additional smaller ones that will also source identities from
+And then, it seems, at least on paper to make sense for guests, to also be on boarded directly into co manage and those are
+You know, instead of calling them guest which doesn't always make sense we're kind of calling them non sore users, so we just don't have a source of record for them so co manage would act as the source of record for the non store users and yeah so, then the identities, obviously, would be made available to midpoint and grouper And the mechanism for doing that seems to the default is probably held up
+   But there's some consideration, probably for using a database for that
+So there'll be more discussion about that
+  I am waiting to take the training in October for COmanage to get myself some more time for ideas but yes i'm going to get the same thing, the same general idea
+  i'm thinking about taking that Community training again because it doesn't ever seem to soak yeah I think this may be my fourth time
+  So i'll have
+  i'll have someone else listen in this time and maybe help me
+  pick or is going to ask you to start getting the training soon
+  yeah that's that's gonna be a tragedy
+  Okay
+  i'm only just have been holding my hand and that works pretty well
+  So he does most work and I just say that sounds good
+  That sounds like a plan
+  yeah so I just want to make sure I didn't misinterpret you were saying so go manages the registry and then midpoint is into the picture for provisioning capabilities or
+  Correct yeah so from there, I think it's kind of the standard
+  Implementation practice where grouper makes the decisions and midpoint makes it so so that's kind of the flow again on paper
+  So they'll probably be
+  loader jobs in grouper that are living in or yeah looking at things inside calm
+  yeah for those non SoR users, yes I think that's right and then obviously it will also be running the loader jobs against peoplesoft and a few other source systems
+  Okay that's interesting, so you will want to pull all the European information in and so that there's just one source for the loader jobs, I guess that makes that's a pretty typical thing you're right loader jobs per
+  Major source system yeah I got it
+  yeah
+  So all of this, the foundation of it all is is for that
+  Identity registry to exist first so that's our first area of focus
+  We might know a lot more in here so about suitability of co manager mid point for various roles in that in the im infrastructure
+  and be able to point out, benefits and drawbacks of each in different situations that'd be useful information
+  yeah we definitely intend to share i'm positive that have an oversimplified view of all of this and I try hard to
+  recognize where I have deficiencies in my understanding, so I, I know that I will have a lot of lessons learned by this time next year
+  Good that's good news for us, I guess it does also help to start believing that it's all going to be okay
+  Even if that's based on it means that
+  Yes, i'm hopelessly optimistic
+  Well, hopefully this year won't cure you that all right
+  couple things
+  Much more ice
+  Just looked at
+  Which is amazing oh it's probably just me anyway, never mind
+  All right, well, I don't want to force people to talk to that
+  aren't are disinclined to do that, for whatever reason, but kind of like
+  What Kevin maroney kept saying at Camp right, you know engagement
+  and involvement is
+  Absolutely, the, the best way to you know pick up stuff and get help with things you're working on, so if it's just
+  That wanting
+  To ask what somebody might call it dumb question or something like that, please don't worry about that
+  You have a quota of I forget what it is something like 10 supposedly dumb questions that you can ask without any penalty whatsoever so
+  that'd be that'd be good
+  Well let's see, I guess, I had a couple other topics down here well one of them was that
+  yeah the gateway thing but
+  Under this is still one I guess little yep
+  Everything today is item one on
+  One he is stuff that i've seen on slack or somewhere or email Keith LeValley I didn't I don't think I saw him on today, but is interested in how
+  He should handle password reset stuff and his question was basically are you just using the stuff that ships with midPoint or are you doing needing something fancier than that, and he was talking about a mechanism
+  You know, allows you to do confirmations and email validation and all that kind of thing so
+  that's probably something well invite him to bring to the group does that resonate with other folks on this call
+  Yes, we've never quite been happy with our password reset solution so i'll be paying attention to that
+  All right
+  And it might be a good time to take you know, a meeting are to to sort through what we think the requirements are for that right, I mean it's not
+  mean a lot of things, it can mean a help desk or to be totally self serve so
+  Right and part of our issue is that it's required by the State law to have the password expire, and then obviously be set to something new
+  Every
+  X number, I actually don't know if they set a date it's just Steve is as the password has to be expired and changed yeah
+  and   They don't give you an out based on second factor stuff either I bet
+  yeah
+  Okay well yeah we should be able to come up with that I know
+  i'm guessing I guess I don't remember brad signature co manage as pretty good facilities draw this invitation conscription validation but if somebody knows different than that, please speak up
+  But
+  Anyway, okay so there's that
+  SCIM connector to provision to aws ssl this one came from James Babb at Wisconsin
+ Just briefly, it does require SCIM 2.O current midpoint SCIM connector does SCIM 1.1 which works great for slack because they're 1.1 but, of course, you know, the thing about Sanders is there
+So there's we would need to get a SCIM connector up and running and i'm not quite sure how big a job that is but
+  So many versions of everyone
+  So there's we would need to
+ get a SCIM connector up and running and i'm not quite sure how big a job that is but
+  generally
+  We haven't heard a great groundswell of demand for SCIM solutions, I know
+  The group or folks have been working to script there's up
+  and   So it might come up if if there's enough interest in like come up that we do invest in the work to get us going to connect her bill so just something to keep in mind anyone else on the call
+  With a provisioning target or software as a service where they encouraging new skin for that work
+  Okay
+  So this next bullet under your best practices in person, identify are handling in higher ED research we've
+  talked around this we've shared you know what some of us have that we think is is pretty good justifications for the way we're doing things I feel like if we
+  Put a little bit of effort into it, we could probably come up with
+  Something that said all right if
+  If you're starting from scratch, which almost nobody is here would be our recommendations on, you know how you handle your identifiers
+What you might want to do for net ids for us ssl login identifiers what you might want to do to try to come up with a you know truly persistent stable non name based that would be another point that we try to make, for, if you want it to be permanent and stay with the user and uniquely identify them and only them
+Well i've heard people even argue that since they've got a lot of people so have to campus ID is a is a pretty good thing for login
+That EMPLID might be a reasonable internal thing but anyway, I think we could do this it takes a little guts to put A recommendation out there, but if we don't do that we're not probably providing as much help as the Community could use so i'd like to do that probably would be in the form of A rough draft that I would hope, people would take issue with and fix our call out where the situations where you know
+You're recommending this is a really good practice or best practice, but you know, nobody I know is in a position to do that so let's come up with something without "Best" in the title   uniquely identify them and only them
+  You know, then you're getting into this space in a way that
+   You
+  will need to do some more thinking on it, but
+  You know it's some of us are stuck with
+Well i've heard people even argue that since they've got a lot of people so have to campus ID is a is a pretty good thing for login
+  That EMPLID might be a reasonable internal thing but anyway, I think we could do this it takes a little guts to put
+  And the final one here on my list is
+  Something we've always talked about as an ideal
+  And we haven't ever really pushed it all the way through, that is to say
+  We have
+  In theory, there ought to be such a thing as A registry person schema or model data model that's canonical in the sense that it's not really
+  Keith H / Internet2:   tied to or too tightly associated with a particular ERP or application or you know software as a service but that
+  You know kind of handles
+  Most of the cases for the things that we define as in scope, for I have
+  and   I believe all yes i'm pretty confident and saying that co manage with certainly give you the tools to do this if you had the discipline
+  And I certainly know that point does both of them, you know, extending the schema is easy and doesn't bring a lot of stuff in it trail that mess of stuff up so you could definitely do the first bullet there, mapping from source systems into the some canonical form that would you know be independent of any rp now that's, not to say that your pii information can all be filtered out because obviously you're just talking about loader jobs that do a lot of stuff based on your IP information so
+   It really is more kind of the core person information that we're trying to focus on here so that might make it more reasonable because it scopes it down a bit
+And then the the other direction is okay great you've got your registry now has this canonical person model and the question is, will at suffice for all the provisioning and D provisioning actions you need to perform, on the other side on the outbound side
+And I think both of those are open questions
+And it's another one, where I think we've worked on pieces of this and we said it's a good idea, but we haven't had the courage or inclination to actually write that down in and test it with with all you folks and others see if it makes sense
+   So those are things i'd like to you know work into our Year together, but it depends, we have to pick things that are of interest to more than one of us, I think that's fair to say
+  open questions
+  And it's another one, where I think we've worked on pieces of this and we said it's a good idea, but we haven't had the courage or inclination to actually write that down in and test it with with all you folks and others see if it makes sense
+ So those are things i'd like to you know work into our Year together, but it depends, we have to pick things that are of interest to more than one of us, I think that's fair to say
+  And I don't know
+Paul at some point, it might be interesting for you guys to talk about.s tuff you're doing on the Internet2 IAM space in the coming era so just so we could be up on that because I expect you guys are not going to sit still
+  You come on you know, a long way, but
+  Once we get the new registration system in place that will be kind of a big deal because
+  All the everything, like all the courses even will go through the new registration system
+  Right good
+  And it will automatically you know do things you know, on the scenes that will be interesting to talk about
+  yeah okay well pencil you in that for sure
+  yeah
+  Because And it's another one, where I think we've worked on pieces of this and we said it's a good idea, but we haven't had the courage or inclination to actually write that down in and test it with with all you folks and others see if it makes sense
+ So those are things i'd like to you know work into our Year together, but it depends, we have to pick things that are of interest to more than one of us, I think that's fair to say
+I know you've put a lot of time and energy into thinking through and and sketching out the registration enrollment registration credentialing process right, so it might be good models in there to share out but we'll see how it goes
+  I know you've put a lot of time and energy into thinking through and and sketching out the registration enrollment registration credentialing process right, so it might be good models in there to share out but we'll see how it goes
+  Anything late breaking lightbulbs in anybody's mind? questions
+  Alright, if not, we will declare victory, once again, and the next meeting of this group will be a week from Friday, July  I think that is
+  And, in the meantime stay in touch via whatever channels you prefer
+  And we'll get back together sometime soon

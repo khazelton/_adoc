@@ -1,0 +1,189 @@
+=== linode.adoc kh
+gith khaz 
+国外人$ +
+https://github.com/dcmorton/apache24-ubuntu/blob/master/debian/apache2.README.Debian <- apache2 full debian configuration info
+
+next] Set up https for aktis, co-op; Check firewall settings on Linode.
+
+- - -
+==== CURRENT LINODE(S)
+
+```
+"aktis.org "     √"192.46.222.158" Linode   16Gb RAM, 320Gb  Rocky Linux 9  kh,root 窟掉-！ 外¥1030                             ^
+"co-op.tech" .   √"192.46.222.158" NameISP --> Linode --^    9.1 Blue Onyx
+	
+```
+
+- - -
+_2023-01-28 14:17:01 one Linode vm, one IP, serving two domains_
+
+https://www.serverlab.ca/tutorials/linux/web-servers-linux/how-to-configure-multiple-domains-with-nginx-on-ubuntu/ +
+
+*- Configure first domain -*
+
+
+
+*- Configure additional domains -*
+
+- - -
+_2020-01-28 14:16:33 _
+
+https://www.nameisp.com/cp/domain/list?orderby=renewaldate[] +
+https://www.nameisp.com/cp/domain/details/237687[]
+ <- status +
+```
+Domän        Status  Förnyelsedatum
+_____        ______  ______________
+co-op.tech   Aktiv 	 2020-12-10
+
+- - -
+SOA Record
+
+Primary Domain		Email
+aktis.org					khazelton@gmail.com
+```
+
+==== Decommissioned
+
+```
+"co-op.tech*",  "198.58.123.201"  "16Gb RAM",  "Ubuntu 18.04",  "kh,root"  "窟"
+"aktis.org",    "45.33.24.91"     "2nd IPaddr on above linode", "@m",      "窟"
+
+- - -
+
+persepolis.wisc.edu		 							linode 20610
+arenagames.us												"   "
+metazome.info				45.56.125.163 	linode1296144
+cerif.org														"   "
+xacml.info													"   "
+arche.elple.net			50.116.58.238		linode204251
+arche.metazome.info	50.116.58.238		"   "
+mwtestbed.org				192.155.82.172	linode257862
+```
+- - -
+_2020-06-03 08:36 6-part Kubernetes Primer_
+
+https://www.linode.com/docs/kubernetes/beginners-guide-to-kubernetes-part-1-introduction/
+
+- - -
+_2018-04-17 16:10  Spring Boot w NGINX on Linode_
+
+https://linode.com/docs/development/java/how-to-deploy-spring-boot-applications-nginx-ubuntu-16-04/
+
+- - -
+_2018-04-07 17:28  new boot image for linode 1296144_
+
+https://ca.godaddy.com/help/changing-the-ssh-port-for-your-linux-server-7306
+
+- - -
+_4/23/16 9:51 AM metazome/cerif/xacml upped to 8192_
+
+- - -
+_2015-09-07 09:19 new linode 4096_
+
+```
+doit-93530864-x:~ hazelton$ ssh root@45.56.125.163
+
+The authenticity of host '45.56.125.163 (45.56.125.163)' can't be established.
+RSA key fingerprint is e5:03:57:e6:c9:9c:95:ce:f7:ae:e6:fb:10:76:e3:c4.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '45.56.125.163' (RSA) to the list of known hosts.
+root@45.56.125.163's password:
+[root@li943-163 ~]# ls -la
+total 28
+dr-xr-x---  2 root root 4096 Jul  7  2014 .
+drwxr-xr-x 18 root root 4096 Jul  7  2014 ..
+-rw-------  1 root root    0 Oct 21  2014 .basls -la
+h_history
+-rw-r--r--  1 root root    0 Jul  8  2014 .bash_logout
+-rw-r--r--  1 root root  176 Dec 29  2013 .bash_profile
+-rw-r--r--  1 root root  176 Dec 29  2013 .bashrc
+-rw-r--r--  1 root root  100 Dec 29  2013 .cshrc
+-rw-------  1 root root   58 Jul  7  2014 .lesshst
+-rw-r--r--  1 root root  129 Dec 29  2013 .tcshrc
+-rw-r--r--  1 root root    0 Jul  8  2014 .viminfo
+[root@li943-163 ~]# tree
+-bash: tree: command not found
+[root@li943-163 ~]# pwd
+/root
+[root@li943-163 ~]# ls -la /
+total 68
+drwxr-xr-x  18 root root  4096 Jul  7  2014 .
+drwxr-xr-x  18 root root  4096 Jul  7  2014 ..
+-rw-r--r--   1 root root     0 Jul  7  2014 .autorelabel
+lrwxrwxrwx   1 root root     7 Jul  7  2014 bin -> usr/bin
+dr-xr-xr-x   2 root root  4096 Jul  7  2014 boot
+drwxr-xr-x  12 root root 13780 Sep  7 14:23 dev
+drwxr-xr-x  73 root root  4096 Sep  7 14:23 etc
+drwxr-xr-x   2 root root  4096 Jun 10  2014 home
+lrwxrwxrwx   1 root root     7 Jul  7  2014 lib -> usr/lib
+lrwxrwxrwx   1 root root     9 Jul  7  2014 lib64 -> usr/lib64
+drwx------   2 root root 16384 Jul  7  2014 lost+found
+drwxr-xr-x   2 root root  4096 Jun 10  2014 media
+drwxr-xr-x   2 root root  4096 Jun 10  2014 mnt
+drwxr-xr-x   2 root root  4096 Jun 10  2014 opt
+dr-xr-xr-x 110 root root     0 Sep  7 14:23 proc
+dr-xr-x---   2 root root  4096 Jul  7  2014 root
+drwxr-xr-x  20 root root   600 Sep  7 14:23 run
+lrwxrwxrwx   1 root root     8 Jul  7  2014 sbin -> usr/sbin
+drwxr-xr-x   2 root root  4096 Jun 10  2014 srv
+dr-xr-xr-x  13 root root     0 Sep  7 14:23 sys
+drwxrwxrwt   7 root root  4096 Sep  7 14:25 tmp
+drwxr-xr-x  13 root root  4096 Jul  7  2014 usr
+drwxr-xr-x  20 root root  4096 Jul  7  2014 var
+[root@li943-163 ~]#
+```
+
+- install apache
+
+```
+[root@li943-163 ~]# yum install httpd httpd-devel httpd-manual httpd-tools
+
+[root@li943-163 ~]# echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin
+[root@li943-163 ~]# which systemctl
+/usr/bin/systemctl
+[root@li943-163 ~]# systemctl stop httpd.service
+[root@li943-163 ~]# systemctl start httpd.service
+
+- created user khazelton
+
+[root@li943-163 ~]# useradd khazelton
+[root@li943-163 ~]# passwd khazelton
+Changing password for user khazelton.
+New password:
+Retype new password:
+passwd: all authentication tokens updated successfully.
+[root@li943-163 ~]# exit
+logout
+Connection to 45.56.125.163 closed.
+doit-93530864-x:~ hazelton$ ssh khazelton@45.56.125.163
+khazelton@45.56.125.163's password:
+[khazelton@li943-163 ~]$ ls -la
+total 20
+drwx------ 2 khazelton khazelton 4096 Sep  7 14:38 .
+drwxr-xr-x 3 root      root      4096 Sep  7 14:38 ..
+-rw-r--r-- 1 khazelton khazelton   18 Sep 26  2014 .bash_logout
+-rw-r--r-- 1 khazelton khazelton  193 Sep 26  2014 .bash_profile
+-rw-r--r-- 1 khazelton khazelton  231 Sep 26  2014 .bashrc
+
+- set up nameservers to direct
+For getting htop on CentOS, you need to install the EPEL Repo, this also contains a few other packages that are not included in the default repos.
+
+As root run the following to install the EPEL Repo:
+Code (Text):
+wget http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+rpm -ivh epel-release-6-8.noarch.rpm
+After that, "yum install htop" will work.
+```
+
+- - -
+_2014-04-03 11:20  tips_
+
+
+To see how much much space inside your disk image is currently being used, connect to your Linode via SSH and execute
+df -m
+
+Saved a clone of cerif.org as disk image ..2014-04-02 via Linode dashboard with a corresponding boot configuration; tested that it is bootable and works as expected;
+
+- - -

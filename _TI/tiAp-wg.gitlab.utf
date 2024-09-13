@@ -1,0 +1,44 @@
+~/_notesPlus/tier-ap-wg.gitlab.utf
+_____________________
+h6. 2015-11-21 11:30 venv for mkdocs
+
+virtualenv --python=/home/<user>/Software/Python3.4/mybuild/bin/python3.4 virtualenv3
+
+_____________________
+h6. 2015-11-21 11:12 clone tier-api-wg from ligo gitlab
+
+doit-93530864-x:opt hazelton$ git clone git@fed-interop-wg.ligo.org:khazelton/tier-api-wg.git
+Cloning into 'tier-api-wg'...
+remote: Counting objects: 6, done.
+remote: Compressing objects: 100% (5/5), done.
+remote: Total 6 (delta 0), reused 0 (delta 0)
+Receiving objects: 100% (6/6), done.
+Checking connectivity... done.
+
+doit-93530864-x:opt hazelton$ cat ~/.ssh/Config
+host fed-interop-wg.ligo.org
+ HostName fed-interop-wg.ligo.org
+ IdentityFile ~/.ssh/github_rsa
+ 
+User gitdoit-93530864-x:opt hazelton$ ls -la tier-api-wg
+total 16
+drwxr-xr-x   5 hazelton  AD\Domain Users  170 Nov 21 11:07 .
+drwxr-xr-x  10 hazelton  AD\Domain Users  340 Nov 21 11:07 ..
+drwxr-xr-x  13 hazelton  AD\Domain Users  442 Nov 21 11:07 .git
+-rw-r--r--   1 hazelton  AD\Domain Users  549 Nov 21 11:07 LICENSE
+-rw-r--r--   1 hazelton  AD\Domain Users   99 Nov 21 11:07 README.md
+
+doit-93530864-x:opt hazelton$ cat tier-api-wg/README.md
+Proposed GitLab Home for the TIER Data Structures and APIs Working Group
+
+Made possible by Ligo.org
+----------
+
+doit-93530864-x:opt hazelton$ pwd
+/Users/hazelton/opt
+
+doit-93530864-x:opt hazelton$ cd tier-api-wg
+doit-93530864-x:tier-api-wg hazelton$ git remote -v
+
+origin	git@fed-interop-wg.ligo.org:khazelton/tier-api-wg.git (fetch)
+origin	git@fed-interop-wg.ligo.org:khazelton/tier-api-wg.git (push)

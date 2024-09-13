@@ -1,0 +1,83 @@
+=== tiAlignUserStories.adoc
+- - -
+_2019-03-19 11:00 Call w DeanW, BillK, Erin_
+
+https://docs.google.com/document/d/1CONCOT8QdQObXUzpkP0zGElSO4slaEeL30FKAUts5sA/edit# <= Base Camp Sessions
+
+- - -
+email 2019-03-15:
+
+Those topics all fit our idea of user stories.
+
+I could offer the suggestion to take the group management aspects out of the onboarding/provisioning crash course and make it part of the managing access with groups course. I think this will make each course easier to follow and more logically cohesive. In real life, group management happens primarily after onboarding and before provisioning. This could be pointed out in both courses to convey the idea that a complete solution requires a combination of different capabilities.
+
+Keith
+- - -
+
+```
+From: Dean Woodbeck
+Sent: Friday, March 15, 2019 4:46:30 PM
+To: William Kaufman; Keith Hazelton
+Cc: Ann West
+Subject: Re: BaseCAMP program feedback
+```
+
+Hi Bill and Keith,
+
+I want to call out one section of the note I sent Tuesday in case you missed it. For BaseCAMP, we’d like to _align what we’re calling “crash courses” with the ITAP use cases_ that you are working on.
+
+I’ve listed the items from our program below. _Could you let me know if these align_ or, if not, what topics you are developing?
+
+```
+From: Dean Woodbeck <woodbeck@internet2.edu>
+Date: Tuesday, March 12, 2019 at 5:12 PM
+To: William Kaufman <wkaufman@internet2.edu>, Erin Murtha <emurtha@internet2.edu>, Paul Caskey <pcaskey@internet2.edu>, Christopher Hubing <chubing@internet2.edu>, Nick Roy <nroy@internet2.edu>, James Babb <jbabb@internet2.edu>, Keith Hazelton <hazelton@internet2.edu>, John Krienke <jcwk@internet2.edu>, Albert Wu <awu@internet2.edu>
+Cc: Ann West <awest@internet2.edu>, Steven Zoppi <szoppi@internet2.edu>, Kevin Morooney <kmorooney@internet2.edu>
+Subject: BaseCAMP program feedback
+```
+
+Hi everyone,
+
+I’d like to have your input on the BaseCAMP draft agenda. We’ve gone through this with the planning committee, but it is not yet final.
+
+The first day-and-a-half is dedicated to the federation, and then there is a day-and-a-half dedicated to the software. Some of you have already weighed in on some things, but I don’t think you’ve seen the entire schedule.
+
+For the federation portion, one challenge is to have topics of relevance to both IdPs and SPs (you’ll see part of the meeting has those as separate tracks). Note for example, on Wednesday morning, we will likely roll the Shib UI discussion into the Packaged Shib session. It would be useful to have an SP-oriented topic to replace that.
+
+On the ITAP half, _I’m particularly interested if the “crash courses” are in sync with the use cases that I believe Bill and Keith are working on_. You’ll see the Weds afternoon crash courses are problem/solution based (e.g. “onboarding,” “Guest systems”), while the Thursday morning courses are somewhat more component oriented, although not completely.
+
+Please keep in mind that the audience for this meeting is people new to the IAM space, new to federation, new to our software. You’ll see bunches of comments already in the google doc – please add to them!
+
+https://docs.google.com/document/d/1CONCOT8QdQObXUzpkP0zGElSO4slaEeL30FKAUts5sA/edit
+
+Thanks! Dean
+
+Dean Woodbeck
+Fri 3/15, 4:46 PM
+Hi Bill and Keith,
+
+I want to call out one section of the note I sent Tuesday in case you missed it. _For BaseCAMP, we’d like to align what we’re calling “crash courses” with the ITAP use cases that you are working on._
+
+I’ve listed the items from our program below. _Could you let me know if these align_ or, if not, what topics you are developing?
+
+Thanks,  Dean
+
+==== Crash Course in Solutions: Guest Systems
+
+Many organizations would like a way to manage guest access that doesn’t require creating accounts and provisioning guests through the normal ERP system. This session will provide a solution.
+
+
+
+==== Crash Course in Solutions: Onboarding Faculty, Staff and Students
+
+Onboarding new users can become a convoluted process if you aren’t careful. The InCommon Trusted Access Platform can help with a registry, single sign-on capabilities, and group management to streamline onboarding and the continued need for provisioning and deprovisioning - from cloud services to access to materials for specific courses.
+
+
+
+==== Crash Course in Solutions: Managing Access with Groups
+
+Whether you are on a campus, with a research organization, or a company, managing access to multiple resources can quickly overwhelm you and other staff members. Using groups as the primary means for access means having a group management system that is intuitive and easy to use.
+
+==== Crash Course in Solutions: Creating Collaboration Infrastructure for Research
+
+Research organizations and virtual organizations have similar issues - people coming from various places bringing an identity with them, and needing access to various tools. This session will describe how the types of tools to consider and how the Trusted Access Platform can streamline access management.

@@ -1,0 +1,715 @@
+=== sysket.adoc
+#int-system-sketcher-proj +
+https://drive.google.com/drive/folders/1BEIemSAk1tGd_mlhPfaFBmuCrbsthdml?usp=sharing[] <- KeithH, archREFRESH; gDrive shared w I2 +
+https://docs.google.com/document/d/17JU9N2Dfw2fNmAxjXwfbSbUpXf7QVmyreOnJ_JL5M4w/edit#heading=h.haps7548sq64[] <- sysket scribing doc +
+https://zoom.us/wb/doc/paR0lFjbRmeCHuzgdRMoeA/p/74427222654976[] <- whiteboard Blueprint Asset Review 2024-07-16 09:48 AM +
+https://docs.google.com/document/d/1i7wmJGNl9Yd_PfYnMQY4OPnEPZvUN1N7PcpU_9-B2wM/edit#heading=h.ga5l5z3k1dna[] <- Rebekah Ahrens, Project Plan: Reference Architecture and IAM Blueprint Refresh +
+SZ, RebekahA, RomyB, 
+PaulC, ChrisHu, KeitH, Nicole, JamesC, GradyB, SZ +
+ME: JohnZ, Bobbie Kiefer,
+
+- - -
+_2024-09-04 10:02 Wednesday System Sketcher Meeting_
+
+
+
+- - -
+_2024-09-03 15:41 Tuesday System Sketcher Meeting_
+
+https://docs.google.com/document/d/1DwZhIez6ZzjBsUjcqci7uXki0AJOCUxaxqqWoxgjW_0/edit?usp=sharing[] <- This document on the ahared drive
+
+*- Remaining Action Items -*
+
+*PDF of Keith’s example diagrams:* https://drive.google.com/file/d/1c41oUuQESQDiOx_wfz13lrnyUrSE3Ulc/view?usp=drive_link 
+
+*Functions Within a Single Category* +
+ *SSO, Federation* +
+
+. Authentication methods
+. AuthN sources and services
+. Session management
+. IdP discovery
+, AuthNZ protocols and protocol bridging (SAML, OIDC)
+. Proxy Fronting Institutional Services (SATOSA, SimpleSamlPhp)
+. Identity Federation
+. Service Provider Onboarding
+. Support for multiple Accounts and Credentials per User
+. Service Accounts
+. AuthNZ Support for APIs
+. Password and MFA Management
+
+*The other assets that we said we would want to have a styled template for; Examples of helpful guide types* +
+
+. Short Narratives for Each Listed Function (Who, What, WHy)
+. Drill Down From Function to Annotated List of Supporting Software
+. Component by Component Table of Functions Provided
+. Open Question: How to Illustrate Component Flows ("Arrows")
+. ...
+
+
+
+- - -
+_2024-08-21 10:00 I2 Project Team_
+
+] IAM arch diagrams for Ill State U, SMU, maybe NDSU for Monday CompArch
+
+] wireframes at the ready
+
+open question: Portrait vs Landscape orientation of the diagram +
+Portrait is vertically extensible where landscape is constrained by the dimentions of the page.
+
+- - -
+_2024-08-20 11:00 Method Engine_
+
+accessibility approach
+
+JZ: Elementor: whole new level of WYSIWYG to enhance WP experience
+
+SZ Gutenberg editing tool is pretty good
+
+Drawing tool candidates: Balsamiq, Zoom Whiteboard, Canva, free EA, 
+prime candidates: LucidChart, *Draw.io*
+
+SZ: LucidChart is $$$$, we're trying to move away from it. We need flexible export options. LCh: BAD, Draw.io: BETTER
+
+- - -
+_2024-08-15 15:35 product choices in quadrants_
+
+https://docs.google.com/document/d/1bYnRWddhRch_nBE_JvWdmxRtmNXmNY-W8gHzTxrdwgk/edit[] <- System Sketcher: Edited List of content items per category
+
+- - -
+_2024-08-12 11:00 ME,Rebekah,Romy,Steve_
+
+Rebekah Ahrens
+Hi Keith, I’m thinking about our action items due to Method Engine, as well as thinking ahead to our team meeting next week. I’d like you and I to do some pre-work to set the stage to get some of these action items done soon.
+
+I’ve drafted a document https://docs.google.com/document/d/1bYnRWddhRch_nBE_JvWdmxRtmNXmNY-W8gHzTxrdwgk/edit#heading=h.nbnyniijjgfv[]
+to itemize the list of content items per category. I tried to think back to my own experience to stick some items in already. 
+
+]√ Can you add a few items to each category before next Tuesday (August 20)? 
+
+During the mtg with the full team next week I’d like to assign them to add anything additional.
+
+]√ Reach out to Grady to ask him to provide an example before August 23?
+
+] Let’s wrap up 
+
+-√ items in each category
+- examples (Friday)
+
+before we go too far on the last 2 deliverables. I will still mention them during our mtg next week though to make sure everyone knows we still need to finish those.
+
+Does that work for you?  
+
+Keith
+Yes. When you mention the last 2 deliverables you mean "missing functionality” and “overlapping functionality"?
+
+Rebekah Ahrens
+I mean 
+
+- list of details (functions) for each category and 
+- The other assets that we said we would want to have a styled template for
+
+. 
+
+- - -
+_2024-07-30 15:00 Tues. with ME on SystemSketcher_
+
+] Workbench on the canvas for concrete illustration +
+] something completely different
+
+Bi-weekly project team meeting as this project gains momentum. We will use this time to cover these topics as needed:
+- overall project updates
+- schedule project review as needed
+- check on any internal action items and due dates
+- check on action items due to ME and due dates
+- how this will be made available to the community
+- communication plan with community
+- - -
+
+Meeting Notes
+
+Thank you for your time today. Below is a summary of our call.
+
+Rebekah, I will follow up with you with our questions and next steps!
+
+===== IAM "Sketch" Diagram Tool Meeting Summary
+
+*- Existing Diagram Formats and Expectations -*
+The group discussed the existing formats and structures of IAM diagrams, including the common 4-quadrant layout with green and blue boxes. They explored how this format could be used to represent different IAM components and their relationships, and the need to balance providing guidance while also allowing flexibility for users to customize the diagrams.
+
+*- Representing IAM Components and Functions -*
+The team delved into how specific IAM components like Grouper, midPoint, and CoManage could be represented in the diagram, including their core competencies and areas of overlap. They discussed the importance of providing clear labeling and descriptions to help users understand the capabilities of each component.
+
+*- Addressing Diverse IAM Environments -*
+The group acknowledged the need to accommodate a wide range of IAM environments, from those using Internet2's TAP components to those relying on more homegrown or Microsoft-based solutions. They explored ways to make the diagram tool flexible enough to represent these diverse setups, potentially through customizable icons and the ability to add user-defined components.
+
+*- Engaging the Community for Feedback and Adoption -*
+The team discussed the value of involving the broader IAM community, particularly the Catalyst members, as early adopters and contributors to the diagram tool development. This would help ensure the tool meets the needs of a diverse set of institutions and capture a range of IAM architectures and use cases.
+
+*- Next Steps and Action Items -*
+The group identified next steps, including collecting additional questions, providing example end-user diagrams, and wireframing potential features and functionality of the diagram tool. They agreed to follow up offline to continue refining the tool's design and development plan.
+
+Billie Knipfer
+
+- - -
+
+** Phase I deliverable: Working title: "System Sketcher"; Analogous to a drawing program where the palette includes
+*** ref arch
+*** the 4 quadrants: EntReg, SSO & Fed, Groups/Access Policy, (De-)Provisioning
+*** IAM software packages, TAP components
+*** IAM capabiliities and atomic functions
+
+** Some pre-filled diagrams: (TAP IAM), with ability to subtract elements or substitute in alternatives; drag and drop construction; Could start with a blank state, or start with small set of pieces in place
+
+** Use cases: 
+*** Consultants working with campus clients; 
+*** Presentation preparation toolkit; 
+*** As is / to be diagrams; 
+*** Illustrations of functional overlaps between components
+
+** Resources: https://drive.google.com/drive/folders/1BEIemSAk1tGd_mlhPfaFBmuCrbsthdml?usp=drive_link 
+
+- - -
+
+*- More detailed questions -*
+
+* give Method Engine requirements
+* vision of how the tool would be used 
+
+. 
+
+- - -
+_2024-07-29 14:00 Mon. call with internal team_
+
+
+
+Our internal mtg Monday will set the stage for this:
+
+More detailed questions
+
+* give Method Engine requirements 
+* vision of how the tool would be used 
+
+- - -
+_2024-07-26 09:00 component/package info, meet w Rebekah_
+
+with BillieK from ME
+
+- - -
+_2024-07-24 08:56 component/package info, meet w Rebekah_
+
+Introduction to the Grouper Package
+
+==== IAM Functions provided by Grouper
+
+===== Groups: UI, API and Scripting language for managing groups and roles
+. Support for RBAC, ABAC
+. Delegated Administration of groups, roles, memberships and attributes
+. Support a standard acyclic directed graph model of roles
+. Role definitions using parameters 
+. Service accounts
+. Define multiple types and purposes of groups
+. Documentation, guidance, prescriptive advice
+
+===== Access Management: Full support for defining and implementing access policies
+
+. Distributable access management administration
+. Support coarse & fine grained access policy definition and application
+. Manage service portfoliio
+. Request/approval processes
+. Provisioning of access policies to managed services
+
+
+- - -
+One Example of +
+. software component/package and 
+. the information that would need to be included: Functions, descriptions, links, etc)
+
+- - -
+_2024-07-23 17:27 template titles_
+
+For which assets should ME build templates? +
+In what order of priority? +
+
+. Reference Architecture Sketch
+. Business Reference Architecture Sketch
+. IAM Functions and Capabilities Table
+. Old mapping of functions/capabilities to reference architecture quadrants (for ideas)
+. TAP Components
+
+Could be a collection of graphic elements that can be placed, grouped, and connected using a drawing tool metaphor rather than five independent, free-standing templates
+
+One Example of +
+. software component/package and 
+. the information that would need to be included (functions, descriptions, links, etc)
+
+- - -
+_2024-08-22 14:12 completed diagrams for Ill State U, NDSU, and SMU_
+
+https://internet2.zoom.us/rec/share/gigq5EIg6rUnVXH2_cxH7Yk0owl8dgBvtu9ZKqH5ABSY9ylBhVvw9A-ae8IgbTkP.Skn8fcRd66KOPxJ9[] <- meeting recording; content at 06'19"
+
+- - -
+_2024-07-22 16:44 round two_
+
+    Keith to determine 
+    
+For which assets should ME build templates? +
+In what order of priority?
+
+. Reference Architecture Sketch
+. Business Reference Architecture Sketch
+. IAM Functions and Capabilities Table  
+. Old mapping of functions/capabilities to reference architecture quadrants (for review)
+. TAP Components 
+
+    Example of 
+    * 1 software component/package and the 
+    * information that would need to be included (functions, descriptions, links, etc)
+
+- - -
+_2024-07-16 10:00 arch refresh meeting
+
+==== ] Prep for Glossary creation +
+
+ID, design Pre-filled templates +
+allow subtract graphic elements +
+AuthNZ +
+Tailored UI for type of audience and their needs +
+collaborative use cases +
+How do people do this kind of work today? +
+
+- - -
+
+===== Refine the functions list, map to architecture quadrants
+
+. Reference Architecture link:https://drive.google.com/file/d/1LZHbNEAqR0TZazaHt6z-q2ibEEztUBjI/view?usp=drive_link[Sketch]
+
+. Business Reference Architecture link:https://drive.google.com/file/d/1B1Cf6-kTV4vZtGzklZVFLO7bb2rpvxJv/view?usp=drive_link[Sketch]
+
+. IAM Functions and Capabilities link:https://docs.google.com/document/d/1vWbb52vax9V3Bm5rSdpFHf46n09EzE7bNFuwVJP2Rtw/edit?usp=share_link[Table]
+
+. TAP link:https://drive.google.com/file/d/1zRlGbepURww3a0U6TrTt7fcicmbTZ8oP/view?usp=drive_link[Components]
+
+. link:https://drive.google.com/file/d/12WA3AAd1umFeHUCMusKlYKkUXmRz70jr/view?usp=drive_link[Three Facets] of IAM Reference Architecture 
+
+
+
+- - -
+_2024-07-15 13:24  arch refresh meeting_
+
+See "IAM functions and capabilities" in shared gDrive archRefresh folder
+
+Billie Knipfer<bknipfer@methodengine.com> +
+Keith Hazelton, Rebekah Ahrens +
+​
+Thank you for your time today. Below is the Fathom summary of our call:
+ 
+==== Key Takeaways
+·         Three core elements: Functions, Components (software products), and Big Picture Diagrams + +
+·         Functions list covers key IAM capabilities needed, mapped to quadrants of reference architecture +
+·         Components are the specific software products that provide those functions +
+·         Big Picture Diagrams visualize the overall IAM architecture at a high level +
+·         Need versions tailored for different audiences (CIOs, technical teams, help desk, etc.) +
+ 
+==== Topics +
+===== Functions List +
+·         Covers key IAM capabilities like access management, user management, data management +
+·         Map functions to quadrants of reference architecture diagram +
+·         Don't need to be exhaustive, focus on 80% that covers most needs +
+·         Provide a standardized vocabulary to discuss IAM requirements +
+
+===== Components +
+·         Specific software products like Grouper, Shibboleth, Salesforce +
+·         Map components to the functions they provide +
+·         Allow comparing options for a given function need +
+
+===== Big Picture Diagrams +
+·         High-level visual of overall IAM architecture +
+·         Green text boxes represent key areas (registry, access policy, provisioning, etc) +
+·         Can populate with functions or components for different audiences +
+·         Provide a template diagram to customize for an institution's implementation +
+
+==== Next Steps +
+·         Keith will refine the functions list, mapping to architecture quadrants +
+·         Discuss tailoring diagrams and representing functions vs components on Tuesday with full team +
+·         Determine how to represent functions (text? icons?) for different audiences +
+
+Billie Knipfer
+Digital Marketing Account Director
+M E T H O D E N G I N E
+
+- - -
+_2024-07-13 13:59 Collate the different lists of IAM functionality_
+
+identity establishment
+credentialing
+identity management
+authentication
+groups and roles
+access management
+integration: APIs, messaging
+provisioning and deprovisioning
+audit, observability
+
+- - -
+
+=== _iamCapFunc.xlsx
+
+** This will become the master list with additions from other function lists (carry along source of list)
+
+=== _IAMfunctionList (Same terms as in _iamCapFunc)
+
+=== IAM Product Features.docx (curry, 2016)
+IAM Product Features	1 +$
+https://spaces.at.internet2.edu/x/fYFFBg Warren Curry, 2016	1 +
+** Suitability	4 +
+** Architecture	5 +
+** User Interface	6 +
+** Role-Based Access Control (RBAC)	6 +
+** Organizational Structure	8 +
+** Provisioning and Synchronization	9 +
+** Connectors	10 +
+** Customization	12 +
+** External interfaces (APIs)	13 +
+** Data Storage	14 +
+** Self-service	15 +
+** Security	16 +
+** Workflow	17 +
+** Governance, risk assessment, compliance and forensic	18 +
+** Operation	18 +
+** Documentation	19 +
+** Community +
+
+=== IAMfunctionListBTAAsurvey.docx
+
+==== Identity, Matching
+
+** User Name Assignment +
+** Identifiers +
+** Social ID +
+
+==== Credential Provisioning
+
+** Password Rules and Policies +
+** Password Setting +
+** Credential Provisioning and De-provisioning +
+** Credential Activation +
+** Authentication Types (Factors) +
+
+==== Service Provisioning
+
+** Reconciliation of provisioning, scheduled, on demand (Curry) +
+** Scriptable transformations from data model of one system to another (Curry)
+** Library of connectors (Curry)
+** JIT/JIC support +
+** Workflows +
+** Deprovisioning +
+** Exporting institutional identities +
+** Life Cycle +
+
+==== Target directory provisioning
+
+** Cross-system identifier mapping +
+** Reconciliation of Directory with EntReg +
+** Deprovisioning +
+** De-activate or delete +
+
+==== Roles and Groups
+
+** Types of groupings +
+** Support acyclic directed graph model of roles (Curry)
+** RBAC, ABAC,  +
+** Parametric Roles (Curry)
+** Metaroles (Curry)
+** Administration (Delegation) +
+** Guidance, prescriptions +
+
+==== Reporting/Auditing
+
+** External report service integration +
+** Available information, supported queries +
+** Auditing: Privileged Access, Sep of  +
+** Assess intended vs actual access management +
+** Simulation phase for changes +
+** Notifications, Observability (Curry)
+
+==== Administration modes (category not found in BTAA doc)
+
+** Full UI coverage of functionality (Curry)
+** Full API coverage of functionality (Curry)
+** Programmatic events can initiate processes
+
+==== Data repository and access to it (Curry, not found in BTAA doc)
+
+** Supported databases (relational, noSQL, graph)
+
+=== mPfeaturesPage.xlsx -*
+
+- - -
+_2024-07-10 15:04 Billie asset index_
+
+== Next steps
+*- clarify the three perspectives on IAM and how they pair up +
+- IAM Quadrants,   D +
+- Functions,       F +
+- Components,      C +
+
+D + F:  add functions into the quadrant that they address +
+D + C:  show which components fit into which quadrant +
+F + C:  show which functions a component supports +
+
+Keith Hazelton
+​
+Billie Knipfer <bknipfer@methodengine.com>​
+​Rebekah Ahrens;​
+Steven Zoppi​
+Billie,
+
+Thank you, this is a valuable contribution to the project. I will look this over and if you have time on Friday we could have a Zoom session to go over things. My Friday is wide open.
+
+               Regards,  --Keith
+Billie Knipfer<bknipfer@methodengine.com>
+​
+Keith Hazelton​
+​
+John Zoppi <jzoppi@methodengine.com>​
+Hi Keith,
+
+I know we are meeting next Tuesday to discuss the Blueprint assets, but I went ahead and put together a chart of the assets provided so far (attached).
+
+I have added columns for items we would like to cover, and I realized we may want to add more fields. Can you take a look at this and let me know if this makes sense to you? I am also happy to jump on a call if you would like to discuss prior to our meeting next week.
+
+Fields:
+Asset Name
+Asset Links (these links go to the assets you provided that I moved to our Method Engine Google folder)
+Asset Description
+Category (I would like to assign each asset to a category - or multiple - that it could be found under)
+Re-created (does asset need to be re-created)
+Current Application (that was created in)
+Modifiable (should this be static or can it be modified)
+
+
+My goal is to get enough information that we will be able to proceed with the project quote and some general recommendations regarding the platform, style, functionality. I believe we will need to answer these items as well as the above:
+How R&E facilities are currently using/building blueprints
+Estimated total number of Assets
+Asset File Types
+Asset Categories
+
+Thank you,
+Billie
+
+Billie Knipfer
+Digital Marketing Account Director
+
+M E T H O D E N G I N E
+222 South Riverside Plaza, Suite 1500
+Chicago, IL 60606
+p: 312 876 2017 x705  f: 888 423 8958  m: 312 405-5677
+bknipfer@methodengine.com
+www.methodengine.com
+
+
+
+
+- - -
+_2024-07-09 09:30 arch refresh meeting_
+
+*- Goal: Review the collected assets, plan next steps -*
+
+Round out collection of existing assets
+Divide the collection into logical groups
+Review for gaps in coverage
+
+Use cases to requirements to IAM functionality. Show how to meet the use case needs with a few integrated combinations of IAM packages 
+
+- - -
+_2024-06-25 15:30 Initial call with Method Engine, Billie Knipfer, SteveZ, JohnZ, RebekahA, AnnW, RomyB_
+
+Topic: Kick-off Meeting Industry Trends Publication & Blueprint Refresh
+
+- inventory (standardization)
+- crucial stakeholders and how we can use this content
+- framework 1st, fill in over time
+
+
+Time: 3:30-4:30 p.m. CT
+https://us02web.zoom.us/j/81955021235?pwd=NllHNmNQWldaYjlqTmhpU2hzVS9SQT09
+
+Meeting ID: 819 5502 1235
+Passcode: 637998
+
+- - -
+_2024-06-18 15:00 RebekahA, SZ, Keith_
+
+SZ: We don't have the standard explainers; discursive context for the diagrams; no canonical form for The 7 Flows for canonical federated authN:  
+
+https://docs.google.com/document/d/1gZp8pVzUTFTKQnjMSo9fgh9sr7Eaw_uEOdfUihrBpXU/edit?usp=sharing[] <- gDrive version of this meeting
+
+*- Ref Arch models broad IAM concepts -*
+
+* Partitioning of high-level IAM abstractions
+** https://drive.google.com/file/d/14N45a0Wu0BeapmChRxj27uILA1OJqf_L/view?usp=sharing[] ← T&I Reference Architecture 
+
+*- IAM functions and capabilities (fine grained) -*
+
+* Functions and capabilities associated with broad IAM concepts
+** https://drive.google.com/file/d/1knpWmhaDL6tccy7TE-6MXNwcmoYIq7o7/view?usp=drive_link[]
+* Functions and capabilities grouped into broad IAM concepts
+** https://docs.google.com/spreadsheets/d/1GVOympl8qyH1OMijWLR3GBx3ES3Ck9U2/edit?usp=sharing&ouid=116349529588297211496&rtpof=true&sd=true[]
+
+*- TAP Components/Other IAM Applications -*
+
+* TBD: Functions and capabilities grouped byr the Component/App that provides them
+
+- - -
+_2024-06-11 15:00 chose deliverables, assign tasks_
+
+=== Agenda:
+
+==== Recap what is done. 
+
+* Document collection. 
+* Method Engine mtg.
+
+SZ: Cifer imagery was good at communicating the various activities in IAM; remember the federation intro video from years ago. ew need that or some other alternative to narrative
+
+SZ: Auth0 did great with 7-9 flows in AuthN
+
+RA: Met with Method Engine, they're ready to go
+] let's meet
+
+==== What action items are next?
+
+https://balsamiq.com/[] <- wobbly wireframes
+
+*- Project plan into actionable work -*
+
+* Review existing diagrams
+** In https://github.internet2.edu/ti/systems-architecture
+** In TAP presentations
+** Elsewhere...
+* Assess their value for BlueArch project
+
+*- Consider -* 
+
+* Document step-by-step flow in one or a few major I2 systems; 
+** Consider 
+*** People, software agents, 
+*** The system's response to actions of people and software agents
+** Extract capability and functionality lists
+
+** See if there is a graphical way to move between diagrams of different granularity
+** See if there is a graphical way to represent alternative architectures for the same problem space
+** Test by producing graphics that tie our standard reference architecture diagram to elements of the documented I2 systems
+
+iterate iterate
+
+Jim: Standards for the graphical elements
+
+*- Project organization -*
+
+**  Rebekah can Organize project artifacts * preferred location? Shared drive on I2 Gdrive?
+**  Monday board for project action items?
+
+
+Rebekah Ahrens
+We have a mtg scheduled for tomorrow (for those not at TNC).  I've created a document to capture ongoing mtg notes and added an agenda for tomorrow's mtg.  That is linked here and in the mtg invite. I'd like us to identify the next actionable work for this project.  Thanks everyone!
+
+- - -
+_2024-05-30 12:29 Rebekah Ahrens chat_
+
+] next: mid-fine level funcaps.
+
+https://docs.google.com/document/d/1cSPvhShhhVG5-L8rmV5Fpd9Lwlfbi_XMyip8bhVPSKY/edit
+https://docs.google.com/document/d/1cSPvhShhhVG5-L8rmV5Fpd9Lwlfbi_XMyip8bhVPSKY/edit
+
+* bring more of team into active role
+* interview app, infra owners: step-by-step actions: people, sooftware agents, a system's response to actions of people and soft agents
+* canonicalize stories and make consistent: capability and functionality 
+
+- - -
+_2024-05-19 08:22 work up materials for Monday's CompArch call on Arch Refresh_
+
+We're entering Phase I: Milestone: Identify artifacts to preserve and refresh (June 2024)
+
+SZ: The only purpose for this scope is to "face lift and codify" what we have already
+
+SZ: I think that the "overlay" concept is applicable with regard to +
+iconographic / scenario projection and other types of artifacts like that
+
+SZ: the gist of it is what we've discussed already and the "vision" is to:
+
+* Select from the myriad existing sources, those visual/narrative artifacts which merit conservation / repurposing.
+* Update and Make the assets derived from those sources +
+** Canonical / consistent +
+** across all of our Visualizations/representations +
+** re-useable / consumable by/for others.
+ 
+.
+
+- - -
+_2024-05-17 17:08 basic structure of the arch refresh discussion_
+
+*- categories of existing materials -*
+
+- classic ref arch & variations (note subject and style between different annotations)
+- check iam 101+ and prov 101+ presentations
+- https://docs.google.com/document/d/12CL4iGxU3k9NDxdoqJHGK_2yHlnA89z0zfJXBj1ZK0s/edit#heading=h.foyea42voc7t[] <- Cirrus Identity draft _IAM Reference Architecture_
+
+- Large collection of plantuml diagrams in system-arch repo
+
+- Lists of capabilities and functions (incl.Gartner), in product documentation
+
+
+*- potential work areas -*
+
+* Matrix: Rows are IAM capabilities and functions, columns are TAP components, a check in a cell means that function is provided by that TAP component, with annotations on the cell as needed
+** Illustrative example: Rows: Access management functionality; Columns: Grouper and midPoint
+
+*- challenging product marketing material and RFP response assertions that their product meets the listed requirements -*
+
+* "Access to services and resources is allowed or denied according to established policy"
+
+** This assertion is subject to a set of qualifications and conditions:
+*** "Access to services and resource"
+**** Access by whom?  What kinds of access? Which services and resources?
+
+*** "Allowed or denied"
+**** How is the allow/deny decision enforced?
+
+*** "According to established policy"
+**** How do policies map from natural language to computable syntax and semantics across disparate systems? 
+**** What is your core policy language?
+**** Is it possible to verify that defined policies have been followed in any and all cases?
+**** Are there services and resources that cannot be managed with these IAM services? 
+
+- - -
+
+
+* Observation: Campus order of deployment shapes function-to-component mapping decisions
+** one pattern we see a lot is 1) Shib, 2) Grouper, 3) midPoint and/or COmanage
+
+* Working assumption: Any statement on The capabilities of an ideal IAM environment is subject to a set of necessary and sufficient conditions
+
+
+
+- - -
+_2024-05-06 11:42 references and links_
+
+https://spaces.at.internet2.edu/display/itapl/Reference+Implementation+Overview?preview=/239108180/239108182/TIER%20Reference%20Implementations.pdf[] <- reference architecture as components and flows +
+https://drive.google.com/drive/folders/1BEIemSAk1tGd_mlhPfaFBmuCrbsthdml?usp=sharing[] <- this file on Gdrive +
+https://github.internet2.edu/internet2/iam-knowledge-bits/blob/main/docs/iam-func-list.adoc[] +
+https://github.internet2.edu/internet2/iam-knowledge-bits/blob/main/docs/IAMfuncGTAAsurvey.adoc[] +
+https://github.internet2.edu/internet2/iam-knowledge-bits/blob/main/docs/future-proofed-and-federation-ready-enterprise-ids.adoc[] +
+https://github.internet2.edu/internet2/iam-knowledge-bits/blob/main/docs/iamPatterns.adoc[] +
+https://github.internet2.edu/internet2/iam-knowledge-bits/blob/main/docs/sor-to-access-policy.adoc[] +
+https://github.internet2.edu/ti/systems-architecture[] +
+
+- - -
+_2024-06-11 13:15 Arch Refresh Team Members_
+
+SZ, PaulC, ChrisHu, JamesC, KeithH
+
+
+

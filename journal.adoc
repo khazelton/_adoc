@@ -1,0 +1,55 @@
+[2020-01-28 20:45] inaugural entry in jrnl
+
+[2020-01-28 20:57] "j" is alias for "jrnl"
+
+[2020-01-31 09:54] [] route this issue to @grouper -users list.
+(differentiating between multiple subject sources, rules?...)
+
+[2020-02-11 17:46] set priorities
+
+[2021-11-21 16:54] today cleaned up .bash_profile
+
+[2022-08-26 09:00] This week: Collect; Organize; Prioritize
+
+[2022-09-05 17:42] Softw Integration Future Topics
+
+[2022-09-05 18:41] no clue on project? Break it down:
+find an active site for catalysis
+
+[2022-09-29 16:18] start workbench install and test
+
+[2022-11-05 12:11] scala install
+
+[2022-12-25 12:23] asrock up √, r pi 4 b up, add NAS, WLS on zbox, jrnlHowTo.adoc, telegram apis, cables, nexts: include week
+
+[2023-01-18 11:04] from notes to document deliverables
+
+[2023-01-18 15:17] finished documentation work
+
+[2023-01-18 16:15] pery affil fwork startup
+
+[2023-01-20 10:03] ] links to recordings
+
+[2023-06-30 12:53] today I installed jrnl on MBProMax
+
+[2023-06-30 12:56] hello again
+
+[2023-06-30 12:58] jrnl back in operation
+
+[2023-07-19 11:03] admin
+
+[2024-01-29 14:24] start real-time journaling
+
+[2024-01-29 16:43] finished real-time history logging config
+
+[2024-01-29 17:41] check operation of jrnl
+
+[2024-01-30 17:22] start grpr-mp
+
+[2024-01-31 13:16] wb...
+
+[2024-02-01 19:04] iam func...
+
+[2024-07-18 13:08] how-to draft
+
+[2024-07-18 14:48] break

@@ -1,0 +1,883 @@
+=== ti.adoc   TIER Project
+https://spaces.internet2.edu/display/TPD/TIER+Package+Delivery  <= TIER Package Delivery +
+https://testbed.tier.internet2.edu/     <= R1 packages +
+http://j.mp/apiRsrc    <= API/Reg resource spreadsheet +
+http://j.mp/RsrcNotes  <= notes +
+
+xrandr -s 3840x2160    xrandr -s 2560x1600   xrandr -s 1920x1200
+
+- - -
+_2021-08-27 15:35 Convo w Matt Petro mpetrowi@gmail.com_
+
+- - -
+
+Keith to SteveZ,
+
+Just finished zoom session with Matt, the guy recommended by Scott F.  I think he’s our kinda person and has skills.  Might be good for you and I to talk,, but he would welcome you reaching out to him for further conversation.
+
+Steve Zoppi:maple_leaf:  15:51
+Happy to talk with him - Do you have a quick summary of skills that I can keep in my head since I'm working on some staffing challenges right now?
+
+Keith Hazelton  16:35
+Sure: Ramping up on CI/CD and Kubernetes in his current position with a small startup, Frontend dev skills, 10 yrs w UW-Madison School of Engineering doing Moodle, then Canvas, LTI expertise (connects Canvas w external tools like grading services, etc,), Math PhD, energetic, quick learner.
+
+mpetrowi@gmail.com
+
+Currently based in Mt. Pleasant outside Lansing, MI. Wife is a math prof at Central MI U.
+
+Steve Zoppi:maple_leaf:  16:47
+sounds like he'd be VERY much worth the time ...
+let's set it up!
+
+Keith Hazelton  16:48
+OK, I’ll email him and cc you. Your call on whether you want me to take part.
+
+- - -
+
+Keith Hazelton <khazelton@gmail.com>
+5:02 PM (9 minutes ago)
+
+to Matt, szoppi:
+
+Matt meet Steve Zoppi, AVP Services Integration and Architecture, Internet2
+
+Steve, meet Matt Petro, interested party, math PhD, multi-talented techspert.
+
+Sounds like you two might want to connect to talk about Internet2 tech needs. Now you're connected.
+
+- - -
+Keith Hazelton is inviting you to a scheduled Zoom meeting. Topic: Matt Chat
+
+skills, engagement, work
+
+PhD in math; wife has full time math faculty position @ central MI U in Mt Pleasant; Did Moodle for 10 years at UW SoEngr;
+Currently working remotely w Startup in west; leading them into CI/CD;
+
+Interests: Kubernetes; devOps role; Front end
+Java is painful
+
+IMS working group memberJust finished zoom session with Matt, the guy recommended by Scott F.  I think he’s our kinda person and has skills.  Might be good for you and I to talk,, but he would welcome you reaching out to him for further conversation.
+
+would like to join a T&I working group to see what it's about
+
+ideal: Consulting role, work from home.
+
+- - -
+_2018-07-13 12:30  SteveZ, BillK_
+
+New tasks for me:
+
+1) Continuing/driving to completion WG tasks
+2) PLUS: All hands, week of August 14-15 (Ann Arbor)
+
+```
+   - Biz Model
+   - Documentation must begin (takes a village, WG can churn it out) 15% time
+     - mP (registry, provisioning)
+     - Packaging WG: short resources: Is I2 the sole provider; or community?
+     - (50% from Ty, UW-Msn IAM devops needed; full lifecycle)
+     - RA21 library digital resources: Ann, Steve; int'l effort; aspirations to become their own federation; Conv. w Boeing which has their own federation, run by Grumman; Boeing asking I2 for help advancing their fed practices; Help leading to right results
+     - Shepherding mP
+     - InCommon/Cert service; another year at least; revisiting whether we look for alternatives; maybe engage 3rd party broker to do education package partnering w GEANT? User requirement gathering
+     - SCG/Warren,
+       - Warren need prodding for results; Elias is donating his time; Registry thoughts to training
+       - COmanage/mP ID Match
+```
+
+- - -
+_2017-11-06 10:39 timelines for comp arch_
+
+- effective cross-WG coordination
+- workplan for rest of 2017 (counting this week there are 5 work weeks left in 2017)
+- deliverables/milestones over next 5 weeks
+  -
+
+- - -
+_2017-07-09 11:45 fill in tabs 1 & start tab 2_
+
+- - -
+_2017-07-07 12:37  estimation spreadsheet for API/Reg_
+
+https://docs.google.com/spreadsheets/d/1xtcd9hksDoVh346RmwcSujgyBbzoHUcA9h3bBltqoog/edit#gid=2063559988  <= spreadsheet
+https://docs.google.com/document/d/1ZzuJ48tii3tAEzRcjY4Azmm2EZ9V-UO3WawZQPjNfsc/edit?usp=sharing  <= notes
+
+- - -
+_2017-06-28 13:16 estimation of resource needs_
+
+```
+midpoint
+Grouper
+APIs
+messaging infrastructure
+create 3-4 letter acronyms for things outside shib, grouper, Comanage
+```
+- - -
+_2017-06-13 13:42  Garrett King, CMU, interest in tier_
+
+win background, c#, powershell, rest/soap
+CMU: Masters 5 yrs ago: Java development, security, mgmt
+Joined Identity Services a year ago, challenging; I manage the Identity Services team
+interest moving forward, how to
+
+working on now:
+- Grouper (GAP ActiveMQ Provisioner), more user friendly and accessible; getting people to leverage it; UI work; Grouper API is challenging
+- home grown registry (10 yrs old), SoR -- ETL -- Person Registry -- OpenLDAP, AD, Directory 389 (source for Shib);
+- attr release policy:
+
+- Interest in Security generally: SIRTFI
+
+- -
+_2016-09-12 12:57  TIER @ TechEx_
+
+Monday: 30' at lunch w CIOs & Architects: overview + ref arch
+
+Tuesday: 8 am 50' session on TIER:  JimJ (10'), KeithH (10'), TomJ (10'), BillT (5') plus discussion, Q&A
+
+] Tom & Bill re participation
+
+From: Emily Eisbruch <emily@internet2.edu>
+Date: Monday, September 12, 2016 at 13:44
+To: Keith Hazelton <keith.hazelton@wisc.edu>, Jim Jokl <jaj@virginia.edu>, Bill Kaufman <wkaufman@internet2.edu>, Emily Eisbruch <emily@internet2.edu>
+Subject: Planning the TIER presentations at Tech Ex
+
+HI Jim and Keith,
+Here are notes from a  conversation we had after the Component Architects call today to start to plan the two Tech Ex presentations.
+(Jim, we missed you, but tried to get things going anyhow.)
+We set a deadline of Monday, Sept 19 to have draft slides for both of the sessions listed below (Monday lunch and Tuesday morning)
+Included below are links to the templates to use for slides
+Thank you!
+- Emily and Bill
+
+TIER Investors Session (Invitation Only) -- Monday at lunch
+http://meetings.internet2.edu/2016-technology-exchange/detail/10004437/
+
+See who has signed up to attend
+
+(Keith and Jim will have ~30 minutes)
+
+Possible Key messages:
+•	Big things that have been accomplished in the TIER program.
+•	Reference Architecture
+•	How to deploy on your campus
+•	What the DevOps environment means to you?
+•	LEAVE TIME FOR Q&A
+USE THIS TEMPLATE FOR SLIDES FOR MONDAY
+https://docs.google.com/presentation/d/1b_qLQGJeaLBwGfusd09qbEL5xDOYApium-eIdTFSmq8/edit#slide=id.g16ac45a7bd_2_27
+
+===============
+
+What's New and What's Next with TIER (Tuesday at 8am-8:50am)
+please review the abstract here:
+http://meetings.internet2.edu/2016-technology-exchange/detail/10004351/
+
+Jim and Keith (and possible others Keith is recruiting) will present at this 50 minute session
+
+USE THIS TEMPLATE FOR SLIDES FOR TUESDAY
+https://docs.google.com/presentation/d/18lGb2-7iUQ4rjJ7uct3A-OrLQtqjbHl-Iw9XkUKw8PQ/edit#slide=id.g16ac45a7bd_2_27
+
+
+
+Thank you very much,
+Emily and Bill
+
+
+Emily Eisbruch, Work Group Lead, Trust and Identity
+Internet2
+emily@internet2.edu
+office: +1-734-352-4996 | mobile +1-734-730-5749
+
+- - -
+_2016-04-22 13:23  prep for 25 April Webinar_
+
+Greetings John, Kevin, Steve, Keith and Jim,
+
+Thank you for agreeing to participate on the
+TIER webinar Monday April 25 at 2pm ET
+
+
+We ask that your slides be complete in this Google Presentation Doc https://docs.google.com/presentation/d/1H7849Z_i0VdXjTEXzbOTZUIPcY8q2M2RvDzKm5aUFwE/edit#slide=id.p
+by end of day on Sunday April 24. Dean plans to do any formatting needed to make a consistent deck first thing on Monday April 25.  
+
+Dean will also provide other logistics prior to the webinar, including  the special PIN that speakers must use in joining the edial call.  
+
+Here is the planned order of speakers and guidelines on material to cover:
+
+
+	•	John O’Keefe (Lafayette College), moderator and member of the TIER Community Investor Council - 5 min
+		◦	Introductions
+
+	•	Kevin Morooney, vice president for trust and identity, Internet2 - 5 min
+		◦	What's significant about the release?
+
+	•	Steve Zoppi, Internet2 - 10 min
+		◦	Overview of the release
+		◦	Ways to provide feedback
+
+	•	Jim Jokl (University of Virginia), chair of the TIER Packaging Working Group - 15 min
+		◦	What you did
+		◦	What's in the release
+		◦	What's left to do
+		◦	Lessons learned
+
+	•	Keith Hazelton (University of Wisconsin-Madison), chair of the TIER API and Data Structures Working Group - 15 min
+		◦	What you (API and Entity Registry) did
+		◦	What's in the release
+		◦	What's left to do
+		◦	Lessons learned
+				- expect gifts from the WG members and their institutions
+				-
+
+	•	John O - reminder of feedback and field Q&A - 10 min
+
+
+Please let us know if you have any questions.
+
+Thank you,
+Emily
+
+
+- - -
+_2016-04-16 06:51 R1 punch List_
+
+I2 Report TIER R1:
+
+- repl
+  eduPersonOrcid defines attribute that can be used in a federated context to exchange the ORCID identifier between partners.
+- with
+  The eduPersonOrcid attribute can be used in a federated context to exchange the ORCID identifier between partners.
+
+- WG deliverables to spiff up: See ../tier-api.utf
+
+.
+
+- - -
+_2016-01-12 11:00 TIER work w Steve Zoppi_
+
+Chris: SteveZ would like to rent 25% of my time for TIER API work for period of 1 1/2 or 2 years.
+
+If ok, introduce Chris and Steve via email
+
+done. agreement in the works.
+
+- - -
+_2015-12-22 17:42 conferences_
+
+I2 Global Summit, Chicago,  15-18 May 2016
+Open Apereo, NYU, NY, NY,   22-26 May 2016
+
+- - -
+_2015-11-23 15:00  Tier packaging 012 5971#_
+
+Recall that our initial WG focus is to determine the set of questions we need answered before we can move forward.
+
+In preparation for today’s call, please try to look at, add to, comment on, and/or edit the work that the section volunteers have started for the three components and the Core Packaging work.  The Component Sections focus on the components themselves, default configurations, dependencies, tool needs, etc., and not (to the extent possible) the execution environment.  The Core Packaging section is being used to capture the data that we need to know to determine appropriate execution environment(s).
+
+https://docs.google.com/document/d/1_jfdZpzCLxV2WTgCjMY3FZMuGGV67QvkLzkEtwLayGM/edit
+
+Please also think about the Audience question for each of the four topic areas.  Deliverable #1 is to document an appropriately diverse set of places/schools/etc. for the survey/outreach that we are developing now.
+
+Thanks, Jim
+
+http://12factor.net/  <= 12 factor app
+
+- - -
+_2015-09-01 13:26_
+
+https://docs.google.com/spreadsheets/d/1eYD6oqWkwxAXTDGEdnY5jOwUnyt3ZE2FKQNGIZ2s1lM/edit?usp=sharing
+
+https://docs.google.com/presentation/d/19iZ8bXjh7dvD_0x9O3qVip3RqVuexNDcvmL70hr66QQ/edit#slide=id.g5ba7c2f43_11_1  <= evolving slide deck
+https://internet2.app.box.com/TIERInvestorReview
+https://spaces.internet2.edu/x/G4FdBQ  <= APIs & Schemas WG Charter
+
+awest@internet2.edu
+Steven Zoppi <szoppi@internet2.edu>;
+Emily Eisbruch <emily@internet2.edu>;
+
+tbarton@uchicago.edu <tbarton@uchicago.edu>;
+jaj@virginia.edu <jaj@virginia.edu>;
+Ken Klingenstein <kjk@internet2.edu>;
+Nate Klingenstein <ndk@internet2.edu>;
+Paul Caskey <pcaskey@internet2.edu>;
+Nick Roy <nroy@internet2.edu>;
+Farmer, Jacob <jpfarmer@iu.edu>;
+Keith Hazelton <keith.hazelton@wisc.edu>
+
+- - -
+_2015-08-28 14:00  Prep call 6_
+
+SZ: TIER now has .33 FTE of a Unicon Developer ongoing (will be Grouper & Shib work initially)
+    UI person will be next on board  scott, chris (for packaging grouper), ben, nate,...
+
+Dear Architect Group,
+
+Our next TIER Architecture call is today at 3pm ET:
++1-734-615-7474, 0161803#
+
+We’ll be continuing to use our well-worn slides: https://docs.google.com/presentation/d/19iZ8bXjh7dvD_0x9O3qVip3RqVuexNDcvmL70hr66QQ/edit#slide=id.gdcffa0f14_15_0
+
+On our last regularly scheduled program, we went through slide 15 and 16 using slide 14 that provides the color key.
+
+Now we'd like to focus on the how and in particular slide 12 and slide 17 and our conclusion last time to have an architect group be advisory to the Trust and Identity area, separate from Steering and TCIC.
+
+In additional we need to get the current trajectory of Shibboleth, Grouper and Comanage aligned. Thoughts on how this all fits together with the prioritized list?
+
+If we have time, it would be great to discuss how to morph our processes to support increased speed and interop between wg (slides 18, 19 and 20).
+
+Looking forward to our chat.  -- Ann
+
+I started rough-drafting a charter for an APIs and Schemas Working Group.  If I jumped the gun, sorry.  In any case,  it’s here:  https://spaces.internet2.edu/x/G4FdBQ
+
+] We campus architects should make some statements in public about where TIER is and what it is working on
+
+- - -
+_2015-08-13 13:13  Prep call 5   0101288#_
+
+steveYeggeGoogleRant.rtf   <= NR: steve yegge google platform rant
+
+SZ: We don't have the kind of money to throw a lot of stuff to outsiders
+
+NK: Re provisioning, it's a hole for HE/R, but there's MS Connect, Okta, Prov. in Grouper was a sore thumb in Grouper; we never got the connnectors we need. It's important, but when?
+
+Ann: blue ones are up to I2; rest report to an Arch Strategy Group &/or product owners;
+  So TIER needs an Arch Strategy Group... And T&I need one, later TIER & Steering will merge...
+
+SZ: I2 gets funding, each tech group has a leader; TomB: Are we the interim version for now?
+
+TB: Launch an API WG on model of InC WG:  Phase I goal is to summarize and consolidate API knowledge
+
+SZ: We need to marshall the resources we have and launch the high priority WGs;
+
+AW: T&I Arch Strategy Group as guiding hand;
+
+CIC as TIER User Acceptance Group?
+
+Decisions: Work on Charter for T&I Arch Strategy Group under aegis of I2 T&I knowledge and Expertise with connections to InC Steering and TIER investing council; API WG can also start spinning up in parallel. SZ: In RACI terms, they would be informed; the work gets imported into the factory. TB: Ann is lead of the new MACE-like thing. MACE-like thing is advisory to Ann.
+
+Packaging & Containerization with TAC
+
+
+- - -
+_2015-08-10 15:55  Prep call 4   0101288#_
+
+- Structuring the Working Groups (see tierDiscuss slides 12, 13, 14); how can we speed it up?
+
+- SZ: Starting small: Today we have 3/5 of the resources needed to do minimal packaging work required for release 1.0
+
+- We need the WGs to be bi-directional channels between TIER central and canpuses;
+kjk: 2 WGs that aren't in the list: LARPP, ConsentMgmtInternals; By nature those will need to interact with several of the WGs (UI/UX, security): Cross-cutting concerns;
+
+TB, KJK: How do the consent groups fit their work with TIER WGs?
+
+SZ: Core common rules of the game, e.g., time stamps are always expressed in UTC;
+You can hide a lot behind APIs; For accessibility, there are specs, we choose  a subset
+Your first rule, WGs, is to do no harm;
+
+MACE-like: TIER ArchStrat, TI ArchStrat, InC,...TB: So ArchStrat really needs to be above TIER and InC;
+
+SZ: We're trying to drive measure twice, cut once. We need this group to be far-seeing; The right guard rails should suffice to keep dev/tech teams on track
+
+The top priority WGs, who leads?
+Packaging, User Acceptance: CIC? -- TIER lead
+
+API:
+
+SZ: Note Drupal, MediaWiki, ; CIFER was aiming to normalize the grammar; the semantic layer makes sense & should be curated; when things need to change, the app is far enuf from interface that testing can go on; CIFER has given us a jump start on this; codifying, surfacing,... We just need to benefit from that;
+
+TB: We should get the API group up & running; and it should get I2 support; kjk: the new API that Roland
+
+SZ: 1st thing would be to codify the CIFER work;
+
+https://wiki.larpp.internet2.edu/confluence/display/LARPP/UMA+and+Attribute+release+and+Consent
+_____________________
+h6. 2015-07-29 11:54  Prep call 3
+
+going through questions on the avg-by-requirement sheet
+
+] highlight interface points (apis) between IAM Components
+
+- - -
+_2015-07-29 07:06  Leif Skype on SCIM and schema_
+
+SCIM schema rules that were at odds with our use case. 3.3 ..."Except for the base object schema, the schema extension URI SHALL be used as a JSON container to distinguish attributes belonging to the extension namespace from base schema attributes."
+
+- attributes in extensions have to be in a separate JSON package
+
+
+- sub-attributes can't be complex(e.g. SCIM is flat on people with no support for multiple personae each with its own set of attributes: 2.3.8 "A complex attribute MUST NOT contain sub-attributes that have sub-attributes (i.e., that are complex)"
+
+
+- registration process for extensions and new resources?
+
+- what are the options from here forward?
+
+- general need to support more agile schema
+
+
+Provisioning vs FIM; prod cycle reasonable to do 2-3 yrs, but if you want to bring rest of world along, silence doesn't cut it.
+
+oauth clients; delegation agents; oauth WG
+
+APIs for things like IdMatch
+
+- - -
+_2015-07-24 11:00  TIER prep meeting_
+
+Looking at the requirements, the thing that sticks out to me is the need to convene an APIs group across the components.  (some of that is likely already there from CIFER work, but some may need to get re-scoped for TIER).  A big dependency for the APIs group is a definition of what we are trying to interoperate between - so, a reference architecture design targeted for a 'typical' TIER deployment would be useful.  I think we probably all know how the pieces generally fit together, but a common model would be a good starting place, and might suggest the areas that need work in a specific order.  It would also likely yield pretty pictures that could be the basis for shopping things around to less tech-y people in various venues and building understanding.     Best, Nick
+
+----------
+Here’s the top-level architecture that evolved over the course of the CIFER work. We used it in numerous presentations. Perhaps this could help launch and accelerate discussion. See what you think.
+
+../ref/ciferConceptArch.pptx
+
+     Regards,  —Keith
+
+----------
+The originals were in OmniGraffle.  I agree that it would be valuable to be able to show an evolution from what we have now through the series of releases. A version with the already shared material plus other content is attached.  Graffle files are actually a folder structure, so my email client insisted on zipping them before attaching.  If the .zip gets zapped, let me know.
+
+What speaks most directly to Nick’s points is that each diagram identifies capabilities  and functions in the center surrounded by a circle labeled shared APIs.  One exercise would be to see if those functions and capabilities can be expressed directly as (micro service) APIs. Another would be to identify functions and capabilities that are NOT listed here.    —Keith
+
+----------
+From: Steven Zoppi <szoppi@internet2.edu>
+Date: Monday, July 20, 2015 at 14:31
+To: Keith Hazelton <keith.hazelton@wisc.edu>, Nick Roy <nroy@internet2.edu>, Ann West <awest@internet2.edu>, "tbarton@uchicago.edu" <tbarton@uchicago.edu>, Jim Jokl <jaj@virginia.edu>, Ken Klingenstein <kjk@internet2.edu>, Nate Klingenstein <ndk@internet2.edu>, Paul Caskey <pcaskey@internet2.edu>, Jacob Farmer <jpfarmer@iu.edu>, Emily Eisbruch <emily@internet2.edu>
+Subject: Re: TIER Preparation Meeting: Call 2
+
+I like the vision pictures quite a lot and have been keenly interested in incorporating the CIFER work all-along.  The one item that strikes me is that the vision is great but it should be something that is built-up (even visually, here) in steps.  I think that some of the vision that is already realized could be shown boldly while the next steps could be communicated a layers of a build to the ultimate vision.
+
+These images (at least, all of the ones I have been able to find) seem to be the output of another drawing tool and therefore cannot be manipulated.
+
+If we have the original tool – we could represent a visual timeline through predecessor/successor visual builds.  Lacking that, we could simply re-render the images in a manner that would enable that type of layering if you all thought that would be a good communication method.
+
+This would also enable us to focus a little more tightly on the APIs and their intended connection points as Nick suggests.
+
+Thoughts?
+
+- - -
+_2015-04-15 14:00  +1-734-615-7474, 0161803#_
+
+2-3:30 ET on Wednesday April 15 user story/use case consolidation call
+
+SZ, TomB, JimJ, AnnW, JacobF, KeithH, KJK, Nate,
+
+SZ: rewrite stories in canonical form, expunging all solutions; one canonical use case per requirement; move from the strawman which has been received well, take them to a finer granularity non-requirements for passing on to the work teams
+
+- - -
+_2015-04-14 19:07  my stories to mine for requirements_
+
+1.	Duke 	026.duke.1.20150412 	Extending the Identity Lifecycle Bi-directionally	026.duke.1.20150412
+
+  Soc2SAML gateway; campus systems recognize and selectively accept authN via the gateway
+  New SoRs can be authzd to add identity info to Registry
+  RESTful interfaces on Registry
+  Provisioning to role-specific apps/Services
+  Auto De-provisioning when Program that authorizes access ends
+  Persisting identity even after loss of all access to apps/services
+  On 2nd SoR entering his info, Registry recognizes him as an already known identity
+  Provisioning applicants to a cloud-based (college application) Service
+  Soc2SAML gateway recognizes previously registered external IdP for him
+  Matriculation event detected by Registry, triggers affilitation change
+  Affiliation change triggers provisioning of services based both on student affiliation and school/college of matriculation
+  Proactive notification of upcoming loss of campus credential as graduation approaches
+  Long-term persistence of external/social IdP
+  Graduation triggers affiliation change and provisioning of services meant for graduates/alumni
+  Online notification of alumni dues, acceptance of online payment at alumni site
+
+  https://drive.google.com/a/internet2.edu/folderview?id=0BzRHp0xie6WFM2dibGFQU3EzWk0
+
+2.
+3. U Va 	133.virginia.1.20150412		Improved Identity Life-cycle Management
+4. U Va		133.virginia.2.20150412		Improved Provisioning Services
+5.
+6.
+7.
+8.
+9.
+10.
+26.	OSU		065.rutgers.2.20141126		Applicant Access and Matriculation
+
+- - -
+_2015-04-14 18:24  Ann's instructions_
+
+The TIER results can be found at:
+https://internet2.app.box.com/files/0/f/3439287730
+
+Instructions are as follows:
+
+Please review the TIER.WSALL.TopStories.pdf which represent the 26 highest priority documents. The identifiers there correlate to the narratives in TIER.WSALL.MergedUserStories.docx
+
+For each story, add your requirements to: http://bit.ly/1b0pRCb  by the call tomorrow.
+
+We could split up the stories  and have everyone read say 8 so each story gets at least two people reviewing it. This way, you can spend more time thinking about the story itself and maybe develop a better set. If this is of interest, I can assign them out.
+
+Best,  --Ann
+
+----------
+Harvard U has a story in the top 10, but the identifier in TopStories.pdf is: 117.unc.1.20150412. Shouldn't it be one of the two following stories (from MergedUserStories.docx):
+038.harvard.1.20150412  or  038.harvard.2.20150412  ?
+The Title is provisioning/deprovisioning, but I'm not sure which of the two Harvard stories is the right one.
+
+As for #26, The Ohio State University, the TopStories.pdf gives the identifier 117.unc.1.20150412. And to make it more confusing, in MergedUserStories, The Ohio State U. story is identified as 065.rutgers.2.20141126.
+
+I'll proceed with the others. Hopefully by the time I'm done with those, you will have sorted this out.    Headaches for you, sorry.
+
+          --k
+
+----------
+Dear Architect-y people,
+
+An update on the TIER process:
+
+Tomorrow, Steve will be sending out the top prioritized stories gathered at the workshops for you to review. There are roughly 25 of them. We will be asking you to:
+
+Set aside a block of time on Tuesday/Wednesday a.m. to review them for unusual things. Not sure what those are but we trust you to know ’em when you see ‘em.
+
+Identify the requirements that you’re seeing in each one
+
+The TIER Community Investor Council will then be meeting on Friday to prioritize the requirements that we’ll be pulling out from the stories. Thoughts?
+
+As a reminder, our call to talk about the results is scheduled for:
+
+Wednesday
+2:00-3:30 ET
++1-734-615-7474, 0161803#​
+
+Thanks,  Ann
+
+- - -
+_2015-04-10 11:16  see idweek.utf_
+
+Gentlemen,
+
+Ann and I are preparing to converge the user stories submitted by the workshop participants and need to enlist your knowledge and support in reviewing the consolidation work PRIOR to the prioritization conference call being held by and for the TIER Community Investor Council (TCIC) on the 17th of April.
+
+What this entails:
+	1.	Ann and I will perform the initial consolidations, extraction of requirements and editing of the canonical stories (distilled from the sum-total of all of the participant submitted stories).
+
+	2.	We will then ask YOU to review our work and comment to make certain that we haven’t overlooked items which are of import to the longer-term vision.  We will also want to ensure that items which we will be marking as “out of scope” or “too much of an institution-specific need” are truly such because one of the efforts we will be undertaking is confinement of scope (where appropriate).
+
+	3.	We will exchange updates from Monday the 13th of April through Wednesday the 15th wherein we will ask you to join a 90 minute phone call (all together) to ensure that we have appropriately framed all of the pre-work for the TCIC.
+
+	4.	We will then send the results to the TCIC for preview and questions prior to the prioritization exercise on Friday the 17th of April.
+
+After we have the DESIRED initial prioritization from the TCIC on the 17th of April, we will then take the next steps of sequencing those prioritized items into what will be the raw material for the technical teams to break out into work packages.
+
+Because this is not a “green-field” effort (meaning – there is a LOT of work already underway in each of the component areas) we are trying to get these separate but related projects to coalesce/align around key functionality and features for “Release 1.”  So … we don’t want work to stop that’s underway but we ultimately need to guide it into a proper deliverable for the community.
+
+Can we count on your assistance and support in this process?
+
+Regards,
+Steve and Ann
+
+:: Steven Zoppi
+:: AVP, Services Integration and Architecture
+:: szoppi@internet2.edu
+
+:: Internet2®
+:: 6001 Shellmound St Suite 850
+:: Emeryville, Ca  94608
+:: p: 510 858 0884 ▪ m: 415 279 1650 ▪ f(office): 510 858 0894 ▪ f(digital): 877 313 2002 x708  
+:: SJZoppi @ [ Skype ▪ MSN ▪ AIM ▪ Y! ▪ GTalk ]
+
+- - -
+_2015-04-10 11:16_
+
+ tier-tac@internet2.edu
+ https://docs.google.com/a/wisc.edu/document/d/1zpkyXrdsEgdQJ7VGUZUbMqxxcSzmwNJ_FIzwicuw7_g/edit#heading=h.d1z22ntpwvdd  <= straw man timeline
+
+ https://drive.google.com/a/wisc.edu/folderview?id=0BzRHp0xie6WFM2dibGFQU3EzWk0&usp=sharing_eil#list  <= tier-tac folder
+ https://drive.google.com/folderview?id=0BzRHp0xie6WFUVRqQXBwd3VSa1U&usp=sharing  <= The Case for TIER (RUCC doc)
+  - aka http://bit.ly/1rhvQ55
+
+ '[TAC-InC] trying to understand TIER'
+
+- - -
+_2014-10-07 16:18  tier & UW-Madison_
+
+- Intro TIER initiative to ChrisH & JohnK
+
+- elevator speech version--based on "The Case for TIER"
+
+- what's in it for UW-Madison, what role should we play? what role, if any, should I play?
+
+- what are my concerns?
+
+- what would success look like?
+
+TIER funding: $25K/3yrs + $3K more in I2 dues
+
+- - -
+_2014-09-19 14:00  comments on release target strawman   0101288#_
+
+```
+Here are some points I'd like to see discussed on today's call as we
+review "Release Target Strawman with TB revised order.docx"
+https://drive.google.com/a/internet2.edu/file/d/0BzRHp0xie6WFU3JydmlhdUt0bW
+c/edit?usp=sharing
+
+Putting them out now to give you all a chance to ask for clarification in
+advance of the call.
+      --Keith
+
+- Re IAM aaS broker/ultimate goals: "capabilities are built here first":
+Why not maintain single code base for core capabilities for both prem &
+aaS? Differences handled conceptually as 'branches'/plug-ins?
+
+    - Benefit: eliminates lag in delivery of new capabilities to the
+on-prem adopters (the R1s who ask why they should pay for "stuff they
+already have")
+
++ I'd argue for glossing "CPR" as CPR+CommIT code: CPR/Commit has
+invitation, messaging, LDAP integration: sound basis for IAM; NOTE: There
+will be significant work to get from purpose-specific CPR/CommIT to a
+generic version suitable for TIER purposes
+
++ Potential early deliverable w broad appeal?: identifier-only IdPaaS, AKA
+AuthN aaS? IdP of LR, alternative to social2SAML; (enhance w 2nd
+factor/MCB) would serve on-prem, broker, (Nexus?) needs; fits w model of
+keeping attr. brokering/attr. mgmt. closer to resource owners; Significant
+challenge around id proofing
+
+- "access management" should be understood to cover what people are
+refering to as role management, privilege management
+
+- y3m30/onPrem: Add Optional Installable LDAP Instance? What's this for?
+
+- GAP: non-browser authN support? (only ECP mentioned y2m16/IAMaaS broker)
+
+- message bus: More a technique/arch style than a value per se; But
+multiple mentions of "connectors" in the doc highlights need: Not all
+connector invocation will be via direct API calls.
+
+- prof. svcs. column: Consider the Unicon model of developing for
+particular customer but open-sourcing the solution; More than that:
+produce a customizable/configurable generic solution, then tailor to the
+customer/campus (this approach would cost more than a single-campus
+solution, so TIER might pay for the difference so that the win is
+shareable)
+
+    --Keith
+```
+
+---------- add'l comments
+
++ y2m16 IAMaaS/broker: 'federated SAML SSO w pass-thru authN to campus':  = IdPaaS; This is helpful for long tail; Broker solution should have the AuthN be pluggable so it can use authN from campus or IdPoLR or Soc2SAML...; multi-tenancy for IAM aaS is a complex engineering problem
+
+- Privacy Lens: shows up in on-prem y2m24 but later for IAMaas/Broker: y3m30; why not same delivery round for both?
+
+- Access mgmt: do we intend to include capability of mapping from SoR data to groups (what SteveC refers to as a 'rules engine'; one of the things Grouper Loader is used for). Have we heard this requirement from TIER Charter group?
+
+- Should the Research Nexus column say 'Campus/VO branded' instead of just 'Campus branded'? I would guess Nexus would be a natural fit for VOs, no?
+
+- self-service account linking?
+
+
+-------- parking lot
+
+- Ent-to-cloud prov/deprov?
+
+- burn rate: 3 teams x 3 or 4 per team x $110K  = $1m - $1.3m / yr, 9-12 FTE for 3 yrs;
+
+- -
+_2014-09-11 17:05  most likely solution and sequencing of most likely deliverables in 8 month increments out to 36 mo._
+
+apis?
+
+- - -
+_2014-09-11 14:49  SZ email "Timeline and working toward Educause"_
+
+```
+All – I know this is long, forgive the “Ransom Note” appearance but “it is what it is".
+
+I’m taking advantage of asynchronous time to get everyone’s thinking and schedules aligned.  There’s a lot to do and a shortened time so I’m hoping that getting things organized so we can move quickly will prove useful.
+
+ALL of you addressed here are now the only subscribers to tier-tac@internet2.edu (See below).  This group’s membership will increase over time as we identify the proper technology governance model but for now: You are They.
+
+Shel – I’m copying you on everything here and making the assumption that you will act as the appropriate “filter” to the TIER-Charter group members.
+
+I will try to meet with Jim during a break here but I was able to talk with Tom briefly this morning.  Because we all have so many other commitments to meet, I’ll do my best to coordinate activities through e-mail and IM.
+
+Tom agreed to ask Keith to put his proposed working document format into the Private Gdocs working folder.
+
+Timeline to Educause and RUCC
+
+Working backward from Educause / RUCC – the following timeline is what I believe we are working toward.  Please feel free to adjust my thinking accordingly:
+
+28 Sep (Sunday) – Educause Conference Starts
+26 Sep (Friday) – Final Draft Agreed-Upon by TIER charter team
+22 Sep (Monday) – Initial Draft (3 to 5 page summary) proposed from TIER Architecture Core Team
+19 Sep (Friday) – Final “Plausible Straw Man” Component Diagram and Satisfying Use Cases constructed by TIER Architecture Core Team.
+15 Sep (Monday) – Frameworks for documentation are agreed-upon and iteration on the Component Model and Development of the Use Cases to be Satisfied begins
+12 Sep (Friday) – All groundwork for “getting the word out” and communication vehicles are laid-out and deployed.
+11 Sep – Today (Getting all this together now that the CSG document is done and ready for presentation)
+Activities to complete within the next few days:
+
+We will need to come to agreement around what aspects of the component diagram we need to focus upon to satisfy the “core” use cases we understand to be at issue.  The Powerpoint document (see below) contains the “maturity model” proposed by the TIER Charter group as our ‘guardrails’ to the conversation.  It will be introduced in its new form at CSG, this afternoon.
+
+Collaboration Repositories:
+
+The following has been completed as of today …
+TIER Components and Architecture (Public) (Google Docs)
+Public View
+Editors (All on this distribution including Michael Gettes)
+TIER Architecture Working Group (Google Docs)
+Private View
+Editors (All on this distribution)
+Documents:
+The State of TIER.docx
+Living Document Describing the current status of TIER
+Idam-chicago-communique-august-2013.pdf (“seminal document” inspiring the creation of TIER)
+Architecture and TIER Program Vision Overview.pptx (Powerpoint Document which can be used as basis for presentation materials to technical and non-technical audiences – Hide/Show relevant Slides)
+Concentric-Service-Model-09032014.pptx (original “Concentric Rings” model proposed by the TIER Charter group)
+Folders:
+Response Docs:
+Contains the responses to the State of TIER as distributed over time.
+They are “Google Drive” sync-able so we can work on them there.
+
+QUESTION: Do you believe that this document should be broken out into separate Gdocs so we can collaborate on them more freely or is the “Word Document In Revision Tracking Mode” sufficient?
+
+
+Distribution lists have been created and initialized:
+
+Tier-charter@internet2.edu (Currently “Private” - Populated with the following)
+christopher_holmes@baylor.edu	Christopher Holmes
+dcromwel@iu.edu	Dennis Cromwell
+edenna@umd.edu	Eric Denna
+jcooper2@swarthmore.edu	Joel Cooper
+kelli@uw.edu	Kelli Trosvig
+kxm@psu.edu	Kevin Morooney
+klaraj@uchicago.edu	Klara Jelinkova
+mwoo@uoregon.edu	Melissa Woo
+rkraemer@nd.edu	Ron Kraemer
+swaggener@internet2.edu	Shelton Waggener
+steve.corbato@utah.edu	Steve Corbato
+futhey@duke.edu	Tracy Futhey
+
+Tier-steering@internet2.edu (Closed membership/ Currently “Concealed” - empty at this time)
+
+Tier-tac@internet2.edu (Closed membership/Currently “Concealed” - initialized to be the members of this current distribution)
+
+Tier-discussion@internet2.edu (OPEN membership [See Below]: initialized to be the members of this current distribution)
+
+Tier-architecture@internet2.edu (OPEN membership [See Below]: initialized to be the members of this current distribution and included Michael Gettes)
+
+Tier-staff@internet2.edu (CLOSED membership / Currently “Visible” – Generally those with the responsibility for “building, deploying and maintaining the TIER-oriented solutions")
+
+Final Draft of Mailing List Announcement
+
+Trust and Identity in Education and Research (TIER)
+
+We are at the very early stages of TIER formation and are looking for active discussion and interaction among all of the Identity, Technology and related professionals who depend, every day, on pan-institutional Trust and Identity.
+
+Here’s how you can participate:
+
+Formative and OnGoing Document Collaboration
+
+We will share all documentation and current information about TIER through a variety of channels.  For document collaboration, we will use Google Docs:  TIER Components and Architecture (Public)  will contain (initially) the living document “The State of TIER” which will contain the latest Technical “Thinking about TIER” as works-in-progress.  We will notify list subscribers when those documents are ready in that location.
+
+Mailing Lists
+
+As we now move TIER formation discussions into much broader circulation, we have established two new distribution lists to help improve information exchange and discussions about TIER in the community.
+
+The lists ‘tier-discussion@internet2.edu’ and ‘tier-architecture@internet2.edu’ have been created and are open for subscribers.  You may subscribe by:
+Addressing an e-mail message to pubsympa@internet2.edu
+Assign the subject (case insensitive): Subscribe <list-name>
+Send! (You’ll receive confirmation of the subscription shortly thereafter)
+Tier-discussion@internet2.edu is for all general, non-technical discussions about TIER and may be used to contribute any thoughts about the direction or shape of TIER.  Although this audience will be much broader than the technology and Identity Professional communities, we encourage anyone who wishes to offer their thinking.  Welcome topics include but are not limited to: Descriptions of institutional need, features or functionality that are important matters to consider as the TIER solutions evolve. (Open to Everyone, Authentication Required)
+
+Tier-architecture@internet2.edu is generally focused on the Institutional Technology Architects and Identity Management professionals.  This list will primarily focus on the implementation goals and technologies required to make identity components work well within and across participating institutions. (Open to Everyone, Authentication Required).
+We welcome your participation and please feel free to circulate this information widely to colleagues who may be interested in these community lists.
+
+Regards,
+Steve
+
+:: Steven Zoppi
+:: AVP, Services Integration and Architecture
+:: szoppi@internet2.edu
+
+:: Internet2®
+:: 6001 Shellmound St Suite 850
+:: Emeryville, Ca  94608
+:: p: 510 858 0884 ▪ m: 415 279 1650 ▪ f(office): 510 858 0894 ▪ f(digital): 877 313 2002 x708
+:: SJZoppi @ [ Skype ▪ MSN ▪ AIM ▪ Y! ▪ GTalk ]
+```
+- - -
+_2014-09-05 13:59  things to slot into "plausible strawman" timeline_
+
+* From TAC strat. priorities doc, Jan. 2014
+* From CIFER
+* From TIER doc graphic
+
+- - -
+_2014-09-04 15:39  SZ invitation to strawman drafting_
+
+Sure. I'm open the rest of the day. 773-834-1700.  --TomB
+
+On 9/4/2014 3:01 PM, Keith Hazelton wrote:
+Tom,
+
+Are you considering saying yes to this request?  I have strongly mixed feelings and thoughts pro and con.  Would you have time for a conversation to help me sift through some of this?
+
+         —Keith
+
+- - -
+_2014-09-03 09:48  review_
+
+SZ: CI meeting in Chicago, Aug. 30 2014: Id'd need to have better way to manage identity across VOs.
+
+- TIER Charter group of campus CIOs; charged to set governance in place; conversations difficult: statement of need is diverse; what is 1st best need; TIER Charter meeting yesterday: looking for tech community to put guardrails in place to guide 6-8 mo delivery cadence; making "it" more accessible and useable; leading edge institutions will try to figure out what they want/need; We're proposing to come up with a plausible straw-man; 3-yr dev. budget, then work on sustainability plan;  We're not married to anything in here;
+
+- greatest common problem: cross-instit. def of identity plus SP def. of identity;
+
+- SteveC: the envisioned free-standing IdP looks like Passport model;
+
+- JimB: so hard to get attrs from campus, empower the individual to manage attributes;
+
+- TB: This looks somewhat like a hub and spoke model around aggregation; we had interesting functional model in the 1st doc from TAC on this; what some black box needs to do;
+
+- Initial target is TBD; Even if it's just a cleaned-up IAM infrastructure; testbed; it could be better packaged, more installable; make this all easier;
+
+- MRG: p. 21: concern around role of TAC;
+
+----------
+
+"[TAC-InC] "The State of Tier" Whitepaper for Thursday's kick-off discussion"  SteveZoppi email
+../ref/The State of TIER.docx
+
+- p. 13: bringing all current offerings under Net+ as Net+Cert, Net+Duo, Net+Grouper, Net+Shib,.... and charging for them !?
+  - repeated use of terms product and offering
+  - end of InC as we know it; end of OS "free" as in beer?
+
+- p. 16: 30 months from the starting gun for "product"!?
+
+- p. 21: Whole new portfolio of duties for TAC as TIER arch group
+  - p. 23: new portfolio: authority over requirements to specs process
+
+architecture:
+
+IAMaaS: Natural market is the Educause tail
+- Typical I2 members have shown little/no interest in outsourcing IAM
+- expect pushback on
+  - p. 9 "we will move AuthN out into the cloud as a common standard service"
+  - p. 13 "codebase will be available to load locally...however...the objective is to focus on delivery as a service
+
+- Does "broker" concept cover more than p. 17 "free-standing IdP"
+
+- Reviewer's comment on lack of Id Registry component/service
+
+- structuring the discussion--at least the TAC portion
+
+- - -
+_2014-09-04 11:57  references and links_
+
+https://drive.google.com/a/internet2.edu/folderview?id=0BzRHp0xie6WFM2dibGFQU3EzWk0&usp=sharing  <= TIER Arch Comm WG +
+https://drive.google.com/folderview?id=0BzRHp0xie6WFUVRqQXBwd3VSa1U&usp=sharing  <= TIER Components and Arch (public) +
+
+../ref/The State of TIER.docx +
+https://spaces.internet2.edu/display/cifer/strawman+timeline +
+https://docs.google.com/document/d/17na5Hu__eDnL4mUGHWjLeN4Wsf2-k4z6PnM1ws5IHqI/edit#  <= InC TAC strat prior. +
+
+https://docs.google.com/presentation/d/19iZ8bXjh7dvD_0x9O3qVip3RqVuexNDcvmL70hr66QQ/edit#slide=id.pb   <= tier process ppt +
+https://docs.google.com/spreadsheets/d/1eYD6oqWkwxAXTDGEdnY5jOwUnyt3ZE2FKQNGIZ2s1lM/edit#gid=812795802  <= qryCrossAvgByRequirement.xlsx +
+https://internet2.app.box.com/TIERInvestorReview  <= box folder +
+https://dzone.com/articles/making-an-open-source-project-bloom?edition=112054&utm_source=Daily%20Digest&utm_medium=email&utm_content=DZone%20Daily%20Digest&utm_campaign=dd%202015-11-19&userid=935  <= making open source project bloom +
+http://12factor.net/  <= 12 factor app +

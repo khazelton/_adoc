@@ -1,0 +1,579 @@
+=== mpTrainNotes-2020.adoc
+
+mPbasicsDec2020 <= oneTab group +
+ <= midPoint December 2020 Student Roster - Google Sheets +
+ <= Students: MidPoint Basics 2020 - Google Drive +
+ <= Working with midPoint Studio - Evolveum Docs +
+ <= Students: MidPoint Basics 2020 - Google Drive +
+ <= Attendee Prep and Logistics - midPoint Training Virtual December 2020 - Google Docs +
+Number of nodes: 1;Number of CPUs: 4;Total memory: 1,073,741,824 b;Java version: 11.0.7;Tomcat version: Apache Tomcat/9.0.37;MidPoint version: 4.2;Database info: org.mariadb.jdbc.Driver 2.6;OS info: Linux 4.14.121-109.96.amzn2.x86_64;
+
+- - -
+_2021-01-05 09:52 reviving mP Training VM with thanks for PaulC's help_
+
+ssh -L8443:localhost:8443 -L10443:localhost:443 -L4443:localhost:4443 -L15672:localhost:15672 -L10389:localhost:389 -l student 3.135.1.0
+55e9e638
+
+```
+bash-3.2$ ssh -L8443:localhost:8443 -L10443:localhost:443 -L4443:localhost:4443 -L15672:localhost:15672 -L10389:localhost:389 -l student 3.135.1.0
+student@3.135.1.0's password: 55e9e638
+
+Last failed login: Tue Jan  5 15:02:26 UTC 2021 from 134.209.124.129 on ssh:notty
+There were 117 failed login attempts since the last successful login.
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+[student@ip-172-31-25-125 ~]$ ls -la
+total 16
+drwx------ 2 student student  87 Jan  4 21:00 .
+drwxr-xr-x 5 root    root     53 Jun 10  2019 ..
+-rw-r--r-- 1 student student  18 Jul 27  2018 .bash_logout
+-rw-r--r-- 1 student student 193 Jul 27  2018 .bash_profile
+-rw-r--r-- 1 student student 231 Jul 27  2018 .bashrc
+-rwxr-xr-x 1 student student 418 Jun 13  2019 start-rabbitmq.sh
+
+git clone https://github.internet2.edu/docker/midPoint_container.git
+cd midPoint_container
+./build.sh
+cd /opt
+cd ~/
+cd midPoint_container
+cd demo/grouper
+./ssh-tunnel-redir-fix.sh .
+docker-compose up --build
+
+Intellij IDEA with midPoint plugin:
+
+• go to File › New › Project
+• select MidPoint in the left panel
+• enter the Master password (twice) or your choice, e.g. secret
+• in the Environments panel, select the Default environment and click edit icon.
+A new popup window appears. Please fill in the following:
+◦ Name: MidPoint Basics AWS
+◦ Selected: keep checked
+◦ Url: https://localhost:8443/midpoint
+◦ Username: administrator
+◦ Password: 5ecr3t (default)
+◦ Ignore SSL errors: keep checked
+◦ Click Test connection button to test the configuration parameters
+
+Then open midPoint Admin UI at https://localhost:8443/midpoint
+
+```
+
+- - -
+_2020-12-11 11:49 mP basic training, day four_
+
+ https://wiki.evolveum.com/display/midPoint/Roles%2C+Metaroles+and+Generic+Synchronization
+
+parametric roles: so 2000 municipalities and 4 roles don't need 8000 roles, just four PARAMETERIZED roles. role1 (municipality: 1001)
+
+ https://github.com/aws-samples/aws-refarch-shibboleth
+
+ https://wiki.evolveum.com/display/midPoint/Unique+property+value+HOWTO
+
+ https://wiki.evolveum.com/display/midPoint/User+Interface+Form+Fields#UserInterfaceFormFields-FormValidation
+
+ https://wiki.evolveum.com/display/midPoint/Password+Policy#PasswordPolicy-CheckExpression
+
+See policy rules for attr change-based actions
+
+- - -
+_2020-12-10 09:07 Dec 2020 mP basic training, day three_
+
+I'm skipping the 9 am to 1 pm portion of training for other meetings; will rejoin from 1 pm to 3 pm
+
+- - -
+_2020-12-09 09:00 Dec 2020 mP basic training, day two_
+
+nb: mP Studio 'properties'
+
+Module 3: Integrating midPoint with Grouper; slide 59
+
+"grouper syncs data about persons from LDAP":  Should say To assign people to Groups, Grouper accesses person information from an authoritative person registry
+
+- - -
+
+Chris Hubing  09:17
+JSON… just like this: https://spaces.at.internet2.edu/display/Grouper/Message+Format+Detail
+
+Chris Hubing  09:18
+You should be able to go to the RabbitMQ admin interface and go to queues and read a message from samplequeue to check it out.
+
+Keith Hazelton  09:19
+right. I’ll show that to Ivan during a break.
+09:19
+Once we do the lab that runs the messaging approach
+
+see #i2-iam-groups
+
+is there a way to incorporate schema extensions into a resource definition? Seems not. https://wiki.evolveum.com/display/midPoint/Custom+Schema+Extension
+
+- - -
+
+To incorporate a new schema extension, I guess you would need to create a new docker image of the midpoint_server. You can’t just restart the container. Is this correct?
+
+Ivan Noris  08:45
+The only question (and my biggest "problem" with docker) is if docker container would see the schema extension file. I think it should see a new file if you put it there, but based on soem of my old experiments, it was not seeing any updates to the schema extension file.
+
+But I think my colleague has worked on this - how to inject the configuration. I was just not following it yet
+
+Ethan Kromhout  08:48
+As long as nothing blows away the container, I've been fine with dropping schema extensions in the container and restarting. You just have to be aware that unless you add it to the image, it will be lost if the container is replaced from the image.
+
+but how do you ‘drop’ the extensions into the container?
+
+Ivan Noris  08:52
+What we do in this training and demo/grouper is just copying the file when container is created
+
+ midpoint_server/container_files/mp-home/
+
+include also
+
+ mp-home/schema/internet2.xsd
+
+and that becomes midpoint's container /opt/midpoint/var/schema/internet2.xsd
+
+- - -
+_2020-12-08 08:00 Dec 2020 mP basic training, day one_
+
+13:00 mP GUI, start from slide 46
+
+- - -
+
+Erin Murtha
+Zoom coordinates for next week: Zoom Meeting
+https://internet2.zoom.us/j/9205890107?pwd=bUVpeU9nZ0tJbWpxS0hhb05yWjV2Zz09
+Meeting ID: 920 589 0107
+Password: 981967
+One tap mobile
++13017158592,,9205890107#,,1#,981967# US (Germantown)
++13126266799,,9205890107#,,1#,981967# US (Chicago)
+
+@channel - Our prerequisites materials are ready to view in the class Google Drive here: https://drive.google.com/drive/u/1/folders/1GDRuUGolzDg5NGA897zSkYC2betgj4Ca
+
+@channel - We'd love it if you could complete a very brief pre-course assessment so that we can learn a bit about your current experience with midPoint and what you hope to take away from this class! https://forms.gle/xdg7NymfcRmPgEcJA
+
+We'll be sharing out some pre-requisites soon, but for you eager beavers, this will get you started:
+Read the Practical Identity Management with midPoint manual.
+
+Explore the midPoint wiki to learn more about this identity management and access government system.
+
+- - -
+_2020-12-03 15:08 1st login to Dec 2020 mP basics training vm_
+
+```
+ssh -L8443:localhost:8443 -L10443:localhost:443 -L4443:localhost:4443 -L15672:localhost:15672 -L10389:localhost:389 -l student  18.222.202.65
+
+The authenticity of host '18.222.202.65 (18.222.202.65)' can't be established.
+ECDSA key fingerprint is SHA256:sR7c2INK5s4odDn4AJT21Pm4YQEo+MZxu471OeYLsdY.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '18.222.202.65' (ECDSA) to the list of known hosts.
+student@18.222.202.65's password:
+
+Last failed login: Thu Dec  3 15:17:41 UTC 2020 from c-73-169-217-202.hsd1.wa.comcast.net on ssh:notty
+There was 1 failed login attempt since the last successful login.
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+
+[student@ip-172-31-24-88 ~]$ pwd
+/home/student
+
+[student@ip-172-31-24-88 ~]$ ls -la
+total 16
+drwx------ 2 student student  87 Dec  2 18:08 .
+drwxr-xr-x 5 root    root     53 Jun 10  2019 ..
+-rw-r--r-- 1 student student  18 Jul 27  2018 .bash_logout
+-rw-r--r-- 1 student student 193 Jul 27  2018 .bash_profile
+-rw-r--r-- 1 student student 231 Jul 27  2018 .bashrc
+-rwxr-xr-x 1 student student 418 Jun 13  2019 start-rabbitmq.sh
+
+docker -v
+Docker version 19.03.13-ce, build 4484c46
+```
+- - -
+_2020-12-03 14:24 Dec mP Training Intro_
+
+*Welcome to our virtual midPoint Basics class!*
+
+We will be meeting on Zoom from Tuesday, December 8 - Friday, December 11 from 10:00 am EST – 4:00 pm EST. There’s a chance class could end earlier, depending on the volume and depth of questions.
+
+We will open Zoom an hour early on the first day of class - please join us then if you have any problems signing into your VM! You should have a calendar invitation for this optional session, as well as for the class on Tuesday – Friday.
+
+The fearless Ivan Norris (of Evolveum) will be your instructor. We also have Keith Hazelton (Internet2) and Ethan Kromhout (UNC Chapel Hill) joining us to support the class – they are all very eager to help you out!
+
+Logistics December 8 - 11, 2020 ⧫ 10:00 am - 4:00 pm ET
+
+Call Coordinates:
+
+Zoom Meeting  https://internet2.zoom.us/j/9205890107?pwd=bUVpeU9nZ0tJbWpxS0hhb05yWjV2Zz09 +
+Meeting ID: 920 589 0107 +
+Password: 981967
+
+One tap mobile  +13017158592,,9205890107#,,1#,981967# US (Germantown) +
++13126266799,,9205890107#,,1#,981967# US (Chicago)
+
+Daily Class Schedule
+Break times are approximate and up for discussion. All times are in EST.
+
+```
+Time                 Activity
+
+ 9:00 - 10:00         Log into VMs (optional, if you are having challenges)
+10:00 - 10:15         Kick Off & Introduction
+10:15 - 11:15         Workshop
+11:15 - 11:30 ==      Break
+11:30 -  1:00         Workshop
+ 1:00 -  2:00 ==      Lunch
+ 2:00 -  3:00         Workshop
+ 3:00 -  3:15 ==      Break
+ 3:15 -  4:00         Workshop
+```
+
+Note: on Friday we will have an optional happy hour at 4:00! Join us for an informal gathering, with a beverage of choice, and bring on your questions and friendly midPoint banter. :)
+
+*Session Information & Best Practices*
+
+    We will be taking short breaks throughout the day and a longer lunch break around 1:00 ET.
+    To keep things flowing well, please refrain from using the Zoom chat window.
+    Instead, use the dedicated Slack channel for your discussions!
+
+    VMs will be opened up several days before the class.
+    They will remain open for ~ two weeks after the class (until December 23) so that you can practice the lab exercises.
+    Ask ALL of your questions. There are no dumb questions.
+
+*Course Materials*
+
+The main location for links to course materials is in Slack “pins”.
+
+Click on the “midpoint-training-december2020” slack channel, and click on the “pin” icon.
+
+We will provide these useful and private links:
+
+    The Zoom web conference info
+
+    The google sheet with your AWS connection info for your personal training environment
+      https://docs.google.com/spreadsheets/d/1fce79Cr4czGr8kQyT562W9kTxt6vRVPMvc7VPbRcak8/edit#gid=0
+
+    Slides of course material (will be added on Tuesday morning)
+
+    midPoint wiki: https://wiki.evolveum.com/display/midPoint/Introduction
+
+*Pre-Work*
+596
+Connect to your AWS instance from your computer
+
+        Choose an available machine’s IP address and password here. 18.222.202.65   dee1388f
+          ssh -L8443:localhost:8443 -L10443:localhost:443 -L4443:localhost:4443 -L15672:localhost:15672 -L10389:localhost:389 -l student  18.222.202.65
+
+        Add your name and organization information +
+        Follow instructions in the Prerequisites documentation: https://drive.google.com/drive/u/1/folders/1GDRuUGolzDg5NGA897zSkYC2betgj4Ca
+
+Install the Zoom app if you do not already have it. It is nice if you have a camera available that you can turn on from time to time so we can all put names to faces.
+
+Install the Slack app if you do not already have it and make sure you are in the midpoint-training-december2020 channel.
+
+Read the Practical Identity Management with midPoint manual: https://evolveum.com/midpoint/midpoint-guide-about-practical-identity-management/
+
+Explore the midPoint wiki to learn more about this identity management and access government system: +
+  https://wiki.evolveum.com/display/midPoint/Introduction
+
+Complete this survey so that we can understand your midPoint experience and goals for attending the course: +
+  https://docs.google.com/forms/d/e/1FAIpQLSfr1jBjxARNgbrf5d8PLcIw-NEGnnPjkWd8EYDpqSdtBx1XZg/viewform
+
+Computer Setup for the Morning of Training
+
+    If you have multiple monitors available, that would be useful but not required
+    Open the Slack app to the midpoint-training-december2020 channel
+        Check out the pins for useful course information you’ll want to have on hand:
+            Links to slides (only accessed by registered course participants)
+            Google sheet with the VM IPs and credentials
+            Zoom teleconference coordinates
+            Links to self-help (midPoint wiki)
+
+    Open the Zoom app and connect to the meeting
+        Please mute yourself and either keep your camera on or be prepared to turn it on while speaking so we can put names to faces. Thank you!
+
+If you have any questions about the workshop or its technical content, please email me. You can also use the Slack channel for an even faster response. :)
+_____________________________________
+
+emurtha@internet2.edu
+Education and Consulting Programs Manager InCommon
+
+- - -
+_2020-07-02 11:06 grabbing the training vm content, cont._
+```
+ssh -L8443:localhost:8443 -L10443:localhost:443 -L4443:localhost:4443 -L15672:localhost:15672 -L10389:localhost:389 -l student  3.23.102.4
+
+sudo bash
+tar -zcvf student.tar.gz student  <= tar-gzip /home/student directory
+chown student:student student.tar.gz
+mv student.tar.gz /home/student
+exit
+
+scp -P 58263 student.tar.gz kh@aktis.org:
+exit
+- - -
+
+ssh kh@aktis.org
+mv student.tar.gz opt
+cd opt
+tar xvf student.tar.gz
+
+ls -la
+total 263404
+drwxrwxr-x 4 kh kh      4096 Jul  2 16:01 .
+drwxr-xr-x 6 kh kh      4096 Jul  2 16:01 ..
+drwxrwxr-x 6 kh kh      4096 Jun 27 16:10 midPoint_container-2020-06-27
+drwx------ 4 kh kh      4096 Jul  2 15:57 student
+-rw-r--r-- 1 kh kh 269709109 Jul  2 15:59 student.tar.gz
+
+cd student
+ls -la
+total 48
+drwx------ 4 kh kh 4096 Jul  2 15:57 .
+drwxrwxr-x 4 kh kh 4096 Jul  2 16:01 ..
+-rw------- 1 kh kh 8559 Jul  2 15:48 .bash_history
+-rw-r--r-- 1 kh kh   18 Jul 27  2018 .bash_logout
+-rw-r--r-- 1 kh kh  193 Jul 27  2018 .bash_profile
+-rw-r--r-- 1 kh kh  231 Jul 27  2018 .bashrc
+drwxrwxr-x 6 kh kh 4096 Jun 18 23:12 midPoint_container
+drwx------ 2 kh kh 4096 Jul  2 15:42 .ssh
+-rwxr-xr-x 1 kh kh  418 Jun 13  2019 start-rabbitmq.sh
+-rw------- 1 kh kh 1531 Jul  2 15:42 .viminfo
+
+$ tree -L 4 midPoint_container
+midPoint_container
+├── build.sh
+├── common.bash
+├── container_files
+│   ├── httpd
+│   │   └── conf
+│   │       ├── midpoint.conf
+│   │       ├── midpoint.conf.auth.internal
+│   │       ├── midpoint.conf.auth.shibboleth
+│   │       └── ssl-enable.conf
+│   ├── mp-dir
+│   │   ├── active-spring-profiles
+│   │   └── repository-url
+│   ├── opt-tier
+│   │   └── setenv.sh
+│   ├── supervisor
+│   │   └── supervisord.conf
+│   └── usr-local-bin
+│       ├── healthcheck.sh
+│       ├── sendtierbeacon.sh
+│       ├── setup-cron.sh
+│       ├── setup-timezone.sh
+│       ├── start-httpd.sh
+│       ├── start-midpoint.sh
+│       └── startup.sh
+├── demo
+│   ├── extrepo
+│   │   ├── configs-and-secrets
+│   │   │   └── midpoint
+│   │   └── docker-compose.yml
+│   ├── grouper
+│   │   ├── add-ref-groups.gsh
+│   │   ├── add-ref-groups.sh
+│   │   ├── after-installation.sh
+│   │   ├── configs-and-secrets
+│   │   │   ├── grouper
+│   │   │   └── midpoint
+│   │   ├── create-ref-loaders.gsh
+│   │   ├── create-ref-loaders.sh
+│   │   ├── directory
+│   │   │   ├── container_files
+│   │   │   └── Dockerfile
+│   │   ├── docker-compose.yml
+│   │   ├── get-import-sis-persons-status.sh
+│   │   ├── grouper_daemon
+│   │   │   ├── container_files
+│   │   │   └── Dockerfile
+│   │   ├── grouper_data
+│   │   │   ├── container_files
+│   │   │   └── Dockerfile
+│   │   ├── grouper_ui
+│   │   │   ├── container_files
+│   │   │   └── Dockerfile
+│   │   ├── grouper_ws
+│   │   │   ├── container_files
+│   │   │   └── Dockerfile
+│   │   ├── idp
+│   │   │   ├── Dockerfile
+│   │   │   └── shibboleth-idp
+│   │   ├── midpoint-objects-manual
+│   │   │   └── tasks
+│   │   ├── midpoint_server
+│   │   │   ├── container_files
+│   │   │   └── Dockerfile
+│   │   ├── mq
+│   │   │   ├── container_files
+│   │   │   └── Dockerfile
+│   │   ├── purge-queue.sh
+│   │   ├── README.md
+│   │   ├── recompute.sh
+│   │   ├── show-queue-size.sh
+│   │   ├── sources
+│   │   │   ├── container_files
+│   │   │   └── Dockerfile
+│   │   ├── ssh-tunnel-redir-fix.sh
+│   │   ├── test-resources.sh
+│   │   ├── tests
+│   │   │   ├── main.bats
+│   │   │   └── resources
+│   │   ├── update-bgasper-in-grouper.gsh
+│   │   ├── update-bgasper-in-grouper.sh
+│   │   ├── upload-async-update-task.sh
+│   │   ├── upload-import-sis-persons.sh
+│   │   ├── upload-objects.sh
+│   │   ├── upload-recompute-users.sh
+│   │   └── upload-reconcile-grouper-groups.sh
+│   ├── postgresql
+│   │   ├── configs-and-secrets
+│   │   │   └── midpoint
+│   │   ├── docker-compose-tests.yml
+│   │   ├── docker-compose.yml
+│   │   └── tests
+│   │       └── main.bats
+│   ├── shibboleth
+│   │   ├── configs-and-secrets
+│   │   │   ├── midpoint
+│   │   │   └── shibboleth
+│   │   ├── directory
+│   │   │   ├── container_files
+│   │   │   └── Dockerfile
+│   │   ├── docker-compose-tests.yml
+│   │   ├── docker-compose.yml
+│   │   ├── idp
+│   │   │   ├── Dockerfile
+│   │   │   └── shibboleth-idp
+│   │   ├── midpoint_server
+│   │   │   ├── container_files
+│   │   │   └── Dockerfile
+│   │   └── tests
+│   │       └── main.bats
+│   └── simple
+│       ├── configs-and-secrets
+│       │   └── midpoint
+│       ├── docker-compose.yml
+│       └── tests
+│           └── main.bats
+├── Dockerfile
+├── download-midpoint.sh
+├── Jenkinsfile
+├── library.bash
+├── midpoint-dist.tar.gz
+├── README.md
+└── tests
+    └── main.bats
+
+57 directories, 66 files
+```
+
+*This file tree matches the student vm line for line*
+
+- - -
+_2020-07-01 11:18 grabbing the training vm content_
+
+spare vm:
+ssh -L8443:localhost:8443 -L10443:localhost:443 -L4443:localhost:4443 -L15672:localhost:15672 -L10389:localhost:389 -l student  3.135.198.235  2f058c06
+
+assigned vm
+
+```
+ssh -L8443:localhost:8443 -L10443:localhost:443 -L4443:localhost:4443 -L15672:localhost:15672 -L10389:localhost:389 -l student  3.23.102.46    6f61fa9e
+
+Last login: Fri Jun 19 11:35:52 2020 from 071-090-029-081.res.spectrum.com
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+[student@ip-172-31-9-129 ~]$ ls -la
+total 24
+drwx------ 3 student student  134 Jun 18 23:11 .
+drwxr-xr-x 5 root    root      53 Jun 10  2019 ..
+-rw------- 1 student student 7853 Jun 19 19:34 .bash_history
+-rw-r--r-- 1 student student   18 Jul 27  2018 .bash_logout
+-rw-r--r-- 1 student student  193 Jul 27  2018 .bash_profile
+-rw-r--r-- 1 student student  231 Jul 27  2018 .bashrc
+drwxrwxr-x 6 student student  270 Jun 18 23:12 midPoint_container
+-rwxr-xr-x 1 student student  418 Jun 13  2019 start-rabbitmq.sh
+[student@ip-172-31-9-129 ~]$ cat start-rabbitmq.sh
+#! /bin/bash
+
+if [ ! "$(docker ps -q -f name=rabbitmq)" ]; then
+    if [ "$(docker ps -aq -f status=exited -f name=rabbitmq)" ]; then
+       echo "Restarting RabbitMQ"
+       docker start rabbitmq
+    else
+       # start a fresh rabbit
+       echo "Starting a fresh RabbitMQ"
+       docker run -d -p 15672:15672 --env RABBITMQ_NODENAME=docker-rabbit --hostname rabbitmq --name=rabbitmq rabbitmq:management
+    fi
+fi
+
+[student@ip-172-31-9-129 ~]$ cd midPoint_container
+[student@ip-172-31-9-129 midPoint_container]$ ls -la
+total 249432
+drwxrwxr-x 6 student student       270 Jun 18 23:12 .
+drwx------ 3 student student       134 Jun 18 23:11 ..
+-rwxrwxr-x 1 student student      1478 Jun 18 23:11 build.sh
+-rw-rw-r-- 1 student student        52 Jun 18 23:11 common.bash
+drwxrwxr-x 7 student student        88 Jun 18 23:11 container_files
+drwxrwxr-x 7 student student        86 Jun 18 23:11 demo
+-rw-rw-r-- 1 student student      3985 Jun 18 23:11 Dockerfile
+-rw-rw-r-- 1 student student        16 Jun 18 23:11 .dockerignore
+-rwxrwxr-x 1 student student      1089 Jun 18 23:11 download-midpoint.sh
+drwxrwxr-x 8 student student       163 Jun 18 23:11 .git
+-rw-rw-r-- 1 student student        26 Jun 18 23:11 .gitignore
+-rw-rw-r-- 1 student student      4701 Jun 18 23:11 Jenkinsfile
+-rw-rw-r-- 1 student student     22950 Jun 18 23:11 library.bash
+-rw-rw-r-- 1 student student 255355352 Jun 18 23:13 midpoint-dist.tar.gz
+-rw-rw-r-- 1 student student      1446 Jun 18 23:11 README.md
+drwxrwxr-x 2 student student        23 Jun 18 23:11 tests
+
+[student@ip-172-31-9-129 midPoint_container]$ docker ps
+CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS                 PORTS                                                                     NAMES
+ca8cf12547e1        grouper_grouper_ws        "/usr/local/bin/entr…"   12 days ago         Up 12 days (healthy)   80/tcp, 0.0.0.0:9443->443/tcp                                             grouper_grouper_ws_1
+f099ba13f835        grouper_grouper_daemon    "/usr/local/bin/entr…"   12 days ago         Up 12 days (healthy)   80/tcp, 443/tcp                                                           grouper_grouper_daemon_1
+85f03287ae4a        grouper_grouper_ui        "/usr/local/bin/entr…"   12 days ago         Up 12 days (healthy)   80/tcp, 0.0.0.0:4443->443/tcp                                             grouper_grouper_ui_1
+cd2a8650d561        grouper_idp               "/usr/bin/startup.sh"    12 days ago         Up 12 days (healthy)   0.0.0.0:443->443/tcp                                                      grouper_idp_1
+c6a9aa380462        grouper_midpoint_server   "/usr/local/bin/star…"   12 days ago         Up 12 days (healthy)   80/tcp, 0.0.0.0:8443->443/tcp                                             grouper_midpoint_server_1
+260449a37c98        tier/mariadb:mariadb10    "/opt/bin/start.sh"      12 days ago         Up 12 days             0.0.0.0:33306->3306/tcp                                                   grouper_midpoint_data_1
+7c918b2a5a48        grouper_grouper_data      "/usr/local/bin/entr…"   12 days ago         Up 12 days (healthy)   80/tcp, 443/tcp, 0.0.0.0:3306->3306/tcp                                   grouper_grouper_data_1
+bf315fdaa590        grouper_sources           "/opt/bin/start.sh"      12 days ago         Up 12 days             0.0.0.0:13306->3306/tcp                                                   grouper_sources_1
+002c8c86d43a        grouper_directory         "/bin/sh -c 'rm -rf …"   12 days ago         Up 12 days             0.0.0.0:389->389/tcp                                                      grouper_directory_1
+801ebcde713a        grouper_mq                "/usr/local/bin/demo…"   12 days ago         Up 12 days             4369/tcp, 5671-5672/tcp, 15671/tcp, 25672/tcp, 0.0.0.0:15672->15672/tcp   grouper_mq_1
+
+
+
+```
+
+
+
+- - -
+_2020-06-17 09:22 Day 2 AM Session 1_
+
+ssh -L8443:localhost:8443 -L10443:localhost:443 -L4443:localhost:4443 -L15672:localhost:15672 -L10389:localhost:389 student@3.23.102.46
+ssh -L8443:localhost:8443 -L10443:localhost:443 -L4443:localhost:4443 -L15672:localhost:15672 -L1038sudo less /var/lib/docker/volumes/grouper_midpoint_home/_data/example-mailnotifications.
+log9:localhost:389 -l student  3.23.102.46
+
+ldapsearch -x -H ldap://localhost:10389/ -b dc=internet2,dc=edu \ -D cn=admin,dc=internet2,dc=edu -w password objectclass=\*
+
+sudo less /var/lib/docker/volumes/grouper_midpoint_home/_data/example-mail-notifications.log
+
+*3 Rules of mP*
+
+* nothing by default
+* doesn't hold all attributes of the resource
+* doesn't require any 'agent' running on the resource side

@@ -1,0 +1,1265 @@
+  <table class="wrapped">
+    <tbody>
+      <tr>
+        <th>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">#</span>
+          </p>
+        </th>
+        <th>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Component</span>
+          </p>
+        </th>
+        <th>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Requirement</span>
+          </p>
+        </th>
+        <th>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">POC Top Priority?</span>
+          </p>
+        </th>
+        <th>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Notes</span>
+          </p>
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">1</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Identity Registry</span>
+          </p>
+        </td>
+        <td>
+          <ol>
+            <li style="list-style-type: decimal;">
+              <p>
+                <span style="color: rgb(0,0,0);text-decoration: none;">Paths in and out</span>
+              </p>
+            </li>
+            <ol>
+              <li style="list-style-type: decimal;">
+                <p>
+                  <span style="color: rgb(0,0,0);text-decoration: none;">RESTful API</span>
+                </p>
+              </li>
+              <li style="list-style-type: decimal;">
+                <p>
+                  <span style="color: rgb(0,0,0);text-decoration: none;">Async messaging interface</span>
+                </p>
+              </li>
+              <li style="list-style-type: decimal;">
+                <p>
+                  <span style="color: rgb(0,0,0);text-decoration: none;">Flat file ("bulk up/download"; SFTP or similar to make the file available to ingest via message or API logic)</span>
+                </p>
+              </li>
+              <li style="list-style-type: decimal;">
+                <p>
+                  <span style="color: rgb(0,0,0);text-decoration: none;">Administrative interface console</span>
+                </p>
+              </li>
+            </ol>
+          </ol>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">1.1:kh,wc, hs,eg</span>
+          </p>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">1.2:wc, hs, eg</span>
+          </p>
+        </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">2</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">As part of Registration, invocation of Identity Matching Engine (match/no match/indeterminate; engine may be stubbed out)</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">kh, wc, hs, eg<br/>
+            </span>
+          </p>
+        </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">3</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">For new records, assign a permanent unique identifier to map between various source system identifiers</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">kh<span style="color: rgb(0,0,0);text-decoration: none;">, wc, hs, eg<br/>
+              </span>
+            </span>
+          </p>
+        </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">4</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">When SOR notifies Registry of new person, return relevant info to that SOR (minimally, the unique identifier assigned by the Entity Registry)</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">kh<span style="color: rgb(0,0,0);text-decoration: none;">, wc, hs, eg<br/>
+              </span>
+            </span>
+          </p>
+        </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">5</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Change (add/modify/delete) notifications/events to Provision when an “attribute” changes on a Person record</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">6</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">An entity can have multiple simultaneous relationships/Roles with an organization</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">kh<span style="color: rgb(0,0,0);text-decoration: none;">, wc, hs, eg<br/>
+              </span>
+            </span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Need consistency on “relationship” “role” “affiliation”</span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">7</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Each relationship has a “type” (affiliation) and can have its own set of data describing the individual and this relationship (eg start/end dates (possibly in the future), dept/center, title, etc)</span>
+          </p>
+        </td>
+        <td>
+          <span style="color: rgb(0,0,0);text-decoration: none;">kh, wc, hs, <br/>
+          </span>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Handle via Groups</span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">8</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">An entity can have multiple “types” with the same affiliation value (eg faculty member, associated with multiple depts)</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">kh<span style="color: rgb(0,0,0);text-decoration: none;">, wc, hs, <br/>
+              </span>
+            </span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Handle via Groups</span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">9</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Support start and end (sunrise/sunset) dates for attributes</span>
+            <span style="color: rgb(60,120,216);text-decoration: none;"> [Triggers based on these, not just the metadata of the sunrise/sunset date] [Original requirements focus mostly on Affiliations] [I personally encourage sunrise/sunset conditions, not just dates]</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">10</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">The Registry does not need to hold all of this data, but does need to link to this data</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">11</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Support extensible local and/or auxiliary information about entities</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">12</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Associate a “level of confidence” with various attributes (eg self-asserted, verified via gov’t documents, etc)</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">13</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Support for provisioning codes (one-time use link/code/token) for account claims</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">14</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Email notification to user prior to service expiry </span>
+            <span style="color: rgb(61,133,198);text-decoration: none;">[To user and potentially other identified users?</span>
+            <span style="color: rgb(0,0,0);text-decoration: none;">] [Potentially notice of other impending changes]</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">15</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Support Batch purging of entries (e.g., applicants) [May require a different concept than "purge". </span>
+            <span style="color: rgb(60,120,216);text-decoration: none;">"Permanent disable"</span>
+            <span style="color: rgb(0,0,0);text-decoration: none;">?, should use a soft delete mechanism]</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">kh<span style="color: rgb(0,0,0);text-decoration: none;">, wc, hs<br/>
+              </span>
+            </span>
+          </p>
+        </td>
+        <td> should be a soft delete concept</td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">16</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Is there a need to identify a “primary” Affiliation ? </span>
+            <span style="color: rgb(60,120,216);text-decoration: none;">(ie what gets published to the Directory for someone who is a student and an employee?)</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">17</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Identity Matching</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Presented with info from an SOR which has encountered a “new” entity, Registry attempts to match with an existing record;  Result is one of match/no match/indeterminate</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Duplicates #2</span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">18</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">19</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Identity merging needs to be well managed and low impact. The assignment of provisional ids is a method for special use cases of merging</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">20</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Attempts to match with an existing record in the Registry use heuristic algorithms</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">21</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">May rely on “attribute assurance level” when matching input values against Registry entries</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">22</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">For alumns -- if a campus is using a KBA system to identify the person (what dorm did you live in freshman year?) -- </span>
+            <span style="color: rgb(61,133,198);text-decoration: none;">Is that system related to identity matching ?</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">23</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Provisioning</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">When an “attribute” changes on a Person record an event *can be* generated with a standard set of fields (<span style="color: rgb(255,0,0);">Registry provides attribute identifier, verb, old value, new value) </span>
+            </span>
+          </p>
+        </td>
+        <td>wc, hs, eg</td>
+        <td>likely to use a logging concept initially, think through this in more detail knowledge sharing of repository to consumers SOR to repository. A more in-depth conversation to align this set of items and how to specify to TIER.  (Provisioning and Connectors 23-31 wc 4/22)</td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">24</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Rules that specify Provisioning Operations can trigger these events (invoking specific outbound Connectors associated with specific target systems)</span>
+          </p>
+        </td>
+        <td> eg</td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">25</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">These events can be consumed by internal processes which then change other Attributes (eg passing an End Date causes Status to change Active to PENDING)</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">26</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">These events can also be consumed by “Connectors”, which then effect changes in external systems.</span>
+          </p>
+        </td>
+        <td> eg</td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">27</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Semantics of a change are determined by each Connector (eg ldap vs google vs LMS, etc)</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">kh<span style="color: rgb(0,0,0);text-decoration: none;">, eg, wc</span>
+            </span>
+          </p>
+        </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">28</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Connectors to Target Systems</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Receive from the Provisioning System an event describing a change in the Person record; they map that change to the appropriate sequence of events to transmit to their associated external system. (eg provisioning accounts, synchronizing passwords, changing permissions, etc)</span>
+          </p>
+        </td>
+        <td> eg</td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">29</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Events contain: attribute identifier, verb, old value, new value)</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">30</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">A mechanism to augment the catalog of Core Connectors must be provided to the community for inter-institutional sharing and implementation.</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">31</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">A set of pre-built connectors should be supplied “out of the box” (eg ldap, AD, kerberos, Grouper, SCIM, some popular cloud based services (eg Canvas), etc), <span style="color: rgb(0,0,255);">Initial for LDAP, Kerberos only</span>
+            </span>
+          </p>
+        </td>
+        <td> wc, hs, eg</td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">IAM side of connector speaks messages and/or restful APIs</span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">32</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Authentication</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Users must be able to authenticate to the Admin Console</span>
+          </p>
+        </td>
+        <td> eg</td>
+        <td> IF Admin console is not included (see #1) then ??</td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">33</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">The Registry should support authentication via CAS and Shibboleth. The Identifier provided by the authentication mechanism should be used to search the Registry to find the matching record.</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">kh<span style="color: rgb(0,0,0);text-decoration: none;">, wc, hs, eg<br/>
+              </span>
+            </span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;"> </span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">34</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">External services must be able to authenticate to the RESTful endpoints exported by the Registry</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">kh<span style="color: rgb(0,0,0);text-decoration: none;">, wc, hs, eg<br/>
+              </span>
+            </span>
+          </p>
+        </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">35</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Credential Storage</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Associate multiple authentication methods with an entity in the Registry</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">36</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Methods can be internal (ie managed by the organization) or external (ie rely on a different organization to perform the authentication and assert its result; eg social)</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Not “must support anything”, but must support an external authN method</span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">37</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Each method should have an associated LOA</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">38</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Various events can raise and lower the associated LOA (eg password reset over the phone could lower a password-based LOA)</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">39</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">If an internal method has Identity Vetting Requirements support them in some fashion</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">40</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Provide a mechanism for (possibly) storing and propagating various secrets supporting authentication (eg passwords, personal certificates, two-factor secrets, lower quality passwords (eg synched gmail), KBA questions/answers</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">some subset</span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">41</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Password Reset capabilities must be standardized upon and deployed in the out of the box solutions, with sufficient flexibility to meet institutional business practices. (Probably need to talk through the non-password self-service interface -- )allow emailed one-time links, one-time printed tokens, and other "private token" mechanisms)</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> Do we need to call out the ability to manage account and passwords securely? wc </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">42</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Audit</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Events performed by any of these components must be recorded such that an Audit system can perform queries in various ways and see the results of those queries</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">kh<span style="color: rgb(0,0,0);text-decoration: none;">, wc, hs, eg<br/>
+              </span>
+            </span>
+          </p>
+        </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">43</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Maintain a secure permanent audit record of ALL changes related to an entity record.</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">44</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">It MUST be possible to see the relationships between events in the different components (eg a Registry change triggers a Provisioning change triggers a Connector action)</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">45</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Administrative Console</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Search for users (including users who are no longer active)</span>
+          </p>
+        </td>
+        <td> eg</td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">needed by other functions (eg password reset)</span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">46</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Support for “renaming” users, and changing any of their attributes (including their various identifiers)</span>
+          </p>
+        </td>
+        <td> eg</td>
+        <td> <span>eg: “any” is overstated for r1 </span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">47</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Support for finding potential duplicates and merging/splitting records</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">48</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Support for creating entities in the Registry</span>
+          </p>
+        </td>
+        <td> eg</td>
+        <td>
+          <p> <span>eg: Unless this is solely PoC, need some ability to create people not from SoR </span>
+          </p>
+          <p>
+            <span>wc: do we need this in the POC, need to review 1.4 and 48 (are these the same)</span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">49</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Support for out-of-band password reset mechanism</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">50</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Support for authentication to Admin console using various authentication methods</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">51</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">A Person may have multiple personas that an organization may require them to “act in the role of”, An easy way of switching personas should be constructed as a part of the final solution.</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Not R1, but data model should support extension later</span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">52</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Support for authorization framework (different People/Roles authorized to see/change different attributes; LOA of authentication method affects permissions)</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">kh<span style="color: rgb(0,0,0);text-decoration: none;">, wc, hs<br/>
+              </span>
+            </span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Handle with Groups</span>
+          </p>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">
+              <span style="color: rgb(0,0,0);">eg: This seems broader than “different permissions”. I think this was referring to literally a general purpose privilege management service.</span>
+            </span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">53</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Beyond WEB Only Authentication (e.g. ECP and CLI protocols) for authentication must be enabled as for Research/Collaborative computing</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Why ? Is this needed for Console</span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">54</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Allow users to see (portions of?) their records, and maintain the self-asserted attributes in their record</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> <span>eg: seems an easy addition; tempted to put as R1   As : POC  </span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">55</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Support for workflows that involve administrative sign-off from specific users (eg approval for certain types of edits)</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;"> </span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">56</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Ability to store comments associated with any edits (including running comments)</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">57</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">COmanage-like functionality must be included in the solution as a proper starting administration point for Research Organizations (Virtual Organizations) The ability to construct a Research Organization User interface through open APIs to create purpose-specific implementations is a goal.</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">58</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">The solution may enable user to be in control of their personal data stores such that when relying parties are requesting access to those data, users should have fine-grained controls over what pieces of personal data are shared with such parties.</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">59</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Partitioning</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Partitioning is mentioned in several use cases, and is difficult to define. There are a number of underlying conditions that seem to lead to "partitioning"; these should probably be teased apart and treated individually, as none of them yet seems compelling on its own. (Most seem like a data presentation question - perhaps a locally defined attribute for an account which is then important when Connectors are invoked).</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">60</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Support for Guests</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Provide support for the creation and maintenance of a type/affiliation of “GUEST” on Registry records</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">61</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Support various management models for GUEST types ( eg self-registration, require a Sponsor with specific Roles, etc)</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">62</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Support specific terms for GUEST type (eg must be renewed every N months)</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Must have a parameter specified duration</span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">63</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Community Documentation and Interaction</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Solution extensions must be available in the form of a Marketplace or some other suitable means of presenting a catalog of available functionality, contributed by the community, for utilization by others.</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">64</span>
+          </p>
+        </td>
+        <td> </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Solution must enable the sharing of a common documentation repository as well as a place for school practitioners and service providers to go to find useful instructions, standards, practices and guidelines for building end-to-end services based on TIER components</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">65</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Standards and Enforcement</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">The program must assert and enforce Policy Standards</span>
+          </p>
+        </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">66</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Policy and Performance Monitoring</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Log files should be available to monitoring tools.</span>
+          </p>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Should be able to discern what data was seen and changed during a session, Which features were used..</span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">kh<span style="color: rgb(0,0,0);text-decoration: none;">, wc, hs<br/>
+              </span>
+            </span>
+          </p>
+        </td>
+        <td>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">Use ELK stack</span>
+          </p>
+          <p>
+            <span style="color: rgb(0,0,0);text-decoration: none;">
+              <span style="color: rgb(0,0,0);">eg. Agree in principle, abstain on anything but “log files exist and monitoring tools can be made to read them”</span>
+            </span>
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>

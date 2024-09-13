@@ -1,0 +1,83 @@
+=== juliaHowto.adoc
+
+- - -
+_2024-07-30 12:43 AlgrbraicJulia How-to with example from AlgebraicPetri_
+
+Open https://docs.sciml.ai/AlgebraicPetri/stable/; browse to Examples / Basic Epidemiology Models +
+Start Julia +
+open new terminal +
+Start Jupyter Notebook; Set kernel to Julia 1.10.4, Name the notebook, default is Untitled +
+Copy code cell from AlgebraicPetri; Paste into compute cell in Jupyter Notebook; Execute, Repeat +
+Save the notebook +
+NOTE: You can run from the original notebook, but make sure to keep an unaltered version as a template
+
+
+*- Completed Basic Epidemiology Models example -*
+
+- - -
+*- Next: Cathepsin Enzyme Reactions -*
+
+Start new Jupyter Notebook in a folder with 1 or more .ipynb files, Set kernel to Julia 1.10.4; Name the notebook, default is Untitled +
+Copy code cell from AlgebraicPetri; Paste into compute cell in Jupyter Notebook; Execute, Repeat +
+Save the notebook +
+
+*- completed Cathepsin Enzyme Reactions example -*
+
+- - -
+*- Next: Lotka-Volterra example -*
+
+*- completed Lotka-Volterra example example -*
+
+- - -
+_2024-07-16 17:29 julia in jupyter notebooks_
+
+https://towardsdatascience.com/how-to-best-use-julia-with-jupyter-82678a482677 
+
+julia
+
+Then inside the REPL first start using Pkg by typing:
+
+using Pkg
+
+Then add the IJulia package by typing:
+
+Pkg.add("IJulia")
+
+The first time you add the package it also builds it but if you update something for example a PATH next time you add you need to also build IJulia after you add it. This only matters if you change the location of the Julia installation file and update the PATH to point to the new file etc.
+
+Pkg.build("IJulia")
+
+To remove packages simply open the Julia REPL and run:
+
+Pkg.rm("IJulia")
+
+If you launch a Jupyter session you should now be able to choose a Julia kernel like below:
+
+Once you launch a notebook with this kernel you can start writing Julia code straight away like below where we directly import the Base library and use it to calculate sine(90).
+
+SUCCESS! You should now have a full julia-1.0.5 kernel in Jupyter where you can write native Julia code. Simply launch Jupyter and choose Julia for your kernel and you are all set.
+
+- - -
+_2024-06-02 13:38 basics_
+
+"Forget Jupyter for Julia notebooks, use Pluto notebooks instead" +
+https://plutojl.org/[] <- nope!
+
+browse to cloned folder containing .ipynb files +
+$ julia
+using IJulia; notebook(detached=true)
+<- Start a Julia(/Jupyter) notebook +
+
+
+- - -
+_2024-06-02 12:13 update packages in Julia_
+
+```
+using Pkg
+Pkg.update("Toolips")
+Pkg.update("Catlab")
+Pkg.update("Convex")
+Pkg.update("Graphs")
+Pkg.update("HTTP")
+Pkg.update("PrettyTables")
+```

@@ -1,0 +1,782 @@
+=== scim.adoc
+SEE scim2
+next] test prov. to salesforce, AzureAD, aws, confluence, slack, sailpoint,...
+
+- - -
+_2023-08-07 11:40:08 tirasa scim2 connector_
+
+https://github.com/Tirasa/ConnIdSCIMBundle/tree/master[] +
+https://github.com/Tirasa/ConnIdSCIMBundle/releases/tag/net.tirasa.connid.bundles.scim-1.0.2[] +
+
+```
+/csp-tap/InCommonTAP-Examples/Workbench/midpoint_server/container_files/mp-home
+[csprootuser@ip-172-31-62-244 mp-home]$ ls -la icf-connectors
+total 27144
+drwxrwxr-x 2 csprootuser csprootuser      300 Aug  7 18:01 .
+drwxrwxr-x 8 csprootuser csprootuser      244 Aug  5 21:45 ..
+-rw-rw-r-- 1 csprootuser csprootuser  1370287 Aug  5 20:24 connector-grouper-1.0-SNAPSHOT.jar
+-rw-rw-r-- 1 csprootuser csprootuser  1477493 Aug  5 20:24 connector-grouper-rest-0.7.jar
+-rw-rw-r-- 1 csprootuser csprootuser  1487450 Aug  5 20:24 connector-rest-wordpress-.23-SNAPSHOT.jar
+-rw-rw-r-- 1 csprootuser csprootuser 14966779 Aug  5 20:24 connector-sympa-1.0.2-connector.jar
+-rw-rw-r-- 1 csprootuser csprootuser    99664 Aug  5 20:24 net.tirasa.connid.bundles.db.scriptedsql-2.2.6-SNAPSHOT.jar
+-rw-r--r-- 1 csprootuser csprootuser  8384486 Aug  7 18:01 net.tirasa.connid.bundles.scim-1.0.2-bundle.jar
+```
+*- restart mP container to pick up new connector jars -*
+
+```
+docker-compose rm -sv workbench-midpoint_server-1
+
+docker-compose up -d
+
+- - -
+
+_2023-07-25 13:46:30 ConnID SCIM v2 connector_
+
+https://github.com/Tirasa/ConnIdSCIMBundle/tree/master[] +
+https://connid.atlassian.net/wiki/spaces/BASE/pages/2467004417/SCIM[] +
+https://api.slack.com/admins/scim2[] +
+https://api.slack.com/admins/scim2#access[] +
+
+- - -
+_2023-06-27 10:02:00 i2/Evolveum on Generic SCIM 2 connector_
+
+https://docs.google.com/document/d/18aeVbHW5cHoekPrraRjqElUWiRAe-l5ZueKE3U8qNgg/edit#bookmark=id.m2m7xjz2yliy +
+
+
+*- SCIM v2 -*
+
+* Considerations for development
+* Slavek: Generic SCIM connector and manually add the schema
+* Keith: Queryable schema endpoint: section 3.1 of RFC 7644; look into specifics of AWS Identity Center and Slack; ChrisHu: AWS Identity Center team had a chat with us; Make certain services bring requirements; e.g. DataMatch project; Manual/Automatic (SCIM); AWS provides integrations with okta, etc.; PaulC: 
+* Paul Spaude: https://gitlab.daasi.de/midpoint/midpoint-gluu-client/ Could be updated genericized; Fall back to native/generic mode need to be fixed.
+* BillK: Use cases to drive work on AWS I.C. and Slack 
+* Links (^ indicates Internet2’s primary interests)
+* Evolveum SCIM 1.1 Generic Connector
+* ^ AWS Identity Center (successor to AWS SSO)
+* Grouper has a SCIM connector for AWS Identity Center
+* AWS Single Signon
+* CAS SCIM provisioning
+* Unicon SCIM1 connector (Paul Spaude)
+* Zoom;  ProvisionIAM Zoom connector
+* Okta 
+* ^ Slack
+* Azure AD
+* Salesforce
+* Sailpoint
+* midPoint SCIM 2 GLUU client connector (contributed by DAASI)
+* For cases in which midPoint needs to offer a SCIM 2 service endpoint for incoming SCIM 2 calls, Daasi provides a SCIM 2 service overlay for midPoint.
+* Medium article: SCIM 1.1 vs SCIM 2 
+* Invite Peter Gietz to present on the DAASI SCIM 2 solutions intended uses
+See if he can join this group’s call in two weeks (Tuesday, July 11, 9:30 am Eastern)
+
+.
+
+- - -
+_2023-06-26 19:31:55 daasi midpoint scim 2 client for GLUU_
+
+```
+/Users/khazelton/opt/midpoint-gluu-client
+
+bash-3.2$ ls -la
+
+total 48
+drwxr-xr-x   11 khazelton  staff   352 Jun 26 19:05 .
+drwxr-xr-x  278 khazelton  staff  8896 Jun 26 19:02 ..
+drwxr-xr-x   12 khazelton  staff   384 Jun 26 19:02 .git
+-rw-r--r--    1 khazelton  staff    79 Jun 26 19:02 .gitignore
+drwxr-xr-x    3 khazelton  staff    96 Jun 26 19:05 .vscode
+-rw-r--r--    1 khazelton  staff   110 Jun 26 19:02 CHANGELOG.md
+-rw-r--r--    1 khazelton  staff  3647 Jun 26 19:02 README.md
+drwxr-xr-x    3 khazelton  staff    96 Jun 26 19:02 build
+-rw-r--r--    1 khazelton  staff  8729 Jun 26 19:02 pom.xml
+drwxr-xr-x    4 khazelton  staff   128 Jun 26 19:02 src
+drwxr-xr-x    6 khazelton  staff   192 Jun 26 19:04 target
+
+bash-3.2$ mvn clean compile
+
+[INFO] Scanning for projects...
+
+[INFO] Artifact com.evolveum.polygon:connector-parent:pom:1.5.0.0 is present in the local repository, 
+but cached from a remote repository ID that is unavailable in current build context, 
+verifying that is downloadable from 
+[
+  maven-default-http-blocker (http://0.0.0.0/, default, releases+snapshots, blocked), 
+daasi (https://nexus.daasi.de/repository/maven-public/, default, releases+snapshots), 
+central (https://repo.maven.apache.org/maven2, default, releases)
+]
+
+[INFO] Artifact com.evolveum.polygon:connector-parent:pom:1.5.0.0 is present in the local repository, 
+but cached from a remote repository ID that is unavailable in current build context, 
+verifying that is downloadable from 
+[
+maven-default-http-blocker (http://0.0.0.0/, default, releases+snapshots, blocked), 
+daasi (https://nexus.daasi.de/repository/maven-public/, default, releases+snapshots), 
+central (https://repo.maven.apache.org/maven2, default, releases)
+]
+
+[ERROR] [ERROR] Some problems were encountered while processing the POMs:
+
+[FATAL] Non-resolvable parent POM for de.daasi.icf.connectors:didmos2-connector-parent:1.2.0: 
+The following artifacts could not be resolved: 
+com.evolveum.polygon:connector-parent:pom:1.5.0.0 
+(present, but unavailable): 
+
+Could not transfer artifact com.evolveum.polygon:connector-parent:pom:1.5.0.0 
+from/to maven-default-http-blocker (http://0.0.0.0/): Blocked mirror for repositories: 
+
+[
+evolveum-nexus (http://nexus.evolveum.com/nexus/content/repositories/releases/, default, releases+snapshots),
+evolveum-nexus-snapshots (http://nexus.evolveum.com/nexus/content/repositories/snapshots/, default, releases+snapshots), 
+gluu (http://ox.gluu.org/maven, default, releases+snapshots), 
+evolveum-nexus-releases (http://nexus.evolveum.com/nexus/content/repositories/releases/, default, releases+snapshots)
+
+@ de.daasi.icf.connectors:didmos2-connector-parent:1.2.0, 
+/Users/khazelton/.m2/repository/de/daasi/icf/connectors/didmos2-connector-parent/1.2.0/didmos2-connector-parent-1.2.0.pom, 
+line 24, column 11
+
+```
+*- Causes -*
+
+Maven 3.8.1 removes support for accessing Maven repositories over HTTP for security reasons. See Maven Release Notes - CVE-2021-26291 for further information.
+
+Pre-7.1 releases in the ForgeRock Maven repositories use HTTP, which means they won't build using Maven 3.8.1 or later. However, ForgeRock redirects all HTTP requests for Maven repositories to HTTPS, which allows mirror repositories to be safely used.
+Solution
+
+This issue can be resolved by 
+adding mirror repositories (using mirrorOf) to the ~/.m2/settings.xml file 
+to redirect the mirrors referenced in the Maven error to HTTPS. 
+You will also need to add corresponding server entries for the new mirror repositories.
+
+```
+bash-3.2$ touch ~/.m2/settings.xml
+
+bash-3.2$ ls -la ~/.m2
+
+drwxr-xr-x    5 khazelton  staff   160 Jun 26 19:43 .
+drwxr-x---+ 174 khazelton  staff  5568 Jun 26 15:08 ..
+drwxr-xr-x   60 khazelton  staff  1920 Jun 26 19:04 repository
+-rw-r--r--    1 khazelton  staff     0 Jun 26 19:43 settings.xml
+drwxr-xr-x    3 khazelton  staff    96 Jun 22  2022 wrapper
+```
+
+*- See https://maven.apache.org/settings.html -*
+
+
+- - -
+_2023-05-18 14:27:20 SCIM 2 ConnID Connector_
+
+*- Products with SCIM provisioning endpoints -*
+
+https://docs.aws.amazon.com/singlesignon/latest/userguide/scim-profile-saml.html <- AWS +
+https://docs.github.com/en/enterprise-cloud@latest/rest/scim?apiVersion=2022-11-28 <- GitHub +
+https://developers.zoom.us/docs/api/rest/reference/scim-api/methods/#overview <- Zoom +
+https://developer.okta.com/docs/reference/scim/scim-20/ <- Okta +
+https://developer.okta.com/docs/guides/scim-provisioning-integration-prepare/main/#preparation +
+https://help.okta.com/oie/en-us/Content/Topics/Apps/Apps_App_Integration_Wizard_SCIM.htm +
+https://api.slack.com/admins/scim2 <- Slack +
+https://learn.microsoft.com/en-us/azure/active-directory/app-provisioning/use-scim-to-provision-users-and-groups M$ +
+https://help.salesforce.com/s/articleView?id=sf.identity_scim_implementation.htm&type=5 <- Salesforce +
+https://documentation.sailpoint.com/connectors/scim_2_0/help/integrating_scim2/introduction.html <- Sailpoint +
+
+
+*- Renewed I2 interest in a SCIM v2 connector for midPoint -*
+
+. Develop a list of provisioning targets that support SCIM
+. Chris: Amazon AWS identity Center (SSO) Only supports SCIM 2 or manual provisioning a la Just-In-Case , Cognito, 
+. Current midPoint SCIM connector is v 1.1, SCIM v2 not yet supported
+. Slack SCIM 2 info; Schema endpoint as part of SCIM spec.
+. Jim: Timing seems right for SCIM 2 (instances of deprecation of SCIM 1.1)
+. PaulC: SCIM 2 callback…
+. Callback: Only issue is the schema, so if connector contains a manual schema, that is
+. Daasi (German Federation): SCIM Overlay to query midPoint via SCIM. Slavek will check with Peter Gietz; Invite hin?
+.. https://gitlab.daasi.de/midpoint/midpoint-scim-overlay 
+.. https://lists.evolveum.com/pipermail/midpoint/2020-July/006356.html
+.. https://evolveum.com/scim-contribution/
+.. https://github.com/Evolveum/midpoint-overlay-example
+. Grouper SCIM 2 Provisioning
+. https://github.com/pingidentity/scim2/wiki <- open source SCIM 2 SDK
+. [Keith] Create a SCIM page on the T&I Wiki
+. Invite Unicon to join these calls. Paul Spaude involved
+
+- - -
+_2022-10-27 14:07 SCIM interest_
+
+Dave Shafer / Internet2 (For anyone who's not familiar with SCIM: https://www.simplecloud.info)
+
+khazelton - https://spaces.at.internet2.edu/display/Grouper/Grouper+TIER+SCIM+server
+ <- The core SCIM page on Grouper Wiki +
+ https://spaces.at.internet2.edu/display/Grouper/Grouper+SCIM+change+log+client +
+ https://spaces.at.internet2.edu/display/Grouper/SCIM+server+rewrite+to+not+depend+on+J2EE +
+
+Tommy Doan / SMU:
+	Just FYI about one SaaS we integrate with who uses and promotes SCIM.
+	https://support.code42.com/Incydr/Admin/Configuring/Introduction_to_SCIM_provisioning
+
+- - -
+_2022-10-17 15:56 Chad and I2/Evolveum on SCIM2_
+
+https://github.com/Captain-P-Goldfish/SCIM-SDK/wiki
+https://github.com/pingidentity/scim2
+https://github.com/pingidentity/scim2/wiki
+
+Chad,
+
+For your SCIM 2 work, do you intend to look for SCIM2 SDKs to build on?  Would you have 15-20 minutes tomorrow (Tuesday) some time between 9:30 and 10 am Eastern. We have a call with I2 and Evolveum devs to talk about a SCIM2 connector for midPoint.
+
+If so, I'll send you the connection details.
+
+         Regards,   --Keith
+
+- - -
+_2022-09-16 14:58 Chad Redman developing a SCIM 2 server for Grouper_
+
+] review 2013-08-03 09:20 SCIM - SAML mapping for its proposal on complex attributes
+
+*#incommon-grouper*
+
+Chad Redman
+part of the Grouper roadmap for 2.7 is to rewrite the SCIM server. The current implementation uses a 3rd party library written for J2EE, which is why Grouper runs under TomEE and not regular Tomcat. There are a few options for replacement libraries, so this should be a reachable goal.
+If the Grouper SCIM server is rewritten, the endpoints should not change significantly, but the object data is likely to change. The current service expresses objects in ways that differ from the published SCIM RFC's [1][2], and a different solution would adhere more closely to the standards. An example of some ways SCIM in Grouper is non-standard and would change:
+- extensions are wrapped in an "extensions" node (includes group name or subject id, so essential fields)
+- userName is not present in user objects and is required
+- unknown attribute baseUrn
+- inconsistent use of group and subject ids vs. uuids
+- /Schemas endpoint is broken (infinite loop that eventually aborts)
+- no PATCH or BulkRequest support
+
+Changes would impact integrations already in production, so the Grouper team is looking to hear from current users of the SCIM server.
+
+Starting a conversation with the current users, as well as users holding back because of current limitations, would also be a good opportunity to make improvements to the system. BulkRequest isn't supported, so large change sets are inefficient. PATCH operations are not currently supported, which means memberships can't be managed through the group object. Instead, multiple calls potentially need to be made to look up uuids for the group, subject, and membership. That illustrates how cumbersome it is to work with uuids for groups and subjects in general, and maybe there is some opportunity to switch to more friendly subject ids and group names as resource keys.
+
+So, if you are using the SCIM service in Grouper, or want to use a more standard version, please comment or let the Grouper team know, so that the needs can be better known. (edited)
+
+Justin Robinson
+is the plan for it to support scim 1 and 2?
+
+Chad Redman
+The proof of concept I tested was just for scim 2, since that's what the current implementation was. One promising library that worked well for me was the UnboundID SDK. They also have a SCIM 1.1 library, but it's just for clients and not servers. It's a good question, but I hadn't done any research there
+
+Keith Hazelton
+The midPoint IAM package would benefit from being able to provision via the SCIM 2 protocol as well. As soon as your SCIM server is available for testing, we would like to develop and test a ConnID framework connector against that SCIM server.
+
+On the ConnID framework, see https://docs.evolveum.com/connectors/connid/
+
+
+- - -
+_2021-04-07 13:05 captain goldfish SCIM server/client SDKs_
+
+Open source, Java-based full-spec-support SDK for SCIM Client and Server
+https://github.com/Captain-P-Goldfish/SCIM-SDK
+
+git clone the Captain Goldfish SCIM-SDKs, peruse the README.MD
+
+```
+kh@localhost:~/opt$ git clone git@github.com:Captain-P-Goldfish/SCIM-SDK.git
+
+Cloning into 'SCIM-SDK'...
+The authenticity of host 'github.com (140.82.114.4)' can't be established.
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'github.com,140.82.114.4' (RSA) to the list of known hosts.
+Enter passphrase for key '/home/kh/.ssh/kh_rsa':
+remote: Enumerating objects: 202, done.
+remote: Counting objects: 100% (202/202), done.
+remote: Compressing objects: 100% (109/109), done.
+remote: Total 13794 (delta 39), reused 154 (delta 18), pack-reused 13592
+Receiving objects: 100% (13794/13794), 2.72 MiB | 16.49 MiB/s, done.
+Resolving deltas: 100% (5955/5955), done.
+
+kh@localhost:~/opt$ ls -ltr
+total 20
+drwxr-xr-x 6 kh kh 4096 Sep 27  2020 midPoint_container-2020-09-27
+drwxr-xr-x 2 kh kh 4096 Nov 13 18:15 comanage-registry-stack
+drwxr-xr-x 6 kh kh 4096 Mar 29 23:40 midPoint_container
+drwxr-xr-x 9 kh kh 4096 Mar 31 17:23 InCommonTAP-Examples
+drwxr-xr-x 9 kh kh 4096 Apr  7 18:02 SCIM-SDK
+
+/home/kh/opt/SCIM-SDK
+kh@localhost:~/opt/SCIM-SDK$ ls -la
+total 132
+drwxr-xr-x 9 kh kh  4096 Apr  7 18:02 .
+drwxr-xr-x 7 kh kh  4096 Apr  7 18:02 ..
+-rw-r--r-- 1 kh kh   100 Apr  7 18:02 codecov.yml
+-rw-r--r-- 1 kh kh   466 Apr  7 18:02 CONTRIBUTING.MD
+-rw-r--r-- 1 kh kh 35100 Apr  7 18:02 formatter.xml
+drwxr-xr-x 8 kh kh  4096 Apr  7 18:02 .git
+-rw-r--r-- 1 kh kh    41 Apr  7 18:02 .gitattributes
+drwxr-xr-x 2 kh kh  4096 Apr  7 18:02 .github
+-rw-r--r-- 1 kh kh    82 Apr  7 18:02 .gitignore
+-rw-r--r-- 1 kh kh  1492 Apr  7 18:02 license.txt
+-rw-r--r-- 1 kh kh 25036 Apr  7 18:02 pom.xml
+-rw-r--r-- 1 kh kh  4387 Apr  7 18:02 README.MD
+drwxr-xr-x 5 kh kh  4096 Apr  7 18:02 samples
+drwxr-xr-x 2 kh kh  4096 Apr  7 18:02 scim-for-keycloak
+drwxr-xr-x 3 kh kh  4096 Apr  7 18:02 scim-sdk-client
+drwxr-xr-x 3 kh kh  4096 Apr  7 18:02 scim-sdk-common
+drwxr-xr-x 3 kh kh  4096 Apr  7 18:02 scim-sdk-server
+-rw-r--r-- 1 kh kh   100 Apr  7 18:02 .travis.yml
+
+kh@localhost:~/opt/SCIM-SDK$ tree -L 3
+.
+├── codecov.yml
+├── CONTRIBUTING.MD
+├── formatter.xml
+├── license.txt
+├── pom.xml
+├── README.MD
+├── samples
+│   ├── pom.xml
+│   ├── scim-sdk-jboss-example
+│   │   ├── pom.xml
+│   │   ├── README.MD
+│   │   └── src
+│   ├── scim-sdk-sample-common
+│   │   ├── pom.xml
+│   │   └── src
+│   └── scim-sdk-springboot-example
+│       ├── pom.xml
+│       ├── README.MD
+│       └── src
+├── scim-for-keycloak
+│   └── README.MD
+├── scim-sdk-client
+│   ├── pom.xml
+│   └── src
+│       ├── main
+│       └── test
+├── scim-sdk-common
+│   ├── pom.xml
+│   └── src
+│       ├── main
+│       └── test
+└── scim-sdk-server
+    ├── pom.xml
+    └── src
+        ├── main
+        └── test
+
+20 directories, 16 files
+```
+
+- - -
+_2021-03-16 20:26 midPoint SCIM 1.1 connector_
+
+https://wiki.evolveum.com/display/midPoint/SCIMv1+Salesforce+Connector
+ <- SCIM V1 Salesforce Connector +
+https://github.com/Evolveum/midpoint-samples/blob/master/samples/legacy/resources/scim1/Salesforce/resource-salesforce-scim-connector.xml
+ <- Salesforce SCIM resource definition +
+
+ note: published links are broken; fix
+
+
+- - -
+_2020-11-02 16:42 gluu scim support_
+
+https://gluu.org/docs/gluu-server/4.1/api-guide/scim-api/ +
+https://www.gluu.org/docs/gluu-server/4.2/user-management/scim2/ +
+
+https://xps/identity/restv1/scim/v2/...
+
+Service Provider Config
+
+https://xps/identity/restv1/scim/v2/ServiceProviderConfig
+```
+{
+  "schemas": [
+    "urn:ietf:params:scim:schemas:core:2.0:ServiceProviderConfig"
+  ],
+  "meta": {
+    "resourceType": "ServiceProviderConfig",
+    "location": "https://xps/identity/restv1/scim/v2/ServiceProviderConfig"
+  },
+  "documentationUri": "https://gluu.org/docs/ce/user-management/scim2/",
+  "patch": {
+    "supported": true
+  },
+  "bulk": {
+    "supported": true,
+    "maxOperations": 30,
+    "maxPayloadSize": 3072000
+  },
+  "filter": {
+    "supported": true,
+    "maxResults": 200
+  },
+  "changePassword": {
+    "supported": true
+  },
+  "sort": {
+    "supported": true
+  },
+  "etag": {
+    "supported": false
+  },
+  "authenticationSchemes": [
+    {
+      "type": "oauth2",
+      "name": "OAuth 2.0",
+      "description": "OAuth2 Access Token Authentication Scheme. Enabled only on 'SCIM Test Mode'.",
+      "specUri": "http://tools.ietf.org/html/rfc6749",
+      "documentationUri": "http://tools.ietf.org/html/rfc6749",
+      "primary": true
+    },
+    {
+      "type": "uma",
+      "name": "UMA 2.0",
+      "description": "UMA Authentication Scheme",
+      "specUri": "https://docs.kantarainitiative.org/uma/ed/oauth-uma-grant-2.0-06.html",
+      "documentationUri": "https://www.gluu.org/docs/gluu-server/admin-guide/uma/",
+      "primary": false
+    }
+  ]
+}
+```
+
+- - -
+_2020-10-30 11:45 scimFun on Intellij and github_
+
+leveraging the Ping/UnboundId SCIM SDKs: https://github.com/pingidentity/scim2/blob/master/README.md
+
+created a scimFun app with start.spring.io in ~/opt/scimFun
+
+created an Intellij project from opt/scimFun
+
+make scimFun into a local git repo with git init
+
+create an empty scimFun repo at github.com/khazelton/scimFun per https://docs.github.com/en/free-pro-team@latest/github/importing-your-projects-to-github/adding-an-existing-project-to-github-using-the-command-line
+
+link local and github repos +
+move local from scimFun to scimFun-00
+
+```
+git remote add origin git@github.com:khazelton/scimFun.git     # Sets the new remote
+git branch -M main
+git push -u origin main
+```
+
+clone newly populated scimFun from github to ~/opt:
+
+```
+git clone git@github.com:khazelton/scimFun.git
+Cloning into 'scimFun'...
+
+(base) nbp:opt khazelton$ cd scimFun
+
+/Users/khazelton/opt/scimFun
+(base) nbp:scimFun khazelton$ ls -la
+total 80
+drwxr-xr-x   11 khazelton  staff    352 Oct 30 11:42 .
+drwxr-xr-x  179 khazelton  staff   5728 Oct 30 11:42 ..
+-rw-r--r--    1 khazelton  staff   6148 Oct 30 11:42 .DS_Store
+drwxr-xr-x   12 khazelton  staff    384 Oct 30 11:42 .git
+-rw-r--r--    1 khazelton  staff    395 Oct 30 11:42 .gitignore
+drwxr-xr-x    3 khazelton  staff     96 Oct 30 11:42 .mvn
+-rwxr-xr-x    1 khazelton  staff  10070 Oct 30 11:42 mvnw
+-rw-r--r--    1 khazelton  staff   6608 Oct 30 11:42 mvnw.cmd
+-rw-r--r--    1 khazelton  staff   2016 Oct 30 11:42 pom.xml
+-rw-r--r--    1 khazelton  staff   2328 Oct 30 11:42 scimTest.java
+drwxr-xr-x    4 khazelton  staff    128 Oct 30 11:42 src
+
+(base) nbp:scimFun khazelton$ tree -L 7
+.
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
+├── scimTest.java
+└── src
+    ├── main
+    │   ├── java
+    │   │   └── org
+    │   │       └── aktis
+    │   │           └── scimFun
+    │   │               └── ScimFunApplication.java
+    │   └── resources
+    │       └── application.properties
+    └── test
+        └── java
+            └── org
+                └── aktis
+                    └── scimFun
+                        └── ScimFunApplicationTests.java
+
+12 directories, 7 files
+```
+
+Open cloned repo in Intellij, build and run to test integrity
+  "Tests passed: 1 of 1 tests 243 ms"
+
+Now tag this on github as v0.1
+
+```
+git tag v0.1 -a
+(base) nbp:scimFun khazelton$ git push origin --tags
+Enter passphrase for key '/Users/khazelton/.ssh/kh_rsa':
+Enumerating objects: 1, done.
+Counting objects: 100% (1/1), done.
+Writing objects: 100% (1/1), 233 bytes | 233.00 KiB/s, done.
+Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:khazelton/scimFun.git
+ * [new tag]         v0.1 -> v0.1
+```
+view new tag on github:
+```
+v0.1
+Tag: v0.1; Basic Intellij java project from start.spring.io; Known good state: builds and runs test error free
+7 minutes ago 8a82b8b zip tar.gz
+```
+
+- - -
+_2020-06-25 08:04 Radovan on SCIM in Evolveum Blog_
+
+[midPoint] Blog: SCIM in 2020
+
+Dear midPoint community,
+System for Cross-domain Identity Management (SCIM) is a specification for universal identity provisioning interface. Universal interfaces are, generally speaking, a good idea. However, I am quite skeptical about SCIM. Identity management interfaces may seem to be dead simple, yet they are notoriously hard to get right. Did SCIM get it right?
+
+Identity management is all about creating accounts, isn’t it? All we need is to agree whether the right name for the attribute is username or login. Mix in some schema extension capabilities, wrap it all in a nice REST API and we are done. How hard can that be?
+
+Turns out it is much harder than it seems. It is “we cannot get this right for almost 20 years” hard. The reasons for this are subtle and counter-intuitive. This is far beyond what can fit into a blog post. Therefore I have written it down in a longer article:
+
+SCIM Troubles at https://docs.evolveum.com/midpoint/devel/design/scim-troubles/.
+
+I have been in identity management since early 2000s. I have seen DSML, SPML1 and SPML2 that reinvented the LDAP wheel in XML. I have seen SCIM1 that reinvented the SPML wheel in JSON. Now we have SCIM2 and there are talks about SCIM3. I would like to say that now I have seen everything. But I’m quite sure that I haven’t. SCIM hype is rising and I’m afraid that there is more to come. However, there is still a chance that I’m wrong about SCIM. There is a chance that my past experiences influenced my judgement about current developments. If that is the case then please let me know where I’m wrong. I will try to re-consider my position.
+
+Coincidentally, the moment as I was writing the SCIM article, I received news that there may be a contribution of SCIM gateway for midPoint quite soon. Even though I’m not exactly over-excited about SCIM, I’m quite happy about such contribution. I will let you know when it is published. This is going to be a very interesting experiment. We will see how SCIM really works with midPoint. Because it is engineering reality that matters, not some talks or blog posts. If there is enough interest in that SCIM gateway, we will even consider adopting it as midPoint core component. Let the community decide!
+
+(Reposted from Evolveum blog, https://evolveum.com/scim-in-2020/)
+
+--
+Radovan Semancik
+
+- - -
+_2017-07-05 11:23 Next steps_
+
+] read 3.2 in otto API document
+
+] SAML XML
+
+] SCIM attribute mapping (Judith first)
+
+- - -
+_2016-02-22 11:24  references and links_
+
+https://docs.aws.amazon.com/singlesignon/latest/userguide/scim-profile-saml.html
+https://learn.microsoft.com/en-us/azure/active-directory/app-provisioning/use-scim-to-provision-users-and-groups M$ +
+https://developers.zoom.us/docs/api/rest/reference/scim-api/methods/#overview <- Zoom +
+https://developer.okta.com/docs/reference/scim/scim-20/ <- okta +
+
+https://github.com/pingidentity/scim2 +
+https://github.com/pingidentity/scim2/wiki +
+https://i2scim.io/ <- open source scim 2 service +
+https://github.com/wso2/charon +
+https://medium.com/identity-beyond-borders/a-beginners-guide-to-scim-8aade91cd644 +
+https://docs.microsoft.com/en-us/azure/active-directory/app-provisioning/use-scim-to-provision-users-and-groups#schema-discovery +
+https://github.com/Captain-P-Goldfish/SCIM-SDK
+ <- Open source, Java-based full-spec-support SDK for SCIM Client and Server +
+https://github.internet2.edu/InCommon/siteadmin/blob/master/api/swagger.json +
+https://gluu.org/docs/ce/user-management/scim2/ +
+http://www.simplecloud.info/ +
+https://docs.snowflake.net/manuals/user-guide/scim-api-using.html +
+https://documenter.getpostman.com/view/5462540/S1Lzx6gY?version=latest#intro +
+https://medium.com/@vindulajayawardana/scim-2-0-api-for-wso2-identity-server-5-3-0-fc5dcaad9e44 +
+https://docs.wso2.com/display/ISCONNECTORS/Configuring+SCIM+2.0+Provisioning+Connector +
+https://wiki.evolveum.com/display/midPoint/SCIM+v1+Slack+connector +
+https://wiki.evolveum.com/display/midPoint/SCIMv1+Generic+Connector +
+https://github.com/Evolveum/midpoint-samples/tree/a5152f69de6e33949eaceb3889abc9edc0f506ea/samples/legacy/resources/scim1/Slack +
+https://mvnrepository.com/artifact/com.unboundid.product.scim/scim-sdk/1.8.22 +
+https://ldapwiki.com/wiki/SCIM%20Attribute%20Extensions%20to%20Resources +
+http://www.slideshare.net/kpgrizzle/scim-37180871  <- Kelly Grizzle, SailPoint: Why SCIM is more important and simpler than you think +
+https://github.com/osiam  <- ! FOSS SCIM v2 +
+https://blogs.oracle.com/fusionmiddleware/entry/standards_corner  <- SCIM 2.0 intro with video from Ian Glazer
+```
+- - -
+_2015-06-16 13:26  installing Grouper SCIM on aktis.org  ssh -i ~/.ssh/kh -l kh aktis.org_
+
+Misagh,
+
+Bravo!  Success.   Appreciate you walking me through it.     —Keith
+
+```
+BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1:47.851s
+[INFO] Finished at: Tue Jun 16 18:24:01 UTC 2015
+[INFO] Final Memory: 45M/292M
+[INFO] ------------------------------------------------------------------------
+[kh@persep grouper-parent]$
+
+email & jabber: keith.hazelton@wisc.edu
+calendar: http://go.wisc.edu/i6zxx0
+
+From: Misagh Moayyed <mmoayyed@unicon.net>
+Date: Tuesday, June 16, 2015 at 12:16
+To: Keith Hazelton <keith.hazelton@wisc.edu>
+Subject: RE: [grouper-core] RE: Looking for grouper-scim-2.2.1.jar
+
+Keith,
+Try the following instead:
+
+$ cd grouper
+$ git checkout GROUPER_2_2_BRANCH
+$ cd grouper-parent
+$ mvn clean install -DskipTests=true
+
+
+[kh@persep grouper]$ ls -la grouper-misc/grouperScim/target
+total 96
+drwxr-xr-x 9 root root  4096 Jun 16 18:24 .
+drwxrwxr-x 4 kh   kh    4096 Jun 16 18:24 ..
+drwxr-xr-x 2 root root  4096 Jun 16 18:24 archive-tmp
+drwxr-xr-x 3 root root  4096 Jun 16 18:24 classes
+drwxr-xr-x 3 root root  4096 Jun 16 18:24 generated-sources
+drwxr-xr-x 3 root root  4096 Jun 16 18:24 generated-test-sources
+-rw-r--r-- 1 root root 11584 Jun 16 18:24 grouper-scim-2.2.1-bin.tar.gz
+-rw-r--r-- 1 root root 15140 Jun 16 18:24 grouper-scim-2.2.1-bin.zip
+
+-rw-r--r-- 1 root root 14846 Jun 16 18:24 grouper-scim-2.2.1.jar
+
+-rw-r--r-- 1 root root  5052 Jun 16 18:24 grouper-scim-2.2.1-sources.jar
+-rw-r--r-- 1 root root  5927 Jun 16 18:24 grouper-scim-2.2.1-tests.jar
+drwxr-xr-x 2 root root  4096 Jun 16 18:24 maven-archiver
+drwxr-xr-x 3 root root  4096 Jun 16 18:24 maven-status
+drwxr-xr-x 3 root root  4096 Jun 16 18:24 test-classes
+
+[kh@persep grouper]$ jar tf grouper-misc/grouperScim/target/grouper-scim-2.2.1.jar
+META-INF/
+META-INF/MANIFEST.MF
+edu/
+edu/internet2/
+edu/internet2/middleware/
+edu/internet2/middleware/grouper/
+edu/internet2/middleware/grouper/scim/
+edu/internet2/middleware/grouper/scim/ScimEmitter.class
+edu/internet2/middleware/grouper/scim/ScimChangeLogConsumer$1.class
+edu/internet2/middleware/grouper/scim/ScimChangeLogConsumer$ScimEventType$5.class
+edu/internet2/middleware/grouper/scim/ScimChangeLogConsumer.class
+edu/internet2/middleware/grouper/scim/ScimChangeLogConsumer$ScimEventType$3.class
+edu/internet2/middleware/grouper/scim/ScimChangeLogConsumer$ScimEventType$2.class
+edu/internet2/middleware/grouper/scim/ScimChangeLogConsumer$ScimEventType$4.class
+edu/internet2/middleware/grouper/scim/ScimChangeLogConsumer$ScimEventType$1.class
+edu/internet2/middleware/grouper/scim/ScimChangeLogConsumer$ScimEventType.class
+META-INF/maven/
+META-INF/maven/edu.internet2.middleware.grouper/
+META-INF/maven/edu.internet2.middleware.grouper/grouper-scim/
+META-INF/maven/edu.internet2.middleware.grouper/grouper-scim/pom.xml
+META-INF/maven/edu.internet2.middleware.grouper/grouper-scim/pom.properties
+META-INF/INDEX.LIST
+[kh@persep grouper]$
+```
+
+- - -
+_2013-10-07 10:30  SCIM chat w Chris Phillips_
+
+OS SCIM Libraries:
+
+WSO2			Charon		Apache2
+OSIAM						MIT
+.Net
+ApacheDirSvr 	eSCIMo		Apache2
+UnboundID		SCIM SDK	LGPL
+
+From: Chris Phillips <chris.phillips@canarie.ca>
+Date: Thursday, 1 August, 2013 1:07 AM
+To: Tom Barton <tbarton@uchicago.edu>, Scott Koranda <skoranda@gmail.com>
+Subject: My Identity Week Submission you may have an interest in..
+
+Tom & Scott,
+
+Thought you might be interested in my submission for the identity week talks. It stems from themes we've talked about as recently as the last MACE call and other email conversations I've had with you each individually as well.
+
+Thoughts welcome!
+
+Chris.
+
+- - -
+Taking Authorization to the Next Level: The Latest Developments in a Federated World
+
+Authentication via Federated Single Sign On has all but been addressed and now the challenge is shifting to improving how authorization is being done to grant access.  This shift in the access control problem space is important because the lack of consistency around practices and/or standards leads to frustrated users and poorly understood access controls. Anemic and problematic collaboration for users is often mistakenly and improperly laid at the feet of Federated SSO.
+
+This presentation will engage the audience interactively exploring some of the latest approaches delivering authorization to end users in a scalable and practical fashion.
+
+The audience will be guided through discussions of real world use cases from the various communities ranging from our own R&E to commercial services, standards bodies, and the grid/High Performance Computing communities. The variety of approaches will be poked and prodded as potential recommendations for adoption as a blueprint or standard to use.
+
+- - -
+_2013-08-03 09:20 SCIM - SAML mapping_
+
+```
+From: Erik Wahlström <erik.wahlstrom@nexussafe.com>
+Date: Thursday, August 1, 2013 5:36 PM
+To: "scim@ietf.org" <scim@ietf.org>
+Subject: [scim] SCIM to SAML mapping
+
+The Berlin meeting talked about a SCIM to SAML mapping. This is an old document from the 1.1 spec work that could potentially be used as a starting point for a SCIM to SAML mapping.
+
+https://code.google.com/p/scim/source/browse/trunk/specs/draft-scim-saml2-binding-02.xml
+at ../ref/draft-scim-saml2-binding-02.xml
+
+And the mail thread where it was presented:
+https://groups.google.com/forum/#!searchin/cloud-directory/saml/cloud-directory/jI_6WahZ8Ak/3_1zQYPQhbAJ
+
+- - -
+In looking at the SAML binding more closely, the limitations of the existing model have become apparent.
+
+Fundamentally, trying to map complex structures into flat attributes is difficult.
+
+In discussions with colleagues Brian & Travis, we've come up with a proposal that seems to serve. Specifically, the proposal is to use an 'XPath-ish' syntax to represent the position of a given SAML attribute within a notional SCIM XML representation - this XPath expression inserted into the SAML Attribute Name.
+
+Below are examples of SAML attributes for the different types of SCIM attributes - distinguished by simple/complex & single/multi-value to cover the full SCIM continuum of complexity
+
+The SAML Attribute NameFormat value is the namespace URN for the corresponding SCIM attribute, either SCIM or relevant extension.
+
+Thoughts?
+
+paul
+
+- - -
+<!-- single & simple -->
+
+  <saml:Attribute NameFormat="urn:scim:schemas:core:1.0" Name="externalId">
+       <saml:AttributeValue xsi:type="xs:string">701984</saml:AttributeValue>
+  </saml:Attribute>
+
+  <!-- single & complex -->
+
+  <saml:Attribute NameFormat="urn:scim:schemas:core:1.0" Name="name/formatted">
+       <saml:AttributeValue xsi:type="xs:string">Ms. Babs J Jensen III</saml:AttributeValue>
+  </saml:Attribute>
+
+  <!-- multivalued & simple -->
+
+  <saml:Attribute NameFormat="urn:scim:schemas:core:1.0" Name="emails/email[@type='work'&primary='true']">
+       <saml:AttributeValue xsi:type="xs:string">bje...@example.com</saml:AttributeValue>
+  </saml:Attribute>
+
+  <saml:Attribute NameFormat="urn:scim:schemas:core:1.0" Name="emails/email[@type='home']">
+       <saml:AttributeValue xsi:type="xs:string">ba...@jensen.com</saml:AttributeValue>
+  </saml:Attribute>
+
+  <!-- multivalued & complex -->
+
+  <saml:Attribute NameFormat="urn:scim:schemas:core:1.0" Name="addresses/address[@type='work'&primary='true']/formatted">
+       <saml:AttributeValue xsi:type="xs:string">100 Universal City Plaza, Hollywood, CA 91608 USA</saml:AttributeValue>
+  </saml:Attribute>
+
+  <saml:Attribute NameFormat="urn:scim:schemas:core:1.0" Name="addresses/address[@type='work'&primary='true']/streetAddress">
+       <saml:AttributeValue xsi:type="xs:string">100 Universal City Plaza</saml:AttributeValue>
+  </saml:Attribute>
+
+  <saml:Attribute NameFormat="urn:scim:schemas:core:1.0" Name="addresses/address[@type='home']/formatted">
+       <saml:AttributeValue xsi:type="xs:string">456 Hollywood Blvd, Hollywood, CA 91608 USA</saml:AttributeValue>
+  </saml:Attribute>
+
+  <saml:Attribute NameFormat="urn:scim:schemas:core:1.0" Name="addresses/address[@type='home']/streetAddress">
+       <saml:AttributeValue xsi:type="xs:string">456 Hollywood Blvd</saml:AttributeValue>
+  </saml:Attribute>
+
+  <!-- extension -->
+
+  <saml:Attribute NameFormat="urn:scim:schemas:extension:enterprise:1.0" Name="employeeNumber">
+       <saml:AttributeValue xsi:type="xs:string">701984</saml:AttributeValue>
+  </saml:Attribute>
+
+```

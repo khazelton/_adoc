@@ -1,0 +1,105 @@
+=== researchCi.adoc
+
+- - -
+_2024-08-05 10:39 Free HPC Resources_
+
+Timothy Middelkoop, #i2-researchengagement
+
+If you want to get a feeling on what it takes to use an HPC system (and the the training required) checkout the newly incubated (HPC Carpentries) 
+
+https://www.hpc-carpentry.org/[] + 
+https://carpentries-incubator.github.io/hpc-intro/[] <- Lessons! + 
+
+- - -
+
+5 days ago:
+
+Want to know more about scientific/research software? Some good no-charge tutorials for August on scientific/HPC software tools, good for researcher facing, systems facing, and researchers.  It is also a good list of resources and contains links to the docs and tutorials. 
+
+https://hpcic.llnl.gov/tutorials/2024-hpc-tutorials[] +
+https://hpcic.llnl.gov/s/2024-hpc-tutorials[]
+
+Check out Spack - it's like the MacOS "brew" but for HPC systems (will also work on the Mac)
+
+- - -
+_2024-08-01 09:00 NIH Cloud Lab_
+
+REFEDS Community Chat: Exploring Cloud Resources for Research in the NIH Cloud Lab
+
+Aug 1, 2024 09:00 AM
+
+¡Hola a todos, REFEDS Community!
+
+We have a new Community Chat coming up on Thursday, 1 August at 14:00 UTC: "Exploring Cloud Resources for Research in the NIH Cloud Lab." Don't forget to register!
+
+Nick Weber, Acting Director of The Office of Scientific Computing Services (OSCS), NIH Center for Information Technology (CIT) in the US, is going to talk about NIH Cloud Lab.
+
+
+    In August 2024, the National Institutes of Health (NIH) finished deploying InCommon, eduGAIN, and Login.gov, federated identity management and access solutions in Amazon Web Services, Google Cloud, and Microsoft Azure to enable the launch of a new program called NIH Cloud Lab. Since then, Cloud Lab has enabled biomedical researchers and students from hundreds of universities and institutions around the world to seamlessly and securely access its no-cost cloud-based training environment that’s designed to grow skills for conducting research in the cloud. In addition to providing 90 days of cloud access and $500 of credits to explore cloud capabilities for research, Cloud Lab also connects participants with a variety of interactive cloud-based tutorials and datasets to explore at their own pace or as part of a course. For more experienced researchers, Cloud Lab offers a full range of resources for prototyping a specific use case or benchmarking the cost of running a workflow in the cloud.Learn more about NIH Cloud Lab and how NIH is managing federated identity and access in a multi-cloud environment in this talk from Nick Weber, Acting Director of the Office of Scientific Computing Services, NIH Center for Information Technology.
+
+Registration is, as always, free, and the meeting will be recorded. If your universities receive NIH funding (and many do, even outside the US), this session might be of interest.
+
+Registration link: 
+https://us02web.zoom.us/meeting/register/tZwofuihpjosHNclsAl189esLTE60vzsm1y7
+
+I look forward to seeing you on August 1st!
+
+Heather Flanagan
+
+- - -
+_2021-02-16 13:15 midPoint presentation for TrustedCI_
+
+```
+Presenting at CI CoE / Trusted CI Identity Management Working Group
+S/MIME isn't supported in this view. To view this message in a new window, click here
+Drake, Josh <drakejc@iu.edu>
+Tue 2/16/2021 11:17 AM
+```
+Good morning Bill, Keith and Ethan,
+
+I run the identity management working group for Trusted CI (https://trustedci.org/iam) and the CI CoE (https://cicoe-pilot.org/).  The group is composed of cyberinfrastructure operators at stand alone NSF funded research facilities.  The facilities run from fairly small operations, who operate 1 or two telescopes, up to large national or international research collaborations like the UNOLS group and LIGO.  Our working group discusses topics in trust and identity with a focus on serving the research community, we are aiming to produce a
+
+cookbook of IAM recipes targeted at various use cases specific to these types of facilities.
+
+We are in the middle of a series on the Trusted Accesss Platform tools, and we would love to have someone from Midpoint come and
+
+talk to the group about
+
+- *what Midpoint is*,
+
+- *what sort of use cases it is designed for*,
+
+- *and how it can integrate with the other tools, especially COManage and Grouper*.
+
+Our group has recently identified two problems to focus on in the coming year: the first being
+
+- *identity sustainment*, or how do you manage multiple identities from contributors as they move from institution from institution, without polluting your IDM environment with many duplicates, and the second is
+
+- creating a playbook or set of *recipes for best practices for provisioning and deprovisioning collaborative users from other institutions*.
+
+I think Midpoint could contribute massively to both topics. One potential issue for many members of the research community is lack of resources.  Some of our institutions are large enough to handle sizable middleware deployment, but a lot of our membership is probably somewhere near or below a minimum viable deployment size for Midpoint, so keep that in mind as well.
+
+Our group meets on the 2nd Monday of each month at 2pm Eastern Time.  Our next open meeting time is May 10th.  Please let me know if you’d be interested in talking with us and if that date would work for you if so, or if June or July would be easier to integrate to your schedule.
+
+Looking forward to meeting you all,
+
+Josh Drake
+
+Joshua Drake | Sr Security Analyst
+IU Center for Applied Cybersecurity Research
+drakejc@iu.edu | 812.855.9567
+
+- - -
+_2016/07/01/ 09:03 Cilogon cert_
+
+Certificate Subject:	/DC=org/DC=cilogon/C=US/O=University of Wisconsin-Madison/CN=Keith Hazelton A35231
+Identity Provider:	University of Wisconsin-Madison
+Level of Assurance:	Basic
+
+
+- - -
+_2016/07/01/ 08:57 references and links_
+
+http://www.cilogon.org
+https://cilogon.org
+https://www.hpcwire.com/2016/08/24/xsede-2-0-reorganizes-5-goal-driven-areas/

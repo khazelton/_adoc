@@ -1,0 +1,298 @@
+=== arch.adoc
+SEE ALSO: cirrusId plantuml ea
+
+- - -
+_2024-08-23 08:57 figma and design principles_
+
+https://www.animaapp.com/blog/genai/pluggable-design-system-figma-to-your-design-system-code/?utm_source=twitter&utm_medium=organic&utm_campaign=pluggable-ds&utm_content=pluggable-ds-blog[] +
+
+https://www.animaapp.com/blog/product-updates/introducing-frontiers-new-feature-code-injection/?twclid=2r4jgztyo52rrp7grvdt7th22[] +
+
+- - -
+_2024-07-28 09:58 10 'cloud' arch patterns_
+
+https://medium.com/@azeynalli1990/10-fundamental-cloud-native-architecture-patterns-8a4c4a34b721[] +
+
+10 Fundamental Cloud-Native Architecture Patterns -- Ali Zeynalli
+
+. Sidecar/Sidekick,
+. Ambassador, 
+. Scatter/Gather, 
+. BFF, 
+. Anti-Corruption Layer, 
+. CQRS, 
+. Event Sourcing, 
+. Service Mesh, 
+. Dumb-Smart Components, 
+. Unidirectional Architecture
+
+.
+
+- - -
+_2024-07-24 19:51 semantic layer links tech arch and business_
+
+https://medium.com/@axel.schwanke/semantic-layer-one-layer-to-serve-them-all-d0ef7eff1ffa[] +
+
+"The semantic layer serves as a bridge between complex data structures and business terms, offering a unified view of data, simplifying access, and ensuring consistency in organizational decision-making.
+
+Leveraging semantic layers improves data governance and facilitates AI integration, ensuring reliable, transparent analysis and informed decisions while optimizing organizational processes for efficiency and adaptability."
+
+https://www.atscale.com/blog/unite-data-engineers-and-business-analysts/[] +
+
+- - -
+_2024-07-20 12:47 Grady Bailey position description_
+
+Internet2 is a non-profit, member-driven advanced research and higher education technology community. Founded in 1996, Internet2 provides and delivers mission-critical technology services and programs. Internet2's core infrastructure components include the nation's largest and fastest network, cloud and security services that are influenced, customized, and designed to address the unique needs of technology leaders in research and education. Internet2 serves and supports U.S. and international institutions, government agencies, regional and state education networks, leading industry providers, and national research and education network partners across more than 100 countries. Internet2 services and programs support their educational, research and community service mission and enhance how individuals communicate, collaborate, and innovate.
+
+==== Summary:
+
+Internet2 is seeking an experienced Software Architect to make high level decisions and collaboratively developed designs for community and in-house software applications. You will see the “big picture” and create architectural approaches for software design and implementation to plan and guide the various community and partner development teams.  This role requires strong sensitivities to business, program and product practices and requirements tracking / management.
+
+The Software Architect will make high-level decisions and designs across our community and in-house software applications. Create architectural approaches, guide development teams, and ensure alignment with business, program, and product requirements.
+Provide a framework for the development of a software or system that will result in high quality Identity and Access Management solutions for the community and Internet2
+Role will be instrumental in building and maintaining the applications which power the community and the organization’s Identity and Access Management functionality, Community.
+
+==== Responsibilities:
+
+* Collaborate with other professionals to determine business, user, and software requirements, while clearly delineating between functional and non-functional requirements for new software or applications.
+* Serve as the definition and coordination focal point for development partner identified work; and between Internet2 and our community development architects and practitioners.
+* Identify, adopt and deploy the various tools and methodologies in use, or necessary, to create representations for functions and user interfaces of desired product.
+* Develop high-level product, system, and/or service specifications with attention to system integration and feasibility.
+Define and/or reinforce the necessary practices for all aspects of development from appropriate technology and workflow to coding standards.
+Communicate and collaborate successfully, all concepts and guidelines in concert with the various development teams.
+* Ensure software meets all requirements of quality, security, modifiability, extensibility etc.
+* Oversee progress of development teams and agency partners to ensure consistency with initial design.
+* Provide technical guidance to developers and engineers who may need assistance with standards, implementation nuance or other areas.
+With support and input from architects, realizes architectural schemes using prescribed/selected technologies, implements data and information structure and features, data-persistence designs; data models; and information structures.
+
+==== Qualifications:  
+* MSc/MA in computer science, engineering, management of information systems or equivalent industry experience in a relevant field.
+* 5+ years experience as a software architect with understanding of product and project management.
+* 3+ years experience in software development and coding in a broad selection of languages, frameworks, and patterns (Examples: React, Laravel, Django, C#, .NET, PHP, HTML5, JavaScript, Java, CSS,  etc.).
+* Strong Technical background and excellent Information Technology, Identity and Access Management knowledge and skills.
+* Experience in designing and possess the ability to develop and communicate a shared vision for software characteristics and functions.
+* Experience in cloud-first, DevOps model and ability to demonstrate proficiency in a hybrid variety of deployment modes including commercial cloud and on-premises delivered solutions.
+* Excellent knowledge of UML and other modeling methods.
+* Identity and Access Management experience.
+* Familiarity with HTML/CSS, JavaScript and UI/UX design.
+* Understanding of software quality assurance principles.
+* A technical mindset with great attention to detail.
+* High quality organizational and leadership skills.
+* Outstanding communication and presentation abilities.
+* Ability to travel to conference, community events and offices as needed.
+
+==== Preferred Qualifications:
+* Professional certifications are desirable.
+* Advanced knowledge of IAM.
+
+As a full-time employee, you will be eligible to participate in Internet2’s employee benefits program effective on your start date in accordance with the terms and conditions of each plan.  The program currently includes medical, dental, life, vision and disability insurances, a health spending account program, sick time, vacation time and a tax deferred retirement plan.
+
+Internet2 is a 501(c)(3) not-for-profit organization and equal opportunity and affirmative action employer.  All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, sexual orientation, gender identity, national origin, disability, or veteran status.
+
+- - -
+_2024-04-28 15:03 prep for ref arch update_
+
+https://docs.google.com/document/d/1i7wmJGNl9Yd_PfYnMQY4OPnEPZvUN1N7PcpU_9-B2wM/edit#heading=h.ga5l5z3k1dna[] <- Draft Project Plan: Reference Architecture and IAM Blueprint Refresh +
+int-blueprint-arch-proj +
+
+- - -
+_2024-01-30 12:29 Dave Shafer pointer to simplest arch_
+
+https://canvas.arc42.org/[] +
+https://canvas.arc42.org/downloads[] +
+
+- - -
+_2023-05-29 10:36:44 Nick Tune_
+
+https://medium.com/nick-tune-tech-strategy-blog +
+https://www.manning.com/books/architecture-modernization <- arch modrnz: Socio-technical alignment of software, strategy, and structure +
+https://freecontent.manning.com/the-primer-for-modernizing-software-architecture/ +
+
+- - -
+_2022-09-19 13:33 Solid still valid?_
+
+https://stackoverflow.blog/2021/11/01/why-solid-principles-are-still-the-foundation-for-modern-software-architecture/
+ <- SOLID redux +
+
+- - -
+_2021-06-09 09:41 product, feature, benefit..._
+
+https://www.aha.io/roadmapping/guide/requirements-management/what-are-product-features
+ <- clear-headed sketch of the issues +
+
+"broadly, features can refer to capabilities, components, user interface (UI) design, and performance upgrades"
+
+- - -
+_2021-03-13 10:37 Itana book club *Tech Strat Patterns: Arch as Strategy*_
+
+SEE ALSO: _Semantic Software Design_, Eben Hewett, 2020 +
+  https://google.github.io/styleguide/javaguide.html
+   +
+  https://google.github.io/styleguide/jsoncstyleguide.xml
+   +
+  https://github.com/airbnb/javascript/tree/master/react
+   +
+
+Hi everyone,
+
+Now that I have a better feel for the book, the material in Part 2 (Creating the Strategy) feels like it needs more time for discussion.  I am suggesting that we split Part 2 across the first two calls and cover Part 3 (Communicating the Strategy) in the third call.
+
+So, for the first meeting, let’s aim to briefly cover Part 1 and get to the end of Chapter 4 – Industry Context in Part 2. If there are any strong objections, please let me know.   lonnie.smetana@umanitoba.ca
+
+
+- - -
+_2021-02-25 13:15 Werner Vogel interview in ACM Comm.3/21 v64, n03_
+
+Communications of the ACM, March 2021, Vol. 64 No. 3, Pages 50-57 10.1145/3434232
+
+WV: small building blocks, assemble into services
+
+References
+
+1. Amazon Builder's Library; https://aws.amazon.com/builders-library/.
+
+2. Amazon Press Center. Amazon Web Services launches, 2006; https://press.aboutamazon.com/news-releases/news-release-details/amazon-web-services-launches-amazon-s3-simple-storage-service.
+
+3. AWS Well-Architected; https://aws.amazon.com/architecture/well-architected/.
+
+4. DeCandia, G., et al. Dynamo: Amazon's highly available key-value store. In Proceedings of the 21st Annual Symp. Operating Systems Principles. (Oct. 2007) 205–220; https://dl.acm.org/doi/10.1145/1294261.1294281.
+
+5. Dixon, J. Pentaho, Hadoop, and data lakes, 2010; https://jamesdixon.wordpress.com/2010/10/14/pentaho-hadoop-and-data-lakes/.
+
+6. Gray, J. A conversation with Werner Vogels. acmqueue 4, 4 (2006); https://queue.acm.org/detail.cfm?id=1142065.
+
+Back to Top
+Sidebar: Principles of Distributed System Design
+
+Amazon used the following tenets of distributed system design to meet Amazon S3 requirements:2
+
+    Decentralization. Use fully decentralized techniques to remove scaling bottlenecks and single points of failure.
+
+    Asynchrony. The system makes progress under all circumstances.
+
+    Autonomy. The system is designed such that individual components can make decisions based on local information.
+
+    Local responsibility. Each individual component is responsible for achieving its consistency; this is never the burden of its peers.
+
+    Controlled concurrency. Operations are designed such that no or limited concurrency control is required.
+
+    Failure tolerant. The system considers the failure of components to be a normal mode of operation and continues operation with no or minimal interruption.
+
+    Controlled parallelism. Abstractions used in the system are of such granularity that parallelism can be used to improve performance and robustness of recovery or the introduction of new nodes.
+
+    Decompose into small, well-understood building blocks. Do not try to provide a single service that does everything for everyone, but instead build small components that can be used as building blocks for other services.
+
+    Symmetry. Nodes in the system are identical in terms of functionality, and require no or minimal node-specific configuration to function.
+
+    Simplicity. The system should be made as simple as possible, but no simpler.
+
+Copyright held by author/owner. Publication rights licensed to ACM.
+Request permission to publish from permissions@acm.org
+
+The Digital Library is published by the Association for Computing Machinery. Copyright © 2021 ACM, Inc.
+
+- - -
+
+µsvcTenetsSummersoc2016v15nc.pdf
+<- !
+
+The Twelve Factors
+
+I. Codebase: One codebase tracked in revision control, many deploys
+
+II. Dependencies: Explicitly declare and isolate dependencies
+
+III. Config: Store config in the environment
+
+IV. Backing services: Treat backing services as attached resources
+
+V. Build, release, run: Strictly separate build and run stages
+
+VI. Processes: Execute the app as one or more stateless processes
+
+VII. Port binding: Export services via port binding
+
+VIII. Concurrency: Scale out via the process model
+
+IX. Disposability: Maximize robustness with fast startup and graceful shutdown
+
+X. Dev/prod parity: Keep development, staging, and production as similar as possible
+
+XI. Logs: Treat logs as event streams
+
+XII. Admin processes: Run admin/management tasks as one-off processes
+
+- - -
+_2021-02-25 19:00 Chat w Roozbeh_
+
+- - -
+_2021-02-11 20:38 dynamic EA capabilities_
+
+Wetering2019_Chapter_DynamicEnterpriseArchitectureC.pdf
+
+dynamic enterprise architecture capabilities:
+
+“an organization’s ability to leverage its EA for
+- asset sharing and
+- recomposing and renewal of organizational resources,
+
+together with guidance to proactively
+
+- address the rapidly changing internal and external business environment and
+- achieve the organization’s desirable state.”
+
+three related, but distinct capabilities, i.e.,
+
+(I) EA sensing capability,
+(II) EA mobilizing capability, and
+(III) EA transformation capability.
+
+- - -
+_2021-02-06 16:02 Capability maps_
+
+https://wiki.cac.washington.edu/display/EA/Information+Technology+Capability
+
+- - -
+_2021-02-06 11:18 kotusev on EA that works_
+
+http://kotusev.com/TOGAF-Based%20Enterprise%20Architecture%20Practice%20-%20An%20Exploratory%20Case%20Study.pdf +
+
+https://www.researchgate.net/profile/Svyatoslav_Kotusev/publication/328007133_TOGAF-based_Enterprise_Architecture_Practice_An_Exploratory_Case_Study +
+
+specific  EA artifacts  that  proved  especially  valuable  for  engaging  with  business,  i.e.
+
+- business  capability model
+- ICT strategies*
+- investment roadmaps
+- user journeys and stories.
+
+*
+ICT steering committee has prioritized all proposed IT projects and produced the program of work for the upcoming year
+
+- - -
+_2020-04-30 13:50 simplest most general architecture_
+
+Ultimate authoritative sources of data emit time-stamped events that modify an external mirror/cache
+
+Systems responsive to these changes use the event message only as prompts to query for per-entity changes since last such query
+
+Start with the last step: user acting on resource based on entitlements
+
+Module 1: Environment Introduction
+LAB 1-1: Workstation Environment Setup
+
+- - -
+_2021-02-05 09:24 references and links_
+
+https://medium.com/dev-genius/system-design-blueprint-the-ultimate-guide-e27b914bf8f1 +
+https://medium.com/nick-tune-tech-strategy-blog +
+http://kotusev.com/The%20Role%20of%20Engagement%20in%20Achieving%20Business-IT%20Alignment%20Through%20Practicing%20Enterprise%20Architecture.pdf <- ! +
+pix/weillDigXform +
+http://kotusev.com/teaching_pack/ +
+https://issuu.com/pragmatic-ea/docs/proof-whatisea/2 <- full 2021 edition online only +
+https://pragmatic365.org/ +
+https://publications.opengroup.org/togaf-library +
+https://dzone.com/articles/the-decline-of-the-enterprise-architect +
+
+
+The process view of enterprise architecture practice

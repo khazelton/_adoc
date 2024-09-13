@@ -1,0 +1,15 @@
+
+=== tiContainers.adoc
+
+- - -
+_2020-07-07 11:03 container approaches_
+
+
+
+Bill K
+you should both have access to the container spec document at https://spaces.at.internet2.edu/x/JhAOCg
+
+I also gave Tom access, but it is not yet open to the public. Were you planning on discussing this tomorrow? If so we will need to open to a wider audience.
+
+Keith H
+Not for Wednesday, maybe Friday? Ethan and I will talk it over.

@@ -1,0 +1,81 @@
+=== algebraicJulia.adoc
+
+- - -
+_2024-07-30 17:07 AlgebraicJulia startup routine_
+
+*- Choose an AJ github repo, Clone a local copy, Explore in a Jupyter notebook -*
+
+```
+$ julia
+[open a new terminal]
+$ cd opt +
+https://github.com/AlgebraicJulia
+$ git clone AJ {AlgebraicJulia repo of choice} 
+$ cd local AJ
+$ Jupyter Notebook +
+Browser opens to the local cloned notebook +
+Set kernel to Julia 1.10.4, Name the notebook, default is Untitled +
+Paste into compute cell in Jupyter Notebook; Execute, Repeat +
+Save the notebook +
+```
+ 
+- - -
+_2024-07-31 11:24 https://algebraicjulia.github.io/ACSets.jl _
+
+https://blog.algebraicjulia.org/post/2020/10/acset-theory/[] <- The categorical scoop on attributed C-sets, Owen Lynch +
+
+- - -
+_2024-07-30 17:43 StockFlow.jl_
+
+===== StockFlow.jl algebraicJulia repo
+
+```
+opt kh$ cd StockFlow.jl
+(base) MBProMax-2:StockFlow.jl kh$ tree -L 2
+.
+├── LICENSE
+├── Project.toml
+├── README.md
+├── docs
+│   ├── Project.toml
+│   ├── literate
+│   ├── make.jl
+│   └── src
+├── examples
+│   ├── full_fledged_schema_examples
+│   ├── full_fledged_schema_examples_new
+│   └── primitive_schema_examples
+├── src
+```
+Note: simple schema example was missing the graph function. Add below to initial 'using' block
+
+```
+using Catlab.Graphics
+import Catlab.Graphics.Graphviz: Graph, Subgraph
+```
+- - -
+_2024-07-30 17:09 references and links_
+
+https://www.algebraicjulia.org/[] <- see list of AJ .jl packages 
+
+https://docs.sciml.ai/AlgebraicPetri/stable/[] <- browse to Examples / Basic Epidemiology Models +
+https://algebraicjulia.github.io/AlgebraicPetri.jl/dev/[] +
+~/opt/AlgebraicPetri.jl +
+
+https://algebraicjulia.github.io/AlgebraicDynamics.jl/dev/[] +
+
+~/opt
+-xr-x   14 kh         staff        448 Jul 27 17:51 EpidemicModeling
+drwxr-xr-x   25 kh         staff        800 Jul 27 18:25 lecture-julia.notebooks
+drwxr-xr-x   19 kh         staff        608 Jul 27 19:27 JuliaTutorials
+drwxr-xr-x   27 kh         staff        864 Jul 30 10:35 Catlab.jl
+drwxr-xr-x   16 kh         staff        512 Jul 30 18:02 StockFlow.jl
+drwxr-xr-x    2 kh         staff         64 Jul 30 19:49 alj
+drwxr-xr-x   21 kh         staff        672 Jul 31 11:27 AlgebraicDynamics.jl
+drwxr-xr-x   20 kh         staff        640 Aug  1 10:59 AlgebraicPetri.jl
+~/opt/JuliaTuturials
+drwxr-xr-x    6 kh  staff    192 Jul 27 19:27 introductory-tutorials
+drwxr-xr-x    6 kh  staff    192 Jul 27 19:27 more-advanced-materials
+
+
+

@@ -1,0 +1,95 @@
+=== tierEvolveum.adoc
+- - -
+_2019-09-18 14:55 Igor, Erin, Bill, Keith, Paul_
+
+stanford, lehigh, fordham interest in mP
+
+ stanford: support contract? not happy w current partner's help
+ leHigh: need to convince Mgmt, can I2 help? Keith LeValley
+ Davenport: Need to convince Mgmt; in touch w a mP partner: Exclamation Labs;
+
+ Exclamation Labs: strong in fintech, but want to get into R&E;
+ has most all small bank fintech in us;
+ only partner contributing code to Evolveum
+
+ Unicon has lost Misagh (EU) and JohnGasper (Berkeley)
+
+- - -
+_2019-02-28 13:00 Evolveum SoW drafting_
+
+https://docs.google.com/spreadsheets/d/1bJe9t8GKXepPvDiNRmEIPNi2jRoWNcoj9T6Gi3F8Oc8/edit?usp=sharing <= SoW drafting +
+https://spaces.at.internet2.edu/pages/viewpage.action?pageId=117245213
+
+- - -
+_2018-11-30 08:00 I2 training needs re midPoint_
+
+- - -
+_2018-08-13 08:17 09:17  Evolveum mP weekly check-in_
+
+Pavol:
+
+- TIER logging requirements met: mP is now producing log messages in line with TIER guidelines.
+
+- Created a dockerized mP with a configurable connection to a separate Dockerized dB container; Initial version is already in the I2 Github repo;
+
+- Connecting mP to Grouper; Used the training materials to do the Grouper install.
+
+- Can now connect both ways: We can send groups & memberships to mP from Grouper and to Grouper from mP;
+
+- There are a couple models for bringing data from systems of record (SoR) into the IAM infrastructure;
+
+ 1) Have SoRs talk to mP, mP talks to Grouper, Grouper biz logic can write back to mP; A very early version of this is done. SQL data connection from Grouper, can grab data from mP; Custom Loader moved mP information to Grouper;
+
+ 2) Route some SoR data straight to Grouper and some straight to mP. Then have Grouper business logic process it and push the results into mP for further provisioning.
+
+ (1) Seems preferable. Grouper shouldn't see people before mP has a record for them.
+
+- Paul: per Steve Zoppi, mP is the 'central actor' in our architecture; it is meant to be the key disseminator of IAM data to downstream systems. COmanage still thought of as 'the registry'.
+
+- On the I2 enterprise github, /docker/grouper is a test instance of Grouper in a docker container if Pavel wants to use it; Consider the Grouper web service and the Grouper UI as two separate things (? ask Paul Caskey)
+
+- Pavel to draft some initial documentation and post on the Wiki at https://spaces.at.internet2.edu/x/Xw-tBw
+
+- Invite Jim Jokl to one of these calls to discuss packaging issues such as docker-compose up vs docker-stack etc.
+
+- TIER will draft a preliminary description of intended role of event-driven architecture and how it ties into mP. For review and discussion on a future Evolveum/TIER call.
+
+- TIER work on a Banner - mP connector continues; Will be discussed on one of the upcoming Evolveum/TIER calls.
+
+- Meet same time in one week: Monday Aug. 20 at 8:30 Central US time.
+
+.
+
+- - -
+_2018-05-23 09:04_
+
+how does mP fit in our world? As the SoR for identity (Registry); incl. message bus;
+
+training needs: who what
+
+Clarify what mP is/isn't
+
+COmanage / midPoint
+- mP will cleanly insert itself into COmanage
+- but we need it to be able to stand up mP independently
+
+.
+
+_2018-04-17 11:30  zoom conf. w Igor Farinic, Martina, SteveZ, AnnW, PaulC, JimJ, BillK_
+
+Talking over the container req. docs:
+
+- Training: Could T&I take on a basic training role; Ev: Offer a 'train the trainer' (could work with T&I on developing this). T&I job is to facilitate service offerings, not to provide them. Ann introduces Campus Success Program; Most are contracting with Unicon at present;
+
+
+- see Evolveum blog post on their all-in posture with Open Source; targeting midPoint for 10M users; Offering subscription package: bugs, help with migration,....recommending a production subscription for all full adopters; start with training; then depending on features required, they recommend 'platform subscription'; HE: cost-sharing models; Flat fee for platform subscription; Will make sure that platform subscription will cover all adopter needs
+  - SZ: We can help aggregate those needs and broker them with you to leverage investments
+
+- Igor is free Thursday evening
+
+.
+
+- - -
+_2018-04-17 12:07  references and links_
+
+https://docs.google.com/document/d/1oNmDCTXXBVjmBbAsX_cn5pEX4gLnlVROrQhf0LbNcHY/edit?usp=sharing  <== TIER Arch Container Reqs

@@ -1,0 +1,58 @@
+=== auton.adoc
+
+- - -
+_2024-08-24 09:52 ARK Electronics drone tech_
+
+https://arkelectron.com/[] +
+https://docs.px4.io/main/en/[] +
+
+
+
+- - -
+_2024-07-26 14:02 Nvidia Isaac ROS: Getting Started_
+
+https://nvidia-isaac-ros.github.io/getting_started/index.html[] +
+https://nvidia-isaac-ros.github.io/[] <- documentation +
+
+- - -
+_2024-07-26 13:46 Nvidia Isaac ROS_
+
+https://developer.nvidia.com/isaac/ros[] +
+https://github.com/NVIDIA-ISAAC-ROS[] +
+https://nvidia-isaac-ros.github.io/blog/index.html[] +
+https://nvidia-isaac-ros.github.io/repositories_and_packages/index.html[] +
+https://nvidia-isaac-ros.github.io/robots/nova_carter/index.html[] +
+
+- - -
+_2023-07-31 10:16:44 Google mashes AI and Robots_
+
+https://www.nytimes.com/2023/07/28/technology/google-robots-ai.html?searchResultPosition=1[] +
+
+- - -
+_2021-02-27 17:54 F'_
+
+nasa/fprime +
+https://nasa.github.io/fprime
+ <= F' - A flight software and embedded systems +
+
+https://github.com/nasa/fprime|nasa/fprime>nasa/fprime
+
+- - -
+_2016-12-28 11:33 references and links_
+
+_Cloud Ethics: Algorithms and the Attributes of Ourselves and Others_, Louise Amoore +
+_Moral Machines: Teaching Robots Right from Wrong_, Wendell Wallach, Colin Allen +
+_A Dangerous Master: How to Keep Technology from Slipping Beyond Our Control_, Wendell Wallach +
+_Analogia: The Emergence of Technology Beyond Programmable Control_, George Dyson +
+_Whose morality? Which rationality? challenging artificial intelligence as a remedy for the lack of moral enhancement_ <= Silviya Serafimova +
+https://selfawaresystems.files.wordpress.com/2008/01/ai_drives_final.pdf +
+https://www.jameco.com/z/30016-Parallax-Emic-2-Text-to-Speech-Module_2160083.html +
+https://www.jameco.com/Jameco/Products/ProdDS/2160083.pdf +
+https://www.jameco.com/Jameco/Products/ProdDS/2160083Usersmanual.pdf +
+
+https://medium.mybridge.co/web-development-open-source-of-the-month-v-sep-2018-ebcfe6974fd9 <= mars rover +
+https://www.ibm.com/blogs/research/2016/12/tjbots-world-tour-getting-built-and-making-friends/?tjbotfriends +
+https://www.linkedin.com/pulse/crazyflie-nanocopter-setup-mona-jalal +
+https://www.bitcraze.io/crazyflie-2-0-buyers-guide/ +
+https://arxiv.org/pdf/1603.02199.pdf  <= Learning Hand-Eye Coord for Robotic Grasping with Deep Learning... +
+https://hackernoon.com/how-hbos-silicon-valley-built-not-hotdog-with-mobile-tensorflow-keras-react-native-ef03260747f3 +

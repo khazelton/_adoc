@@ -1,0 +1,347 @@
+=== catTheory.adoc
+SEARCH "category theory diagrammatic computer science"
+SEE quanComp: intel-qs quantum system simulator
+SEE catData: Categorical Query Language, Ryan Wisnesky
+SEE scalaCats: Scala w Cats
+
+https://www.math3ma.com/blog/what-is-category-theory-anyway[] 1st in series of posts on math3ma about category theory
+
+:lrn:  Do Milewski's catTheory course, see _2021-09-05 11:45 Bartosz Milewski teaches Cat Theory_
+https://www.youtube.com/playlist?list=PLbgaMIhjbmEnaH_LTkxLI7FMa2HsnawM_
+ <- playlist of all 20 catTheory videos +
+
+- - -
+_2024-08-01 10:09 CatTh & Open Dyn Sys docs_
+
+https://engineering.gwu.edu/developing-novel-frameworks-open-hybrid-dynamical-systems | Developing Novel Frameworks for Open Hybrid Dynamical Systems | School of Engineering & Applied Science | The George Washington University
+https://golem.ph.utexas.edu/category/2022/06/compositional_modeling_with_de.html | Compositional Modeling with Decorated Cospans | The n-Category Café
+https://topos.site/blog/2024-01-18-composing-springs/ | Composing springs – Topos Institute
+https://cdsmithus.medium.com/fun-with-category-theory-and-dynamical-systems-f470ea5e7809 | Fun with Category Theory and Dynamical Systems | by Chris Smith | Medium
+https://www.youtube.com/watch?v=ms085w6XeCs | (2) Implementing Open Dynamical Systems in Catlab - YouTube
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9376710/ | An algebraic framework for structured epidemic modelling - PMC
+https://compositionality-journal.org/papers/compositionality-6-2/pdf | A compositional account of motifs, mechanisms, and dynamics in biochemical regulatory networks - compositionality-6-2.pdf
+https://compositionality.episciences.org/13637 | #13637 - A compositional account of motifs, mechanisms, and dynamics in biochemical regulatory networks
+https://davidjaz.com/Papers/DynamicalBook.pdf | Secure Site Not Available
+https://topos.site/blog/2023-06-15-compositional-world-modeling/ | Towards a Research Program on Compositional World-Modeling – Topos Institute
+https://owenlynch.org/static/masters_thesis.pdf | Relational Composition of Physical Systems - masters_thesis.pdf
+https://johncarlosbaez.wordpress.com/2016/10/23/open-and-interconnected-systems/ | Open and Interconnected Systems | Azimuth
+https://link.springer.com/article/10.1007/s10884-023-10334-7 | Dynamical Systems on Graph Limits and Their Symmetries | Journal of Dynamics and Differential Equations
+https://www.amazon.com/Invitation-Dynamical-Systems-Edward-Scheinerman/dp/0131850008 | Amazon.com: Invitation to Dynamical Systems: 9780131850002: Scheinerman, Edward R.: Books
+
+- - -
+_2024-07-29 15:10 ACT@UCR_
+
+https://sites.google.com/ucr.edu/actucr/[] <- Appl Cat Theory Seminar @ UC Riverside +
+https://math.ucr.edu/home/baez/[] <- John Baez home page at UC Riverside +
+https://johncarlosbaez.wordpress.com[] <- Azimuth, John Baez's blog; Check posts on agent-based modeling +
+
+invited to the Cat Theory Zulip from k@g, accepted by matteo.capucci@gmail.com 
+
+- - -
+_2024-07-26 20:37 Milewski vid 6.1 Functors_
+
+Picking up Milewski Cat4Programmers from _2021-11-16_
+
+- - -
+_2024-03-21 14:32 Compositionality Journal_
+
+https://compositionality-journal.org/[]
+
+catDataStructsForTechComputing
+
+I suspect that what they call C-sets would be the right mathematization for my wiring diagram approach: wires carry state in the form of data structures (C-sets) and boxes are functions from one (or more) data types to another one or more.
+
+- - -
+_2024-03-02 20:32 packages_
+
+https://docs.discopy.org/en/main/[] <- DisCoPy is a Python toolkit for computing with string diagrams +
+https://github.com/discopy/discopy[] <- DisCoPy repo & description +
+https://github.com/AlgebraicJulia/Catlab.jl[] <- Catlab.jl is a framework for applied and computational category theory, written in the Julia language +
+
+- - -
+_2024-03-02 18:03 Applied Cat Theory per Wikipedia_
+
+https://en.wikipedia.org/wiki/Applied_category_theory[] +
+
+- - -
+_2024-02-12 18:00 symbolic vs distributional models of meaning_
+
+mathFndCompositionalModMeaning +
+https://www.youtube.com/watch?v=X9uSV1YcOy4&list=PLyQ3UqquVPSn2D2UiVE3LRuzF0puth2FT&index=1[] <- 02:17: coecke +
+https://direct-mit-edu.ezproxy.library.wisc.edu/books/book/2532/Conceptual-SpacesThe-Geometry-of-Thought[] +
+
+- - -
+_2024-01-11 08:44 "Cartesian closed categories give us the algebraic
+version of typed λ-calculus" Dana Scott_
+
+_Computational λ-calculus & monads_, Moggi (1989) +
+
+http://www.goodmath.org/blog/2012/03/11/interpreting-lambda-calculus-using-closed-cartesian-categories/[] +
+
+λtimeline.pdf
+
+- - -
+_2024-01-02 21:48 cat for agent-based models_
+
+https://johncarlosbaez.wordpress.com/2023/07/06/agent-based-models-part-1/[] +
+https://johncarlosbaez.wordpress.com/2023/08/17/agent-based-models-part-2/[] +
+https://johncarlosbaez.wordpress.com/2023/11/14/agent-based-models-part-3/[] +
+https://johncarlosbaez.wordpress.com/2023/11/23/agent-based-models-part-4/[] +
+
+- - -
+_2024-01-02 16:15 zx calc_
+
+https://zxcalculus.com/introhttps://zxcalculus.com/intro[] <- zx, a somewhat longer introdduction +
+https://github.com/varkor/quiver?tab=readme-ov-file[] <- Quiver for generating cat theory figures +
+https://www.quantinuum.com/developers/tket[] +
+https://www.mathsisfun.com/algebra/vector-unit.html
+ 
+https://discord.com/channels/691634593195098122/889089642538868746[] <- zx on Discord +
+https://pennylane.ai/qml/demos/tutorial_zx_calculus/[] +
+
+:lrn: zx4workingSci ZX-calculus for the working quantum computer scientist +
+:lrn: ZX-lectures_JPG "Basic ZX-calculus for students and professionals" +
+:lrn: kindle: _Quantum in Pictures: A new way to understand the quantum world_ +
+:lrn: https://www.youtube.com/@QuantinuumQC <- videos for ^ +
+:lrn: kindle: _Picturing Quantum Processes_, Bob Coecke, Stefano Gogioso +
+
+- - -
+_2023-11-06 09:16 monads in typescript_
+
+https://medium.com/better-programming/monads-in-typescript-2b5e059b6d74
+
+- - -
+_2022-07-05 16:44 Kleisli cats in Scala_
+
+https://medium.com/@supermanue/understanding-kleisli-in-scala-9c42ec1a5977[] <- refers to ↓ +
+https://sanj.ink/posts/2017-06-07-composing-monadic-functions-with-kleisli-arrows.html[] <- and ↓ +
+https://typelevel.org/cats/datatypes/kleisli.html[] <- +
+https://typelevel.org/cats-effect/[] <- "The pure asynchronous runtime for Scala" +
+https://typelevel.org/[] <- extensions to scala +
+
+- - -
+_2022-07-03 14:23 endofunctor on monoids = monad_
+
+https://www.rallyhealth.com/thinking-like-a-functional-programmer-with-category-theory
+```
+ <- MONAD =
+    MONOID
+    (group + assoc + identity)
+
+    in  the  category of
+
+    ENDOFUNCTORs
+    (functor that maps a category onto itself)
+```
+- - -
+_2022-02-12 13:31 Cat Theory for Programmers, Haskell + Scala, Bartosz Milewski_
+
+https://github.com/hmemcpy/milewski-ctfp-pdf[] <- paper book +
+
+- - -
+_2022-01-26 10:58 cat theory & owl_
+
+https://blog.algebraicjulia.org/ | AlgebraicJulia blog - Posts
+https://rhizomik.net/redefer/xsd2owl[] <- XSD2OWL, locPdf +
+https://lists.w3.org/Archives/Public/semantic-web/2019Sep/0012.html[] <- ! Re: Category Theory, OWL and RDF - Was: The Joy of NULLs +
+https://arxiv.org/pdf/1706.00526.pdf[] <-  Bicategories of Relations by Evan Patterson, Stanford, locPdf +
+https://arxiv.org/abs/1009.1166[] <- Functorial Data Migration, David Spivak, locPdf +
+https://www.semanticscholar.org/paper/Formal-Modelling-and-Application-of-Graph-in-the-Braatz/b8c85a3e7a04020259ec9a58c7e5563033f52844?p2df[] <- Formal Modelling and Application of Graph Transformations in the Resource Description Framework, 2009 Benjamin Braatz, locPdf +
+https://www.semanticscholar.org/paper/An-Approach-Using-Formally-Well-founded-Domain-for-Brandt-Engel/4bc729343d627ace8972e66070a168401aa3617b[] <- An Approach Using Formally Well-founded Domain Languages for Secure Coarse-grained IT System Modelling in a Real-world Banking Scenario, locPdf +
+
+https://www.wisnesky.net/[] <- Ryan Wisnesky +
+https://www.categoricaldata.net/[] <- !! Categorical databases: A principled way to transform data, Wisnesky +
+https://github.com/CategoricalData/CQL[] <- !! Categorial Query Language
+https://github.com/CategoricalData/hydra[] <- Building Functors from program/schema in lang A to prog/schema in lang B +
+https://www.categoricaldata.net/[] <- web home page of categoricaldata.net +
+https://github.com/CategoricalData/hydra[] <- forked as +
+https://github.com/aktis-org/hydra[] <- hydra repo +
+ https://docs.google.com/document/d/1vW3DGxBdEpAl0XTN6nizHzTq7ukcIgvUvIykPqoIQ60/edit#[] <- Hydra high-level design +
+
+
+- - -
+_2021-11-16 17:19 vid 4.1 Terminal and Initial and 4.2 Products done; Next 5.1 Coproducts, Sum Types_
+
+- - -
+_2021-11-15 18:15 vid 3.2 Kleisli Categories done; next 4.1 Terminal and initial objects_
+
+- - -
+_2021-11-12 14:12 vid 3.1: Examples of categories, orders, monoids done; next: 3.2 Kleisli Categories_
+
+- - -
+_2021-11-06 14:21 Milewski video 2.1: functions, epimorphism done, next 2.2: Monomorphisms, simple types_
+
+- - -
+_2021-11-06 09:42 computational linguistics_
+
+https://staff.fnwi.uva.nl/d.j.n.vaneijck2/cs/[] <- Computational Semantics with Functional Programming with rich linked resources.  Textbook (in my Kindle library) _Computational Semantics with Functional Programming_ +
+
+https://github.com/melbarrett/haskell-to-elixir[] <- Haskell to Elixir mapper using code from _Comp. Semantics w Func Prog_ | +
+
+- - -
+_2021-11-05 14:26 reading notes_
+
+biCat<rel.pdf <- "Spivak recognized that the relational data model could be elegantly represented as a functor from a finitely-presented category to the category of sets" +
+
+https://arxiv.org/abs/1009.1166[] <- Functorial Data Migration +
+
+- - -
+_2021-10-11 15:03 cat theory for beginners: topos theory and subobjects, richard southwell_
+
+https://archive.org/details/category-theory-for-beginners-course[] +
+https://archive.org/details/category-theory-for-beginners-introduction[] +
+
+next] PRIORITY ONE materials for learning CatTheory: Richard Southwell
+
+1) 2018-12-16: starting category theory; pick up video at 14'
+2) 2018-12-17: category and functor definition
+3) 2018-12-17: making finite categories
+4) 2019-05-13: cat theory for beginners (ctb): introduction
+5) 2020-12-09: cat theory for beginners: Introduction
+
+catTh4BeginnersSouthwell.pdf[] <- pdf of +
+https://www.amazon.com/Categories-Toposes-Visualized-Richard-Southwell/dp/B0948LKZXX[] <- the book: Categories and Toposes: Visualized and Explained, Richard Southwell +
+https://www.youtube.com/watch?v=US4Zr1WKD-8&list=PLCTMeyjMKRkoS699U0OJ3ymr3r01sI08l&ab_channel=RichardSouthwell[] <- cat theory for beginners youtube series +
+https://www.youtube.com/playlist?list=PLCTMeyjMKRkoS699U0OJ3ymr3r01sI08l[] <- full list of cat theory for beginners youtube series videos +
+https://www.noxinfluencer.com/youtube/channel/UCHAtzWEoegu7Z5zEVzjOM_Q?tab=videos[] <- video tab has all southwell videos incl catTheory in reverse chronological order +
+
+- - -
+_2021-10-10 21:22 type theory podcast channel_
+
+https://typetheoryforall.com/
+
+- - -
+_2021-10-09 20:29 diagrammatic cat theory_
+
+next] work Kindle version and Inter-Library Loan copy:
+_Picturing Quantum Processes_, Bob Coecke, Aleks Kissinger, 2017 +
+next] work Bartosz Milewski Cat Theory for Programmers (2021-09-05)
+
+http://quantomatic.github.io/[] <- +
+https://github.com/Quantomatic/quantomatic[] <- +
+https://github.com/Quantomatic/pyzx[] <- PyZX (pronounce as Pisics): for lg-scale Q circuits +
+http://quantomatic.github.io/papers.html[] <- +
+https://tikzit.github.io/[] <- for LaTeX 
+
+https://cambridgequantum.com[] <- bob coecke, chief scientist +
+
+catAlgDiagram.pdf
+ <- Interacting Quantum Observables: Categorical Algebra and Diagrammatics +
+
+- - -
+_2021-09-23 12:25 it evolution follows cat theory abstraction path_
+
+] ponder
+
+- - -
+_2021-09-10 15:33 Doberkat: 2015 Categories chapter_
+
+Doberkat2015_Chapter_Categories.pdf <- from Springer, Special Topics in Mathematics for Computer Scientists, 2015 +
+
+- - -
+_2021-09-05 11:45 Bartosz Milewski teaches Cat Theory_
+
+https://bartoszmilewski.com/
+ <- Programmers Cafe +
+https://www.youtube.com/playlist?list=PLbgaMIhjbmEnaH_LTkxLI7FMa2HsnawM_
+ <- Bartosz Milewski Category Theory Class: 20 videos on YouTube +
+category-theory-for-programmers.pdf  <- Bartosz Milewski textbook +
+https://github.com/hmemcpy/milewski-ctfp-pdf
+ <- repo for above book +
+https://github.com/BartoszMilewski/Publications/blob/master/TheDaoOfFP/DaoFP.pdf
+ <- the dao of functional programming, a living book: DaoFPmilewski.pdf +
+
+https://www.youtube.com/playlist?list=PLbgaMIhjbmElia1eCEZNvsVscFef9m0dm
+ <- Bartosz Milewski, Category Theory II on YouTube +
+https://www.youtube.com/playlist?list=PLbgaMIhjbmEn64WVX4B08B4h2rOtueWIL
+ <- Bartosz Milewski, Category Theory III on YouTube +
+
+- - -
+_2021-11-02 16:38 lambda & logic_
+
+https://mathoverflow.net/questions/322020/how-can-the-simply-typed-lambda-calculus-be-turing-incomplete-yet-stronger-than
+ <- lambda calc and prop calc
+https://plato.stanford.edu/entries/type-theory-church/#ForBasEqu
+ <- updated exposition of Alonzo Church's simple type theory
+
+- - -
+_2020-10-27 19:53 cat theory and programming_
+
+https://ncatlab.org/nlab/show/computational+trinitarianism +
+https://ncatlab.org/nlab/show/Practical+Foundations+for+Programming+Languages +
+harperPractFndProgLang2nd.pdf
+
+- - -
+_2020-10-24 14:16 doing the MIT course, Applied Category Theory_
+
+SEE newer MIT course
+http://brendanfong.com/programmingcats.html[] <- +
+https://ocw.mit.edu/courses/mathematics/18-s097-applied-category-theory-january-iap-2019/index.htm[] <- appl. cat. theory +
+~/opt/catThAppl-18.s097-january-iap-2019/
+http://math.mit.edu/~dspivak/informatics/[] <- +
+https://arxiv.org/abs/1803.05316[] <- "Textbook":Seven Sketches in Compositionality: An Invitation to Applied Category Theory +
+https://ocw.mit.edu/courses/mathematics/18-s097-applied-category-theory-january-iap-2019/lecture-videos-and-readings/18-s097iap19textbook.pdf[] <- book full text online +
+http://ocw.mit.edu/courses/mathematics/18-s097-applied-category-theory-january-iap-2019/lecture-videos-and-readings/chapter-1-generative-effects-orders-and-adjunctions/18-s097iap19ps1.pdf <- problem set 1 +
+
+~/opt/18-s097-january-iap-2019 <- applied cat theory course materials
+
+- - -
+_2020-10-24 13:51 Lawvere, Conceptual Mathematics 2nd ed._
+
+https://mertnuhoglu.com/blog/conceptual_mathematics_a_first_introduction_to_categories_lawvere/ +
+
+- - -
+_2019-07-03 09:08 references and links_
+
+https://medium.com/the-quantastic-journal/an-attempt-at-computable-emergence-in-complex-systems-c3aa62253c85[] !! <- Gabriel A Silva +
+catt&emergence.pdf +
+https://blog.algebraicjulia.org/post/2020/10/acset-theory/[] !! <- The categorical scoop on attributed C-sets, Owen Lynch +
+https://sites.google.com/ucr.edu/actucr/[] <- Appl Cat Theory Seminar @ UC Riverside +
+https://github.com/prathyvsh/category-theory-resources[] <- !!
+https://bartoszmilewski.com/2017/07/07/profunctor-optics-the-categorical-view/[] +
+https://blog.ploeh.dk/2017/10/04/from-design-patterns-to-category-theory/[] <- 1st in series +
+http://www.tac.mta.ca/tac/[] <- Theory and Application of Category Theory (Open Journal)
+catThApps.pdf <- Applied Category Theory in Chemistry, Computing, and Social Networks +
+` http://globular.science/? +
+` https://statebox.org/about/ +
+` https://conexus.com/ <- algebraic data management +
+https://github.com/statebox/idris-ct cat library +
+https://typelevel.org/cats/typeclasses.html +
+https://cdn.jsdelivr.net/gh/tpolecat/cats-infographic@master/cats.svg[] <- catHerd.svg Diagram: A comprehensive ontology of cats type classes +
+https://blog.rockthejvm.com/cats-typeclass-hierarchy/ +
+https://jrsinclair.com/articles/2019/algebraic-data-types-what-i-wish-someone-had-explained-about-functional-programming/[] +
+https://stanford-cs242.github.io/f19/lectures/03-2-algebraic-data-types.html[] +
+https://blog.rockthejvm.com/algebraic-data-types/[] <- in Scala +
+https://ncatlab.org/nlab/show/Introduction+to+Homotopy+Type+Theory[] <- homotopTypeThBook.pdf +
+https://en.wikipedia.org/wiki/ZX-calculus +
+https://zxcalculus.com/[] <- zx calculus basics +
+https://github.com/Quantomatic/pyzx[] <- python library forzx calculus +
+https://www.cs.ox.ac.uk/teaching/courses/2019-2020/quantum/[] <- course at Oxford by Coecke +
+quantumKindergarten.pdf <- Kindergarden quantum mechanics graduates, Coecke et al.
+catThComo-90.pdf <- F. William Lawvere, SOME THOUGHTS ON THE FUTURE OF CATEGORY THEORY
+https://topos.site/strategic-plan/[] <- We shape technology for public benefit by advancing sciences of connection and integration. incl Fong & Spivak +
+https://topos.site/[] <- Welcome to the research homepage of the Topos Institute +
+https://github.com/typelevel/cats[] <- Cats is a library which provides abstractions for functional programming in the Scala programming language +
+https://arxiv.org/pdf/2204.10630.pdf[] <- misdCTDiagrams.pdf On the Missing Diagrams in Cat Theory, Eduardo Ochs, 2022 +
+http://www.tac.mta.ca/tac/reprints/index.html[] <- Reprints in the Theory and Application of Category Theory +
+r/elixir +
+catheory <- Evernote tag +
+maclanecat.pdf <- _Categories for the Working Mathematician_, 2nd ed. +
+cat4pracPhyst.pdf <- Categories for the practicing Physicist +
+https://ebookcentral.proquest.com/lib/wisc/reader.action?docID=3338823[] <- Online copy at library: Types and Programming Languages, Pierce, Benjamin, 2002 +
+Advanced Topics in Types and Programming Languages (The MIT Press) 1st Edition, Pierce, Benjamin, 2005 +
+Doberkat2015_Chapter_Categories.pdf <- from Springer, Special Topics in Mathematics for Computer Scientists, 2015 +
+https://leanpub.com/bookstore?search=visual%20category&type=book&page=2[] <- visual category theory book series, dmitri vostokov +
+https://www.math3ma.com/blog/language-statistics-category-theory-part-1[] <- language, probability, and category theory, pt. 1 +
+https://mertnuhoglu.com/blog/conceptual_mathematics_a_first_introduction_to_categories_lawvere/ +
+https://ocw.mit.edu/courses/mathematics/18-s097-applied-category-theory-january-iap-2019/index.htm +
+https://ocw.mit.edu/courses/mathematics/18-s097-applied-category-theory-january-iap-2019/lecture-videos-and-readings/18-s097iap19textbook.pdf[] <- book full text online +
+https://ocw.mit.edu/courses/mathematics/18-s097-applied-category-theory-january-iap-2019/lecture-videos-and-readings/chapter-1-generative-effects-orders-and-adjunctions/18-s097iap19ps1.pdf[] <- problem set 1 +
+https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/
+catTheoryGentleIntro.pdf <- Pete Smith, 2018 +
+http://www.logicmatters.net/categories/ +
+https://www.math3ma.com/[] <- clear descriptions from a PhD candidate, Tai-Danae Bradley +
+whatsAppliedCatTheory.pdf <- T-D Bradley +
+https://pdfs.semanticscholar.org/b8fb/3b020ea3442ac4da6f60051ccbc4352a4553.pdf[] <- _Category Theory as Coherently Constructive Lattice Theory: An Illustration_ +
+https://ncatlab.org/nlab/show/HomePage +
+https://pwp.gatech.edu/math3012openresources/lecture-videos/lecture-13/[] <- ! _Lecture 13: Introduction to Posets_ +

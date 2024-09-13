@@ -1,0 +1,166 @@
+=== grouperTraining.adoc
+https://docs.google.com/document/d/18aeVbHW5cHoekPrraRjqElUWiRAe-l5ZueKE3U8qNgg/edit#heading=h.6rph8hfhhy9w[] <- scribing doc
+
+- - -
+_2024-09-03 09:30 Tean Meeting_
+
+
+
+- - -
+_2024-07-02 08:00 Evolveum / I2 training discussion_
+
+ChrisHu, DrewA, Simona, Ivan, Slavek, Jean, Claara
+
+*- The Grouper Integration Course -*
+
+* develop recommendations on integration strategy 
+
+* use mPUG and SIWG meetings to develop strategy and details
+
+
+
+- - -
+_2024-06-26 11:49 courses propsal from Evolveum_
+
+Request for Quote: First Steps, Group Sync, Grouper Integration
+Simona Simkova<ssimkova@evolveum.com>
+​
+Jean Chorazyczewski​
+​Ivan Noris <ivan.noris@evolveum.com>;​​​​​
+​
+Hello Jean,
+Thank you for reaching out.
+
+Attached to this email, you will find the estimates for all three courses. We have detailed the costs for each, including some optional items.
+
+~/opt/non.adoc/i2-training-courses-estimates.xlsx
+~/opt/non.adoc/mPCourses.odt
+
+* revised 1st steps course
+
+Regarding new courses
+
+* Evolveum will only be using Group Synchronization
+* The Grouper Integration training course is being developed exclusively for InCommon.
+
+Please review the attachment and let me know if you have any questions.
+
+Best Regards,
+Simona Simkova | Business Development Representative
+simona.simkova@evolveum.com | www.evolveum.com
++421 911 449 455
+
+- - -
+Jean Chorazyczewski
+
+Mon 2024-06-24 7:04 AM
+Hello Ivan and Slavek, As we gear up to prepare for fall training, we’re excited to be able to offer training options that build on a learning path for midPoint, adding Group Sync and Grouper Integration to follow First Steps. In addition to the marketing descriptions
+
+- - -
+_2024-05-08 13:00 Workshop 2 Agenda + Prep_
+
+https://internet2.zoom.us/j/6364952387  Meeting ID: 636 495 2387, ClaraB
+
+https://docs.google.com/document/d/1UGjt95LRjM4o2y49MUgyfWyou_abrsX_a-N6hSFRJvE/edit?usp=sharing[] <- MEETING NOTES +
+
+https://app.mural.co/t/internet28867/m/internet28867/1712860406618/de891ae17fb70a5abb3478de9cb3badbf87019c7?sender=u8379d83a5394d8e777640231[] <- Mural +
+
+For example, Unicon hosting Grouper: How do they see their training challenges? Are they and we complement each other
+
+] Why are Shib office hours so heavily subscribed and midPoint training open hours are not??
+
+SZ: I'm miserably over-scheduled and would rather stay here to listen to you all explore this so thoughtfully - but I need to jump to another call ... Thank you all for letting me inject some of the other considerations - One of the things (I know you're all getting to) is the assertion to the community that is reticent to adopt because "open source" "training" or whatever excuse - is that it's not about 'open source' - it's about the community around the open source - "jump in, the water is fine".  So thanks everyone for giving this a TON of thought.  Training on our community products is a big deal - and I'm loving all of this ....
+
+For Susan Ceccetti: Too many Application-specific policy expression languages; Does CEDAR give us more than just 'policy language n+1'?
+
+AGENDA
+
+Join us for 90-minute working session to shape the future of Grouper Training.  We will continue working our way through this Mural board. We’ll:
+
+    Recap - We’ll recap and validate the synthesis from our first workshop, including the objectives, audience, and training needs we discussed.
+
+    Brainstorm – We’ll brainstorm a list of core learning objectives and outcomes that the training(s) should cover. This is the crux of today’s workshop. See below for prep.
+
+    Discuss - How these objectives map to the target audience.
+
+= = =
+
+TO PREPARE: Think about these questions in advance (food for thought)
+
+    What should we expect people to know or do once they take training?
+
+    What essential concepts and competencies do you believe should be covered in the refreshed Grouper training? Think about the knowledge and abilities a participant should gain from the training(s).
+
+    For those who have taken Grouper training before, what were the key takeaways that you found most valuable? Are there any objectives you wish had been included?
+
+    What specific Grouper-related tasks or challenges should participants be able to handle post-training? For instance:
+
+     For IAM Architects: "Install, configure, and troubleshoot a complex access control issue."
+     
+     For Developers: "Integrate a new application with Grouper's APIs."
+            
+     For IT Managers: "Make strategic decisions on Grouper's alignment with institutional IAM architecture."
+
+- - -
+_2024-05-08 09:53 grouper training enhancement Slack transcript_
+
+Clara Broomfield
+
+Hello all,
+This channel is for the SMEs and those involved in the requirements gathering for the Grouper Training Enhancement project. We completed the first session on 4/19. Below are some relevant materials.
+
+Review the mural board here:
+https://app.mural.co/t/internet28867/m/internet28867/1712860406618/de891ae17fb70a5abb3478de9cb3badbf87019c7?sender=u8379d83a5394d8e777640231
+
+Check out the notes from session 1 here:
+https://docs.google.com/document/d/1UGjt95LRjM4o2y49MUgyfWyou_abrsX_a-N6hSFRJvE/edit?usp=sharing
+
+Watch the recording from session 1:
+https://internet2.zoom.us/rec/share/D77RjlXaFMVVy_Y0aYsKQ0qtz8QKkAmVax25RYvn16bHrArLEZ2NyJDA5ELtoORs.DxBJKS2-kpjxT7Ia?startTime=1713538946000
+Passcode: kzE^H1De
+
+If you haven’t already, take the doodle poll for session 2:
+https://doodle.com/meeting/participate/id/bWjQ8Gva
+We will send out an invite and an agenda for session two in the next few days!
+G Suite Document
+ 
+Grouper Training Enhancement | Workshop 1 (38 kB)
+https://app.mural.co/t/internet28867/m/internet28867/1712860406618/de891ae17fb70a5abb3478de9cb3badbf87019c7?sender=u8379d83a5394d8e777640231
+
+- - -
+_2024-05-01 08:55 grouper training enhancement project_
+
+SEE Slack dm #clara broomfield Apr 30 +
+https://drive.google.com/drive/u/2/folders/1Uq82GPvAByxHC8_1oBuaqz4SQHBMLIsY[] <- 02_discovery +
+
+
+
+- - -
+_2022-11-19 16:38 start_
+
+up to 101.2_folders in syllabus
+
+- - -
+_2022-11-16 16:28 Live Session: Modules 4 and 5_
+
+- - -
+_2022-11-15 16:31  Live Session: Module 3_
+
+- - -
+_2022-11-14 12:13 claim vm, pre-course materials, modules 1 & 2_
+
+10d1f7a8 +
+ssh -L 8443:localhost:8443 -l student 3.145.62.239 +
+https://learning.internet2.edu/courses/118/modules +
+https://learning.internet2.edu/courses/118/pages/grouper-class-resources?module_item_id=4131 +
+https://app.slack.com/client/T073A2Z0D/C046UDQ061K +
+https://learning.internet2.edu/courses/118/assignments/syllabus + +
+gte jump page pinned in slack grouper-school-nov2022
+
+https://spaces.at.internet2.edu/display/Grouper/Grouper+Deployment+Guide
+ <= read +
+
+https://learning.internet2.edu/courses/118/pages/module-2-101-series?module_item_id=4103
+ <= Module 2: 101 Series
+
+

@@ -1,0 +1,7 @@
+=== tiSor2entReg.adoc
+- - -
+_2019-02-05 17:30  kafka stream - spark - Neo4J_
+
+https://medium.freecodecamp.org/how-to-leverage-neo4j-streams-and-build-a-just-in-time-data-warehouse-64adf290f093
+
+- - -

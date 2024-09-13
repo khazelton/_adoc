@@ -1,0 +1,42 @@
+=== directus.adoc
+
+- - -
+_2024-09-03 13:47 Getting Started_
+
+Boot dockerized local Directus
+
+cd ~/opt/directus
+cat docker-compose.yml
+
+```
+version:'3'
+services:
+  directus:
+    image: directus/directus:latest
+    ports:
+      - 8055:8055
+    volumes:
+      - ./database:/directus/database
+      - ./uploads:/directus/uploads
+    environment:
+      KEY:  '255d861b-5ea1-5996-9aa3-922530ec40b1'
+      SECRET:  '6116487b-cda1-52c2-b5b5-c8022c45e363'
+      ADMIN_EMAIL: 'kh@aktis.org'
+      ADMIN_PASSWORD: '5ecr3t'
+      WEBSOCKETS_ENABLED: true'
+
+docker compose up
+
+server running on http://localhost:8055
+
+
+- - -
+_2024-09-03 13:45 references and links_
+
+https://directus.io/[] <- the Directus web home +
+https://github.com/directus[] <- an instant REST+GraphQL API and intuitive no-code data collaboration app for any SQL database +
+https://docs.directus.io/self-hosted/quickstart.html?utm_source=directus-site&utm_campaign=home-page&utm-content=header-button-selfhost[] <- self-hosted Dockerized Directus is free for orgs w annual rev under $5m +
+
+
+
+

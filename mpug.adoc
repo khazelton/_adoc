@@ -1,0 +1,368 @@
+=== mpug.adoc
+See also: banner.adoc
+https://internet2.zoom.us/j/6785432100?pwd=OWI1b3ZhTWFUVVhPN2IvMjEza2diUT09[] <- Zoom +
+https://docs.google.com/document/d/1ERsYSxaPlPZRI5jq1l7puCCJnCt2sVuvI0xb_SBDlAc/edit[] <- scribing doc +
+https://spaces.at.internet2.edu/display/DSAWG/InCommon+midPoint+Working+Group[] <- wiki +
+https://docs.google.com/document/d/1Zp2OUWd0EYWndCFtoEqCoxPWT2jRRFxJh-94V1zfnrk/edit[] <- UG charter +
+https://github.com/pspaude/midpoint-detailed-samples[] 
+
+https://spaces.at.internet2.edu/display/MID/Getting+Started+with+midPoint
+
+- - -
+_2024-08-27 08:57 mPUG meeting_
+
+
+
+- - -
+_2024-07-16 09:00 mPUG meeting_
+
+https://internet2.zoom.us/rec/play/K_AqWaGxoyGrAIbyGimUErtrOqiAlpcQ_M3OdLiV8O1hzXXFOa-18Dkcf9-RKnhgBfba6uGZRStvmMgj.FgC_Cs7AZ1bMkwK-?canPlayFromShare=true&from=share_recording_detail&continueMode=true&componentName=rec-play&originRequestUrl=https%3A%2F%2Finternet2.zoom.us%2Frec%2Fshare%2FPnNVcsUQnaVHrnKs6zSKAdN_20qOvcBz-RamdEBeRoDSBE3-GZEG_hgsko_HdjMw.EtlObuDF2iyz0Weo
+
+https://github.com/ExclamationLabs/connector-scim2
+
+- - -
+_2024-06-18 08:22 mPUG meeting_
+
+Today’s UG call - We want to collect and share use-cases that should help others who are trying to solve similar issues. The aim is to create a wiki page where people will be contributing code snippets, and describing ideas, pitfalls and so on.  -- BillK
+
+BillK: I am going to have to give a little thought as to how we enable AuthZ for folks to contribute in the wiki.
+Want to follow the patterns in Grouper that we have established. Will there be people who need to enroll?
+
+So membership in the WGs will be slightly more formalized but still pretty open to self-join
+Determining how to tag and categorize things is part of the task ahead
+ 
+Carey Matthew Black, PSS ,Purdue Univ. to Everyone (Jun 18, 2024, 09:36)
+TODO: picture
+
+That says a lot bout that page of docs.
+ 
+Grady Bailey (UT Austin) to Everyone (Jun 18, 2024, 09:40)
+Internally, we talk about telling “convenient lies” in some of our documentation
+ 
+Bill / Internet2 to Everyone (Jun 18, 2024, 09:42)
+4 quadrants of documentation https://docs.divio.com/documentation-system/
+
+- - -
+_2024-06-04 08:50 mPUG meeting_
+
+Scheme to capture and publish Q&A, challenges and solutions,...
+
+https://docs.asciidoctor.org/asciidoctor/latest/migrate/confluence-xhtml/[] <- Q&A, Solution Documentation pipeline: confluence page to asciidoc +
+- - -
+_2024-04-23 09:00 Anna O. on midPoint support & subscription options_
+
+OpenID Connect supported in IsP 5, production grade; IdP i2.common/idp  (5.2)
+ 
+Grady Bailey to Everyone (May 7, 2024, 09:38)
+Another suggestion - It may be beneficial to make it clear in the documentation at https://docs.evolveum.com/midpoint/install/containers/ that your containers generally still need the same amount of resources as outlined over on https://docs.evolveum.com/midpoint/install/system-requirements/#sizing-of-midpoint-server
+
+At least, in production
+
+- - -
+_2024-03-26 09:00 IGA_
+
+*- Keith Intro, then Slavek -*
+
+https://docs.evolveum.com/iam/iga/[] +
+
+2 weeks: marketing on support
+4 weeks: new container model (Rocky Linux, single process per containter) and exp. ARM support
+
+future: shadows, caching, stale data issues.
+
+- - -
+_2024-03-12 09:12 Stephen Fox on SCIM 2 connector_
+
+Big win: A usable HE & R profile of SCIM groups and users
+
+- - -
+_2024-02-27 09:00 mP UG_
+
+Paul Spaude’s midPoint resource integration guide and how it fits with mmidPoint’s First Steps methodology
+
+1) Tun through 1st steps methodology wirh a test resource (use the Unicon template form?)
+
+2) Review the Unicon Resource Template
+
+3.a) Some items could be callouts in the 1st steps doc
+3.b) Create a 'fill in the blanks" template from the existing doc
+3.c) Pick another test resouce, fill out the template and then run through 1st steps methodology again
+
+- - -
+_2024-02-13 09:00 mP UG_
+
+ https://internet2.zoom.us/rec/share/Mrftyzia7Q6OxJ62em1xOT6QnUUmUoj-1D10ZaCLPN9ZPuXHCi0QBvy1CGBeKszG.PpcEk73gXBexLl_K
+ 
+- - -
+_2023-10-10 09:00:00 mP UG_
+
+Questions about the new mP Grouper connector
+
+Michael Gettes (SLAC) to Everyone (Oct 10, 2023, 9:05 AM)
+Slavek - I am curious about Andrew Parmer’s work on external secrets and any plans to include it in the product?
+
+Slavek to Everyone (Oct 10, 2023, 9:08 AM)
+I'm waiting on some presentation of the Andrew's work. I haven't see it yet, so it's hard to tell what we can do with it.  Drew, have you discussed with Adrew   when he can present it? 
+
+- - -
+_2023-06-06 09:00:00 mP UG_
+
+Slavek will miss this UG meeting and the following one on June 20
+Stephen Fox: Graphana/Loki connector built on the ProvisionIAM-developed 'Connector Base'
+
+- - -
+_2023-03-28:00:00 mP UG__
+
+Workflow: Eric Coleman, SlavekL, KeithH
+
+- - -
+_2023-02-28 08:28:38 mP UG: Resource Configuration--the New Wizard, SlavekK_
+
+https://docs.evolveum.com/midpoint/reference/correlation/
+ <- Smart Correlation as mentioned by Paul Spaude +
+
+- - -
+_2023-02-14 14:14:12 U New Brunswick on mP project_
+
+../mpUnewBrunswick.pdf
+- - -
+_2023-01-31 08:56:07 mP UG_
+
+Works w all versions incl. 4.4, 4.6
+
+- - -
+_2022-10-11 09:00 mP UG_
+
+] MRG on clustering postgres native for midPoint:
+
+before i forget the details:  config.xml sets cluster to true.  apply the postgres native SQL for quartz tables.  in a swarm - set env var in the stack JAVA_OPTS=-Dmidpoint.nodeId=mp.{{.Node.Hostname}} -Dmp.hostName=midpoint.{{.Node.Hostname}} and set hostname: mp.{{.Node.Hostname}} - i think that was all i ended up doing in the end.  I have 3 nodes in the swarm and an instance of midpoint running on each.
+
+- - -
+_2022-08-16 09:00 mP WG_
+
+https://docs.evolveum.com/midpoint/reference/diag/troubleshooting/troubleshooting-with-traces/
+ <= troubleshooting with traces +
+https://docs.evolveum.com/midpoint/reference/expressions/mappings/range/
+ <= mapping range +
+
+range: all
+tolerance: strong
+then midpoint is authoritative for all (multi-)values
+
+https://spaces.at.internet2.edu/pages/viewpage.action?spaceKey=COmanage&title=COmanage+Match+User+Guide
+ <= New LauraP COmanage Match User Guide +
+https://spaces.at.internet2.edu/display/COmanage/Integrating+With+ID+Match
+ <= Older doc: ID Match integration +
+
+- - -
+_2022-06-27 09:00 mP UG_
+
+Ethan Kromhout: Is there an EOL date for MIM?
+
+Tommy Doan / SMU: 2029. https://learn.microsoft.com/en-us/lifecycle/products/microsoft-identity-manager-2016
+Note that mainstream support has already ended
+
+David Bickel: Do you guys also know is Microsoft ending support of the sync service oldest piece of MIM, or just portal/service? I ask because we have never moved to use the new pieces, I am thinking the sync service will be harder for them to retire as they themselves use it for AADC etc
+
+Tommy Doan / SMU: I think you're referring to AAD Connect. There are no immediate plans to decommission that. In fact, they have recently reved to v.2. In fact, version 1.x have all officially moved out of support. For anyone using AAD Connect, I definitely recommend following this page:
+https://learn.microsoft.com/en-us/azure/active-directory/hybrid/reference-connect-version-history
+
+- - -
+_2022-05-24 09:00 mP UG_
+
+Bill Kaufman - Internet2
+Andrew Parmer - University of Florida
+Ben Rappleyea - Illinois State
+Sam Harmon - CWRU
+Chris Hubing - Internet2
+Dennis Antrobus - Western University
+Drew Aschenbrener - Internet2
+Ethan Kromhout - UNC Chapel Hill
+Jeremiah Haywood - Illinois State University
+Lisa Carr - George Mason University
+Paul Caskey - Internet2
+Paul Spaude - Unicon
+Stephen Fox - !Labs
+Richard Frovarp - NDSU
+Stephanie Fuller
+Kamil Jires - Evolveum
+
+
+telemetry
+
+provisioning challenges
+
+- - -
+_2022-04-12 09:00 mP UG_
+
+Identity Governance (structure and lifecycle of roles and role assignments)
+
+- - -
+_2022-03-29 10:00 mP UG_
+
+First steps with midPoint
+
+- - -
+_2022-03-22 09:00 mP UG_
+
+` Plans for InCommon docker containers with midPoint (inspired by discussion on incommon-midpoint Slack channel)
+` How to solve reconciliation of midPoint and ID Match
+` Self-registration. I saw Paul Spaude's demo and I'm curious about feedback or possible follow-ups
+` CAMP, ACAMP, TechEx conferences. How it will work this year?
+
+Plans for InCommon docker containers with midPoint (inspired by discussion on incommon-midpoint Slack channel)
+How to solve reconciliation of midPoint and ID Match
+Self-registration. I saw Paul Spaude's demo and I'm curious about feedback or possible follow-ups
+CAMP, ACAMP, TechEx conferences. How it will work this year?
+- - -
+_2022-03-15 09:00 mP UG_
+
+ID Match PavolM
+
+- - -
+_2022-03-01 09:00 mP UG_
+
+Next Generation Directory-based User Management for Cloud Infrastructure
+] link for the recording
+
+- - -
+_2021-11-23 09:00 mp UG_
+
+https://docs.evolveum.com/midpoint/reference/diag/troubleshooting/troubleshooting-with-traces/
+ <- troubleshooting with tracing +
+- - -
+_2021-11-09 09:00 mp UG_
+
+Matus Macik demo of affiliation config and licence mgmt
+
+- - -
+_2021-10-12 09:00 mP UG_
+
+JiT provisioning--call out to mP to do NRT provisioning to the SP rather than asking SP to do the provisioning action
+
+how long does it take to create a user on midPoint? Live sync sees too many changes. Takes
+based on modified time-stamp;
+
+CirrusID SaToSa integration with midPoint;
+Use the existing
+
+How do you explain account linking
+
+next] see how ORCID explains 'account linking' to researchers
+
+mP 4.4
+
+ChrisHu / Paul Spaude: incompat w latest versions of mP:
+PaulS: running grouper connector on 4.3 with no problems; take branch maven install put jar into icf-connectors; jar .7; Slavek pinted out some jiras that will address; delete/re-add group issues: group retired process doesn't delete the org, it's still there when groupe s recreated
+
+Paul/Stephen: Stephen intends to incorporate Paul's features into Unicon's version.
+Paul: If we can talk members and assignments; Unicon would donate time;
+
+PaulC: good time to re-evaluate the existing grouper connector <- !!; Avoid recomputation if possible; real constraints esp with the !Labs enhancements. Performance issues, only mitigated for now by attribute-based filtering of groups to be
+
+billK] will set up a call w all to pursue.
+
+Slack anything that you've run into w Grouper connector
+
+mP 4.4 release pushed back to Nov.
+
+Ethan: Further doc on dB migration to Postgres coming; 4.4 will not yet make Postgres migration mandatory
+
+- - -
+_2021-06-22 09:47 mP UG_
+
+stacey.myers@austin.utexas.edu
+ Need to drop, thank you everyone for the conversation.
+ Univ of Texas is looking forward to contributing to the community
+
+- - -
+_2021-06-08 09:03 mP UG on midPoint Studio_
+
+intro to mP Studio with aim to do a webinar in future
+
+Studio is a good place to define new resources: code completion, oid de-referencing,....
+
+reconciliation: from user ui
+
+task-defined reconciliation by resource, etc.
+
+
+Paul Caskey to Everyone (09:53)
+script on a resource - runs after any adds, modify, delete:
+
+```
+<scripts>
+        <script>
+            <operation>add</operation>
+            <operation>modify</operation>
+            <operation>delete</operation>
+            <language>Shell</language>
+            <kind>account</kind>
+            <order>after</order>
+            <criticality>fatal</criticality>
+            <host>resource</host>
+            <code>/opt/midpoint/var/csv/canvas/importCanvasData.sh</code>
+        </script>
+    </scripts>
+```
+
+*Evolveum thinking about mechanisms other than full reconciliation for recovering from async failures*
+
+
+
+
+- - -
+_2021-05-25 08:46 mP UG meeting_
+
+connector proper handles only groups (and bare ids for group members)
+ to reconcile users, must recompute users
+
+EthanK: For us, the trick was that we wanted to avoid recompting all users, and only wanted to recompute users who were in a group that midPoint was monitoring in grouper. That's why adding a trigger during the membership processing was much more efficient.
+
+object template assignment subtype = grouper group; for each group, recomputes all members.
+
+What sets the uuid as the primary identifier? In the connector config portion of the resource definition
+
+for async resource, you have to manually add the schema to the definition since there is no schema query in a message channel
+
+using mP to control users, Grouper decides who gets what; provision on demand.
+
+- - -
+_2021-04-13 09:00 mP UG meeting_
+
+next] edit draft ident guidance based on this meeting: https://github.internet2.edu/internet2/iam-knowledgebase/blob/main/identifier-guidance.adoc
+
+. Planning of agendas on out I2/Evolveum calls, for meeting the following week.
+. Identifier guidelines;
+. Banner integration working group: Summarize state of play
+. Demo of workbench (PaulC)
+
+usability characteristic for public iam id
+
+ethan ID: an additional: institutional identifier, not name-based, internal to the university; when netId changes nice to have a non-numeric  U-wide identifier
+
+good idea: internal id: uuid, any system has some kind of internal id; uuid, because admins can use it as a pointer.
+
+2 public id: 1 name-based, another random string, persistent, not exposed to user, maintain both
+
+combine SAML and OIDC (no scope)
+
+length may be issue
+
+mines40485
+
+ek: privacy preserving: support but not necessarily
+
+ask IAM if this sys-id is known (forensic)
+
+targetedid
+
+https://docs.google.com/document/d/1ERsYSxaPlPZRI5jq1l7puCCJnCt2sVuvI0xb_SBDlAc/edit
+
+Matthew Brookover to Everyone (09:56)
+https://wiki.evolveum.com/display/midPoint/UserType
+https://spaces.at.internet2.edu/display/TIERENTREG/TIER+SoR-Registry+Core+Schema
+- - -
+_2021-03-30 09:00 UG Launch meeting_
+
+- opaque, persistent identifiers and midPoint

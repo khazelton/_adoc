@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="root">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="beginTimestamp"/>
+        <xs:element ref="dateCreated"/>
+        <xs:element ref="dateInactivated"/>
+        <xs:element ref="emails"/>
+        <xs:element ref="endTimestamp"/>
+        <xs:element ref="friendlyName"/>
+        <xs:element ref="id"/>
+        <xs:element ref="identifiers"/>
+        <xs:element ref="meta"/>
+        <xs:element ref="names"/>
+        <xs:element ref="phoneNumbers"/>
+        <xs:element ref="protect"/>
+        <xs:element ref="status"/>
+        <xs:element ref="updatingEntityId"/>
+        <xs:element ref="updatingSOR"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="beginTimestamp" type="xs:dateTime"/>
+  <xs:element name="dateCreated" type="xs:dateTime"/>
+  <xs:element name="dateInactivated" type="xs:dateTime"/>
+  <xs:element name="emails" type="element"/>
+  <xs:element name="endTimestamp">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="friendlyName" type="xs:NCName"/>
+  <xs:element name="id" type="xs:NMTOKEN"/>
+  <xs:element name="identifiers" type="element"/>
+  <xs:element name="meta">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="resourceType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="resourceType" type="xs:NCName"/>
+  <xs:element name="names" type="element"/>
+  <xs:element name="phoneNumbers" type="element"/>
+  <xs:element name="protect" type="xs:boolean"/>
+  <xs:element name="status" type="xs:NCName"/>
+  <xs:element name="updatingEntityId">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="updatingSOR">
+    <xs:complexType/>
+  </xs:element>
+  <xs:complexType name="element">
+    <xs:sequence>
+      <xs:element ref="element"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="element">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="userName"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="primary"/>
+          <xs:sequence>
+            <xs:element ref="familyName"/>
+            <xs:element ref="formatted"/>
+            <xs:element ref="givenName"/>
+            <xs:element ref="honorificPrefix"/>
+            <xs:element ref="honorificSuffix"/>
+            <xs:element ref="middleName"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="type"/>
+        <xs:element minOccurs="0" ref="value"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="userName" type="xs:NCName"/>
+  <xs:element name="primary" type="xs:boolean"/>
+  <xs:element name="familyName" type="xs:NCName"/>
+  <xs:element name="formatted" type="xs:string"/>
+  <xs:element name="givenName" type="xs:NCName"/>
+  <xs:element name="honorificPrefix" type="xs:NCName"/>
+  <xs:element name="honorificSuffix" type="xs:NCName"/>
+  <xs:element name="middleName" type="xs:NCName"/>
+  <xs:element name="type" type="xs:NCName"/>
+  <xs:element name="value" type="xs:string"/>
+</xs:schema>

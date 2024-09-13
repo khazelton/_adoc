@@ -1,0 +1,137 @@
+=== cicd.adoc
+SEE jenkins.adoc
+
+- - -
+_2024-08-23 14:30 cloud native container build-packs vs dockerfiles_
+
+https://medium.com/@prateek17/goodbye-dockerfiles-hello-buildpacks-transform-your-container-workflow-3505d7fbfa03[]
+
+With Cloud Native Buildpacks, you can create Docker images with a single command, making it easy to integrate into CI/CD pipelines
+
+
+
+- - -
+_2021-04-07 12:24 testing tools_
+
+Ben Rappleyea:
+We have utilized Katalon here in the past and it has done a lot for us. Scriptable in Groovy so nice there :)
+
+https://www.katalon.com/
+
+webisoget (Paul)
+selenium
+gsh templates
+chrisHu build pipeline scripts
+
+scim aws, confluence, slack, AzureAD
+https://docs.microsoft.com/en-us/azure/active-directory/saas-apps/tutorial-list
+- - -
+_2020-07-31 15:01 Jenkins 2 Up & Running_
+
+https://devopscube.com/jenkins-2-tutorials-getting-started-guide/ +
+https://www.jenkins.io/2.0/ +
+SafariBooks/devTools/Jenkins2... +
+~/opt/jenkins2 <= code from the ^ book.
+
+- - -
+_2019-11-13 20:52 dzone tutorial collection on CI/CD_
+
+https://dzone.com/articles/cicd-pipeline-demystifying-the-complexities
+https://dzone.com/articles/the-complete-cicd-collection-tutorials
+
+- - -
+_2019-04-21 08:44 CI/CD starter project_
+
+https://devblog.axway.com/apis/api-builder-simple-ci-cd-implementation-part-1/
+https://dzone.com/articles/api-builder-a-simple-cicd-implementation-part-2
+
+- - -
+_2017-03-15 11:53 Docker_
+
+'Docker is the most popular file format for Linux-based container development and deployments. If you’re using containers, you’re most likely familiar with the container-specific toolset of Docker tools that enable you to create and deploy container images to a cloud-based container hosting environment.'
+
+'Ansible is the way to automate Docker in your environment. Ansible enables you to operationalize your Docker container build and deployment process in ways that you’re likely doing manually today, or not doing at all.'
+- https://www.ansible.com/docker
+
+'application container technology, in general, and Docker, in particular.'
+
+'You can use containers, and if you don't want to manage the hardware, then you use virtualization as well.'
+Put simply, a container consists of an entire runtime environment: an application, plus all its dependencies, libraries and other binaries, and configuration files needed to run it, bundled into one package.'
+'By containerizing the application platform and its dependencies, differences in OS distributions and underlying infrastructure are abstracted away.'
+
+'With virtualization technology, the package that can be passed around is a virtual machine and it includes an entire operating system as well as the application.'
+'A physical server running three virtual machines would have a hypervisor and three separate operating systems running on top of it.'
+'By contrast a server running three containerized applications as with Docker runs a single operating system, and each container shares the operating system kernel with the other containers.'
+'Shared parts of the operating system are read only, while each container has its own mount (i.e., a way to access the container) for writing. That means the containers are much more lightweight and use far fewer resources than virtual machines.'
+
+'A container may be only tens of megabytes in size, whereas a virtual machine with its own entire operating system may be several gigabytes in size.'
+
+'To summarize, containers cannot generally provide the same level of isolation as hardware virtualization.'
+
+'Docker has become synonymous with container technology because it has been the most successful at popularizing it.'
+
+'Most Linux distributions are unnecessarily feature-heavy if their intended use is to run containers. This is no surprise since a number of Linux distributions have cropped up which have been designed specifically for running containers. Some examples include CoreOS, Red Hat's Project Atomic, Canonical's Snappy Ubuntu, and VMware's Project Photon.'
+
+'Will containers eventually replace full blown server virtualization? That's unlikely in the short term if for no other reason than that virtual machines offer better security than containers.
+
+The management tools that are available to orchestrate large numbers of containers are also nowhere near as comprehensive as software like VMware vCenter or Microsoft's System Center which can be used to manage virtualized infrastructure.'
+
+'"Most people have no desire to manage hardware, so they put it on to VMware and manage it in software," says Hightower. "Containers change nothing. You can use containers, and if you don't want to manage the hardware, then you use virtualization as well."'
+
+- http://www.cio.com/article/2924995/enterprise-software/what-are-containers-and-why-do-you-need-them.html
+
+
+Infrastructure as code:
+
+'Why we use Terraform and not Chef, Puppet, Ansible, SaltStack, or CloudFormation'
+
+'Here are the main trade-offs we considered:
+- Configuration Management vs Orchestration
+- Mutable Infrastructure vs Immutable Infrastructure
+- Procedural vs Declarative
+- Client/Server Architecture vs Client-Only Architecture'
+
+'Chef, Puppet, Ansible, and SaltStack are all “configuration management” tools,
+  - which means they are designed to install and manage software on existing servers
+  .
+ CloudFormation and Terraform are “orchestration tools”,
+  - which means they are designed to provision the servers themselves,
+  - leaving the job of configuring those servers to other tools.'
+
+'If you’re using an orchestration tool such as Terraform to deploy machine images created by Docker or Packer, then every “change” is actually a deployment of a new server (just like every “change” to a variable in functional programming actually returns a new variable).'
+
+'For example, to deploy a new version of OpenSSL,
+- you would create a new image using Packer or Docker with the new version of OpenSSL already installed,
+- deploy that image across a set of totally new servers,
+- and then undeploy the old servers.
+This approach
+- reduces the likelihood of configuration drift bugs,
+- makes it easier to know exactly what software is running on a server, and
+- allows you to trivially deploy any previous version of the software at any time.'
+
+'Chef and Ansible encourage a procedural style
+- where you write code that specifies, step-by-step, how to to achieve some desired end state.
+' Terraform, CloudFormation, SaltStack, and Puppet all encourage a more declarative style
+- where you write code that specifies your desired end state,
+-  the IAC tool itself is responsible for figuring out how to achieve that state.'
+
+` https://blog.gruntwork.io/why-we-use-terraform-and-not-chef-puppet-ansible-saltstack-or-cloudformation-7989dad2865c#.es7v4v766
+
+- - -
+_2017-03-15 11:50 references and links_
+
+https://pages.awscloud.com/awsmp-h2-dev-aws-marketplace-devops-workshop-series.html
+ <= devops workshop series +
+https://pages.awscloud.com/awsmp-wsm-dev-workshop-series-module4-infrastructure-as-code-ty.html
+ <= infra as code +
+https://www.katalon.com/
+ <= 2021 July 29 webinar +
+https://jenkins.io/ +
+https://github.com/jenkinsci/pipeline-plugin +
+https://jenkins.io/projects/blueocean/ +
+googPdf/jenkinsPipeRefcardDz.pdf +
+https://www.ansible.com/docker +
+http://www.cio.com/article/2924995/enterprise-software/what-are-containers-and-why-do-you-need-them.html +
+https://blog.gruntwork.io/why-we-use-terraform-and-not-chef-puppet-ansible-saltstack-or-cloudformation-7989dad2865c#.es7v4v766 +
+http://www.terraformupandrunning.com/?ref=gruntwork-blog-comprehensive-terraform +
+https://cloud.google.com/container-engine/  <= kubernetes-based +

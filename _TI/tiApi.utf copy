@@ -1,0 +1,1615 @@
+~/_notesPlus/tierApi.utf    https://spaces.internet2.edu/display/DSAWG/TIER-Data+Structures+and+APIs+Working+Group+Home
+https://spaces.internet2.edu/display/TWGH/TIER+Working+Groups+Home    http://j.mp/1PWMCp5  <== online agenda/meeting notes
+https://lists.internet2.edu/sympa/admin/tier-api
+https://bugs.internet2.edu/jira/secure/Dashboard.jspa  kh mtZ   JIRA
+https://fed-interop-wg.ligo.org/khazelton/tier-api-wg
+~/_notesPlus/tier-ap-wg.gitlab.utf  <== ligo gitlab instance for API files
+https://spaces.internet2.edu/display/TWGH/TIER+Working+Groups+Home 
+http://tier01.getsandbox.com/
+https://docs.stormpath.com/rest/product-guide/latest/reference.html
+SEE ALSO: ../tierSchema.utf ../linkedData.utf  ../json.utf  ../data*.utf  ../rdf.utf
+_____________________
+h6. 2017-01-18 15:58 post call chat w 
+
+WarrenC: Push the approved terminology into and through the VPN use case.  Ask Warren for graphics help
+
+Grouper Docs from TIER
+
+Install/config wizard
+
+Deployment Guide aka Administration Guide;  Understanding and Deploying Grouper
+
+- Integrating Source systems
+
+- Creating basic group and folder structure
+
+- Access Management with grouper
+  - Provisioning
+  - Managing permissions
+  - Allow/Deny policy expressions
+  
+
+
+_____________________
+h6. 2017-01-17 19:33 TomD on Grouper Deployment guide
+
+] intro the GDG discussion with 
+  - Let's make some plans and decisions about overall structure of doc; 
+  - Let's discuss what kind of work team members can reasonably take on between meetings.
+  
+[Tom] VPN as a template for handling use cases
+  - what were the challenges you faced in deploying Grouper?
+_____________________
+h6. 2016-12-08 12:07  Paul from ADI-IA: ITANA webinar on UW-Msn API workstyle
+
+- Special annotations added to Spring Boot apps can generate Swagger documentation from code.
+
+- Angular
+- Google's Material Design; configurable theming, etc.
+- Jenkins CI, CD
+- Ansible is friendlier than Chef (techpartners thread)
+
+adi-ia/uw-spring-security for shib integrations
+
++ User stories (xtreme prog.) "As a X i want Y in order to Z"
+
+_____________________
+h6. 2016-12-01 15:14  marlena
+
+offering help with API AuthNZ including delegation
+
+_____________________
+h6. 2016-11-02 16:45  API AuthNZ
+
+https://tools.ietf.org/html/draft-ietf-oauth-pop-architecture-08  <== Proof of Possession for JWTs
+http://www.baeldung.com/java-json-web-tokens-jjwt  <== full tutorial on JWTs from Micah Silverman's
+
+_____________________
+h6. 2016-10-28 16:35  API authNZ with https://git.doit.wisc.edu/adi-ia/uw-spring-security
+
+- https://git.doit.wisc.edu/adi-ia/uw-spring-security/wikis/home
+
+_____________________
+h6. 2016-10-28 14:09  references and links (addendum to h6. 2015-08-14)
+
+https://git.doit.wisc.edu/adi-ia/uw-spring-security
+https://git.doit.wisc.edu/adi-ia/uw-spring-security/wikis/home
+https://git.doit.wisc.edu/adi-ia/continuous-publish-plugin
+
+_____________________
+h6. 2016-08-31 12:21  Securing APIs
+
+http://www.baeldung.com/2011/10/31/securing-a-restful-web-service-with-spring-security-3-1-part-3
+_____________________
+h6. 2016-07-27 12:09  WG CCall
+
+TIER Dev Sandbox MidPoint Team
+
+@khazelton
+@babb
+@bsavage
+@jjminer
+@smoyer64
+@tjordan
+@wgthom
+@wkaufman
+
+Team repo: https://github.internet2.edu/TIER/midpoint-demo 
+
+for access send first/last name; preferred username; email to 
+_____________________
+h6. 2016/07/23/ 16:12 TIER Grouper APIs
+
+Vivek has the items implemented we discussed in the last call and the Grouper TIER SCIM server running on the grouper demo server.  I will see when Vivek can attend a call and we can discuss the next steps.  Thanks, Chris
+ 
+https://spaces.internet2.edu/display/Grouper/Grouper+TIER+SCIM
+ 
+Here is a sample call (if you want user/pass email me):test/""123
+ 
+https://grouperdemo.internet2.edu/grouper-ws-scim_v2_3/v2/Groups/b32e826380ea42c69dbf59cc262584f8
+ 
+{
+   "meta":{
+      "version":"xgFBMjnH/2AGz1w8JyF/47M17i3wBUGcAqYLp0GHTVA="
+   },
+   "id":"b32e826380ea42c69dbf59cc262584f8",
+   "displayName":"chris:testGroup",
+   "schemas":[
+      "urn:ietf:params:scim:schemas:core:2.0:Group",
+      "urn:grouper:params:scim:schemas:extension:TierGroupExtension",
+      "urn:tier:params:scim:schemas:extension:TierMetaExtension"
+   ],
+   "urn:tier:params:scim:schemas:extension:TierMetaExtension":{
+      "resultCode":"SUCCESS",
+      "responseDurationMillis":54
+   },
+   "urn:grouper:params:scim:schemas:extension:TierGroupExtension":{
+      "description":"description updated using grouper-ws-scim PUT request",
+      "idIndex":10342,
+      "systemName":"chris:testGroup"
+   }
+}
+_____________________
+h6. 2016-07-20 15:57  sZoppi Skype re messaging
+
+[2016-07-20, 14:18:52] Keith Hazelton: good
+[2016-07-20, 14:18:52] Steven Zoppi: but wanted you to know that we have bill hooked up through Unicon
+[2016-07-20, 14:19:03] Steven Zoppi: talking to them this week.
+[2016-07-20, 14:24:55] Steven Zoppi: Agreed! (MDP)
+[2016-07-20, 14:25:52] Keith Hazelton: good
+[2016-07-20, 14:32:29] Steven Zoppi: We can commission some.
+[2016-07-20, 14:32:46] Steven Zoppi: (if you want compulsory participation)
+[2016-07-20, 14:59:16] Steven Zoppi: I was going to step in on this ... Messaging is Messaging ... Period ...
+[2016-07-20, 14:59:24] Steven Zoppi: The mode and time of transit is something else.
+[2016-07-20, 14:59:27] Steven Zoppi: He's conflating the two.
+[2016-07-20, 14:59:32] Steven Zoppi: Want me to speak or do you?
+[2016-07-20, 14:59:36] Steven Zoppi: Or do you want me to shut up?
+[2016-07-20, 14:59:39] Keith Hazelton: jump in
+[2016-07-20, 15:08:47] Steven Zoppi: I get what he's concerned about (now)
+[2016-07-20, 15:08:55] Keith Hazelton: good
+[2016-07-20, 15:08:57] Steven Zoppi: Make sense ... but we're rat-holing a bit
+[2016-07-20, 15:09:09] Keith Hazelton: yep pulling up on the yoke
+
+[2016-07-20, 15:09:14] Steven Zoppi: the mechanism is a multi-layered problem
+[2016-07-20, 15:09:46] Steven Zoppi: Ground-up (message/transport/invocation(pub/sub)/authorization)
+[2016-07-20, 15:09:54] Steven Zoppi: solve for each in order.
+
+[2016-07-20, 15:10:22] Steven Zoppi: YAY
+[2016-07-20, 15:10:39] Steven Zoppi: :-) This is the topic I've been waiting for ... for about 2 years lol
+[2016-07-20, 15:21:01] Keith Hazelton: say more when the mic frees up
+[2016-07-20, 15:21:17] Steven Zoppi: about this?
+[2016-07-20, 15:21:29] Steven Zoppi: or generally?
+[2016-07-20, 15:21:32] Keith Hazelton: yeah, what is it you have been waiting for?
+[2016-07-20, 15:21:46] Steven Zoppi: The messaging discussion (that we moved away from)
+[2016-07-20, 15:21:56] Steven Zoppi: And appropriately are teeing to something more robust.
+[2016-07-20, 15:21:59] Keith Hazelton: ah,
+[2016-07-20, 15:21:59] Steven Zoppi: (in depth)
+[2016-07-20, 15:22:12] Steven Zoppi: (my Skype message to you may have been delayed.)
+[2016-07-20, 15:22:20] Keith Hazelton: ok, we'll come back up
+[2016-07-20, 15:22:26] Steven Zoppi: This is all worthwhile conversation though ..
+[2016-07-20, 15:22:57] Steven Zoppi: I don't usually want to chime in when the community is doing their work ... unless it's a bit of a rathole ... otherwise - this is "your agenda"! :-)
+[2016-07-20, 15:23:27] Keith Hazelton: got it
+[2016-07-20, 15:26:32] Steven Zoppi: Gabor sounds pretty darned well-engaged!
+[2016-07-20, 15:26:47] Keith Hazelton: I know, right?
+[2016-07-20, 15:33:37] Steven Zoppi: So fun ...
+[2016-07-20, 15:33:39] Steven Zoppi: Love this stuff.
+[2016-07-20, 15:33:49] Steven Zoppi: What a great group (all multitasking like hell)
+[2016-07-20, 15:33:52] Keith Hazelton: Entertaining AND good for you
+[2016-07-20, 15:33:56] Keith Hazelton: yep
+[2016-07-20, 15:34:03] Steven Zoppi: Hope I wasn't too intrusive ...
+[2016-07-20, 15:34:07] Keith Hazelton: not at all
+[2016-07-20, 15:34:18] Keith Hazelton: appreciated your contributions
+[2016-07-20, 15:34:22] Steven Zoppi: I really do prefer that the working groups feel like "big brother" (should I be regarded in that way) isn't watching too closely.
+[2016-07-20, 15:34:24] Keith Hazelton: and gratitude
+[2016-07-20, 15:34:37] Steven Zoppi: the gratitude is genuine.
+[2016-07-20, 15:34:42] Steven Zoppi: The work is difficult.
+[2016-07-20, 15:34:52] Steven Zoppi: and complicated.
+[2016-07-20, 15:35:10] Keith Hazelton: OK, off to my monthly chat with Chris about what I've been up to ;-)
+[2016-07-20, 15:35:16] Steven Zoppi: Okay - Have fun!
+[2016-07-20, 15:35:25] Steven Zoppi: Tell Chris Hi ... and thanks again!
+[2016-07-20, 15:35:33] Keith Hazelton: will do
+_____________________
+h6. 2016-06-30 11:57  skype w BennO re Backbone Usage Sceario, Demo Sandbox: COmanage version
+
+Docker Compose: spin up multi-container services in one statement: docker compose up
+
+https://spaces.internet2.edu/display/TIERENTREG/TIER+IAM+BackBone+Scenario
+
+What the Internet2 TIER (Trust and Identity in Education and Research) Initiative is attempting to assemble is a full-featured identity and access management infrastructure with all open source components. Shibboleth and Grouper are definitely included. The big gap is the lack of a viable open source entity registry. That led to our interest in midPoint.
+ 
+We will proceed by iteration, and the first iteration will be what we call a proof of concept of a backbone usage scenario. Basically all it is intended to do is illustrate the overall concept with a functioning example. The story we will demonstrate is a new hire or a new student arriving at a hypothetical university, having their basic demographic and affiliation information incorporated into the core entity registry, including an identity match process to determine if the person is already represented in the registry.
+ 
+Once in the registry, the new arrival should be provisioned with an account, credentials and pushed into a general purpose LDAP directory. Further automated transformations on the ERP data are used to populate basic affiliation groups in Grouper (in this proof of concept, the affiliations are either faculty or student). Finally, there is a Shibboleth-protected Learning Management System accessed by the faculty member or student through SAML-based Web-SSO. The LMS will display either a course design page (for faculty) or a course catalog (for students).
+ 
+We are now launching an investigation to determine whether midPoint could fill the role of entity registry, rule-driven provisioning engine and possibly credential management tool. That will be a main thread of conversation on Friday's call.
+
+The "LMS"
+
+COm 1.1 flat file org source pull model; (eventually push & API); find the three smiths; which would be more interesting: IdMatch? Batch push/pull;
+ IdMatch for TechEx: Standalone IdMatch and have both; 3rd pull of ID data: black box would accept searches from both COmanage and midPoint; For demo, let's keep it simple: Only send queries that resolve to a unique identity; 
+ 
+ Code for IdMatch has to be dusted off; BennO will ask J Jokl VM for COmanage;
+_____________________
+h6. 2016-06-17 16:45  review of messaging solutions  http://queues.io/
+_____________________
+h6. 2016-05-16 19:58  Brian Savage Swagger for basic User and Group APIs
+
+Hi,
+
+Based upon the most recent discussion on the list and from the 5/20 call,
+there's now an updated swagger (talked about on 5/6 call) spec  that:
+a) has SCIM-like API paths (assuming at the moment /Users and /Groups are available as endpoints; these use Steve Moyer's examples from the discussion list; the way
+parameters and such are expressed in swagger will need more work)
+b) defines the EduPerson extension the ScimUser schema - using Penn State's example json  (at https://github.com/PennState/tier)
+c) allows interactive trial of (only) the first operation so folks can better see what an entire response might look like - instructions below
+
+To use:
+1. Go to editor.swagger.io
+2. Import the url below (this is the swagger yaml definition):
+https://gist.githubusercontent.com/bsavage/ff56023f14815c74df81a2580d438a41/raw/17996a4ed77c957e6af3d862ad029f537b4f53ea/tierBasicSCIMOpsUsingPSUExtension.yaml
+3. To return the eduperson extension interactively, see the right-hand side of the editor - at the bottom of the GET/Users/{userId} box, you can click on "Try this operation"
+(enter any ID), then "Send Request"  ... with any luck (feel free to give me any bad news about any of this not accessible/working) you'll get back the application/json.
+
+Cheers,
+Brian
+_____________________
+h6. 5/12/16 10:15? AM Aegis on provisioning
+
+call w Warren and Keith  3032221070,1,41269#
+
+Janet Yarbrough, Dir of Biz Dev.; Jim Faut, VP of Development; Ames Fowler sec. engineer; Jim Faut, Aegis: 
+Aegis solely focused on education, IdM solutions; An early InCommon Participantrident HE id admin product, including strong provisioning engine.
+
+Ames: Jim & I share roadmap integration resp. for Aegis; keeping eye on customer angle;
+
+webinar shows graph of our architecture; Aegis: identity lifecycle admin: keeping AuthN/Z info current; Hypothesis is true: Provisioning is the hard part; in K-12 we have real-time prov. based on SAML authN; 
+
+We want to develop in adoption of the API, getting intimate with TIER on working on the integration aspects; HE prov is exponentially more complicated, so let's collaborate with TIER;
+
+We don't want to be in co-opetition, want cooperation; Goal as commercial ent. we'd love to be THe prov. solution; compatible, friendly, welcome partner; 
+
+finding a solution that works for HE; drawback is biz continuity, support. Shib & Grouper solve their respective problems;.Aegis will do full integration with Shib and Grouper; Aegis is really sharing our view of benefits and gains;
+
+The Center of Excellence (CoEngagement) sharing things via Groovy and community sourcing;
+
+WarrenC: Prov./PasswordMgmt/Account Mgmt; (Ae: "role package"); SCIM, event messages, schema all in scope;
+
+managing groups and permissions
+
+Ames: Trident also based in a data-rich arch. Has its own repo. Functionality exposed on web services; having to redefine IAM to illustrate centralized IAM mgmt function; 
+
+Ames: Jim will have technical answer; collaborative side, we're open to working together for mutually beneficial ends; Collab in HE is in Ae DNA; As long as Ae can support the effort w tech we developed without giving away our IP, we're good. I2 as whole is not pure open source possibility;
+
+Warren: attempting to talk about for 5 months in ever-spirling toward the center: How do we break down 'registry' into functional components; Used the finer-grained functionalities: into a P&P environment; standardizing the data objects and SCIM + Messages; 
+
+Janet: Beneficial to K&W if we took us down a brief demo of Trident HE;
+
+Internet2 Global Summit
+
+Janet, Ames & Jim will confer and re-caucus on a future conference call
+
+
+
+
+----------
+Hi Janet and Jim,
+
+We had a discussion today on the TIER call about  next steps for a proof of concept of the provisioning engine.  Keith Hazelton and Warren Curry (cc’d above), will be leading this. Keith has offered to meet with you to give you and update on the specifics. 
+
+Please consider this an introduction and let me know if we can assist.
+
+Thanks,
+Ann
+_____________________
+h6. 2016-05-11 13:57  WG call
+
+12172650313  Keith Wessel
+
+_____________________
+h6. 2016-05-06 13:30  WG CCall
+
+tier-wg EntReg-Req
+
+viveksachdeva@gmail.com
+_____________________
+h6. 2016-04-14 15:34 wrapping up for R1
+
+API
+ 
+Define the most Basic API operations on person resources —
+Basic Person Resource Management Operations
+https://spaces.internet2.edu/x/u4C0BQ
+ 
+Instrumenting and Monitoring TIER Components--First Steps in a Long Journey —
+Leverage existing Grouper features for logging and tracking changes to prototype TIER Component Monitoring
+https://spaces.internet2.edu/x/8wLSBQ
+ 
+TIER API Basic Group Management Operations —
+Basic Group Management Operations
+https://spaces.internet2.edu/x/EwCoBQ
+ 
+TIER Standards and Guidelines —
+Standards and Guidelines that apply to TIER RESTful APIs, Resource Representations and Event Messages
+https://spaces.internet2.edu/x/wQTSBQ
+
+Entity Registry
+
+COmanage / Enterprise Registry Gap Analysis —
+COmanage 1.0.2 Compared to the TIER Entity Registry Requirements
+https://spaces.internet2.edu/x/QQDFBQ
+
+Entity Registry Requirements —
+Requirements on an Entity Registry and Related Components
+https://spaces.internet2.edu/x/DgKoBQ
+
+IAM Functional Model and IAM Glossary —
+IAM Functional Model: Diagram, Table and Glossary
+https://spaces.internet2.edu/x/FQGoBQ
+
+TIER SOR-Registry Core Schema —
+Early draft of TIER Core Schema for Systems of Record and Entity Registry – from Benn Oshrin
+https://spaces.internet2.edu/x/9wGoBQ
+_____________________
+h6. 2016-04-14 14:47 URIs and Resources: Many to one or One to one
+
+http://tools.ietf.org/html/rfc6596  <== The Canonical Link Relation
+
+_____________________
+h6. 2016-04-13 16:12  tier release Next
+_____________________
+h6. 2016-04-07 08:30  mulesoft call
+
+7192347872 104 186 6830
+
+https://docs.google.com/document/d/1_nsIohZOzsUGPjxndmsFsf9v-EyKyVUzrjHoVpGvBm4/edit?usp=sharing
+
+https://developer.mit.edu/apis-people  <== API portal for developers
+
+aypoint platform layer of indirection over SoRs and person data services
+
+- don't like extensions for local institutions
+
+- w Resource Types you have two endpoints to get one object with a ref to an object with a diff Resource Typ
+
+- extensions need work
+
+_____________________
+h6. 2016-04-06 13:56  WG CCall
+
+] rephrases Object references middle column
+
+] JIRA:we'll investigate prefix issue 
+] send jira link to the list
+
+plural for resources
+
+what kind of parameters you can pass in; in 2nd column; may be other parameters, e.g.,   
+- check for syntax compatibility
+- ref to SCIM
+- leave out periods
+
+prefixes and periods and wiscEdu
+
+response format is 
+
+how does Swagger do calendarDate, etc.
+
+is swagger definitive about what schema means
+
+response content needed
+
+Friday call Gabor said I won't make changes to the priority
+		
+_____________________
+h6. 2016-03-29 10:00  Skype with Warren
+
+See agenda for Wed., March 30 WG meetings: http://j.mp/1PWMCp5
+
+Notion of securing APIs access control; that has not been talked about;
+Start with Alan, HarryS, RobC, Warren, Keith
+
+_____________________
+h6. 2016-03-25 09:00 event messaging & APIs
+
+rsyslog
+logstash
+graphite
+Kibana
+elasticsearch
+SNMP
+
+
+http://stackoverflow.com/questions/2383912/message-queue-vs-web-services
+
+C.f. "Identity Events"
+_____________________
+h6. 2016-03-23 15:00 API wg
+
+registry path forward:
+
+Some guidelines to keep the Entity Registry work moving forward:
+
+ - Focus on Person entities for this iteration
+
+ - Don't be concerned with whether attribute X is or is not a 'Registry Attribute'
+
+ - If a data element supports any aspect of identity and access management (IAM), consider it in scope, and require that it be managed and made available by SOME service interface
+ 
+ - Require that service consumers will have access to all this information without having to know which system is responsible for maintaining it.
+
+ - Require that near-real-time values of attributes maintained by various Systems of Record / ERPs that are of significance to IAM processes and data will be available from some operational data store.
+
+ - Define data elements associated with each of a set of fine-grained functions and capabilities:
+
+  - The registry itself is authoritative for creating and maintaining the following:
+  
+    - Two Registry IDs per person: Unique, persistent, non-reassignable identifiers, one for internal registry use only and one that is shareable with other components
+    
+    - A cross-walk between Registry person IDs and IDs from various external systems to which the Registry is connected.
+    
+  - The credential management service is responsible for maintaining data about IAM-issued user credentials, including username, passwords and associated LoAs
+  
+  - The identity proofing service is responsible for maintaining data about credential bindings, identity proofing classifications, processes and evidence.
+  
+  - The account management and linking service is responsible for collecting and maintaining any number and type of accounts, internal and external, associated with a given person.
+  
+  - other services and data TBD
+  
+  
+- 
+- 
+_____________________
+h6. 2016-03-15 16:14  
+
+Agenda with inline notes (http://j.mp/1PWMCp5)
+
+https://grouperdemo.internet2.edu/grouper-ws_v2_2/tierApiAuthz/v1/Groups/name:test:testGroup/Members/id:test?indent=true
+https://grouperdemo.internet2.edu/grouper-ws_v2_2/tierApiAuthz/v1
+_____________________
+h6. 2016-03-16 09:00 WG meeting
+
+AIs:
+
++ message Arch
+  - "Fwd: working example, messages/json produced by Brown's Grouper Change Log Event Handler"
+
++ grouper apis
+
+
+- IAM func model rel RL"Bob" starter & rel EntReg requirements
+
++ SCIM & schema issues
+
+
+- swagger
++ Grouper logs, Kibana
+
++ JIRA issues
+
+- SNMP trials
+- COmanage gaps rel. to EntReg requirements
+- schema for 'thin registry'
+
++ clean stds & Guidelines
+- 
+_____________________
+h6. 2016-03-02 14:00 WG meeting
+
+see Ent. Reg. requirements: https://docs.google.com/document/d/1j4Q8MzaSPF2FBcQXgqqElxhEG-osohoIBVZpcBl0OyQ/edit#   
+_____________________
+h6. 2016-03-01 15:00 CIFER Crew Cumbaya
+
+Conclusions from CIFER work on APIs to be carried over to TIER API
+Tuesday, March 1,  4:00 pm Eastern, 1:00 pm Pacific
+Jim Fox, Keith Hazelton, Chris Hyzer, Benn Oshrin
+
+
+I'll
+ use Skype to create a conference call. Jim, Chris, via Skype, ask kei2th for authorization. If you prefer to come in via phone, just send me your number.
+
+This document online:
+http://j.mp/ciferCBY
+
+
+property names in JSON: "string" where 
+
+string
+	""
+	" chars "
+chars
+	char
+	char chars
+char
+	any-Unicode-character-
+    except-"-or-\-or-
+    control-character
+	\"
+	\\
+	\/
+	\b
+	\f
+	\n
+	\r
+	\t
+	\u four-hex-digits
+_____________________
+h6. 2016-02-26 09:00 Central:  WG meeting
+
+https://spaces.internet2.edu/#TIERAPISCIMcommonelements-idPrefix
+
+http://myconfluence.com/display/spacekey/pagename#pagename-anchorname
+
+https://spaces.internet2.edu/display/DSAWG/TIER+API+SCIM+common+elements#TIER+API+SCIM+common+elements#idPrefix
+
+Group Management APIs and Resources Sub-group
+_____________________
+h6. 2016-02-25 14:47  Warren chat
+
+1a-c, 2, 4, 
+
+"we're not doing a fat registry this round"
+
+Jim Fox can explain the membership as Resource
+
+Fisher also has a group mgmt service: Our APIs should avoid Grouperisms 
+
+scim proposal was made a link; no conclusions
+_____________________
+h6. 2016-02-24 09:17  Grouper R1:
+
+Code freeze in 2-4 weeks?
+
+] review for Fri. call: https://docs.google.com/document/d/1S-clpZ4T7evbvL2tgDseez4cC3I9bWfBc55G2X6vL8o/edit  ==> 
+JSONAPI Representation of TIER resources
+_____________________
+h6. 2016-02-24 13:00 Mtn Time  WG call
+
+- x-headers for extra info on error Status Codes 
+
+
+- memberships as resources:  matrix of groups x subject with boolean values; Mem(i,j) == T ==> Si is a member of Gj 
+  
+  
+- placeholder docs for our March 4 deliverables
+  - Proposed Grouper APIs in Swagger
+  - EntReg core APIs in Swagger
+  - 1st draft of TIER API Guidelines (how can we make it as easy as possible for developers)
+  
+
+_____________________
+h6. 2016-02-20 10:03  mime types
+
+http://amundsen.com/media-types/collection/   Collection+json
+_____________________
+h6. 2016-02-20 08:58  thread "HTTP Response Code"
+
+http://programmers.stackexchange.com/questions/270898/designing-a-rest-api-by-uri-vs-query-string  
+https://stormpath.com/blog/put-or-post/ <== for create, when to use which
+http://stackoverflow.com/questions/630453/put-vs-post-in-rest/18243587#18243587  <== ++ candidate TIER best practice (see ref to atomPub)
+http://amundsen.com/media-types/collection/  <== Collection+json media type (IANA Registered)
+https://github.com/collection-json/cj-web
+
+Importance of having AN answer is independent of whether or not it is THE answer.   AN answer should be "The best choice we can make at the point in time we have to make it."
+
+mandates:
+- make things as easy as possible for API users
+- maximize interoperability with other components, TIER or not
+- diverge from SCIM only when necessary
+
+
+_____________________
+h6. 2016-02-17 14:00 WG CCalls
+
+] Review API article TODAY
+
+instrumentation/monitoring/counting:  bundle of simple heuristics is all that we need; 
+- Scott's filter pipes v2 to v3 but v2-ish
+- Chris's stuff is suitable for Splunk
+_____________________
+h6. 2016-02-11 20:51 group operation priorities
+
+What did we learn about top functional use?
+
+The most common request by far is: "Is this entity an effective member of this group?"
+
+	* Get members of group X   (groups have two types of membership)
+	* Add entity(ies) to group X
+	* What are my groups? [1]
+	* Remove entity(ies)  from group X
+
+"create" group doesn't show for the month of January, but this seems foundational to the popular functions, above.
+
+We use PUT for both create and update.
+
+UDubs top 6:
+
++isMember (or hasMember)
++getMembers (of a group)
+getGroup
+createGroup
+getAllMembers (of a group)
+putAllMembers (into a group)
++get/search Groups (of a member)
+put/delete member to/from Group
+
+
+Hyzer's top 3:
+
++isMember (or hasMember, for a group/member), 
++getMembers (of a group), 
++getGroups (of a member).  
+
+_____________________
+h6. 2016-02-11 19:21 working with GitLab
+
+doit-93530864-x:opt hazelton$ pwd
+/Users/hazelton/opt
+doit-93530864-x:opt hazelton$ ls -la temp
+total 40
+drwxr-xr-x   9 hazelton  AD\Domain Users   306 Dec 19 19:49 .
+drwxr-xr-x  23 hazelton  AD\Domain Users   782 Feb 11 18:57 ..
+-rw-r--r--@  1 hazelton  AD\Domain Users  6148 Dec 19 19:49 .DS_Store
+drwxr-xr-x  16 hazelton  AD\Domain Users   544 Feb 11 16:57 .git
+-rw-r--r--   1 hazelton  AD\Domain Users   549 Nov 21 11:07 LICENSE
+-rw-r--r--   1 hazelton  AD\Domain Users    99 Nov 21 11:07 README.md
+drwxr-xr-x   3 hazelton  AD\Domain Users   102 Nov 21 12:30 docs
+-rw-r--r--   1 hazelton  AD\Domain Users    19 Nov 21 12:28 mkdocs.yml
+drwxr-xr-x   3 hazelton  AD\Domain Users   102 Dec 19 20:20 specs
+doit-93530864-x:opt hazelton$ cp -r temp/* tier-api/
+doit-93530864-x:opt hazelton$ ls -la tier-api
+total 24
+drwxr-xr-x   8 hazelton  AD\Domain Users  272 Feb 11 19:20 .
+drwxr-xr-x  23 hazelton  AD\Domain Users  782 Feb 11 18:57 ..
+drwxr-xr-x  13 hazelton  AD\Domain Users  442 Feb 11 18:58 .git
+-rw-r--r--   1 hazelton  AD\Domain Users  549 Feb 11 19:20 LICENSE
+-rw-r--r--   1 hazelton  AD\Domain Users   99 Feb 11 19:20 README.md
+drwxr-xr-x   3 hazelton  AD\Domain Users  102 Feb 11 19:20 docs
+-rw-r--r--   1 hazelton  AD\Domain Users   19 Feb 11 19:20 mkdocs.yml
+drwxr-xr-x   3 hazelton  AD\Domain Users  102 Feb 11 19:20 specs
+doit-93530864-x:opt hazelton$ tree tier-api
+tier-api
+├── LICENSE
+├── README.md
+├── docs
+│   └── index.md
+├── mkdocs.yml
+└── specs
+    └── voot2swagger2bs.yaml
+
+_____________________
+h6. 2016-02-09 05:01 CSG API planning call
+
+
+
+Initial planning call: Common logical data models/APIs
+
+When	Tue Feb 9, 2016 4pm – 5pm Eastern Time
+Where	212-854-0327, conf ID 8543754, pin 3754 (map)
+https://docs.google.com/document/d/1pCZupwy2pyaCrOGSRzNVv4NOni-uFde5wYr15fufy8Y/edit#   <==   Common Data Models & APIs workshop planning
+
+Workshop is scheduled for Thursday 28 April 2016, 9:00 - noon
+
+Participants
+"Ashish Pandit" <aspandit@ucsd.edu>,
+"Jim Behm" <jimbehm@med.umich.edu>,
+"Keith Hazelton" <hazelton@wisc.edu>,
+"Sarah J. Christen" <sjc37@cornell.edu>,
+"Satwinder Singh" <ss4878@columbia.edu>,
+“Dale Pike” <dalepike@vt.edu>,
+“Mojgan Amini” <mojgan@ucsd.edu>,
+“Robert Goodman” <robert.goodman@georgetown.edu>,
+“Jon Saperia” <saperia@g.harvard.edu>
+“Alan Crosswell” <alan@columbia.edu>
+“Mike Fary” <mfary@uchicago.edu>
+
+Are data models and APIs closely enough related to talk about both in one workshop?
+
+Logical Data Models
+
+Who’s doing what?
+Can we share our models?
+If so, how?
+Datacookbook.com?
+People
+Learning management systems
+Registrar “stuff”
+
+
+APIs
+
+Can we get to common/shared APIs?
+- Who are the target users of these APIs? (e.g. student developers, etc.)
+
+What are some potential opportunities for this?
+- course textbook listings
+
+What about API & developer support?
+Standard specification languages
+- RAML
+- Swagger/Open API
+- conversion/translation
+Common infrastructure
+- OAuth?
+- etc
+API portals
+
+
+
+http://apievangelist.com/2014/08/06/the-university-of-api-white-paper-looking-at-apis-in-higher-education/
+_____________________
+h6. 2016-01-25 19:42 meta-plan discussions
+
+Part 1 of 2.
+
+Questioning fundamental assumptions can be very enlightening, but in my experience, such discussions tend to be non-terminating. So while I welcome this kind of thread on the mailing list, I'm not inclined to devote our limited meeting time to these subjects. We have concrete deliverables and an aggressive timeline, so our calls have to focus on producing what the other TIER Working Groups need from us. 
+
+Our immediate tasks over the next month or so are 1) to define our recommended REST-style APIs for the three most heavily used Group Management functions, 2) to identify and specify APIs for the most basic Entity Registry functions, 3) to formulate an initial set of generic guidelines for designing RESTful APIs in the TIER-related identity and access management space.
+
+          Regards,   --Keith
+          
+Part 2 of 2.
+
+For my money, Jim Fox's list of five constraints that go with the REST architectural style is spot on. In simplest terms, REST leverages to the hilt HTTP's notion of a URL as pointing to a thing, and HTTP verbs as defining what can be done with or to that thing. Resource is the word used for "thing" in the REST context. In education and research, the notion of resource can cover everything from a person to a class, or project or research instrument or data set. HTTP is used to pass around and manipulate "representations" of these resources. A surprising fraction of what we need to do in identity and access management can be expressed in such terms, including some things that we might have traditionally thought of as being essentially procedural in the RPC sense. 
+
+Of course there is no silver bullet, and the REST style can be stretched to the breaking point, so we can't mindlessly apply this approach to every single situation. To mention the most obvious cases, Shibboleth, Grouper and COmanage come with tools to connect to LDAP and SQL entity sources. There is no reason to deprecate those protocols in favor or some RESTful alternative.
+
+As Jim points out, an RPC orientation can readily lead to tightly coupled systems. The REST architectural style naturally promotes loose coupling, which is a path to both conceptual clarity as well as system resilience in the face of change. There is an art to drawing the right boundaries for things in that the things/modules/components that are loosely coupled must be internally cohesive and must have a limited number of points of interaction (interfaces) with other "things".  
+
+In section IV of Gabor's email he asks how the TIER API WG and the coming TIER Entity Registry WG will work with each other. It is certainly my hope that the overlapping membership between the two will allow a shared mode of decision making so that the Registry APIs will be developed in conformance with API WG guidelines. So yes, I think we can call that an API-first development approach.
+
+Finally, as regards use cases, I would be opposed to making a collective forced march upstream so that we can begin a waterfall process from the headwaters of this particular river. Rather I strongly advocate on one hand starting where we are with functional models such as the one for entity registries,
+https://spaces.internet2.edu/pages/viewpage.action?pageId=25865638 ,
+originally drafted by our esteemed colleague, the late RL "Bob" Morgan. 
+
+That functional model resulted from being steeped in identity and access management use cases and scenarios, so some of us can begin defining resources and APIs to implement the functional model. On the other hand, there are enough participants in the working group and on our mailing list that others of us can opt to spend time documenting use cases in order to validate or emend our functional model as we go.
+
+          Regards,   --Keith
+----------
+It might be fruitful for us to take a step back and remember what REST is---and what it is not.  It is not an API, nor a standard, nor a framework, nor a technology
+.
+REST is an architectural style---a set of architectural constraints that restrict the roles and relations of architectural elements.
+
+Among these constraints:
+
+1) It requires a client-server model.  Thus the API.  A separation of the use of information from the maintenance of information allows the various components of an enterprise to grow independently.
+2) It requires that the information content of a service be composed of resources, which can be uniquely identified (by a uri) and can be transferred between service and client by representations (json, xml, ..) with simple operations (GET, PUT, DELETE, and, if you must, POST).
+3) It requires that interactions between client and server are stateless.
+4) It requires that interactions are idempotent.
+5) It promotes caching of representations where possible.
+
+When we say RESTful API we mean the many components of the enterprise abide the constraints of the REST architectural style.
+
+Specifically,
+
+To your point II: I think a better bifurcation of interaction is this:
+
+1) Mutually trusted systems.  These would be, for instance, the core components of a university.  These are interactions where each party is trusted to 'do the right thing' with data,  Student services, for instance, trusts the group service with course enrollment.  In these cases authz is almost the same as authn. These are well understood and commonplace.
+
+2) Untrusted application interactions.  This is a client of the service that is known, but does not have carte blanche access to user infromation.  In these cases simple authn is insufficient.  Per user authorization is required.  I think that OAuth is the most promising solution, although implementation can be difficult.
+
+Actual user-service interaction (a UI) is not something we are concerned with.  We deal in neither HTML nor javascript.  
+
+To your point III: RPC mechanisms are fundamentally incompatible with REST.  An RPC is very often a 'backdoor' into the internal workings of a service.  As such it severely restricts independent growth of both client and service.
+
+To your point IV: the concern that Registry->Grouper, IdP->comanage, etc., will have distinct challenges directly proceeds from the inefficacy of the RPC mechanism.
+
+My 2 cents,     Jim
+________________________________________
+From: tier-api-request@internet2.edu <tier-api-request@internet2.edu> on behalf of Eszes, Gabor <GEszes@odu.edu>
+Sent: Thursday, January 21, 2016 3:59 PM
+To: tier-api@internet2.edu
+Subject: [tier-api] Review of past work; some ideas
+
+In 2011-2012, the Open Source IdM working group [1] evaluated several IdM platforms to see if one could be recommended by Internet2.
+In the summer of 2012 that working group was subsumed into the new CIFER project [2] to also address provisioning, integration, and other facets of functional IdM usage, which, among other deliverables, has produced CIFER API [3].
+Now the CIFER project has been subsumed into the TIER Data Structures and APIs WG [4].
+
+Reading through the Wiki it's apparent that a large amount of work has been produced in the past: product evaluations, problem statements, use-cases, walkthroughs of interactions, pseudocode, and in some cases, actual code.
+
+The participants of these previous efforts have conceivably built up substantial knowledge of lessons learned, but to date I don't recall much of this discussed in our current work.
+
+These cited resources are available on the Wiki:
+
+[1] https://spaces.internet2.edu/display/OSIdM4HEteam/OSIdM4HE+Team
+[2] https://spaces.internet2.edu/display/cifer/CIFER+Home
+[3] https://spaces.internet2.edu/display/cifer/API
+[4] https://spaces.internet2.edu/display/DSAWG/TIER-Data+Structures+and+APIs+Working+Group+Home
+
+With that in mind, I strongly wish to build on the foundation of these previous efforts, but it's hard to determine where broad consensus was reached and where decisions were tabled to be revisited later.
+
+That brings me to a few points:
+
+I. 
+
+The CIFER API project has produced schemas for several domain objects: persons, students, roles, groups, etc.
+I have begun to compare several schemas used by popular contemporary APIs that express person objects [5]. Later, I discovered that this work was also done by CIFER some two years prior [6], so I have begun to incorporate those artifacts as well.
+
+Though in many ways the exact form schemas will take is a bikeshedding issue, I believe we benefit from aligning our work with the wider industry consensus for the purposes of information exchange, and using (our) custom extensions where appropriate.
+
+II. 
+
+Some APIs we are to produce concern system-to-system interactions, while some concern user-to-system interactions. At this point we don't have a clear approach to handling authentication and authorization of actors to resources.
+
+I propose we enumerate a number of distinct use-cases, keeping in mind the anticipated limitations imposed by the situation (e.g. non-interactive user-agent; no access to user's password). By doing so, workable authz strategies will become apparent.
+
+III. 
+
+Since the late 2000s, there has been a trend to implement public-facing APIs that support CRUD operations through HTTP, and we've seen a decline in the use of schema-aware XML in favor of loosely specified JSON payloads on the wire. Authorization was at first implemented using the HTTP Basic scheme, OAuth 1.0 and the newer, incompatible OAuth 2.0 have seen widespead adoption spurred by social networks seeking to provide delegated access to a user's resources to a third-party application.
+
+Because this style of APIs occasionally meet a subset of constraints of the REST architectural style, they have been widely referred to as "RESTful" or "REST-style" APIs. In fact, engineering a REST-compliant API is hard because it requires careful consideration of the representations (i.e. mimetypes of the schema objects as they look on the wire). Incidentally, this is the same task we are chartered to accomplish.
+
+But lately, there is another trend emerging. Just as tooling support for RESTful APIs in the form of Swagger and RAML is finally catching up to the maturity of WSDL circa 2003, large companies like Google, Facebook, and Netflix are increasingly admitting that they don't use RESTful APIs internally. 
+
+Google has recently released GRPC [7], an RPC framework based on HTTP/2 that builds on their previous work with Protocol Buffers. Facebook has twice open-sourced Thrift [8] [9] which competes in this same space.
+
+As such, I heavily encourage the team to give consideration to modern, RPC-style approaches, especially when it comes to interactions between internal components. If we choose to embrace RPC semantics then using such a framework is preferable to the style that many immature "RESTful APIs" take by essentially tunneling RPC-style operations through HTTP POSTs.
+
+IV. 
+
+I still see the task of the Identity Registry Working Group as partially overlapping that of this working group. Notably, that group will have to decide if they are interested in engineering their Registry to natively support our APIs and data model, or if they wish to provide an adapter that converts between their internal representations and those of ours. I saw an opportunity to engage in API-first development between "ideal" components we'd like to have and being prescriptive in what we do, and avoid a common integration trap in which we'd merely settle on a lowest-common-denominator between existing systems. Once again, I call to enumerate use-cases for our APIs so that we can see how requirements may change depending on the actors involved. It's conceivable that a Registry -> Grouper interaction, a Shib IdP -> COmanage interaction, and an end-user -> Registry interaction will all come with their own distinct challenges.
+
+
+[5] https://gist.github.com/geszes/a889d023a3a26a763c6f
+[6] https://spaces.internet2.edu/display/cifer/SOR-Registry+Core+Schema+Strawman
+[7] https://github.com/grpc
+[8] https://thrift.apache.org/
+[9] https://github.com/facebook/fbthrift
+
+
+-- Gabor
+
+
+_____________________
+h6. 2016-01-13 14:00  
+
+[AI: Done] Keith: Ask for volunteers in addition to Nick Roy to work on a charter for the Registry WG on the API calls next week
+_____________________
+h6. 2015-12-18 12:02  group methods in SCIM Protocol: https://tools.ietf.org/html/rfc7644
+
+
+   A subsequent GET request for the 'Tour Guides' Group (with an "id" of
+   "e9e30dba-f08f-4109-8486-d5c6a331660a") returns the following, with
+   Alice's "id" as the value for the member in the Group 'Tour Guides':
+
+   HTTP/1.1 200 OK
+   Content-Type: application/scim+json
+   Location:
+    https://example.com/v2/Groups/e9e30dba-f08f-4109-8486-d5c6a331660a
+   ETag: W/"lha5bbazU3fNvfe5"
+
+   {
+     "schemas": ["urn:ietf:params:scim:schemas:core:2.0:Group"],
+     "id": "e9e30dba-f08f-4109-8486-d5c6a331660a",
+     "displayName": "Tour Guides",
+     "meta": {
+       "resourceType": "Group",
+       "created": "2011-08-01T18:29:49.793Z",
+       "lastModified": "2011-08-01T20:31:02.315Z",
+       "location":
+   "https://example.com/v2/Groups/e9e30dba-f08f-4109-8486-d5c6a331660a",
+       "version": "W\/\"lha5bbazU3fNvfe5\""
+     },
+     "members": [
+       {
+         "value": "92b725cd-9465-4e7d-8c16-01f8e146b87a",
+         "$ref":
+   "https://example.com/v2/Users/92b725cd-9465-4e7d-8c16-01f8e146b87a",
+         "type": "User"
+       }
+     ]
+   }
+
+
+   The example below retrieves a single User via the "/Users" endpoint.
+
+   GET /Users/2819c223-7f76-453a-919d-413861904646
+   Host: example.com
+   Accept: application/scim+json
+   Authorization: Bearer h480djs93hd8
+
+   The server responds with:
+
+   HTTP/1.1 200 OK
+   Content-Type: application/scim+json
+   Location:
+     https://example.com/v2/Users/2819c223-7f76-453a-919d-413861904646
+   ETag: W/"f250dd84f0671c3"
+
+   {
+     "schemas":["urn:ietf:params:scim:schemas:core:2.0:User"],
+     "id":"2819c223-7f76-453a-919d-413861904646",
+     "externalId":"bjensen",
+     "meta":{
+       "resourceType":"User",
+       "created":"2011-08-01T18:29:49.793Z",
+       "lastModified":"2011-08-01T18:29:49.793Z",
+       "location":
+   "https://example.com/v2/Users/2819c223-7f76-453a-919d-413861904646",
+       "version":"W\/\"f250dd84f0671c3\""
+     },
+     "name":{
+       "formatted":"Ms. Barbara J Jensen III",
+       "familyName":"Jensen",
+       "givenName":"Barbara"
+     },
+     "userName":"bjensen",
+     "phoneNumbers":[
+       {
+         "value":"555-555-8377",
+         "type":"work"
+       }
+     ],
+     "emails":[
+       {
+         "value":"bjensen@example.com",
+         "type":"work"
+       }
+     ]
+   }
+   
+----------
+Three most-used operations re groups:
+
+   group.getMembers()
+   person.getGroups()
+   person.isMemberOf(group)
+_____________________
+h6. 2015-12-18 09:00  API WG meeting
+
+Curry's xls: https://drive.google.com/file/d/0B4FyQfoKFISKLTJLTnhxZmR1RTQ/view?usp=sharing
+
+Curry's pdf: https://drive.google.com/file/d/0B4FyQfoKFISKVkx6c1VMRmhoR2s/view?usp=sharing
+
+p. 8: U 'resources'  
+
+pp. 24-25: IdReg functional requirements
+_____________________
+h6. 2015-12-16 14:00  API WG Meeting
+
+Gabor: inlining ref to another resource: refer to the resource by URL
+
+Curry's pdf:
+
+p. 8: U 'resources'  
+
+pp. 24-25: IdReg functional requirements
+
+pp. 55-59: Accoont mgmt functional requirements
+_____________________
+h6. 2015-12-16 14:00  API WG Meeting http://j.mp/1PWMCp5
+
+hierarchy as a rooted directed graph; polyarchy is a lattice of grafted directed graphs. key scenarios: ask for the lineage graphs of a given resource node. Ask if a given node is in a given hierarchy (a path question).
+_____________________
+h6. 2015-12-02 14:00 API WG Meeting http://j.mp/1PWMCp5 
+_____________________
+h6. 2015-11-30 15:00  Skype with BoydW and BillyC from Clemson re API work
+
+BoydW, BillyC, Mike Gosset
+
+Mike Gosset, Carol Slaw: Adoptive Framework; Has a REST api; has it's own scripting languages; common authZ points along the way; The Vault is proprietary but you could use Adaptive Framework; Core is written in C; but other parts can use other languages;
+
+registry is schema defs in eDir;  all schema can be modeled in AdFr; 
+
+OrangeFS into Kernel via Linux Fnd. 
+
+Get AdFr alongside; do sanity checks across;
+
+Externalizing authZ; 
+
+Some of the ways we've evolved:  REST, REST-like, 
+
+SteveZoppi conversations; 
+
+---------- 
+From: "B. Wilson" <b@clemson.edu>
+Date: Monday, November 23, 2015 at 16:27 
+Billy Cook <wrcook@clemson.edu>
+Subject: Re: TIER-API working group
+
+Hey Keith!
+I am tied up tomorrow and then traveling for Thanksgiving, I am around the following Monday if that would work for you?   I am cc'ing Billy Cook as well, he would be interested in the call as well.   -bw
+
+On Mon, Nov 23, 2015 at 4:31 PM, Keith Hazelton <keith.hazelton@wisc.edu> wrote:
+
+Boyd, I know you and others at Clemson have rich experience and deep knowledge about APIs.  I’m hoping to find a way to tap that expertise in the TIER Data Structures and APIs Working Group.
+_____________________
+h6. 2015-11-18 14:00  API WG meeting http://j.mp/1PWMCp5
+
+
+BonitaSoft for WF engine;
+
+https://github.com/canariecaf/idp-installer-CAF/tree/3.0.0-CAF-RC3
+
+
+bag of technues how do you marshall process in your 
+
+I've been revewing documents on SCIM, CIFER, VOOT, and Grouper.   I'm
+wondering though we are all looking at the same docs.
+
+I'm thinking it would be useful for us to be literally "on the same page"
+:-).  
+
+SCIM:   Protocol Specification RFC:  Quite rich group operations for read (and search) and write, quite fully documented -- and quite low level. Applies to a client contacting a server (natch, but this in contrast to Grouper).
+
+https://tools.ietf.org/html/rfc7644
+
+VOOT:  Page entitiled "Protocol Obtaining information about groups". Seems
+just to be "read" operations (via GET).  Are there any group-related write
+operations in the API?  I couldn't find them.
+
+http://openvoot.org/protocol/#groups_groupid_members
+
+CIFER: Page entitled "Authorization Standard API group resource."  I found
+this to be an extremely terse discussion. Is there anything fuller?
+https://spaces.internet2.edu/display/cifer/Authorization+Standard+API+group
++resource
+
+Grouper: I couldn't find any web page with an API discussion.  It seems
+one has to download the "Installer" and look at JavaDoc pages.    The Java
+Doc details local programmer read and write operations quite fully.
+Grouper is of course a big contrast to the other three (web-oriented) APIs.
+
+Thanks all,
+Marlena
+
+information is: https://spaces.internet2.edu/display/Grouper/Grouper+Web+Services . There are SOAP and REST web services/APIs for almost all the grouper functionality.  For example, to find out if a person is a member of a given group, see hasMemberLite at https://spaces.internet2.edu/display/Grouper/Has+Member
+_____________________
+h6. 2015-11-13 13:02 itanaapiwg
+
+https://spaces.internet2.edu/x/SgFwBQ
+_____________________
+h6. 2015-11-12 11:25 ppl with probs w spaces.internet2 usernames
+
+
+Harry Samuels: harry.samuels@northwestern.edu
+Ben Harner: benjamin.harner@northwestern.edu
+Avi Baumstein: ?
+Derek Owens: dowens@nd.edu
+Jorj Bauer: jorj@temple.edu
+
+Scott Koranda@uwm
+Brian Savage: 4 identities
+
+_____________________
+h6. 2015-11-11 10:10  FOAF for persons and groups http://xmlns.com/foaf/spec/
+_____________________
+h6. 2015-11-10 12:25  Warren Curry Skype re (group) APIs
+  
+I bring the data architect  / high level design view to the group.. 
+ 
+Also some ideas related to features such as  
+  - segregation of duties, 
+  - training requirements, canvas, sumTotal, if you can participate or not; etc when building such content. 
+    - if you lack the training, even if your position is entitled; home grown
+  - We have both those features in our current home grown solutions.   
+  
+  - some is event driven messaging 
+  - HIPAA: grace period for expiration
+  - Grouper is the smallest single legos, you can build stuff with it;  But would be great to have a wizard to help you structure the basic config; Need to do it eventually; Which basic structure fits which set of problems;
+ 
+Clearly basic and advanced group membership info is a key for proper access deployment.     
+  - Info sources , 
+  -  master data, etc are key to feeding these groups and memberships.   
+ 
+We need to determine how the 
+  - dependencies and interplay of various membership can be represented 
+  - in addition to basic builds …
+ 
+Love to play in here.. , if you need another grey hair here. WarrenC
+
+IoT: provisioning door access; Rob's thing on networking access; 
+
+[assistant] to pull together conceptual/functional model of current state ar around Provisioning
+[mf to another platform] spreadsheet incl. some metadata registry tables,
+[api's diagram; = db2 stored procedure now; and biztalk messaging, eg, course rosters, pushes to biztalk to 2 diff LDAPs;  moving to rest. Criteria: s'thing happens 1ce a day in the 0dark early; strip permissions then;  
+
+[graphic art training staff member]
+
+Daver gruber is redoing SIS; looking for funding incl. MDM; 
+_____________________
+h6. 2015-11-06 08:13  UK/EU Doodle for 2nd series of TIER-API calls
+
+http://doodle.com/poll/e7u5zfaat94xk839
+_____________________
+h6. 2015-11-06 07:24  guidelines work
+
+http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api  <== ++ compare with CIFER guidelines, consider org. as good for devs
+_____________________
+h6. 2015-11-04 09:35  Inaugural call of TIER Data Structures and APIs WG
+
+Agenda with inline notes http://j.mp/1PWMCp5 
+_____________________
+h6. 2015-11-04 06:36  bennO chat
+
+BennO: re timeline: guidelines, idMatch, schema
+
+may have person with skills around writing API specs
+_____________________
+h6. 2015-10-28 17:25  migrated RAML materials to taHome repo
+
+- and created a tier api on anypoint raml studio
+_____________________
+h6. 2015-10-27 11:33  
+
+Please join me in an Adobe Connect Meeting. h@w 
+
+Meeting Name:  TIER Data Structures and APIs Working Group
+Summary: 
+Invited By: Keith Hazelton (hazelton@wisc.edu)
+When:  11/04/2015 2:00 PM - 3:30 PM
+Time Zone:  (GMT-06:00) Central Time (US and Canada)
+_____________________
+h6. 2015-11-09 06:39 blurb for TIER newsletter
+
+The TIER Data Structures and APIs Working Group held its first online conference on November 4. The twenty-four participants reviewed the charter and identified sub-groups to begin work on the initial tasks. Six volunteers will begin a critical evaluation of the basic group and membership management APIs in Grouper, VOOT2 from SURFnet, SCIM, and CIFER. Another four agreed to launch work on APIs and data structures for the identity registry component of identity and access management infrastructure. For further information see the charter and review the live-scribed agenda and notes document.
+_____________________
+h6. 2015-10-27 08:17  Flywheel call with Mike Zawacki;  Skype: mike.zawacki23
+
+https://spaces.internet2.edu/display/INCWG/Guidelines+for+Trust+and+Identity+Working+Group+Chairs+and+Flywheels
+https://docs.google.com/spreadsheets/d/10WXvHGdJpN8-hAQxLrnh6b1y6RKRM5dZ85V_jR3OsKk/edit#gid=0
+
+- Wed. call agendas mailed out by Friday. We can all add bullets for next meeting agenda items. 
+- Hoping to get UK/EU participation, so looking for another time
+- Blue Jean (windows only) does screen share? can record?
+- Familiarity with Confluence, Jira, Box,?
+- scribing doc: boxNotes? GoogleoDocs use comp arch version as template: https://uwmadison.app.box.com/notes/37601073282?s=y5mp93h5xhqvmszn11u0blzpb2phle5k
+-  refeds
+_____________________
+h6. 2015-10-26 13:11  WG CCalls
+
++1-734-615-7474 (Please use if you do not pay for Long Distance), 
++1-866-411-0013 (toll free US/Canada Only) 
+
+Access codes:  0171535# (Leader)  0141188# (Participant) 
+
+
+		1st call: Wed, Nov. 4 & biweekly initially @ 2:00 pm Central: Works for JFox, JVuccolo, CHyzer, BOshrin, KHazelton, RobC, NickR, TomJordan, PhilWindley, EricGoodman, MikeGrady, JimJokl (2nd choice for RobC, NickR, JimFox, JimJokl)
+
+
+		Try again for participation from UK/EU, so email Refeds and offer a second call at a UK/EU-friendly time, run in parallel with Wed. calls above.
+
+
+		[AI: Keith] Provide BennO and others going to early Dec. EWTI meeting in VIenna with materials to encourage participation in TIER-API
+_____________________
+h6. 2015-10-22 13:46  TomJ, JonM on APIs
+
+https://lists.internet2.edu/sympa/admin/tier-api
+
+@ UW: User-managed Identity discussions 1st on MST list:  
+  - November; Hyzer from HKM here for a day
+  
+  - IAA Diagnostic APIs (1-off for special purpose)
+  
+  - URLs (vs) content in representations (HATEOAS)
+  
+  - XACML as way of abstracting policy into a manageable space (indep. of ESB)
+  
+  - Securing APIs
+  
+  - OK to work with JonM on RAML
+
+
+@ TIER
+
+  - TomJ: Wednesdays
+  
+  - JonM: ??
+  
+  Internet2’s Trust and Identity in Education and Research (TIER) initiative aims to build on and extend these investments, integrate existing best-of-breed solutions and enable participants to better provide and access services, both on- and off-campus.
+_____________________
+h6. 2015-10-20 08:13 poll for meeting times
+
+The TIER-API Working Group will begin holding bi-weekly conference calls in the near future.  If you wish to participate in those calls, please indicate your availability using the Doodle poll at http://doodle.com/poll/f2hv3myir23gt68bf85p9vgx/admin#table
+
+Wed, Nov. 4 @ 2 pm Central: fox, vuccolo, hyzer, oshrin, me, rob, nick, tomJ, PhilW, EricG, MikeG, and 2nd choice for RobC, NickR, JimF, Tom J
+  
+Thu, Oct. 29, @ 1 pm Central: good for RobC. NickR, JimF, 
+  - but without tomJ and PhilW
+  
+Seek participation from UK/EU, so consider an off-week call at a UK/EU-friendly time 
+
+
+_____________________
+h6. 2015-10-13 09:00  Warren Curry Skype: U Fl APIs
+
+Keith,  this is just reference no intent I do not recall if we ever shared this kind of info..   With you…
+
+See ../tierApi.rtf
+https://wikispaces.psu.edu/display/IdSExternal/CPR+RESTful+Service+Model
+
+- what API work is on their plates?
+
+- how can tier-api wg help
+
+- how would they like to contribute?
+
+- who should be on mailing list?
+
+----------
+
+WC: To be in our ERP, you must be in person hub first; 
+
+identifier crosswalk API;  
+
+all in the registry were all DB2 stored procedures
+
+need to rebuild those APIs;  
+
+- At the Oracle level add address with checks; in that there's a bottom layer: n tables; probably at the stored procedure level; 
+
+- insulator, logical layer db info model; we write 'a person' at this layer (what transport/protocol); Storeed proc or RESTful
+
+- biz logic: 'addresses have x format' schema checking, codebooks, RESTful routine;
+
+- reference or surface layer (UI/UX)
+
+Do a lot of messaging for getting info back to ERP; and getting affiliation info from SoR to Id Hub;
+
+DB triggers & biztalk plus some orchestration to multiple sinks; Debbie, Diane, Warren on schema
+
+Does TIER fit in and where?
+
+WC: What is the role of UFl in TIER; Alan xxx, Adam Belair, 
+
+metadata on types for database entities; UF Health; we need to represent the clinic Ph # , Lab Ph # and Clinician
+_____________________
+h6. 2015-10-12 09:56 OIDs
+
+On 2015-10-12, 09:43, "Emily Eisbruch" <emily@internet2.edu> wrote:
+
+> Hi,
+> Regarding this OID request, I understand this would mean adding two rows
+> to the first table  on this page:
+> https://www.internet2.edu/products-services/trust-identity-middleware/mace-registries/internet2-object-identifier-oid-registrations/
+
+Yes.
+
+1.3.6.1.4.1.5923.2  	TIER related work
+
+1.3.6.1.4.1.5923.2.1 	TIER Data Structures and APIs work
+
+> Does it also involve adding two new tables at the bottom of the page?
+
+Yes, you could create two tables. The first one, TIER Object Identifier
+(OID) Registrations, contains one row,
+
+1.3.6.1.4.1.5923.2.1 	TIER Data Structures and APIs work
+
+The second table, TIER Data Structures and APIs Object Identifier (OID)
+Registrations, has no rows for now.
+
+
+> Should go ahead and implement this on the web page?
+
+I think that¹s a question for Ann & Steve.  Happy to provide more
+background on request.   ‹Keith
+
+Ann sez yes.
+_____________________
+h6. 2015-10-12 09:35 doodle for tier-api wg
+
+http://doodle.com/poll/f2hv3myir23gt68b
+_____________________
+h6. 2015-10-12 07:46 volunteers
+
+BennO,
+
+Consider Albert and me to be well-introduced already. You’ll have to tell me which aspects of this he’s most interested in contributing to.
+
+I looked down the list of ‘volunteers’ that SteveZ shared.
+
+There are three API areas, Design, Construction and Curation.
+
+Jill Gemmill and Boyd Wilson from Clemson volunteered for all three.
+Steve Zoppi also volunteered for all three.
+Brian Savage from Boston U volunteered for Curation.
+
+Outside the API area, Derek Owens of Notre Dame volunteered for a lot of related things like connectors, testbed, authentication, authorization,..
+
+On Data Structures and Datagrams, there’s quite a list:
+
+Askren, Mark; U Nebr-Lincoln
+Bieber, Brett; U Nebr-Lincoln
+Carmody, Steven; Brown
+Dockins, DePriest; U Mich
+Dunker, Mary; Va Poly & State
+Jokl James; U VA
+Owens, Derek; Notre Dame
+Tracy, Luke; U Mich
+Wilson, Boyd; Clemson
+Zoppi, Steven: I2
+
+       —Keith
+_____________________
+h6. 2015-10-10 13:18 ATOM & pubsubhubub
+
+https://github.com/pubsubhubbub/PubSubHubbub
+http://indiewebcamp.com/How_to_publish_and_consume_PubSubHubbub
+http://blog.superfeedr.com/howto-pubsubhubbub/
+_____________________
+h6. 2015-10-09 15:16  OID arc registration
+
+----------
+To mw-service, Ann, SteveZ
+
+If you look at this page:
+https://www.internet2.edu/products-services/trust-identity-middleware/mace-registries/internet2-object-identifier-oid-registrations/
+
+You’ll see that Internet2 is officially registered as controlling OID arc 1.3.6.1.4.1.5923.
+
+MACE is subordinate to Internet2 and is responsible for assigning numbers under 1.3.6.1.4.1.5923.1
+
+I’d like to register an OID arc for TIER at 1.3.6.1.4.1.5923.2
+
+…and one for the TIER Directory Structures and APIs work under 1.3.6.1.4.1.5923.2.1
+
+This allows us to assign unique identifiers for any object we define in the course of that work.
+
+Thanks in advance,   —Keith
+
+_____________________
+h6. 2015-10-09 08:23 conceptual model expressed as an Arch DSL
+
+https://dzone.com/articles/designing-a-dsl-to-describe-software-architecture-2  <==++
+_____________________
+h6. 2015-10-13 15:03  messaging & rest & resources
+
+To: scim@ietf.org
+
+Has there been discussion about SCIM over messaging?
+ 
+Ie. If sending SCIM through a messaging system (e.g. AWS SQS, activeMQ, etc)  where it is not HTTP.  Basically this means there is no response, and the request would need whatever would normally be in HTTP be in the message object.  E.g.
+ 
+{
+  "method": "PATCH",
+  "resource": "/Groups/acbf3ae7-8463-4692-b4fd-9b4da3f908ce"
+  "body": {
+    "schemas": ["urn:scim:schemas:core:1.0"],
+    "members": [
+      {
+        "display": "Babs Jensen",
+        "value": "pennperson:12345678",
+        "operation": "delete"
+      }
+    ]
+  }
+}
+ 
+Is something like this something that could be added to a future roadmap if not there already?
+ 
+Thanks, Chris Hyzer
+ 
+----------
+Good question.
+
+Yes. There has been some discussion. However it might not be quite the same use case.
+
+Take a look at this:
+https://tools.ietf.org/html/draft-hunt-scim-notify-00 (the draft has expired)
+
+Some of us are still interested.  The current proposal is an asynchronous notification method to let one domain provider notify one or more subscribers of a changes they may be interested in. It could be tenancy to tenancy (domain wide), or it may be changes about a single resource to a subscribing mobile application. 
+
+When there are multiple domains, there are many cases where a change (e.g. a specific PATCH) might not work well in another domain - because each domain likely has a different set of information and thus slightly different information “state”.  Instead of pushing commands (as in the normal SCIM approach), the notify approach lets the receiver decide the correct action.  Eg.  Domain A provider notifies a mobile app of a change (Resource /Users/{id} had its name attribute change).  The subscriber calls back to the publishing domain provider and does a GET and decides what to do.  When the subscriber calls back, the subscribers right to see all of the information is then reviewed.  
+
+A couple of benefits:
+* Makes differences in state between systems less problematic
+* Allows normal SCIM access control to decide who should see what - this makes the definition of feeds and subscribers much simpler
+* Dramatically reduces the information content (and privacy risk) in messages
+
+The draft uses JWTs/JOSE to send notifications securely and makes it easy then to deliver via an alternate protocol.
+
+Phil
+
+@independentid
+www.independentid.com
+phil.hunt@oracle.com
+_____________________
+h6. 2015-10-08 12:11  tom/jon api work
+
+[Tom] to bring me into API discussions with Portal folks & middleware folks
+
+rev 2 of MST web services will (over)learn from neg experiences with rev 1
+_____________________
+h6. 2015-10-08 12:10  cifer-api -- tier-api transition email
+
+What a great message!  Thank you Keith! 
+
+All the best, 
+Steve
+
+] prez I2 to WC: 
+
+-------- Original message --------
+From: Keith Hazelton <keith.hazelton@wisc.edu> 
+Date: 10/08/2015 7:03 AM (GMT-08:00) 
+To: cifer-api <cifer-api@internet2.edu> 
+Cc: Jill Gemmill <gemmill@clemson.edu>, Billy Cook <wrcook@clemson.edu>, "Curry, Warren" <whcurry@ufl.edu>, Gabor Eszes <geszes@odu.edu>, "Wessel, Keith" <kwessel@illinois.edu>, "Nye, Mark Allen" <marknye@illinois.edu>, Jon Miner <jon.miner@wisc.edu>, Tom Jordan <tom.jordan@wisc.edu>, Ty Letto <ty.letto@wisc.edu>, Rob Carter <robert.carter@duke.edu>, Ann West <awest@internet2.edu>, Steven Zoppi <szoppi@internet2.edu> 
+Subject: Coming Changes 
+
+Dear CIFER-API subscribers and new TIER friends,
+
+The work done over the last couple years by the CIFER-API group will now be continued under a new brand, TIER-API.  I’m using this email to provide some background on the transition.
+
+As you well know, our CIFER-API Team has been a classic bottom-up effort. The contributions came primarily from community-minded staff from a dozen or more institutions around the country, often with the blessing of their managers sometimes with their forgiveness.
+
+Meanwhile, Internet2 reorganized its middleware operations, launching the TIER Initiative (Trust and Identity in Education and Research, see http://www.internet2.edu/vision-initiatives/initiatives/trust-identity-education-research/ ).  Forty-odd institutions have signed on to this program, each one committed to providing financial assistance to TIER for a period of three years. TIER is just now spinning up working groups to address the IAM service requirements distilled out of a series of meetings across the country over the last year. One of the first groups to launch is the Data Structures and APIs Working Group.
+
+The TIER Component Architects Working Group met at the just-concluded Internet2 Tech Exchange. Three of the primary contributors to CIFER-API were present at that meeting, Chris Hyzer, Benn Oshrin and I.  Another major contributor to CIFER-API, Jim Fox from U Washington, was at the Technology Exchange as well.  All four of us agreed with the suggestion that TIER formally take up the thread of work from CIFER. As a practical matter, they will shortly be re-naming this email list from cifer-api@internet2 to tier-api@internet2.edu.  All current subscribers will be transferred to the new list. If you wish to opt-out, please email me.
+
+The TIER-API group will also bring in new members. We have already welcomed Warren Curry from U Florida, Keith Wessel and/or Mark Nye from Illinois U, someone TBD from Clemson U, Gabor Eszes, ODU.edu, and a group of contributors from UW-Madison's Middleware group including Jon Miner and Tom Jordan. The TIER-API group intends to be open to broad community review and input, explicitly including our international counterparts. 
+
+Thanks to the TIER Initiative Leads, Ann West and Steve Zoppi, for their public acknowledgment of the valuable work done by the CIFER-API and their assistance during our transition to the TIER API work.
+
+Please contact me with any questions, and watch for a welcome message from the new TIER-API list.
+
+           Regards and Thanks,   —Keith
+_____________________
+h6. 2015-10-05 20:27  
+
+] Keith Wessel, Warren Curry, Gabriel from Old Dominion U wants on the DSAWG
+] Contact Jill & Billy Cook re Clemson participation in API wg
+
+http://www.clemson.edu/ccit/about/management.html 
+_____________________
+h6. 2015-10-04 11:30  Investor's Council, API issues
+
+Ken/Keith –
+ 
+Here’s the preview I promised to each of you … It WILL change until the last minute.
+ 
+Of particular note is the commitment regarding APIs and those ideas about having consent (as a possibility) in the second release.
+ 
+APIs (In General) will focus on not only 
+
+- what has been represented by the CIFER work but also 
+- must include the necessary Management APIs in support of Provisioning/Deprovisioning and other automation tasks that the campuses will need to perform.
+ 
+As we’ve discussed, If we are to have anything of material value in any subsequent release, 
+
+- we will need to have stable (complete) requirements and a partially-vetted API that’s suitable for others to use as connection point.
+ 
+Thoughts?  Regards, Steve
+
+----------
+
+Slide 32:
+Rel 1 API work: 
+- forward compatibility; 
+- abstracted plug-in point for commercial partner integration; 
+- framework for further inter-campus collaboration by establishing 
+- common points for provisioning and deprovisioning
+
+Slide 33, bullet 1:
+- Familiarize yourself with CIFER APIs 
+
+replace that with
+- Familiarize yourself with CIFER API framework
+  NOTE TO STEVE Z: the framework will be on the DSAWG wiki ASAP
+
+_____________________
+h6. 2015-10-04 10:14  arch points
+
+ScottO: reinforce Const.-centric approach, user-managed profile Info
+
+TIER API: 
+  ] Get TJ on the WG; He needs to start modeling APIs @ UW-Msn
+  - raml for api design/doc/generation 
+  - EBO/json-schema for resource representation
+  
+  https://lists.w3.org/Archives/Public/public-linked-json/2014Oct/0010.html  <== schema, json-ld compared
+_____________________
+h6. 2015-10-03 11:32  TechEx Tues. API  prez prep
+
+Presentation flow:  See ~/_notesPlus/travel/201510-TechEx/20151006-hazelton-restfulApis-00.pptx
+
+- TIER data structures and APIs WG
+  - Charter highlights
+  - Will have head start from CIFER API Team deliverables
+
+- Looking for a developer-friendly way to promote use of guidelines
+  - RAML.org and its ilk, Swagger.io, Apiary.io (http://apiblueprint.org, https://github.com/apiaryio/mson), 
+  - RAML PoC highlights
+  - Data Structures/Schema (json-schema.org?)
+_____________________
+h6. 2015-10-03 17:22  api tool wars
+
+https://news.ycombinator.com/item?id=8912897   <== great discussion of API documentation alternatives from late 2014
+http://www.mikestowe.com/2014/07/raml-vs-swagger-vs-api-blueprint.php  <== capability by capability comparison; RAML as overall winner
+http://www.mikestowe.com/2014/12/api-spec-comparison-tool.php  <== Mike Stowe again, as of May 2015
+
+http://swagger.io/
+https://github.com/swagger-api/swagger.io/blob/wordpress/getting-started/index.md
+../ref/api-provider-guide-api-design.pdf
+
+----------
+Tom,
+
+Some links I’ve found useful.  I’ve been playing with the RAML suite.  Sounds like you’ve worked with Swagger.  I think json-schema.org is a complementary piece, for creating representations of resources, aka business information objects, useful for both RESTful API representations and resource representations in event/messaging approaches.
+
+https://news.ycombinator.com/item?id=8912897   <== great discussion of API documentation alternatives from late 2014
+http://www.mikestowe.com/2014/07/raml-vs-swagger-vs-api-blueprint.php  <== capability by capability comparison; RAML as overall winner
+http://www.mikestowe.com/2014/12/api-spec-comparison-tool.php  <== Mike Stowe again, as of May 2015
+----------
+
+xiaoma 256 days ago
+
+1) The best tool is probably RAML. It's very succinct, looks like YAML and has powerful features such as traits that really simplify the process of documenting many endpoints with similar traits (e.g. pagination). http://raml.org/
+
+2) Swagger is an older option that is quite verbose but has a lot of good tooling support.
+
+3) A third tool that is pretty decent is (apiary.io) API blueprint.
+
+Disclosure: I did work on an open source swagger-raml converter about four months ago.
+
+jestar_jokin 256 days ago
+
+Isn't this why enterprises favoured things like SOAP web services with XSDs and WSDLs? The verbosity acts as human and machine-readable documentation, and the files can be used to generate client code.
+
+Ignoring the benefits of using HTTP as the request transport mechanism, this seems like another cycle of people coming up with a comprehensive but complex solution, other people getting frustrated with the complexity and developing a simpler solution, then filling in the gaps (such as documentation) until the solution is a complex patchwork of competing libraries, none clearly better than the others, leading to fragmenting of mindshare and expertise...
+-----
+_____________________
+h6. 2015-10-01 12:00  Component Architects WG call notes: https://spaces.internet2.edu/display/CAWG/Call+Notes+of+Oct+1+2015 
+
+SEE ALSO: ~/_notesPlus/tierCompArch.utf
+
+_____________________
+h6. 2015-08-14 09:46  notes toward a charter for a "TIER API and Data Structure Guidelines Working Group"
+
+Tier Arch Principles
+
+Resources: People, Groups, Actors, Services,
+
+APIs
+
+API creation: Design process vis-a-vis development process; separate but interdependent
+
+structuring ideas:
+
+- it's about resource representations, and any resource should have both an HTTP representation and a message representation;
+_____________________
+h6. 2015-08-14 09:28  references and links
+
+../tierMgmtApi.utf
+
+Amit Poddar is from Yale.
+
+https://spaces.internet2.edu/display/TWGH/TIER+Working+Groups+Home
+https://spaces.internet2.edu/display/INCWG/Guidelines+for+Trust+and+Identity+Working+Group+Chairs+and+Flywheels
+https://spaces.internet2.edu/display/DSAWG/TIER-Data+Structures+and+APIs+Working+Group+Home
+https://spaces.internet2.edu/pages/viewpage.action?pageId=90013979  <== DSAWG Charter
+https://spaces.internet2.edu/display/CAWG/TIER-Component+Architects+Working+Group+Home
+http://j.mp/tierProcDeck
+https://docs.google.com/spreadsheets/d/1TB75X1lHhHxk-t_082tExn63iwbqX1kIohUZDviTzgo/edit#gid=980746953  <== TIER Integrated Roadmap
+https://github.com/ciferproject/cifer
+SEE ALSO: ../mkdocs.utf
+~/opt/pytools/ciferapi/cifer/specs/ciferproject-org-framework-v1-draft-02.xml
+http://benjiweber.co.uk/blog/2015/08/24/optionally-typechecked-statemachines/   <== FSM instead of enums
+
+https://news.ycombinator.com/item?id=8912897   <== great discussion of API documentation alternatives from late 2014
+
+https://www.nsa.gov/ia/_files/support/guidelines_implementation_rest.pdf  <== standardized way of securing RESTful APIs
+https://dzone.com/articles/6-tips-for-documenting-restful-apis
+
+https://github.com/pubsubhubbub/PubSubHubbub
+http://indiewebcamp.com/How_to_publish_and_consume_PubSubHubbub
+http://blog.superfeedr.com/howto-pubsubhubbub/
+
+http://openvoot.org
+http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api#snake-vs-camel  <== good set of conventions for RESTful APIs
+https://wiki.doit.wisc.edu/confluence/display/DOITMID/SPFP+RAML+API+Definitions
+https://wiki.doit.wisc.edu/confluence/pages/viewpage.action?pageId=101454446  <== SPFP / External Gateway API Definitions,  MST/DoIT
+http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api  <== ++ compare with CIFER guidelines
+http://www.google.com/trends/explore?q=xml+api#q=xml%20api%2C%20json%20api&cmpt=q  <== trends xml / json
+https://github.com/mulesoft/raml-client-generator/blob/master/IMPLEMENTATION.md  <== guidelines for writing code generators for RAML
+https://dzone.com/articles/hints-and-tricks-for-better-api-error-codes
+https://dzone.com/articles/a-simple-explanation-of-etags
+https://dzone.com/articles/goodbye-microservices-hello-right-sized-services
+https://dzone.com/articles/concerns-regarding-the-state-of-enterprise-integra 
+https://dzone.com/articles/launching-the-linux-foundation-open-api-initiative  <== ++
+http://programmers.stackexchange.com/questions/187484/when-to-use-nested-resources-in-a-restful-api
+https://blog.surf.nl/en/sharing-educational-data-via-the-open-education-api/
+https://spaces.internet2.edu/display/Grouper/Grouper+Voot+Connector
+https://github.com/Internet2/grouper/tree/master/grouper-misc/grouper-voot
+https://www.oreilly.com/ideas/designing-great-web-apis  <== ++ biz case & principles
+http://pages.3scale.net/amazon-api-gateway-tutorial-sa.html  <== Running Zero-infrastructure APIs with Lambda, Amazon API Gateway, and 3scale
+http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api  <== ++
+
+https://dzone.com/articles/using-jbpms-restful-api-as-a-black-box-workflow-se
+http://dannorth.net/introducing-bdd  <== behavior driven design (mode of testing, for one)
+https://http.cat/  <== cat status codes
+http://jsontoyaml.com/
+http://blog.jooq.org/2012/01/05/the-java-fluent-api-designer-crash-course/  <== dsl grammars to Java directly
+https://dzone.com/articles/building-microservices-inter-process-communication-2   <== ++ 1 of 7 part series
+https://github.com/eugenp/tutorials/tree/master/spring-security-rest-full  <== look for query in REST segments
+http://stackoverflow.com/questions/2383912/message-queue-vs-web-services
+http://martinfowler.com/bliki/CQRS.html  <== Command Query Resource Separation CQRS
+http://blog.eisele.net/2016/04/your-first-lagom-service-getting-started-with-java-microservices.html  <== quick microservice project starter
+http://developer.mit.edu/api-roles
+http://developer.it.umich.edu/
+https://github.com/Microsoft/api-guidelines/blob/master/Guidelines.md  <== M$ API Guidelines
+https://github.com/rpicloud/spring-boot-rest-example  
+http://www.rpi-cloud.com/guide-getting-started-with-spring-boot/  <== article to go with github repo above
+https://dzone.com/articles/abcs-of-api-driven-development
+https://dzone.com/articles/the-api-life-cycle
+http://python-eve.org/ <== REST API framework for Python
+

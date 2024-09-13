@@ -1,0 +1,53 @@
+=== satosa.adoc :proxy
+
+- - -
+_2024-08-23 13:29 Start Satosa Journey_
+
+*- launch project -*
+
+https://github.com/IdentityPython/SATOSA/blob/master/doc/README.md#docker[] <- get Satosa running in Docker container +
+
+Implement the signup flow modeled on https://github.internet2.edu/ti/systems-architecture/blob/main/iam/images/iam-signup.png[] 
+
+
+
+
+- - -
+_2024-04-26 16:28 SATOSA plus idpy_
+
+https://github.com/rohe/satosa-idpy[] <- OpenID Provider or OAuth2 Authorization Server able to be a member of an OpenID federation. Implemented as a frontend to SATOSA +
+https://github.com/rohe/satosa-idpy[] +
+https://github.com/rohe[] +
+
+
+- - -
+_2023-05-22 15:56:43 satosa and midPoint_
+
+Keith Hazelton:
+Are you free immediately after our Tuesday May 30 I2/Evolveum meeting? There’s a TAP architecture discussion to talk about interesting redirections that are possible with SATOSA. Do you have sites using  SATOSA? https://github.com/IdentityPython/SATOSA, https://daasi.de/en/satosa-a-modular-proxy/
+
+Slavek Licehammer:
+MidPoint supports any authentication/SSO solution. We are not having a favourite solution. We are leaving the choice to others :⁠-⁠).
+But personally I know a bit about SATOSA and I know a bit more about flows that can be used. I will be happy to stay after the meeting and discuss.
+
+- - -
+_2023-05-18 12:14:55 references and links_
+
+https://github.com/IdentityPython/SATOSA/blob/master/doc/README.md#docker[] <-  SATOSA/doc/README.md at master · IdentityPython/SATOSA · GitHub +
+https://github.internet2.edu/ti/systems-architecture/tree/main/iam/images[] <-  systems-architecture/iam/images at main · ti/systems-architecture +
+https://github.internet2.edu/ti/systems-architecture/blob/main/iam/images/iam-signup.png[] <-  systems-architecture/iam/images/iam-signup.png at main · ti/systems-architecture +
+https://github.internet2.edu/ti/systems-architecture/blob/main/iam/images/iam-jit-enroll.png[] <-  systems-architecture/iam/images/iam-jit-enroll.png at main · ti/systems-architecture +
+https://outlook.office.com/mail/[] <-  Mail - Keith Hazelton - Outlook +
+https://outlook.office.com/calendar/view/week[] <-  Calendar - Keith Hazelton - Outlook +
+https://zenodo.org/records/3672785[] <-  AARC Blueprint Architecture 2019 (AARC-G045) +
+file:///Users/kh/Downloads/AARC-G069%20Guidelines%20for%20expressing%20group%20membership%20and%20role%20information-1.pdf[] <-  AARC-G069 Guidelines for expressing group membership and role information-1.pdf +
+file:///Users/kh/Downloads/AARC-G045-AARC_BPA_2019-Final.pdf[] <-  AARC Blueprint Architecture 2019 - AARC-G045-AARC_BPA_2019-Final.pdf +
+https://aarc-community.org/final-aarc-bpa-community-first-approach/[] <-  The final AARC Blueprint Architecture – a ‘community first’ approach – AARC I Authentication and Authorisation for Research and Collaboration
+https://github.com/IdentityPython/SATOSA <- home +
+https://gist.github.com/xenophonf/22d0ec836005040a9f7c7bb80b183eda <- Matthew Economou Satosa quick start +
+https://pypi.org/project/satosa-oidcop/ +
+https://is.muni.cz/th/cko07/Ernst_baka.pdf <- Enabling WebAuthn Standard in SP/IdP Proxy SATOSA +
+https://www.cirrusidentity.com/products/gateway +
+https://daasi.de/en/satosa-a-modular-proxy/ +
+
+

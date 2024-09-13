@@ -1,0 +1,5 @@
+=== mpTraining-2021-12.adoc
+
+Keith Hazelton (Teacher’s Assistant)
+3.144.93.28	student	b41a5309
+ssh -L8443:localhost:8443 -L10443:localhost:443 -L4443:localhost:4443 -L15672:localhost:15672 -L10389:localhost:389 -l student 3.144.93.28

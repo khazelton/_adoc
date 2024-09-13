@@ -1,0 +1,56 @@
+tierShowcaseGS18.utf  ssh -p 58263 -i ~/.ssh/id_rsa -l kh cerif.org
+国外-!
+
+_____________________
+h6. 2018-05-03 08:43  Showcase Component URLs  https://docs.google.com/document/d/1vQTG_jvZu_ccIO_ijMiHbo41ATgsa1ZVv46eWeJeeEw/edit#heading=h.rb7gpn3iecka
+_____________________
+h6. 2018-04-10 15:29  MariaDB instance from Ethan
+
+TL5LUJhpDeeqvGKw is the mysql root user on mariadb1
+_____________________
+h6. 2018-04-08 13:11  midpoint setup on cerif.org w Docker
+
+scp -P 58263 mid101.tar.gz kh@cerif.org:  <== from oMbP
+
+ssh kh
+sudo bash
+mv mid101.tar.gz /opt
+cd /opt
+tar xvf mid101.tar.gz
+cd mid101
+[root@metazome mid101]# pwd
+/opt/mid101
+
+[root@metazome mid101]# tree
+.
+├── docker-compose.yaml
+├── mp-openldap
+│   ├── bootstrap
+│   │   └── ldif
+│   │       ├── 03-memberOf.ldif
+│   │       ├── 03-sssvlv.ldif
+│   │       ├── 100-example.ldif
+│   │       └── 110-example-idmadmin-aci.ldif
+│   └── Dockerfile
+├── mp-postgres
+│   ├── 10-create-midpoint.sql
+│   ├── 20-postgres-3.7-all.sql
+│   └── Dockerfile
+└── mp-training
+    ├── config-postgresql.xml
+    ├── custom_connectors
+    │   ├── connector-csv-2.1.99.jar
+    │   └── scriptedsql-connector-1.1.2.0.em3.jar
+    ├── Dockerfile
+    ├── extension-example.xsd
+    ├── mid101-flatfiles
+    │   ├── csv-1-app-1.csv
+    │   ├── csv-2-app-2.csv
+    │   ├── csv-3-ldap.csv
+    │   └── source.csv
+    ├── mid101-flatfiles.zip
+    ├── midpoint-3.7.1-SNAPSHOT-dist.tar.gz
+    └── midpoint-entrypoint.sh
+
+7 directories, 21 files
+

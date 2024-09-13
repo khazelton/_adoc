@@ -1,0 +1,162 @@
+~/_notesPlus/TicsSorMessages.
+_____________________
+h6. 2016-09-23 15:38  
+Forgive the funky formatting.  Here’s a full list of users on the midPoint side:
+ 
+administrator
+midPoint
+Administrator
+midPoint Administrator
+ 
+demouser
+Demo
+User
+Demo User
+ 
+demouser1
+Demo
+User
+Demo User 1
+ 
+demouser2
+Demo
+User
+Demo User 2
+ 
+edisabb
+Ethan
+Disabb
+Ethan Disabb
+ethan.disabb@ufl.edu
+ 
+jaj
+James
+Jokl
+James Jokl
+jaj@virginia.edu
+ 
+keith
+Keith
+Hazelton
+Keith Hazelton
+keith.hazelton@wisc.edu
+ 
+pcaskey
+Paul
+Caskey
+Paul Caskey
+pcaskey@internet2.edu
+
+___________________________________
+email & jabber: keith.hazelton@wisc.edu
+calendar: http://go.wisc.edu/i6zxx0
+
+____________________
+{
+"userName": "kh6ra", 
+"name": 
+  {
+  "middleName": "UnknownInitials", 
+  "givenName": "Keith", 
+  "familyName": "Hazelton", 
+  "displayName": "Keith Hazelton", 
+  "formatted": "Keith UnknownInitials Hazelton"
+  }, 
+
+"role": [
+  {"value": "member"}, 
+  {"value": "employee"}, 
+  {"value": "faculty"}
+  ], 
+  
+"externalID": "hazelton@wisc.edu", 
+
+"emails": 
+  [
+    {"value": "kh6ra@testbed.tier.internet2.edu"}
+  ], 
+  
+"schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"]
+}
+
+{"userName": "kh9lc", "name": {"middleName": "UnknownInitials", "givenName": "Kurt", "familyName": "Hazelton", "displayName": "kurt Hazelton", "formatted": "Kurt UnknownInitials Hazelton"}, "role": [{"value": "member"}, {"value": "employee"}, {"value": "faculty"}], "externalID": "hazelton@wisc.edu", "emails": [{"value": "kh9lc@testbed.tier.internet2.edu"}], "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"]}
+
+{
+  "userName": "kh9lc",
+  "name": {
+    "middleName": "UnknownInitials",
+    "givenName": "Kurt",
+    "familyName": "Hazelton",
+    "displayName": "kurt Hazelton",
+    "formatted": "Kurt UnknownInitials Hazelton"
+  },
+  "role": [
+    {
+      "value": "member"
+    },
+    {
+      "value": "employee"
+    },
+    {
+      "value": "faculty"
+    }
+  ],
+  "externalID": "hazelton@wisc.edu",
+  "emails": [
+    {
+      "value": "kh9lc@testbed.tier.internet2.edu"
+    }
+  ],
+  "schemas": [
+    "urn:ietf:params:scim:schemas:core:2.0:User"
+  ]
+}
+
+_______________________________
+{'userName': 'kh4sc', 'name': {'middleName': 'UnknownInitials', 'givenName': 'Karl', 'familyName': 'Hazelton', 'displayName': 'Karl Hazelton', 'formatted': 'Karl UnknownInitials Hazelton'}, 'role': [{'value': 'member'}, {'value': 'employee'}, {'value': 'faculty'}], 'externalID': 'hazelton@wisc.edu', 'emails': [{'value': 'kh4sc@testbed.tier.internet2.edu'}], 'schemas': ['urn:ietf:params:scim:schemas:core:2.0:User']}
+Home
+
+_______________________________
+midpoint#>python receive.py
+
+ [*] Waiting for messages. To exit press CTRL+C
+ 
+ [x] Received '{"userName": "jb7cg", "externalID": "jbabb@wisc.edu", "name": {"middleName": "UnknownInitials", "givenName": "James", "familyName": "Babb", "displayName": "James Babb", "formatted": "James UnknownInitials Babb"}, "emails": [{"value": "UnknownEPPN"}], "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"]}'
+
+ [x] Received '{"userName": "jc3vn", "externalID": "cedenoj@oregonstate.edu", "name": {"middleName": "UnknownInitials", "givenName": "Jose", "familyName": "Cedeno", "displayName": "Jose Cedeno", "formatted": "Jose UnknownInitials Cedeno"}, "emails": [{"value": "UnknownEPPN"}], "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"]}'
+
+ [x] Received '{"userName": "jc4mv", "externalID": "cedenoj@oregonstate.edu", "name": {"middleName": "UnknownInitials", "givenName": "Jos\\u00e9", "familyName": "Cede\\u00f1o", "displayName": "Jos\\u00e9 Cede\\u00f1o", "formatted": "Jos\\u00e9 UnknownInitials Cede\\u00f1o"}, "emails": [{"value": "jc4mv@testbed.tier.internet2.edu"}], "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"]}'
+ 
+ [x] Received '{"userName": "jrb3ct", "externalID": "jbabb@wisc.edu", "name": {"middleName": "Robert", "givenName": "James", "familyName": "B\\u00e0\\u00e1\\u00e2\\u00e4\\u00e6\\u00e3\\u00e5\\u0101bb", "displayName": "James Babb", "formatted": "James Robert B\\u00e0\\u00e1\\u00e2\\u00e4\\u00e6\\u00e3\\u00e5\\u0101bb"}, "emails": [{"value": "jrb3ct@testbed.tier.internet2.edu"}], "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"]}'
+
+ [x] Received '{"userName": "pdm9go", "name": {"middleName": "delete", "givenName": "please", "familyName": "metoo", 
+ 	"displayName": "James A. (Jim) Jokl", "formatted": "please delete metoo"}, "role": "employee", 
+ 	"externalID": "jaj@virginia.edu", "emails": [{"value": "pdm9go@testbed.tier.internet2.edu"}], 
+ 	"schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"]}'
+
+ [x] Received '{"userName": "pdm6ch", "name": {"middleName": "Delete", "givenName": "Please", "familyName": "me2", 
+    "displayName": "James A. (Jim) Jokl", "formatted": "Please Delete me2"}, "role": ["member", "employee", "faculty"], 
+    "externalID": "jaj@virginia.edu", "emails": [{"value": "pdm6ch@testbed.tier.internet2.edu"}], 
+    "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"]}'
+
+ [x] Received '{"userName": "pdm7vt", "name": {"middleName": "Delete", "givenName": "Please", "familyName": "methree3", 
+ "displayName": "James A. (Jim) Jokl", "formatted": "Please Delete methree3"}, "role": [{"value": "member"}, {"value": "employee"}, {"value": "faculty"}], 
+ "externalID": "jaj@virginia.edu", "emails": [{"value": "pdm7vt@testbed.tier.internet2.edu"}], 
+ "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"]}'
+
+ [x] Received '{"userName": "pdm3xw", "name": {"middleName": "Delete", "givenName": "Please", "familyName": "Mefour", "displayName": "James A. (Jim) Jokl", "formatted": "Please Delete Mefour"}, "role": [{"value": "member"}, {"value": "employee"}, {"value": "faculty"}], "externalID": "jaj@virginia.edu", "emails": [{"value": "pdm3xw@testbed.tier.internet2.edu"}], "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"]}'
+
+ [x] Received '{"userName": "nj7xv", "name": {"middleName": "UnknownInitials", "givenName": "Nils", "familyName": "Jacobson", "displayName": "Nils Jacobson", "formatted": "Nils UnknownInitials Jacobson"}, "role": [{"value": "member"}, {"value": "employee"}, {"value": "faculty"}], "externalID": "njacobson@internet2.edu", "emails": [{"value": "nj7xv@testbed.tier.internet2.edu"}], "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"]}'
+
+ [x] Received '{"userName": "kh6ra", "name": {"middleName": "UnknownInitials", "givenName": "Keith", "familyName": "Hazelton", 
+ "displayName": "Keith Hazelton", "formatted": "Keith UnknownInitials Hazelton"}, "role": [{"value": "member"}, {"value": "employee"}, {"value": "faculty"}], 
+ "externalID": "hazelton@wisc.edu", "emails": [{"value": "kh6ra@testbed.tier.internet2.edu"}], 
+ "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"]}'
+
+ [x] Received '{"userName": "kh9lc", "name": {"middleName": "UnknownInitials", "givenName": "Kurt", "familyName": "Hazelton", "displayName": "kurt Hazelton", "formatted": "Kurt UnknownInitials Hazelton"}, "role": [{"value": "member"}, {"value": "employee"}, {"value": "faculty"}], "externalID": "hazelton@wisc.edu", "emails": [{"value": "kh9lc@testbed.tier.internet2.edu"}], "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"]}'
+
+ [x] Received '{"userName": "kh4sc", "name": {"middleName": "UnknownInitials", "givenName": "Karl", "familyName": "Hazelton", "displayName": "Karl Hazelton", "formatted": "Karl UnknownInitials Hazelton"}, "role": [{"value": "member"}, {"value": "employee"}, {"value": "faculty"}], "externalID": "hazelton@wisc.edu", "emails": [{"value": "kh4sc@testbed.tier.internet2.edu"}], "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"]}'
+
+ [x] Received '{"userName": "kh2op", "name": {"middleName": "UnknownInitials", "givenName": "Kent", "familyName": "Hazelton", "displayName": "Kent Hazelton", "formatted": "Kent UnknownInitials Hazelton"}, "role": [{"value": "member"}, {"value": "employee"}, {"value": "faculty"}], "externalID": "hazelton@wisc.edu", "emails": [{"value": "kh2op@testbed.tier.internet2.edu"}], "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"]}'
+
+ [x] Received '{"userName": "pdm7sw", "name": {"middleName": "Delete", "givenName": "Please", "familyName": "mesix", "displayName": "James A. (Jim) Jokl", "formatted": "Please Delete mesix"}, "role": [{"value": "member@testbed.tier.internet2.edu"}, {"value": "employee@testbed.tier.internet2.edu"}, {"value": "faculty@testbed.tier.internet2.edu"}], "externalID": "jaj@virginia.edu", "emails": [{"value": "pdm7sw@testbed.tier.internet2.edu"}], "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"]}'

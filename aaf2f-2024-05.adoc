@@ -1,0 +1,256 @@
+=== aaf2f-2024.adoc
+https://docs.google.com/document/d/1wf3-YVNBc4uIXnj97CNu3ompgYWrtKdZ3KinnHTTNqQ/edit[] <- I2 F2F AA Planning Retreat and Workshop +
+https://drive.google.com/drive/u/2/folders/0AOw5XgPOh9O4Uk9PVA[] <- 2024 arch wkshop sandbox +
+- "Magenta Team" <- IAM data from CRM +
+#ti-may-workshop on Slack +
+/Users/kh/My Drive/pdf/aaf2fdocs <- my folder for aa f2f event +
+- aaf2fdocs/ProjectFramingBlueprintRefresh-KH +
+- aaf2fdocs/PlanningWorkshop05_20_2024(Ann Arbor) +
+https://drive.google.com/drive/u/2/folders/1BEIemSAk1tGd_mlhPfaFBmuCrbsthdml[] <- k@i2:gD/archRefresh: my folder of aa f2f reference materials shared w I2 +
+ - I'm assigned as 'content lead' / 'accountable' in RACI terms +
+https://docs.google.com/document/u/2/d/1wf3-YVNBc4uIXnj97CNu3ompgYWrtKdZ3KinnHTTNqQ/edit#heading=h.pmazbh81wixz[] <- Planning Workshop: Participants List +
+https://docs.google.com/document/d/13Pjn8jjic9HJAOOBXmpFU9qGc1sDVuGvlibhNwgvJUU/edit[] <- 2024 proj rev +
+
+- - -
+_2024-09-05 16:15 Sept 2024 AA All-staff_
+
+all-staff / Ann Arbor gather requirements across all 4 exercises, put into box
+
+end the week w plans to build out the solutions
+
+
+
+- - -
+_2024-05-22 09:00 Day two: Requirements: 1) Biz, 2) System: a) func b) non-func; 3) Tech_
+
+- FM Site Admin move to the IAM platform (Johnny/Rebekah) + 
+- Developer Tools Discovery Outcomes (Dave/Chris/Rebekah) +
+
+Workshop Prep: See _2024-04-04 15:55 AA f2f prep_
+CompArch refresh 05-01
+
+Day 2 closeout: 
+
+* Working assumption: 
+** Any statement on The capabilities of a system 
+** is subject to a set of necessary and sufficient conditions
+
+
+ ] Phrase as pseudo use-cases; focus on (preceeding use cases) / (preconditions ... postconditions) / (subsequent use cases)
+
+- - -
+
+system must provision vs system must provide all the info needed for (de-)provisioning to take place
+
+what does system have to do vs what the actors have to do.
+
+Use case connections to another use case should be expressed as event source and event sync
+
+- - -
+_2024-05-20 21:13 Tuesday F2F_
+
+https://maps.app.goo.gl/bX3P24RjccKaheWg6[] <- res inn - i2
+
+* we need to provide access controls using identity information
+* we need to harmonize our identity information across our divisions and data sources. 
+* The people we interact with change roles and organizations constantly. Our systems need to track these changes holistically as people move from merely "contacts" to "user" roles, and vice versa. 
+* Managing authoritative sources of identity and the reliant processes for managing 
+** access controls, 
+** marketing & communications, or simply 
+* sending them invitations and invoices based on interests is time consuming and error prone.
+
+- - -
+_2024-05-09 13:00 Magenta Team Launch Meeting_
+
+==== Top takeaway: Are we looking at Data Mesh or at CRM integration into IAM?
+
+https://internet2.zoom.us/j/86099739378?from=addon
+
+This will be recorded for anyone unable to attend. Agenda: 
+1. Review the problem statement. 
+   Ask questions about the problem and objectives. Rebekah Ahrens
+
+https://docs.google.com/document/d/1rNTK9rhnCz_6MYwgiId8Q_4-rEwiY5t_bpZgwjxsVjI/edit[] <- magenta team/ProblemStatement-CRMAttributesforIAM +
+
+JohnK: as customer; His overview
+- JK: I rewrote prob statement, if SZ wants to go back to original version so be it
+
+*- RA: Monday com "Approved but not scheduled" -*
+
+- Complete Sympa Integration +
+- Externalize FM AuthZ (using Grouper) +
+- Develop Federation Readiness Validation Capabilities +
+- P2.1 - Shibboleth Training Enhancement +
+- Define and document a consistent onboarding process for Orgs +
+
+*- There's a person lifecycle group that's been meeting for 3 months already... -*
+
+thoughts on re-reading prob stat:
+
+```
+- Steve said their is an already approved project in each of the problem areas: What approved project relates to CRM?
+- CRM will expand the list of affiliation / roles that make up the lifecycle states of an I2/InC person
+- highlights the person / account distinction; requires both identity resolution / account linking
+- CRM is both a producer and consumer of IAM data to/from other systems
+- All the systems containing data needed by CRM must be integrated with our IAM infrastructure
+- Do we know all the systems and all the needed data?
+- CRM will need to integrate with Grouper / midPoint
+- Challenges: Need to create data dictionary and schema for IAM info contained in CRM systems
+- Objective: "Create a DataMesh" !?
+- "expected outcomes" don't mention CRM...
+
+```
+- - -
+Steve Zoppi (#ti-may-workshop) +
+Hi All - Here's your Daily Dose:
+
+The Survey is now CLOSED - Thank you ALL for contributing to what I think will generate a terrific set of discussions!
+
+:brain:  In preparation for the in-person portion of the program, I know you are all working with your 'customer' in better understanding the Problem Statement.  The Problem Statement should be considered the first of many conversations; but here's some additional pre-meeting thinking you may want to mull:
+
+For those of you who have been wondering - we arrived at this subset of "problems" to explore because they are currently, or will be shortly, connected/related in some way to each other.
+
+The four problem areas have been finalized: +
+Externalizing Authorization for the Federation Manager +
+Event Registration Systems and Related Processes (Phase II) +
+Trust and Identity Services "Health" measurement +
+CRM related attributes for IDENTITY AND ACCESS MANAGEMENT +
+
+Explore with your customer (or even here, in this channel) *how they may be connected*.
+
+Each of the problems chosen, is part of a much bigger business problem for which there is at least ONE existing, approved project.  (Monday.com is your friend)
+
+The "customer" can help you find these relationships +
+- or you can explore the relationships here (in-channel) ... +
+but all of the work we're doing HERE will continue well-beyond the workshop.  +
+You may not be on the exact same working teams post-workshop +
+- but you will all have a part to play as things unfold/evolve!
+
+.
+
+- - -
+_2024-05-01 13:00 pre-meeting prep session_
+
+Agenda
+
+*- 1. Review the draft framing doc -*
+
+- Rebekah Ahrens, James Crampton
+- aaf2fdocs/ProjectFramingBlueprintRefresh-KH
+- SZ: Has to be done by outside agency (!!)
+- SZ: Develop iconography/image for the things in progress in Cacti, etc (wallets)
+- Our audiences are shifting and expanding
+- 
+
+*- 2. Quick check in on understanding and clarity -*
+
+- any CRM IAM attribute background material pre-Ann Arbor? +
+** CRM <==> IAM flows +
+- tech recommendations: up to 5 pp each? +
+** SZ: TJ's ref arch is their inflexibility. Can we loosen up the iconography? +
+** Your team will try, prior to the workshop, to +
+*** ask as many questions as possible of the business owner (or others) to get a depth of understanding of the problem. +
+*** write Use Cases describing the needs that you learned about from the business owners (You and your team members) 
+
+*- 3. Who else should be here, should all of us be here? -*
+
+*- 4. Particular focus on: -*
+
+* Success Metrics
+
+* Health metrics
+
+* Deliverables by quarter
+
+*- brainstorm deliverables -*
+
+* capabilities x features; 
+* reflect on how the term features is understood
+* where do biz processes come into the picture?
+* work out the apparent dual of BPMN diagrams and functional wire diagrams; 
+* features x product; 
+* use cases x features
+* flexibility: diagram generation tool with palettes for cap, feat, prod, use cases:
+** illustrative examples of resulting diagrams 
+* bounded context diagrams; 
+* ubiquitous language; 
+
+.
+
+- - -
+_2024-04-04 15:55 AA f2f prep_
+
+https://mail.google.com/mail/u/1/#search/enterprise+rent/FMfcgzGxTNzNTglgGvsSNvvzXjtWdJnB[] +
+Confirmed: Enterprise Rent-A-Car Reservation # 206-792-3993 at HAMILTON RYMAL ROAD +
+May 18, 11:30 AM–May 23, 5:30 PM 
+
+Pick up time Sat, May 18, 11:30 AM +
+Drop off time Thu, May 23, 5:30 PM Duration 5 days +
+
+Pick up location 1124 Rymal Rd E, Hamilton, ON L8W 3N7, Canada +
+Car type Full Size; Confirmation number # 206-792-3993 +
+Driver Name:  KEITH HAZELTON Enterprise Plus # 4HZ8YV8
+801 Airport Dr, Ann Arbor, MI 48108, USA
+
+OnRoute West Lorne: Arrive 09:00; Prep and attend 13:00 CompArch call
+Accessed Via HWY 401 Westbound Between Lorne and Dutton 5 km from Exit 149 West Lorne, ON
+290 ON-401, Dutton, ON N0L 1J0; 
+ON-403 W and ON-401 W to Dutton/Dunwich. 
+Exit from ON-401 W
+1 hr 21 min (148 km on 403) 
+
+Residence Inn Ann Arbor North +
+https://www.marriott.com/loyalty/findReservationList.mi[] 
+
+3535 Green Court, Ann Arbor US +
+Confirmation Number : 87823872 +
+3535 Green Ct. Ann Arbor, MI  48105 +
+(734)-327-0011 +
+www.Marriott.com/arbrn
+
+- - -
+_2024-04-30 18:56 Assignment: IAM data from CRM_
+
+*- Assigned Biz Problem: CRM related attributes for IAM -*
+
+https://drive.google.com/drive/u/2/folders/1fYd_K55RMehUoRtHzu5YpOnsWMfYQ38b[] <- see magenta team/ProblemStatement-CRMAttributesforIAM +
+https://docs.google.com/document/d/1rNTK9rhnCz_6MYwgiId8Q_4-rEwiY5t_bpZgwjxsVjI/edit[] +
+
+ (Customer: JCWK PM: Rebekah)
+
+- Service Leads and Community Representation
+  John K (Ann Arbor) +
+- Project Management (Facilitators)
+  Rebekah A (Illinois) +
+- Architecture and Operations +
+  Keith H (Madison, WI) +
+  Mike L (Ann Arbor, MI) +
+  Paul C (NE Texas) +
+  Thomas P (Troy MI) +
+- Technical Services
+  Drew A (Reno, NV) +
+- Federation Ops
+  Dave S (Madison, WI) +
+
+.
+
+https://www.salesforce.com/blog/what-does-salesforce-do/[]
+
+- - -
+_2024-04-22 13:52 _
+
+Steve Zoppi
+
+We are making progress on identifying the "business areas" which will be explored in the workshop context - (Subject to change with follow-up notice.)  Each of these areas has significant complexity and will require pre-work:
+
+- Externalizing Authorization for the Federation Manager
+- (HR/Systems) Onboarding and Offboarding
+- Event Registration Systems and Related Processes (Phase II)
+- Trust and Identity Services "Health" measurement
+- CRM related attributes for IDENTITY AND ACCESS MANAGEMENT
+
+Please let me or Romy know if you have any questions - but you will each be assigned to work on one of these areas as a member of a "workshop team" ... we'll be putting those assignments together soon.
+The ball :beachball: is rolling along....
+
+*Albert Wu* To clarify, the focus is to develop/clarify the practice of requirements development, not so much on solving these use cases right? +
+*Steve Zoppi* There will be a "solutions" exercise

@@ -1,0 +1,5 @@
+=== federation.adoc
+- - -
+_2022-12-13 12:45:13 references and links_
+
+https://github.com/fedidcg/FedCM +

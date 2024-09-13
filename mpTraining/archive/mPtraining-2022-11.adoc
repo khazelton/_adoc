@@ -1,0 +1,782 @@
+=== mpTraining.adoc
+https://learning.internet2.edu/courses/113 +
+https://learning.internet2.edu/courses/113/modules +
+- - -
+_2022-11-08 15:09 mP training day 3_
+
+*-Labs 4-2 to 4-10-*
+
+<strength>strong</strength>
+<source>
+  <path>familyName</path>
+</source>
+
+- - -
+_2022-11-08 09:03 mP training day two_
+
+*-Start mP USER GROUP MEETING-*
+
+Starting module 3: mP/Grouper integration
+
+pwd change on inbound side:
+https://github.com/Evolveum/midpoint-password-agent-ad [seems deprecated]
+https://github.com/Identicum/midPointADPasswordAgent [created by Evolveum partner Identicum]
+
+https://docs.evolveum.com/midpoint/reference/expressions/expressions/script/#languages
+See Slack mP training 2022 channel between 1 and 2 pm
+
+
+
+- - -
+_2022-11-07 15:03 mP training day one_
+
+'name' is what mP treats as username for authN to mP
+
+view midpoint log file:
+docker exec -it grouper_midpoint_server_1 /bin/less /opt/midpoint/var/log/midpoint.log
+
+
+
+- - -
+_2022-10-31 12:12 Nov 2022 MP Training Prep_
+
+ssh student@18.189.7.64
+ca3e7e9d
+
+ssh -L8443:localhost:8443 -L10443:localhost:443 -L4443:localhost:4443 \
+ -L15672:localhost:15672 -L10389:localhost:389 -l student 18.189.7.64
+
+- - -
+_2021-05-14 13:36 mP training final day_
+
+https://lists.evolveum.com/pipermail/midpoint/2020-April/006133.html
+ <= ! grouper connector description, links from Pavol +
+
+
+https://github.internet2.edu/docker/midPoint_container/blob/master/demo/grouper/midpoint_server/container_files/mp-home/post-initial-objects/resources/resource-grouper.xml.
+ <= is now =>
+https://github.internet2.edu/docker/midPoint_container/blob/master/demo/grouper/midpoint_server/container_files/mp-home/post-initial-objects/resources/100-grouper.xml
+
+https://github.internet2.edu/docker/midPoint_container/blob/master/demo/grouper/midpoint_server/container_files/mp-home/post-initial-objects/functionLibraries/100-function-library-grouper.xml
+ <= this is the updated link to the function library found in the email.
+
+- - -
+
+https://spaces.at.internet2.edu/display/MID/Getting+Started+with+the+InCommon+Trusted+Access+Platform+Workbench#GettingStartedwiththeInCommonTrustedAccessPlatformWorkbench-SwitchingmidPointauthenticationtoShibboleth(optional) <= Shib protecting midPoint in the Workbench
+
+https://spaces.at.internet2.edu/display/MID/Shibboleth+demo <= pavol instructions on using Evolveum's own SAML implementation
+
+https://docs.evolveum.com/midpoint/reference/security/authentication/flexible-authentication/configuration/#FlexibleAuthenticationConfiguration-ModulehttpHeader
+ <= flexible authentication configuration
+
+challenge: Archetypes for ppl with records in multiple sources of authZd data.
+
+pushing passwords? BAD!
+
+https://docs.evolveum.com/midpoint/features/planned/ideas/
+
+ownership/approver of roles mmP UI editing role dropdown includes "owner"
+
+anyone provisioning to Duo?
+
+self-registration, custom forms:
+https://wiki.evolveum.com/pages/viewpage.action?pageId=23691393
+
+post-course run-through
+
+sudo less /var/lib/docker/volumes/grouper_midpoint_home/_data/example-mail-notifications,log
+
+- - -
+_2021-05-11 09:27 mP training day one_
+
+https://spaces.at.internet2.edu/display/MID/Grouper+integration+demo
+ <= Grouper integration demo wiki page +
+
+- - -
+_2021-05-04 10:05 Prep for mP training, May 11-14 2021_
+
+ssh -L8443:localhost:8443 -L10443:localhost:443 -L4443:localhost:4443 \
+ -L15672:localhost:15672 -L10389:localhost:389 -l student  3.141.202.241
+
+student 63abb57b
+
+- - -
+
+Welcome to our virtual class! We will be meeting on Tuesday, May 11 - Friday, May 14 from 10:00 am EST – 4:00 pm EST. There’s a chance class could end earlier, depending on the volume and depth of questions.
+
+Be on the lookout for calendar invitations for the class and slack channels!
+
+We will open Zoom an hour early on the first day of class - please join us then if you have any problems signing into your VM! All content is housed in Canvas.
+
+The fearless Ivan Norris (of Evolveum) will be your instructor. We also have Keith Hazelton and Ethan Kromhout joining you to support the class – they are all very eager to help you out!
+
+*Logistics*
+
+May 11, 2021 ⧫      9:00 - 10:00 am EST (optional - get your VM up and running!)
+May 11 - 14, 2021 ⧫ 10:00 am - 4:00 pm EST
+
+Zoom Meeting
+https://internet2.zoom.us/j/9205890107?pwd=bUVpeU9nZ0tJbWpxS0hhb05yWjV2Zz09
+
+Meeting ID: 920 589 0107
+Password: 981967
+
+One tap mobile
++13017158592,,9205890107#,,1#,981967# US (Germantown)
+
++13126266799,,9205890107#,,1#,981967# US (Chicago)
+
+Slack Collaboration: #midpointbasics-may2021
+
+This is our primary place to collaborate and ask questions. Please refrain from the Zoom chat feature. :)
+
+*Using Canvas*
+
+The main location for links to course materials is in Canvas. This is your go-to place for:
+
+A shortcut to Slack +
+The Zoom web conference info +
+Pre-work instructions for the class +
+Notes on connecting to your VM +
+Slides that will be used throughout the class +
+Lab guides +
+midPoint wiki shortcuts +
+
+To get started, you will need to register with the Internet2 IAM system (not to worry, this should only take a couple of minutes!). Here are the steps to do so:
+
+. Begin the enrollment process by navigating to Canvas at https://learning.internet2.edu
+. Select your Organization, or Google if your organization is not part of InCommon.
+. Login with your organizational credentials
+. Sign up to complete phase 1 of your registration process
+. Click the link in the email, then accept your invitation
+. Registration is complete
+. Email me back to let me know that you’re done with these steps and I’ll add you to the Canvas class.
+
+*Daily Class Schedule*
+Break times are approximate and up for discussion. All times are in ET.
+
+Time              Activity +
+9:00 - 10:00      (Monday only) +
+                  Log into VMs (optional, if you are having challenges) +
+ +
+10:00 - 10:15     Kick Off & Introduction +
+10:15 - 11:15     Workshop +
+11:15 - 11:30     Break +
+11:30 - 1:00      Workshop +
+ +
+1:00 - 2:00       Lunch +
+ +
+2:00 - 3:00       Workshop +
+3:00 - 3:15       Break +
+3:15 - 4:00       Workshop +
+
+Day  AM         PM
+---  -----      -----
+Tue  Keith      Ethan
+Wed. Keith      Ethan
+Thu. Ethan      Ethan
+Fri. Keith      Keith
+
+Note: on Friday we will have an optional happy hour at 4:00! Join us for an informal gathering, with a beverage of choice, and bring on your questions and friendly midPoint banter. :)
+
+*Session Information & Best Practices*
+
+We will be taking short breaks throughout the day and a longer lunch break around 1:00 ET.
+To keep things flowing well, please refrain from using the Zoom chat window. Instead, use the dedicated Slack channel for your discussions!
+VMs will be opened up several days before the class. They will remain open for ~ two weeks after the class so that you can practice the lab exercises.
+
+Ask ALL of your questions. There are no dumb questions.
+
+*Pre-Work*
+
+Work through modules InCommon 101, Module 0 and Module 1 prior to Tuesday, May 11th at 10:00 am. Please allow at least 8 hours to complete the videos and readings.
+
+If you haven’t already done so, complete this survey so that we can understand your midPoint experience and goals for attending the course.
+
+If you have any questions about the workshop or its technical content, please send a note to emurtha@internet2.edu. You can also use the Slack channel for an even faster response. :)
+
+- - -
+Erin Murtha
+emurtha@internet2.edu
+Director, InCommon Academy
+
+- - -
+_2020-12-08 10:04 mP training Dec. 2020_
+
+https://drive.google.com/drive/u/0/folders/1DJmPryn1WNjLRVwmaOYyMqOH2gtMzhdF <= Student resource folder +
+  ~/opt/mPtraining-2020  <= NbP local Student resource folder +
+  #Slack: # midpoint-training-internal  #midpoint-training-spring2020 6f61fa9e
+
+```
+ssh -L8443:localhost:8443 -L10443:localhost:443 -L4443:localhost:4443 -L15672:localhost:15672 -L10389:localhost:389 -l student  3.23.102.46
+ssh -L8443:localhost:8443 -L10443:localhost:443 -L4443:localhost:4443 -L15672:localhost:15672 -L10389:localhost:389 -l student  3.23.102.46
+```
+- - -
+_2020-11-24 08:23 mP training Dec 2020_
+
+free code for training is d6af73
+
+- - -
+_2020-06-19 08:23 follow-up on mP Training 2020-06_
+
+- - -
+_2020-06-16 10:46 day 1, am session 2_
+
+Ivan: "Cases where orgs and roles could both apply, 99% use Orgs"
+
+- - -
+_2020-06-16 11:00 1 hour lunch break_
+
+```
+[student@ip-172-31-9-129 grouper]$ cat ssh-tunnel-redir-fix.sh
+#!/bin/bash
+# This file is used for trainings with SSH tunnels.
+# It will change the hard-coded ports for Shibboleth, but will keep localhost.
+
+declare -a fileList=(
+"configs-and-secrets/midpoint/shibboleth/idp-metadata.xml"
+"configs-and-secrets/grouper/shibboleth/idp-metadata.xml"
+"idp/shibboleth-idp/metadata/idp-metadata.xml"
+"idp/shibboleth-idp/metadata/grouper-sp.xml"
+"idp/shibboleth-idp/metadata/midpoint-sp.xml"
+"idp/shibboleth-idp/metadata/midpoint-sp-new.xml"
+)
+
+if [ $# -eq 0 ]
+then
+    echo 'Please specify a directory as the first argument (e.g. ".")'
+    exit
+fi
+
+echo "Working in directory: $1";
+for f in "${fileList[@]}"
+do
+    echo "Replacing in: $1/$f..."
+    # We cannot SSH tunnel port 443 without root, so using 10443
+    sed -i 's#https://localhost/#https://localhost:10443/#g' $f
+#    sed -i 's#https://localhost:4443/#https://localhost:14443/#g' $f
+done
+
+exit
+```
+
+- - -
+```
+Keith Hazelton  18:54
+the last thing that I entered before this was docker stop $(docker ps -a -q) && \
+docker rm $(docker ps -a -q) && \
+docker rmi $(docker images -q) --force && \
+docker volume rm $(docker volume ls -q)
+18:54
+i managed to enter shutdown -r now
+18:55
+and lost connection, but when I ssh’d back in, I was still getting those same repeated lines on the console
+
+Chris Hubing  18:56
+we found something kinda similar in grouper training
+when people  bounced  the containers
+and the browser still trying to  keepalive that socket
+and it went away, but  kept trying to  connect, ssh would send that out
+once  something comes back up answering on that port, it was fine
+
+Keith Hazelton  18:57
+would it help to restart the browser?
+
+Chris Hubing  18:57
+what browser  are you using?
+
+Keith Hazelton  18:57
+firefox
+I have chrome and safari too
+
+Chris Hubing  18:57
+yeh, i would trying restarting the browser
+
+Keith Hazelton  18:57
+’k
+
+Chris Hubing  18:57
+i know how to flush the stuff in chrome, but not FF
+
+chrome is chrome://net-internals/#sockets   <=
+
+Keith Hazelton  18:58
+ok, I’ll try chrome this time
+
+Chris Hubing  18:58
+ok :thumbsup:
+
+Keith Hazelton  19:42
+All’s well, environment setup 1.1 complete.
+19:42
+thanks again
+```
+
+working through 1.2, 1.3
+
+error:
+```
+[student@ip-172-31-9-129 grouper]$ ./create-ref-loaders.sh
+Detected Grouper directory structure 'api' (valid is api or webapp)
+Using GROUPER_HOME:           /opt/grouper/grouper.apiBinary
+Using GROUPER_CONF:           /opt/grouper/grouper.apiBinary/conf
+Using JAVA:                   /usr/lib/jvm/zulu-8//bin/java
+Using CLASSPATH:              /opt/grouper/grouper.apiBinary/conf:/opt/grouper/grouper.apiBinary/dist/lib/grouper.jar:/opt/grouper/grouper.apiBinary/lib/grouper/*:/opt/grouper/grouper.apiBinary/lib/custom/*:/opt/grouper/grouper.apiBinary/lib/jdbcSamples/*:/opt/grouper/grouper.apiBinary/lib/ant/*:/opt/grouper/grouper.apiBinary/lib/test/*:/opt/grouper/grouper.apiBinary/dist/lib/test/*:/opt/grouper/grouper.apiBinary/src/resources
+using MEMORY:                 64m-750m
+Grouper starting up: version: 2.4.0, build date: null, env: <no label configured>
+grouperPatchStatus read from: /opt/grouper/grouper.apiBinary/grouperPatchStatus.properties
+api patches installed:        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47
+pspng patches installed:      0, 1, 2, 3, 4, 5, 6
+grouper.properties read from: /opt/grouper/grouper.apiBinary/conf/grouper.properties
+Grouper current directory is: /opt/grouper/grouper.apiBinary
+log4j.properties read from:   /opt/grouper/grouper.apiBinary/conf/log4j.properties
+Grouper is logging to file:   /tmp/logpipe, at min level WARN for package: edu.internet2.middleware.grouper, based on log4j.properties
+grouper.hibernate.properties: /run/secrets/grouper_grouper.hibernate.properties
+grouper.hibernate.properties: root@jdbc:mysql://grouper_data:3306/grouper?CharSet=utf8&useUnicode=true&characterEncoding=utf8
+subject.properties read from: /run/secrets/grouper_subject.properties
+sources configured in:        subject.properties
+subject.properties ldap source id:   ldap: demo
+subject.properties groupersource id: g:gsa
+subject.properties groupersource id: grouperEntities
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/opt/grouper/grouper.apiBinary/lib/grouper/slf4j-log4j12.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/opt/grouper/grouper.apiBinary/lib/custom/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+Grouper error: Error connecting to the database with credentials from grouper.hibernate.properties, url: jdbc:mysql://grouper_data:3306/grouper?CharSet=utf8&useUnicode=true&characterEncoding=utf8, driver: com.mysql.jdbc.Driver, user: root, java.sql.SQLException: null,  message from server: "Host 'grouper_grouper_daemon_1.grouper_net' is blocked because of many connection errors; unblock with 'mysqladmin flush-hosts'"
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1040)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2188)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2219)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2014)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:776)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:386)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:330)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at edu.internet2.middleware.grouper.misc.GrouperCheckConfig.checkDatabase(GrouperCheckConfig.java:1245)
+	at edu.internet2.middleware.grouper.misc.GrouperCheckConfig.checkGrouperDb(GrouperCheckConfig.java:1133)
+	at edu.internet2.middleware.grouper.misc.GrouperStartup.startup(GrouperStartup.java:303)
+	at edu.internet2.middleware.grouper.app.gsh.GrouperShell.main(GrouperShell.java:165)
+	at edu.internet2.middleware.grouper.app.gsh.GrouperShellWrapper.main(GrouperShellWrapper.java:31)
+```
+
+- - -
+_2020-06-14 09:29 prep NbP biff bye fade_
+
+==== Module 1: Environment Introduction
+
+```
+~/.bash_profile: export CDPATH='.:/Users/khazelton/opt:/Users/khazelton/opt/midPoint_container-training-2020'
+cd demo; cd ../ <= leave you in ~/opt/midPoint_container-training-2020
+
+* Remove all containers, images, and volumes *
+per https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes
+
+#!/bin/bash
+docker stop $(docker ps -a -q) && \
+docker rm $(docker ps -a -q) && \
+docker rmi $(docker images -q) --force && \
+docker volume rm $(docker volume ls -q)
+```
+
+==== error starting grouper_midpoint_server_1
+```
+cd demo/grouper
+./ssh-tunnel-redir-fix.sh .
+docker-compose up -d --build
+
+docker-compose up <= error starting grouper_midpoint_server_1
+...
+midpoint_server_1  |  [proxy:error] [pid 89:tid (111)Connection refused: AH00957: AJP: attempt to connect to 127.0.0.1:9090 (localhost) failed
+midpoint_server_1  |  [proxy:error] [pid 89:tid AH00959: ap_proxy_connect_backend disabling worker for (localhost) for 0s
+midpoint_server_1  |  [proxy_ajp:error] [pid 89:tid [client 127.0.0.1:46780] AH00896: failed to make connection to backend: localhost
+midpoint_server_1  | httpd;access_log;demo;;httpd;access_log;demo;;127.0.0.1 - - [14/Jun/2020:19:15:02 +0000] "GET /midpoint/actuator/health HTTP/1.1" 503 299 "-" "curl/7.29.0"
+...
+
+(base) nbp:midPoint_container-current khazelton$ docker ps
+CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS                     PORTS                                                                     NAMES
+140e0b578a87        grouper_grouper_ui        "/usr/local/bin/entr…"   5 minutes ago       Up 5 minutes (healthy)     80/tcp, 0.0.0.0:4443->443/tcp                                             grouper_grouper_ui_1
+56ae80f91b6c        grouper_grouper_daemon    "/usr/local/bin/entr…"   5 minutes ago       Up 5 minutes (healthy)     80/tcp, 443/tcp                                                           grouper_grouper_daemon_1
+d6f8f2082595        grouper_grouper_ws        "/usr/local/bin/entr…"   5 minutes ago       Up 5 minutes (healthy)     80/tcp, 0.0.0.0:9443->443/tcp                                             grouper_grouper_ws_1
+06ee55aad371        grouper_idp               "/usr/bin/startup.sh"    5 minutes ago       Up 5 minutes (healthy)     0.0.0.0:443->443/tcp                                                      grouper_idp_1
+9e1fff5cfd5d        grouper_midpoint_server   "/usr/local/bin/star…"   5 minutes ago       Up 5 minutes (unhealthy)   80/tcp, 0.0.0.0:8443->443/tcp                                             grouper_midpoint_server_1
+dd7836ff99c5        grouper_grouper_data      "/usr/local/bin/entr…"   5 minutes ago       Up 5 minutes (healthy)     80/tcp, 443/tcp, 0.0.0.0:3306->3306/tcp                                   grouper_grouper_data_1
+```
+- - -
+_2020-06-08 17:49 Pre-launch_
+
+https://docs.google.com/document/d1diRTkO4FnZkdk5Vb56RDku6Ni_C_02GBrPz5JH4n3Fs/edit <= midPoint Basics Training logistics +
+https://docs.google.com/document/d/1YaF6iHb9Sw2QMMqrVrv1m9ljvUQNJOozMrDwYn4UkYA/edit <= Internal class notes
+
+Slack: +
+  # midpoint-training-internal +
+  # midpoint-training-spring2020
+
+- - -
+
+Hey all! Just sharing this channel with us "internal" folks. We can use this for our discussions during class when we don't to share with everyone.
+
+https://www.incommon.org/academy/midpoint-basics-spring-2020 <= mP Training Home Page
+
+Welcome to our virtual class! We will be meeting on Tuesday, June 16 through Thursday June 18th from 9:00 am EST – 5:00 pm EST. There’s a chance class could end earlier, depending on the volume and depth of questions. Daily Class Schedule Break times are approximate and up for discussion.
+
+Also, this is the content of the message that I plan to send to the students this week. We will want to potentially add/delete some stuff. This is a copy of what I sent for the Grouper training last week, so there are some obvious things to scratch but thought it might be helpful to see the whole communication:
+
+- - -
+
+Hello midPoint friends!
+
+You are receiving this note because you registered for the virtual InCommon midPoint Basics Training Workshop, June 16 - 18, 2020.
+
+This email is full of information to help make your experience both productive and enjoyable.
+
+Today you will be added to our dedicated class Slack channel (if you’re not already in the Internet2 Slack channels, be on the lookout for an invite!). I’ll be sending you useful reminders there; it is our primary collaboration space for instructors and students.
+
+You’ll also be receiving not one, not two, but THREE calendar invitations (whoohoo!):
+
+    An invitation to the three day course in Zoom
+    An invitation to an optional 8:00 am ET session on Tuesday morning to ensure that you are signed into your VM successfully and ready to go
+    An invitation to an optional happy hour on Friday – bring your cat and a beverage of your choice and talk about midPoint with us.
+
+You can find all of the details about the upcoming workshop here:
+
+https://docs.google.com/document/d/1jNhgL5TP1PRDx6DZvBmZiBT_rxZsmL0yCQP2P9FKUHs/edit
+
+You’ll also find it all in pinned in Slack. You’ll see that there is prework to complete before we meet next week – some light reading and logging into your VMs.
+
+If you have any other questions, please do not hesitate to reach out.
+
+Looking forward to seeing you all next week.
+
+Cheers,
+
+Erin
+
+- - -
+_2020-06-01 09:06 Prep for Spring2020 mP training_
+
+https://docs.google.com/document/d/1TQJQuA2e_nBf1Nfjcqw0wJbYN_WHpIO2fDGWPrd8vqY/edit <= planning meeting notes +
+https://docs.google.com/document/d/1IOYgAQifBOV-g00wqEnFAjDBi4Wj2TzpQbeBzE7_Exo/edit <= draft outline of training +
+
+Pre-training: "Calendar invitation: Show up an hour early to make sure your training setup is working": via email and a pinned message in Slack channel.
+
+Cahoot polling (phone, computer)
+
+1st morning: Give access to slides; leave up for two weeks;
+
+Schedule a feedback session for a couple days after the close of training
+
+WI, Chicago, ND, So training start at 9 am Eastern works, June 16-18
+
+Make Ethan and Keith available for slack / zoom pre-work questions, help
+
+Final deadline for materials: Tues. June 9 for pre-work, Fri. June 12 for slides
+
+Use my I2 Zoom for breakouts
+
+Meet again Tues., June 9 8:30 Central
+
+- - -
+_2019-08-28 11:35 Integrating Sentrifugo HR into Training Environment: run container_
+
+For initial successful build, see mpTrnLog-00.adoc
+
+browse to http://co-op.tech:8080, Sentrifugo mgmt page displayed
+
+explore employee db table
+
+```
+khazelton@localhost:~/opt/InCommonTAP-Examples/Sources/HR$ docker exec -it 7c97ffbc1b3a /bin/bash
+
+root@7c97ffbc1b3a:/tmp/lib_mysqludf_amqp-2.0.0# mysql -u root --password=xxx
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 160
+Server version: 10.4.7-MariaDB-1:10.4.7+maria~bionic mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sentrifugo         |
++--------------------+
+4 rows in set (0.000 sec)
+
+MariaDB [(none)]> use sentrifugo
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [sentrifugo]> show tables;
++-----------------------------------+
+| Tables_in_sentrifugo              |
++-----------------------------------+
+| assets                            |
+| assets_categories                 |
+| assets_history                    |
+| expense_advacne_summary           |
+| expense_advance                   |
+| expense_categories                |
+| expense_forward                   |
+| expense_history                   |
+| expense_notifications             |
+| expense_payment_methods           |
+| expense_receipts                  |
+| expense_return_advance            |
+| expense_trip_history              |
+| expense_trips                     |
+| expenses                          |
+| main_accountclasstype             |
+| main_allottedleaveslog            |
+| main_announcements                |
+| main_assignmententryreasoncode    |
+| main_attendancestatuscode         |
+| main_bankaccounttype              |
+| main_bgagencylist                 |
+| main_bgcheckcomments              |
+| main_bgcheckdetails               |
+| main_bgchecks_summary             |
+| main_bgchecktype                  |
+| main_bgpocdetails                 |
+| main_businessunits                |
+| main_candidatedetails             |
+| main_candworkdetails              |
+| main_cities                       |
+| main_competencylevel              |
+| main_countries                    |
+| main_cronstatus                   |
+| main_currency                     |
+| main_currencyconverter            |
+| main_dateformat                   |
+| main_departments                  |
+| main_disciplinary_history         |
+| main_disciplinary_incident        |
+| main_disciplinary_violation_types |
+| main_educationlevelcode           |
+| main_eeoccategory                 |
+| main_emailcontacts                |
+| main_emailgroups                  |
+| main_emaillogs                    |
+| main_emp_reporting                |
+| main_empadditionaldetails         |
+| main_empcertificationdetails      |
+| main_empcommunicationdetails      |
+| main_empcreditcarddetails         |
+| main_empdependencydetails         |
+| main_empdisabilitydetails         |
+| main_empeducationdetails          |
+| main_empexperiancedetails         |
+| main_empholidays                  |
+| main_empjobhistory                |
+| main_employeedocuments            |
+| main_employeeleaves               |
+| main_employeeleavetypes           |
+| main_employees                    |
+| main_employees_summary            |
+| main_employmentstatus             |
+| main_empmedicalclaims             |
+| main_emppersonaldetails           |
+| main_empsalarydetails             |
+| main_empskills                    |
+| main_empvisadetails               |
+| main_empworkdetails               |
+| main_empworkeligibility           |
+| main_ethniccode                   |
+| main_exit_history                 |
+| main_exit_process                 |
+| main_exit_questions               |
+| main_exit_questions_response      |
+| main_exit_settings                |
+| main_exit_types                   |
+| main_gender                       |
+| main_geographygroup               |
+| main_groups                       |
+| main_hierarchylevels              |
+| main_holidaydates                 |
+| main_holidaygroups                |
+| main_hr_wizard                    |
+| main_identitycodes                |
+| main_identitydocuments            |
+| main_interviewdetails             |
+| main_interviewrounddetails        |
+| main_interviewrounds_summary      |
+| main_jobtitles                    |
+| main_language                     |
+| main_leavemanagement              |
+| main_leavemanagement_summary      |
+| main_leaverequest                 |
+| main_leaverequest_history         |
+| main_leaverequest_summary         |
+| main_licensetype                  |
+| main_logmanager                   |
+| main_logmanagercron               |
+| main_mail_settings                |
+| main_maritalstatus                |
+| main_menu                         |
+| main_militaryservice              |
+| main_monthslist                   |
+| main_nationality                  |
+| main_nationalitycontextcode       |
+| main_numberformats                |
+| main_organisationinfo             |
+| main_pa_appraisalhistory          |
+| main_pa_category                  |
+| main_pa_employee_ratings          |
+| main_pa_ff_employee_ratings       |
+| main_pa_ff_history                |
+| main_pa_ff_initialization         |
+| main_pa_groups                    |
+| main_pa_groups_employees          |
+| main_pa_groups_employees_temp     |
+| main_pa_implementation            |
+| main_pa_initialization            |
+| main_pa_manager_initialization    |
+| main_pa_questions                 |
+| main_pa_questions_privileges      |
+| main_pa_questions_privileges_temp |
+| main_pa_ratings                   |
+| main_pa_skills                    |
+| main_patches_version              |
+| main_payfrequency                 |
+| main_pd_categories                |
+| main_pd_documents                 |
+| main_positions                    |
+| main_prefix                       |
+| main_privileges                   |
+| main_racecode                     |
+| main_remunerationbasis            |
+| main_request_history              |
+| main_requisition                  |
+| main_requisition_history          |
+| main_requisition_summary          |
+| main_roles                        |
+| main_sd_configurations            |
+| main_sd_depts                     |
+| main_sd_reqtypes                  |
+| main_sd_requests                  |
+| main_sd_requests_summary          |
+| main_settings                     |
+| main_sitepreference               |
+| main_states                       |
+| main_timeformat                   |
+| main_timezone                     |
+| main_userloginlog                 |
+| main_users                        |
+| main_vendors                      |
+| main_veteranstatus                |
+| main_weekdays                     |
+| main_wizard                       |
+| main_workeligibilitydoctypes      |
+| numbers                           |
+| tbl_cities                        |
+| tbl_countries                     |
+| tbl_employmentstatus              |
+| tbl_months                        |
+| tbl_password                      |
+| tbl_states                        |
+| tbl_timezones                     |
+| tbl_weeks                         |
+| tm_clients                        |
+| tm_configuration                  |
+| tm_cronjob_status                 |
+| tm_emp_timesheets                 |
+| tm_emp_ts_notes                   |
+| tm_mailing_list                   |
+| tm_process_updates                |
+| tm_project_employees              |
+| tm_project_task_employees         |
+| tm_project_tasks                  |
+| tm_projects                       |
+| tm_tasks                          |
+| tm_ts_status                      |
++-----------------------------------+
+178 rows in set (0.002 sec)
+
+MariaDB [sentrifugo]> select * from main_employees limit 10;
+Empty set (0.001 sec)
+
+MariaDB [sentrifugo]> describe main_employees;
++-------------------+---------------------+------+-----+------------+----------------+
+| Field             | Type                | Null | Key | Default    | Extra          |
++-------------------+---------------------+------+-----+------------+----------------+
+| id                | bigint(20) unsigned | NO   | PRI | NULL       | auto_increment |
+| user_id           | bigint(20)          | YES  | UNI | NULL       |                |
+| date_of_joining   | date                | YES  |     | 0000-00-00 |                |
+| date_of_leaving   | date                | YES  |     | 0000-00-00 |                |
+| reporting_manager | bigint(20) unsigned | YES  |     | NULL       |                |
+| emp_status_id     | int(11) unsigned    | YES  |     | NULL       |                |
+| businessunit_id   | int(11) unsigned    | YES  |     | NULL       |                |
+| department_id     | int(11) unsigned    | YES  |     | NULL       |                |
+| jobtitle_id       | int(11) unsigned    | YES  |     | NULL       |                |
+| position_id       | int(11) unsigned    | YES  |     | NULL       |                |
+| years_exp         | varchar(20)         | YES  |     | NULL       |                |
+| holiday_group     | int(11) unsigned    | YES  |     | NULL       |                |
+| prefix_id         | int(11) unsigned    | YES  |     | NULL       |                |
+| extension_number  | varchar(20)         | YES  |     | NULL       |                |
+| office_number     | varchar(100)        | YES  |     | NULL       |                |
+| office_faxnumber  | varchar(100)        | YES  |     | NULL       |                |
+| createdby         | int(11) unsigned    | YES  |     | NULL       |                |
+| modifiedby        | int(11) unsigned    | YES  |     | NULL       |                |
+| createddate       | datetime            | YES  |     | NULL       |                |
+| modifieddate      | datetime            | YES  |     | NULL       |                |
+| isactive          | tinyint(1) unsigned | YES  |     | 1          |                |
+| is_orghead        | tinyint(1) unsigned | YES  |     | 0          |                |
++-------------------+---------------------+------+-----+------------+----------------+
+```
+
+- - -
+_2019-01-17 10:00 mP training group_
+
+Agenda: https://internet2.app.box.com/notes/384270798978
+
+Hold this time for a project to develop midpoint training. I’ll be back soon with more details!
+
+https://internet2.box.com/s/eavl96st6gd1y81fapnyx0pw13odeu93  <= midPoint training
+
+* materials/midpoint-deployment-fundamentals-mid101-slides.pdf <= 485 slides
+* materials/LABS-MID101.2018.A-docker.pdf <= 55 pages
+
+
+Background Notes:
+
+* Who: Bill, Paul, Ethan, Keith H, Matt B., Chris Hubing (for connectors)
+** Partners: Igor, Pavol
+* When: January - ?
+** 100 hours to build one day of training, per Igor
+* Major Work and Milestones:
+** Provide Evolveum with desired agenda
+** Collaborate to create content
+** SOW
+** Identify trainers
+* How to Work:
+** Meeting with internal team to sketch out an agenda for training in early January
+** Move to bi-weekly likely after that
+* Useful Links:
+** Last Year’s training summary https://docs.google.com/document/d/1XCIMvK01cxxRGZW3SmTSVvZEaHwvrgwkftbNVNLr8QM/edit
+** 11/30 Kick off notes https://docs.google.com/document/d/12cXsGEzg7OS_Sh2EBCM4v8d0GKhOW69NEqwN13dITBQ/edit
+** https://docs.google.com/document/d/1IOYgAQifBOV-g00wqEnFAjDBi4Wj2TzpQbeBzE7_Exo/edit <=  midPoint Training Outline
+* Notes:
+** $100/hour -- guesstimate $20k - $30k for SOW
+
+Erin Murtha is inviting you to a scheduled Zoom meeting.
+
+Join Zoom Meeting
+https://internet2.zoom.us/j/8144413145
+
+- - -
+_2019-01-16 20:28 references and links_

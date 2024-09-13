@@ -1,0 +1,130 @@
+=== TIarchDenv-2019-05.adoc
+/travel/2019-05denver/ +
+Agenda: https://docs.google.com/document/d/1UgCyk0GulmkzgGjp1bCa1sGFsbJVOgt4BWfKCbZMj68/edit
+
+* * *
+_2019-05-09 18:50 Followup to meeting conclusions_
+
+https://docs.google.com/spreadsheets/d/1sBmQZy*Dgcg0MBzpYQrECFBAYzqrhGta1zTpYOVy5bw/edit#gid=0
+https://docs.google.com/spreadsheets/d/1sBmQZy-Dgcg0MBzpYQrECFBAYzqrhGta1zTpYOVy5bw/edit#gid=469712535
+<= common themes, dependencies, and rankings
+
+Questions about __NAME__ and __UID__ in midPoint (Ethan)
+
+==== High priority tasks from the Internet2 Collaboration Platform development project
+
+===== Examples of the crucial role that Grouper can play in controlling "who has access to what"
+
+https://spaces.at.internet2.edu/display/Grouper/Group+and+folder+design+ideas +
+https://spaces.at.internet2.edu/display/Grouper/Grouper+new+template+wizard +
+
+* branch folders in a way that supports hierarchy and delegation of control (bushy)
+
+===== Internet2 TAP’s take on API security
+
+* * *
+_2019-05-07 15:28 F2F Day Two_
+
+contact andy from OSU again +
+
+
+* * *
+_2019-05-07 10:36 F2F Day One_
+
+debt (templated solutions?)
+
+ * account linking
+ * ID Match
+ * FM needs Satosa, get roles out, bring into group mgmt
+ * bi-directional sync where needed
+ * de-prov
+ * IdM for non*person entities
+ * messaging between actors in FM
+ * management of orgs with which I2 interacts
+ * "delegation" <= "here's the way we set these up"
+ * "attestation" <= "here's the way we set these up"
+ * procurement resource aggregator how do we supervise? **Albert Wu
+ * Sara: data source viability issues (800+ net+ service acct, advisory boards)
+ * several app*specific org identifiers even just in FM, systems of campuses
+ * systems*as*consortia, system offices  AW: 1) legal entity 2) Org unit 3) Contracting party
+ * Pardot integr w sForce
+ * API Gateway needed?
+ * Sara (Cloud architect lead, [R&D mindset]): Not all cloud stuff lives in Net+; See Cloud Connect; CNCF working on Layer 7 application/segment routing APIs (stuff that used to be done with Layer 3)
+ * ] Ask to be added to Educause cloud Slack
+ * Nick, Dir of tech & strategy for InCommon, MDQ,
+
+==== 10:30 Break
+
+ *figuring out a limited sphere of use for all the cool stuff like Kubernetes. Not everything that can be done with K SHOULD be done with K.
+ * Same with Grouper...
+
+ * Around the table
+
+ * Use Case walkthroughs
+
+ * TSG Use Cases ** Meeting Scenarios (Mike LH)
+
+** meeting team
+ *** create web presence for meeting and
+ *** sets up meeting in sF
+ *** call for proposals (authN web page into DB)
+ *** need to deprecate SiteID (old AuthN for DeepField,...)
+
+ ** program committee uses Ruby tool to review, evaluate, approve...ends up generating the online meeting program and data persisted in sF then pull back to generate mobile app for the meeting
+
+ ** registration: unauthN for now; want exec asst to be able to register the VIPs, sans delegation from VIP
+ *** sketch sequence diagrams illustrating alternative models
+
+ * gap: ability to manage identities that are represented only by (verified) email addresses
+
+ * gap: who are you**give ppl the ability to edit own profile info
+
+ * Steve's notion of metadata includes "which info clump this info item came from??""
+
+ * Gap: Service that does policy decisions: Grouper!!
+   Subj / Action / Resource / under Conditions
+
+ * NickR: Non*web use case
+   * I2 staff: SSH, git, CLI access w credentials
+   * Community
+   * I2 staff: using credentials that aren't dependent on shared secrets in the file system;
+   * Sara: We need a pattern more flexible than bastion host
+  ** CIntegr / CDelivery       / CDeployment
+                build
+                containers
+
+ *
+
+dinner 6 pm
+
+* * *
+_2019-05-05 21:15 travel info_
+
+```
+United Flight 5468  Confirmation #OSQGLY
+Madison MSN  7:40 PM Gate 5
+Denver DEN   9:20 PM Gate B87
+
+SuperShuttle Confirmation # 1153584 to HolInnExpr, 401 E 17th
+```
+* * *
+_2019-05-06 15:00 Neo4j for dependency graph (see //dependenciesRating)_
+
+neo4j in browser http://localhost:7474
+
+
+* * *
+_2019-05-05 10:40 meeting prep_
+
+```
+Tues 7th:  Achieve agreement on gaps, esp. provisioning/deprovisioning
+  Use cases: FedMgr, EventMgmt, NetwSvc, CommCollab, Net+, I2BizProc,
+             TrainingEnv, MDQtech, 'Metadata'
+  Themes/dependencies/rankings
+
+Wed. 8th:  Develop roadmap for paying down tech debt
+  Debt Compulsory/Discretionary
+  Per target (de*)provision debt: Slack, Confl, JIRA, email, regPortal,...
+  Intuitive quantification of debt
+  Roadmap for compulsDebt, resourcing gap filling, work plan
+```

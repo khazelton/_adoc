@@ -1,0 +1,220 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+{\fonttbl\f0\fnil\fcharset0 Consolas;\f1\fnil\fcharset0 Calibri;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue233;}
+\margl1440\margr1440\vieww15460\viewh15120\viewkind0
+\deftab720
+\pard\pardeftab720
+
+\f0\fs24 \cf0 \
+See also: new work on \'93Identity Events\'94, including SCIM drafts   \'97Keith\
+\
+_______________\
+I strongly agree with Jim. The issue with "change" messages is that they are ordered by necessity, otherwise the final state of the resource may be incorrectly reconstrusted.\
+\
+If a resource mutates and attains four distinct states:\
+A ----> B ----> C ----> D\
+\
+At any point in time, the resource representation is self-describing and can stand on its own.\
+\
+But change messages don't communicate the resource; rather they are ordered transformations:\
+\
+? --(a)--> ?\
+? --(b)--> ?\
+? --(c)--> ?\
+\
+The state-at-rest of the resource being transformed is not apparent in this case. If messages arrive out-of-order or don't arrive at all, the state gets un-synchronized and a full reconciliation is necessary.\
+\
+This is Jim and Eric's point. Change messages can be useful, but require the use of resource messages regardless(or alternatively, sophisticated replay and ordering systems). \
+\
+In light of the importance of resource messages, I recommend we focus our efforts there.\
+\
+--Gabor\
+\pard\pardeftab720
+
+\f1\fs28 \cf0 \
+\pard\pardeftab720
+
+\f0\fs24 \cf0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+Jim, this is kind of the point I was getting at.\'a0\'a0The user needs to understand the situation .\'a0\'a0The consumer of a message is largely in control of these rules..\'a0\'a0The target should be aware and one size does not fit all..\
+\
+\
+Warren\
+____________________ \
+I might suggest that a "best practice" is something that worked well in one\
+situation and now imagines it will work equally well in any other situation.\
+\
+Our AWS message service does not keep message order.\'a0\'a0To use the student\
+enrollment messages as the example, we treat a course-student pair as a resource, which has a last\
+updated time.\'a0\'a0If we get a message for that course and student that is older than, or the same time as,\
+the present resource update time we ignore the message.\'a0\'a0So, in this case, no ordering is necessary.\
+\
+I do recognize there are times where ordered messages would indeed make life easier.\
+\
+Something you get when you don't care so much about message ordering is an easy\
+ability to have clustered receivers.\'a0\'a0You gain something; you lose something.\
+\
+Jim\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97 \
+\pard\pardeftab720
+
+\f1\fs28 \cf0 > This is totally in scope for the Data Structures and APIs WG. This email thread is on the agenda for tomorrow's WG meeting at 3 pm Eastern.\
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 --Keith
+\f0\fs24 \
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97 \
++1 to this being a useful task.\'a0\'a0Going further, is there a plan to use a messaging infrastructure within the TIER 'package' and between TIER components?\'a0\'a0If so, seems like there is a requirements gathering phase that would need to happen.\
+\
+Nick\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+Lots of us seem to be using message buses these days.\
+\
+Has TIER (or anyone else) tried to collect "best practice" info related\
+to using, and managing, and scaling, and dealing with all of the issues\
+mentioned in this thread ?\
+\
+If not, would seem to be a useful task.    \'97SteveC\
+\
+\pard\pardeftab720
+\cf0 \ul \ulc0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\ulnone \
+\
++1 WHC\
+\
+-----Original Message-----\
+From: {\field{\*\fldinst{HYPERLINK "mailto:tier-api-request@internet2.edu"}}{\fldrslt \cf2 \ul \ulc2 tier-api-request@internet2.edu}} [{\field{\*\fldinst{HYPERLINK "mailto:tier-api-request@internet2.edu"}}{\fldrslt \cf2 \ul \ulc2 mailto:tier-api-request@internet2.edu}}] On Behalf Of Eric Goodman\
+Sent: Tuesday, March 22, 2016 2:50 PM\
+To: {\field{\*\fldinst{HYPERLINK "mailto:tier-api@internet2.edu"}}{\fldrslt \cf2 \ul \ulc2 tier-api@internet2.edu}}\
+Subject: RE: [tier-api] sample msg from Banner to Grouper\
+\
+Broken record, but:\
+\
+This is why I prefer that messages be sent with reference to full current state, and that "change" verbs should be advisory. "Think you missed a particular message? Just ask for the current state about the object in question."\
+\
+If you send me something saying this person is a Faculty member and I can't tell whether that is a new or existing affiliation, then we have bigger issues. So it's great that you tell me that affiliation used to be "none" and is now "Faculty", but I don't need to see the old value to figure it out. If messages get out of sequence (which is actually our bigger concern here at UC), your detail about what changed may be irrelevant anyway.\
+\
+--- Eric
+\f1\fs28 \
+____________________\
+
+\f0\fs24 If ordering is important for messages then it should be enforced.\'a0\'a0That is one of the things message systems can be told to be good at.\'a0\'a0\'a0\'a0Eric mentioned as well.\'a0\'a0\
+\
+Thru a combination of ordering or more complete object centric messages the number of confused/missed messages are very few.\'a0\'a0\
+\
+Another technique is to have a subchannel by object instance (person) if a registry message.\'a0\'a0 If data from a prior message is not processed then the sub channel blocks /holds subsequent messages from being sent.\'a0\'a0\'a0\'a0Notices of the issue are dispatched.\'a0\'a0Attention is given as needed.\'a0\'a0Messages are continued automatically or from a console operation.\'a0\'a0\
+\
+We have most of this turned over to the operations staff as routine things to monitor and deal with.\'a0\'a0\
+\
+WHC\
+\pard\pardeftab720
+
+\f1\fs28 \cf0 \
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97 \
+\pard\pardeftab720
+
+\f0\fs24 \cf0 Thanks Warren, the pattern of detecting dropped messagings and signaling/requesting true-up is something I've seen done elsewhere, and important to include.\'a0\'a0For purposes of idempotency, if a message is dropped at some point in the past, about a subject, is it necessary to ask for all the relevant related messages (about that subject) since the message was dropped?\
+\
+Example:\
+\
+Dropped message was adding someone to a group for a course.\'a0\'a0Since that message was sent, they've dropped the course.\'a0\'a0Message recipient received the message about the drop, but did nothing because the person wasn't in the group.\'a0\'a0Dropped message is detected and the source system is asked to re-send the message about the addition to the course.\'a0\'a0If the course drop message is also not processed, following in the same order (replayed after the course add message), the person is not correctly removed from the course group.\
+\
+Nick\
+___________________________\
+On 3/22/16, 12:24 PM, "Curry, Warren" <{\field{\*\fldinst{HYPERLINK "mailto:whcurry@ufl.edu"}}{\fldrslt \cf2 \ul \ulc2 whcurry@ufl.edu}}> wrote:\
+\
+Do not be conflicted.\'a0\'a0 My Friend\'a0\'a0 This is much less a problem than a point to point service can not talk now because the other end is not available.\'a0\'a0Work stops or ???\
+\
+We have solved in cases where an issue has occurred a singleton true up.\'a0\'a0\'a0\'a0 Think of it as a trigger to resend the missing/lost message.\'a0\'a0\'a0\'a0Uses all the same stuff.\
+\
+In practice we rarely use.\'a0\'a0If when an issue occurs we can use a console operation to inject an identifier or or if a significant number are affected they can be loaded to the same table that the console operation would inject.\
+\
+The list is then processed to resend messages if needed.\'a0\'a0\'a0\'a0These triggers are actually the same/similar and use the same messaging code to resend and repair a problem.\'a0\'a0\
+\
+In practice it is used very seldom but works well.\'a0\'a0\
+\
+Warren\
+\
+-----Original Message-----\
+From: {\field{\*\fldinst{HYPERLINK "mailto:tier-api-request@internet2.edu"}}{\fldrslt \cf2 \ul \ulc2 tier-api-request@internet2.edu}} [{\field{\*\fldinst{HYPERLINK "mailto:tier-api-request@internet2.edu"}}{\fldrslt \cf2 \ul \ulc2 mailto:tier-api-request@internet2.edu}}] On Behalf Of Nick Roy\
+Sent: Tuesday, March 22, 2016 2:10 PM\
+To: Steven Carmody <{\field{\*\fldinst{HYPERLINK "mailto:steven_carmody@brown.edu"}}{\fldrslt \cf2 \ul \ulc2 steven_carmody@brown.edu}}>; {\field{\*\fldinst{HYPERLINK "mailto:tier-api@internet2.edu"}}{\fldrslt \cf2 \ul \ulc2 tier-api@internet2.edu}}\
+Subject: Re: [tier-api] sample msg from Banner to Grouper\
+\
+The need for a true-up process when using messaging is something I've been concerned about for a while.\'a0\'a0Messaging systems are great when they are rock solid and can be relied upon.\'a0\'a0If they can't be, then it seems like a bunch of extra infrastructure to support for not much additional value.\'a0\'a0I've been conflicted about messaging for that reason for some time.\
+\
+Nick
+\f1\fs28 \
+__________________\
+In case it's useful, we're on the verge of publishing the following messages from Banner using AMQP, and Grouper is one of the consumers of those messages:\
+\
+\pard\pardeftab720
+{\field{\*\fldinst{HYPERLINK "https://www.hawaii.edu/bwiki/display/UHIAM/Banner+Messages"}}{\fldrslt \cf2 \ul \ulc2 https://www.hawaii.edu/bwiki/display/UHIAM/Banner+Messages}}\
+\
+The registration messages are keyed by student and term, so each message provides the entire list of courses for that particular key.\'a0 We take a similar approach for all the other messages.\
+\
+Our registry also publishes messages from itself and on behalf of some systems of record:\
+\
+\pard\pardeftab720
+{\field{\*\fldinst{HYPERLINK "https://www.hawaii.edu/bwiki/display/UHIAM/UHIMS+Events+-+Message+Specs"}}{\fldrslt \cf2 \ul \ulc2 https://www.hawaii.edu/bwiki/display/UHIAM/UHIMS+Events+-+Message+Specs}}\
+\
+We solve a particular message catch-up problem via retrofit messages:\
+\
+\pard\pardeftab720
+{\field{\*\fldinst{HYPERLINK "https://www.hawaii.edu/bwiki/display/UHIAM/UHIMS+Events#UHIMSEvents-retrofit"}}{\fldrslt \cf2 \ul \ulc2 https://www.hawaii.edu/bwiki/display/UHIAM/UHIMS+Events#UHIMSEvents-retrofit}}\
+\
+-julio\
+\
+Julio Polo\
+Enterprise Middleware, Identity and Access Management\
+University of Hawaii
+\f0\fs24 \
+\
+____________________\
+probably just add and delete (for individual membership in the group). A\
+separate feed-driven process actually creates all the course groups.\
+\
+There's a true-up process that runs on a regular basis to handle the\
+"lost message" situation. Initially it ran daily; I think it now runs\
+weekly (which tells you how often messages get lost or dropped). We use AMQ.\
+\
+On 3/21/16 3:32 PM, Eszes, Gabor wrote:\
+What events do you define?\
+\
+If one of these messages gets lost, how do you maintain state -- and\
+order of operations? Can these messages be replayed?\
+\
+--Gabor\
+_______________\
+Hi,\
+\
+Keith asked me to forward some info on the messages we've defined\
+between these two systems. We currently run Banner as a Student System;\
+currently the only Banner events that send msgs to Grouper are when a\
+student registers for (adds) or drops a course.\
+\
+Unfortunately, we don't have complete documentation on these messages.\
+But, here's a sample, and it should be easy to imagine what the other\
+msgs look like:\
+\
+\{\
+\'a0\'a0\'a0\'a0"Brown_Subject":"APMA",\
+\'a0\'a0\'a0\'a0"Brown_Course_Number":"0330",\
+\'a0\'a0\'a0\'a0"Brown_Term":"201300",\
+\'a0\'a0\'a0\'a0"Brown_Section_Number":"S01",\
+\'a0\'a0\'a0\'a0"User_Role":"Student",\
+\'a0\'a0\'a0\'a0"Operation":"delete",\
+\'a0\'a0\'a0\'a0"User_Bruid":"010024657",\
+\'a0\'a0\'a0\'a0"Creation_Time":"20131109012757"\
+\}\
+\
+Peter was scheduled to a presentation on this integration at CAMP 2013;\
+his slides are linked from this page:\
+\
+\pard\pardeftab720
+{\field{\*\fldinst{HYPERLINK "https://spaces.internet2.edu/display/CAMP2013/CAMP+Program"}}{\fldrslt \cf2 \ul \ulc2 https://spaces.internet2.edu/display/CAMP2013/CAMP+Program}}\
+\
+as part of the "Identity Stores, ERPs - Getting the Data into the IAM\
+System " session.\
+\
+         \'97SteveC\
+___________________________________\
+}

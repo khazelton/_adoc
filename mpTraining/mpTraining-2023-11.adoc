@@ -1,0 +1,126 @@
+=== mpTraining-2023-11.adoc
+
+- - -
+_2024-02-20 21:54 1st steps; unicon resource template_
+
+```
+/Users/kh/opt/_adoc/mptraining
+(base) ➜  mptraining git:(main) ✗ tree .
+.
+├── LABS-MID301-4.8-LTS-module1.pdf
+├── LABS-MID301-4.8-LTS-module2.pdf
+├── LABS-MID301-4.8-LTS-module3.pdf
+├── LABS-MID301-4.8-LTS-module4.pdf
+├── LABS-MID301-4.8-LTS-module5.pdf
+├── LABS-MID301-4.8-LTS-module6.pdf
+├── LABS-MID301-4.8-LTS-module7.pdf
+├── LABS-MID301-4.8-LTS-module8.pdf
+├── LABS-MID301-4.8-LTS-module9-1.pdf
+├── LABS-MID301-4.8-LTS.pdf
+├── Mail - Keith Hazelton - Outlook.pdf
+├── Midpoint Welcome Note - November 2023.pdf
+├── NO SIWG MEETING Wednesday, 15 November,
+├── archive
+│   ├── mPtraining-2022-11.adoc
+│   ├── mpTraining-2020-12.adoc
+│   ├── mpTraining-2021-12.adoc
+│   └── mpTraining-2023-04.adoc
+├── midpoint-first-steps-slides-module1.pdf
+├── midpoint-first-steps-slides.pdf
+├── mp4.8howto-01.adoc
+└── mpTraining-2023-11.adoc
+
+
+2 directories, 21 files
+(base) ➜  mptraining git:(main) ✗
+```
+
+- - -
+_2023-11-16 09:00 1st steps
+
+https://docs.evolveum.com/midpoint/methodology/first-steps/[]
+
+3.22.100.95
+d31e73c1
+
+https://learning.internet2.edu/courses/139[]
+
+opt/_adoc/mpTraining/
+
+Evolveums's ninja tool for exporting full config.
+
+admin gui config in mP documentation
+- - -
+_2023-11-16 09:00 1st steps day 4, Mod 8 (Prov. AD)_
+
+https://docs.evolveum.com/midpoint/reference/support-4.8/schema/archetypes/configuration/#multiple-archetypes[]
+
+https://docs.evolveum.com/midpoint/reference/support-4.8/admin-gui/admin-gui-config/
+
+mod 1 app b: use docker-compose rather than docker-compose
+
+- - -
+_2023-11-15 09:00 1st steps day 3, Mod 6 Labs, Mod 7 (Prov. AD)_
+
+Audit log viewer <- !!
+
+See identity recovery, Ken/Purdue: twist for 1st time students to CREATE and register an identity 
+
+template to fill in product support for iam function (IAM function graph w drill down)
+
+how-tos for mP 4.8 LTS to drive and assist with version upgrade
+
+- - -
+_2023-11-14 13:36 1st steps day 2_
+
+https://docs.evolveum.com/midpoint/reference/support-4.8/mark/#built-in-object-marks[]
+
+
+- - -
+_2023-11-10 16:16 mP training prep_
+
+Keith's vm: 3.22.100.95
+d31e73c1
+
+ssh -L8443:localhost:8443 -L10443:localhost:443 -L4443:localhost:4443 -L15672:localhost:15672 -L10389:localhost:389 -l student 3.22.100.95
+d31e73c1
+
+/home/student/firststeps
+[student@ip-172-31-39-130 firststeps]$ ls -la
+
+total 36
+drwxrwxr-x. 8 ec2-user ec2-user   189 Oct 25 09:26 .
+drwx------. 3 student  student     80 Nov 10 18:08 ..
+-rw-r--r--. 1 ec2-user ec2-user   246 Oct 18 10:46 .env
+drwxr-xr-x. 3 ec2-user ec2-user    22 Feb  8  2023 configs-and-secrets
+drwxrwxr-x. 2 ec2-user ec2-user 16384 Oct 11 13:03 container-ad_files
+-rw-rw-r--. 1 ec2-user ec2-user  4565 Oct 13 13:18 docker-compose-ninja.yml
+-rw-rw-r--. 1 ec2-user ec2-user  8181 Oct 24 15:41 docker-compose.yml
+drwxrwxr-x. 3 ec2-user ec2-user    61 Oct 13 13:38 hr
+drwxrwxr-x. 3 ec2-user ec2-user    40 Sep 20 14:02 hr-db
+drwxr-xr-x. 3 ec2-user ec2-user    29 Feb  8  2023 midpoint_server
+drwxrwxr-x. 4 ec2-user ec2-user    30 Oct 16 21:43 portal
+
+
+- - -
+_2023-11-10 16:13 background_
+
+Clara Broomfield
+​jmurphy@buffalo.edu;​​​​​​​​​​​
+​
+Hello, 
+
+Thank you for registering for the InCommon Midpoint Deployment: First Steps training taking place on Novmeber 13-16th . Attached is a welcome note with all the information you’ll need to prepare for the class.  Additionally, you will soon receive invitations to the daily live sessions and Slack channel. Look out for these in the inbox of the email address you used to register!
+
+Please take some time before Monday to look over the document and reach out with any questions, either to me via email or in our class Slack channel. Please note that we will be having an option session on November 13th to log in to VMs.
+
+Best Regards, Clara Broomfield | Training Program Manager | InCommon Academy, Internet2
+ 
+- - -
+_2023-11-08 15:14 resources and links_
+
+#mp-training-internal +
+https://docs.google.com/spreadsheets/d/1OBmwwDzJLeooOShaeWAvQHNBkVfUu9y1kc0pB_Ga8Xk/edit?usp=sharing[] <- vm assign.
+https://docs.google.com/spreadsheets/d/1OBmwwDzJLeooOShaeWAvQHNBkVfUu9y1kc0pB_Ga8Xk/edit?usp=sharing[] <- roster +
+
+

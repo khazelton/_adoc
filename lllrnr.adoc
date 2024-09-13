@@ -1,0 +1,27 @@
+=== lllrnr.adoc 
+
+- - -
+_2024-08-02 21:24 cat theory with algebraic Julia: a course of self-study_
+
+Per cattheory.adoc:_2020-10-24 14:16 doing the MIT course, Applied Category Theory_
+
+https://ocw.mit.edu/courses/18-s097-applied-category-theory-january-iap-2019/[] <- 18.S097 | January IAP 2019 | Undergraduate
+
+~/opt/catThAppl-18.s097-january-iap-2019/
+
+7sketchesComp.pdf <- textbook: _Seven  Sketches in Compositionality_ "7sket"
+
+- - -
+_2024-08-03 20:56 Launch_
+
+Lecture 1 (up to 26'35") +
+Chap 1 of 7sket
+
+
+
+
+- - -
+_2024-08-02 17:49 ultralearning_
+
+https://medium.com/cogni-tiva/learn-anything-with-ultralearning-bcab0b2c4a65[] +
+Ultralearning, Kindle, Scott Young

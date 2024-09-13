@@ -1,0 +1,428 @@
+=== computingByPicture.adoc
+SEARCH 'coecke', 'axler', view as gallery in finder
+opt/stringD'grams
+
+- - -
+_2024-08-06 20:55 diagramming tool to try_
+
+https://medium.com/gitconnected/diagram-as-code-crafting-aws-architecture-diagrams-using-python-084926d0dd49[] +
+https://github.com/mingrammer/diagrams.git[] +
+~/opt/diagrams +
+https://diagrams.mingrammer.com/[] +
+
+- - -
+_2024-07-28 20:09 getting somewhere with AlgebraicPetri_
+
+physTopLogCompRosetta.pdf <- Physics, Topology, Logic and Computation:
+A Rosetta Stone; from back in the day
+
+~/opt/AlgebraicPetri.jl
+start with README.md then
+libikindStructPetri.pdf
+openPetriBaez.pdf
+
+SRF found https://www.youtube.com/watch?v=2CjTs9lmEHI[] <- structured cospans and open petri nets, Baez et al. +
+
+two initial graphs drawn successfully in Jupyter notebook, Julia kernel 
+
+- - -
+_2024-07-28 19:18 basic graphviz_
+
+ dot -v -Tpng file.gv > file.png
+
+Then open with preview via finder
+
+- - -
+_2024-07-27 15:01 cats for epidemiology_
+
+https://arxiv.org/abs/2203.16345[] <- alg4epidModeling.pdf +
+git@github.com:AlgebraicJulia/Structured-Epidemic-Modeling.git[] +
+~/opt/EpidemicModeling +
+https://graphs.grevian.org/[] <- cheatsheet
+
+- - -
+_2024-07-27 12:07 ac-sets and SIR models and more_
+
+To SRF: that may be out entry point into the ac-set approach to SIR & other good things.  I'll let you know if it pans out +
+
+https://topos.site/events/berkeley-seminar/slides/2022-04-28.pdf[] +
+
+
+- - -
+_2024-06-27 10:57 string diagrams studies_
+
+*- Keith to SRF on Skype -*
+
+Stepping into part III of the tutorial was like stepping off the continental shelf into a. deep sea trench. Looking for a wave pool alternative, I came upon this lego-land treatment of string diagrams which we can look at and decide whether or not to dive into it: 
+https://arxiv.org/pdf/1909.10475[] +
+stringDiagrLegoAssembly.pdf
+
+https://github.com/CompositionalPlanning/[] <- CompositionalPlanning repo +
+refers to *.dat files at https://ldraw.org/
+
+petriNetsLawvereStyle.pdf <- Petri Nets Based on Lawvere Theories +
+lawvereTheoriesBuckley2008.pdf <- Mitchell Buckley. Lawvere theories
+
+- - -
+_2024-04-25 19:28 1st IAM domain wiring diagrams_
+
+...not yet
+
+- - -
+_2024-04-22 12:38 prep for next srf chat_
+
+wiring diagramss +
+Julia notebooks in Jupyter +
+https://blog.algebraicjulia.org/post/2020/10/acset-theory/[] <- The categorical scoop on attributed C-sets +
+
+- - -
+_2024-04-21 18:55 restart path to AlgebraicJullia_
+
+https://www.geeksforgeeks.org/add-julia-kernel-to-jupyter/[] 
+
+https://algebraicjulia.github.io/Catlab.jl/latest/[]
+
+worked examples from wiring diagrams
+
+- - -
+_2024-04-21 16:53 getting started with Catlab_
+
+*- Start Julia REPL -*
+
+julia> using Core: GeneratedFunctionStub
+
+julia> using Test
+
+julia> using GATlab, Catlab.Theories, Catlab.CategoricalAlgebra
+ │ Package GATlab not found, but a package named GATlab is available from a registry.
+ │ Install package?
+ │   (@v1.10) pkg> add GATlab
+ └ (y/n/o) [y]: y
+   Resolving package versions...
+    Updating `~/.julia/environments/v1.10/Project.toml`
+  [f0ffcf3b] + GATlab v0.1.1
+  No Changes to `~/.julia/environments/v1.10/Manifest.toml`
+
+julia> import Catlab.Theories: compose
+
+julia> using DataStructures
+ │ Package DataStructures not found, but a package named DataStructures is available from a registry.
+ │ Install package?
+ │   (@v1.10) pkg> add DataStructures
+ └ (y/n/o) [y]: y
+   Resolving package versions...
+    Updating `~/.julia/environments/v1.10/Project.toml`
+  [864edb3b] + DataStructures v0.18.20
+  No Changes to `~/.julia/environments/v1.10/Manifest.toml`
+
+julia> using PrettyTables
+ │ Package PrettyTables not found, but a package named PrettyTables is available from a registry.
+ │ Install package?
+ │   (@v1.10) pkg> add PrettyTables
+ └ (y/n/o) [y]:
+   Resolving package versions...
+    Updating `~/.julia/environments/v1.10/Project.toml`
+  [08abe8d2] + PrettyTables v2.3.1
+  No Changes to `~/.julia/environments/v1.10/Manifest.toml`
+
+julia> PrettyTables.pretty_table(f::FinFunction, name::Symbol=:f) =
+         pretty_table(OrderedDict(:x=>1:length(dom(f)), Symbol("$(name)(x)")=>collect(f)))
+
+julia> using LaTeXStrings
+ │ Package LaTeXStrings not found, but a package named LaTeXStrings is available from a registry.
+ │ Install package?
+ │   (@v1.10) pkg> add LaTeXStrings
+ └ (y/n/o) [y]:
+   Resolving package versions...
+    Updating `~/.julia/environments/v1.10/Project.toml`
+  [b964fa9f] + LaTeXStrings v1.3.1
+  No Changes to `~/.julia/environments/v1.10/Manifest.toml`
+
+julia> status
+status (generic function with 1 method)
+
+julia> n = FinSet(3)
+FinSet(3)
+
+julia> m = FinSet(4)
+FinSet(4)
+
+julia> f = FinFunction([2,4,3], n, m)
+FinFunction([2, 4, 3], 3, 4)
+
+julia> pretty_table(f)
+```
+┌───────┬───────┐
+│     x │  f(x) │
+│ Int64 │ Int64 │
+├───────┼───────┤
+│     1 │     2 │
+│     2 │     4 │
+│     3 │     3 │
+└───────┴───────┘
+```
+https://stackoverflow.com/questions/75457334/rendering-of-a-graph-using-dot-program[] <- yields working examples of graphs rendereabls by dot +
+
+https://juliagraphs.org/Graphs.jl/stable/[] <- Juliagraphs documentation +
+
+- - -
+_2024-04-21 11:47 1st attempt: wiring diagrammiing with AlgebraicJulia_
+
+https://algebraicjulia.github.io/Catlab.jl/latest/[] <- Documenting use of Catlab.jl +
+https://algebraicjulia.github.io/Catlab.jl/latest/apis/wiring_diagrams/#wiring_diagrams[] <- wiring diagram methods +
+https://algebraicjulia.github.io/Catlab.jl/dev/generated/wiring_diagrams/wd_cset/[] <- Wiring diagrams as Attributed C-Sets, acset +
+
+- - -
+_2024-04-19 10:52 GATLab intro monograph w code samples_
+
+GATlab +
+https://github.com/AlgebraicJulia/GATlab.jl[] +
+
+https://arxiv.org/pdf/2310.05384.pdf[] <- Cartesian double theories: A double-categorical framework for categorical doctrines +
+cospan-dblCat <- Evan Patterson, Structured and decorated cospans from the viewpoint of double category theory +
+http://www.tac.mta.ca/tac/volumes/35/48/35-48abs.html[] <- Structured Cospans +
+https://compositionality-journal.org/papers/compositionality-4-3/[] <- Struct vs Decorated Cospans
+
+- - -
+_2024-04-18 09:51 tutorials with exercises from Appl Cat. Theory, 2023_
+
+https://act2023tutorials.netlify.app[]
+
+- - -
+_2024-04-16 17:01 open the books_
+
+https://www.epatters.org/papers/[] <- Evan Patterson pubs +
+https://www.epatters.org/assets/slides/2023-structured-decorated-csp/slides#/title-slide[] +
+
+[side by side wire diagrams indicate _tensoring_]
+√ https://math.ucr.edu/home/baez/rosetta/rosetta_topos_web.pdf[] +
+
+In a _monoidal category_, [in additional to composition,] we can also do processes ‘in parallel’:
+_Tensoring_ +
+F : x → y and G : x′ → y ′ +
+to get a morphism F ⊗ G : x ⊗ x′ → y ⊗ y′ ++
+
+In a _monoidal category_, composition and tensoring must obey some laws, which all look obvious when drawn as diagrams. For example +
+(G ◦ F ) ⊗ (G ′ ◦ F ′) = (G ⊗ G ′) ◦ (F ⊗ F ′
+
+In a _braided monoidal category_ we also have morphisms
+Bx,y : x ⊗ y → y ⊗ x 
+called _braidings_
+
+Computer science gives us _symmetric monoidal categories_ where objects are _data types_ and a morphism +
+F : x → y + 
+is a _program_ that takes data of type x as input and gives data of type y as output.
+
+- - -
+
+catDatStruct <- Categorical Data Structures for Technical Computing, (Patterson, Lynch, and Fairbanks 2021)
+
+Many mathematical objects can be represented as functors from finitely-presented categories C to Set. For instance, graphs are functors to Set from the category with two parallel arrows. Such functors are known informally as C-sets.
+
+In this paper, we describe and implement an extension of C-sets having data attributes with fixed types, such as graphs with labeled vertices or real-valued edge weights. We call such structures _acsets_, short for _attributed C-sets_
+
+Example 3. Schemas for typed and untyped undirected wiring diagrams are pictured in Figure 3.
+Loosely speaking, undirected wiring diagrams represent patterns of composition for systems with an outer boundary. Imagine placing an entire wiring diagram inside one of the inner circles, and then erasing the inner circle to get a new wiring diagram. This operation makes undirected wiring diagrams into an OPERAD, a construction made precise in Dylan Rupel and David I. Spivak. “The operad of temporal wiring diagrams: formalizing a graphical language for discrete-time processes”. In: arXiv preprint (2013). arXiv: 1307.6894.
+
+
+Graphs, and their generalization as C-sets, are introduced with minimal prerequisites in a series of blog posts on the AlgebraicJulia blog, 
+
+ https://blog.algebraicjulia.org/post/2020/09/cset-graphs-1/[] 
+ Graphs and C-sets I: What is a graph?
+ Graphs and C-sets II: Half-edges and rotation systems
+ Graphs and C-sets III: Reflexive graphs and C-set homomorphisms +
+ Graphs and C-sets IV: The propositional logic of subgraphs and sub-C-sets
+
+Elaboration of acset idea:
+
+(https://blog.algebraicjulia.org/post/2023/11/intertypes/) ⇐ Owen Lynch, "Introducing Intertypes", cross-language serialization for ADTs and ACSets +
+https://blog.algebraicjulia.org/post/2020/10/acset-theory/[] +
+
+
+"The better way to do it would be to define your types once, in a language-agnostic way, and then generate the types in each language automatically along with serialization/deserialization code. This sort of system has been done before: see
+
+protobuf
+thrift
+typedefs
+capnproto
+
+So why make a new one? Well, I want to support ACSets natively, as many of our scientific models are built on top of them,see "Categorical Data Structures for Technical Computing", Patterson, Lynch, and Fairbanks, 2021
+
+operadsWiringDiagr _Operads of Wiring Diagrams_, Donald Yau book +
+
+Wiring diagrams and undirected wiring diagrams allow one to consider a finite collection of related operations, wired together in some way, as an operation itself. Such an operation can then be considered as a single operation within a yet larger collection of operations, and so forth. <- NOTE: reminiscent of "bounded contexts" in Domain Driven Design; SEE ddd.adoc
+
+Related work: https://www.reaktor.com/articles/optics-to-safe-and-easy-data-manipulation[] <- Introduction to safe and easy data manipulation +
+
+- - -
+_2024-04-12 18:45 top entry points_
+
+√ https://math.ucr.edu/home/baez/rosetta/rosetta_topos_web.pdf[] +
+https://www.youtube.com/watch?v=DAGJw7YBy8E[] <- John Baez SMC as Rosetta Stone lecture youtube +
+√ https://www.youtube.com/watch?v=tfiour4xJ7o[] <- John Baez Applied Category Theory +
+https://math.ucr.edu/home/baez/compositional_modeling/[] <- John Baez' Stuff; main work these days is using categories to make better software for modeling [w Julia libraries] +
+ https://www.youtube.com/watch?v=48VqWQ2YbGk[] <- Eugenia Cheng, _The Joy of Abstraction_ +
+ _The Joy of Abstraction_ +
+https://arxiv.org/pdf/0908.3347.pdf[] <- Selinger, A survey of graphical languages for monoidal categories +
+https://arxiv.org/pdf/2005.02975v3.pdf[] <- "DisCoPy: Monoidal Categories in Python" for a detailed monograph +   
+discopyMonCat __^ +
+https://birdtracks.eu/version8.9/GroupTheory.pdf[] <- Predrag Cvitanović _Group Theory: Birdtracks, Lie’s, and Exceptional Groups_ +
+https://youtu.be/Bs798oBBTSY?si=axjkLpng2YlXyY-T[] <- Birdtracks 2024: The 1st 50 yrs +
+
+*- software -*
+
+https://github.com/Quantomatic/quantomatic[] <- quantomatic diagram software repo +
+https://quantomatic.github.io/[] <- quantomatic website +
+catDatStruct <- for technical computing +
+https://www.categoricaldata.net/[] _Categorical Databases_, CQL, Categorical Query Language IDE +
+https://github.com/CategoricalData/CQL[] <- official repo for CQL +
+
+- - -
+_2024-04-15 17:24 operads & data_
+
+https://link.springer.com/book/10.1007/978-3-319-95001-3[] <- Operads of Wiring Diagrams, Donald Yau +
+https://nilesjohnson.net/En-monoidal.html[] +
+https://nilesjohnson.net/drafts/Johnson_Yau_ring_categories.pdf[] <- monoids&KAlg +
+Johnson_Yau_ring_categories
+https://u.osu.edu/yau.22/main/[] <- Donald Yau homepage +
+https://mathoverflow.net/questions/72490/why-are-operads-useful[] +
+
+"I find two different points of view useful.
+
+    Further to Steve's first answer, I would say that operads put many algebraic structures into one compact and useful meta-algebraic setting. Lie, associative, commutative, Poisson, Gerstenhaber, etc. All of these fit into one nice framework which then tells us how to define cohomology theories and study the deformation theory in each setting. This universal setup also tells us how to study generators and relations, homological algebra, duality theory, and so on. Operads, somewhat like category theory, allow one to see the common structure behind many a priori different worlds.
+
+    My other point of view is that operads, along with their siblings, the cyclic and modular operads, are all about studying structures that glue/compose along trees or graphs. Manifestations of this type of composition appear in topological field theory, infinite loop space theory, low dimensional topology, and all sorts of other places."
+
+                 -- Jeffrey Giansiracusa
+                    https://sites.google.com/view/jeffreygiansiracusa/home
+
+- - -
+_2024-04-12 14:05 diagramming functional program    s: Tools_
+
+Eric Normand: _Grokking Simplicity: Taming Complex Software with Functional Thinking_ at Manning + 
+Yehonathan Sharvit: _Data-Oriented Programming: Reduce Software Complexity_ +
+
+Here's one example, there's better ones out there that go into reversible migrations as natural transformations + 
+https://math.mit.edu/~dspivak/informatics/talks/galois.pdf[] +
+https://dblp.org/pid/59/5301.html[] <- David Spivak pubs +
+graphicalLang4RewritProtoc <- Dynamic Tracing: a graphical language for rewriting protocols +
+https://dblp.org/rec/journals/corr/abs-2301-04846.html[] <- Algebraic Model Management: A Survey +
+https://arxiv.org/html/2101.07888/[] <- Applied Category Theory Conference, 2020 +
+https://arxiv.org/pdf/2101.12046v1.pdf[] <- !! Wiring diagrams as norm forms 4 computing in sym mon cats +
+https://www.categoricaldata.net/[] _Categorical Databases_, CQL, Categorical Query Language IDE +
+https://github.com/CategoricalData/CQL[] <- official repo for CQL +
+
+
+- - -
+_2024-04-11 11:29 discopy from repo_
+
+ git clone git@github.com:discopy/discopy.git
+
+In jupyterlab browser window; in left nav panel, open discopy/docs/notebooks/examples.ipynb
+
+Run the code cells in Examples and view resulting string diagrams
+
+We can see if we understand what we're looking at.  Other files in docs 
+
+Download https://arxiv.org/pdf/2005.02975v3.pdf
+"DisCoPy: Monoidal Categories in Python"
+for a detailed monograph
+
+In the endless search for the least painful introduction to category theory: https://abuseofnotation.github.io/category-theory-illustrated/00_about/
+
+I like the parent repo a lot: https://abuseofnotation.github.io/
+
+Abuse of Notation - writings on math, logic, philosophy and art -
+https://abuseofnotation.github.io
+
+The cat theory illus. guy relied on another David Spivak book for inspiration and provoking ideas, _Category Theory for the Sciences_. I know you liked Spivak's _7 Studies in Compositionality_
+
+- - -
+_2024-04-08 10:18 more links_
+
+https://docs.discopy.org/en/main/notebooks/diagrfrgivceievdvlvridddkefviifr
+ams.html[] <- intro tutorial (WIP) +
+https://johncarlosbaez.wordpress.com/?s=string+diagram[] <- *Circuits*, Bond Graphs, and Signal-Flow Diagrams +
+
+- - -
+_2024-04-07 17:15 latest quantinuum posts_
+
+distillTxT2Circuit <- Distilling Text into Circuits +
+https://medium.com/quantinuum/our-quest-for-finding-the-universality-of-language-d0f7a40b76e6[] <- 2023 +
+https://medium.com/quantinuum/everyone-can-learn-quantum-now-even-at-a-cutting-edge-level-and-we-have-the-test-scores-to-prove-49e7fdc5c509[] <- Coecke, 2023 +
+https://medium.com/quantinuum/how-zx-calculus-reveals-the-logic-and-processes-of-quantum-mechanics-to-everyone-944fc3bbbb2c[] <- 2023 +
+
+- - -
+_2024-04-08 16:50 string diagrams_
+
+*- See .pdfs from 04-07 and 04-08 -*
+
+https://github.com/CQCL/text_to_discocirc[] <- DisCoCirc demo repo, "Automatic generation of DisCoCirc circuits using CCG" +
+pyzx <- intro paper +
+https://github.com/Quantomatic/pyzx[] <- Pyzx repo +
+https://graphicallinearalgebra.net/[] <- pawel sobocinski +
+diagrAlgFOL <- pawel sobocinski, refs peirce existential graphs +
+
+
+- - -
+_2024-04-07 12:29 qNLP_
+
+*- latest devs: DisCoCirc -*
+
+pipelineCircuitCCG <- A Pipeline For Discourse Circuits From CCG +
+mathOfTextStruct <- The Mathematics of Text Structure (DisCoCirc), B Coecke +
+qcompNisqEra <- Quantum Computing in the NISQ era and beyond +
+"Noisy Intermediate-Scale Quantum (NISQ) technology is the near future" +
+
+*- DisCoPy, DisCoCat era -*
+
+https://medium.com/cambridge-quantum-computing/quantum-natural-language-processing-ii-6b6a44b319b2[] +
+https://github.com/discopy/discopy[] +
+λambeq <- lambeq: An Efficient High-Level Python Library for Quantum NLP +
+https://arxiv.org/pdf/2110.04236.pdf[] <- λambeq pyth lib +
+https://medium.com/cambridge-quantum-computing/quantum-natural-language-processing-ii-6b6a44b319b2[] <- λambeq open sourced +
+linpp <- LinPP: a Python-friendly algorithm for Linear Pregroup Parsing +
+https://arxiv.org/pdf/2205.05190.pdf[] <- DisCoPy 4 quant comp'ists +
+disCoPyMonCat
+catOfOptics <- rel to funcProg, ref'd above ^ +
+QNLPCambridgeQuantum <- 'we did it' +
+https://github.com/oxford-quantum-group/discopy/blob/ab2b356bd3cad1dfb55ca6606d6c4b4181fe590c/notebooks/qnlp-experiment.ipynb[] <- repo for above ^ +
+https://docs.discopy.org/en/main/notebooks/qnlp.html[] <- !! tutorial on QNLP +
+reasMeaning <- Reasoning about Meaning in Natural Language with Compact Closed Categories and Frobenius Algebras, 2014 +
+LAMGRA <- Lambek grammars based on pregroups, 2001 +
+https://plato.stanford.edu/archivES/FALL2017/Entries/typelogical-grammar/[] <- Moortgat, Michael, "Typelogical Grammar", The Stanford Encyclopedia of Philosophy (Fall 2017 Edition) +
+
+https://www.youtube.com/watch?v=DAGJw7YBy8E[] <- Symmetrical monoidal categories, a Rosetta Stone, John Baez +
+
+- - -
+_2024-04-06 18:46 pregroups & grammars_
+
+Pregroup Grammars, Their Syntax and Semantics, in _The Interplay of Mathematics, Logic, and Linguistics.pdf_, M Sadrzadeh, pp. 347-376.
+
+Pregroup and natural language processing, in _The Interplay of Mathematics, Logic, and Linguistics.pdf_, J. Lambek, pp. 423-437.
+
+- - -
+_2024-03-22 10:32 Quiver for cat theory diagram generation_
+
+https://github.com/varkor/quiver?tab=readme-ov-file[] <- Quiver for generating cat theory figures +
+
+- - -
+_2024-03-03 17:35 link between Coecke and Sobocinski_
+
+https://www.cs.ox.ac.uk/people/bob.coecke/Robin_P.pdf[] +
+PicResConcur'y 
+
+- - -
+_2024-03-03 13:07 algebraic theories with *string diagrams*, Pawel Sobocinski_
+
+https://www.youtube.com/watch?v=rt0a84vzYrc[] <- pick up at 34:00
+
+- - -
+_2024-03-03 11:49 references and links_
+
+https://www.algebraicjulia.org/assets/slides/juliacon-2020.pdf[] +
+juliaconAlgebraicJulia-2020 <- local pdf of --^
+*- try starting here -*
+https://graphicallinearalgebra.net[] <- course by blog: Graphical Linear Algebra, Pawel Sobocinski +
+https://graphicallinearalgebra.net/2015/04/26/adding-part-1-and-mr-fibonacci/[] +
+
